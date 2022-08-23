@@ -1,0 +1,6 @@
+//<'animals.pbo' properties via Mikero's dos tools, dll version 8.84>
+product=dayz;
+prefix=DZ\animals;
+version=92894P;
+//PboType=Arma Addon;
+//</properties>

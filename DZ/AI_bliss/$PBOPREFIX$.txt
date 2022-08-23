@@ -1,0 +1,6 @@
+//<'ai_bliss.pbo' properties via Mikero's dos tools, dll version 8.84>
+product=dayz bliss;
+prefix=DZ\AI_bliss;
+version=83537P;
+//PboType=Arma Addon;
+//</properties>
