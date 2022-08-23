@@ -1,0 +1,6 @@
+//<'languagecore.pbo' properties via Mikero's dos tools, dll version 8.84>
+product=dayz;
+prefix=languagecore;
+version=96182;
+//PboType=Arma Unknown pbo type (no config or mission).;
+//</properties>
