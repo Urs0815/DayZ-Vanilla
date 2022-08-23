@@ -1,0 +1,6 @@
+//<'surfaces_bliss.pbo' properties via Mikero's dos tools, dll version 8.84>
+product=dayz bliss;
+prefix=DZ\surfaces_bliss;
+version=86060P;
+//PboType=Arma Addon;
+//</properties>

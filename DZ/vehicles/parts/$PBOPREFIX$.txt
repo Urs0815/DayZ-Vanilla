@@ -1,0 +1,6 @@
+//<'vehicles_parts.pbo' properties via Mikero's dos tools, dll version 8.84>
+product=dayz;
+prefix=DZ\vehicles\parts;
+version=92794P;
+//PboType=Arma Addon;
+//</properties>
