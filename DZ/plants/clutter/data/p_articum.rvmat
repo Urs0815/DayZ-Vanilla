@@ -1,0 +1,45 @@
+////////////////////////////////////////////////////////////////////
+//DeRap: clutter\data\p_articum.rvmat
+//Produced from mikero's Dos Tools Dll version 8.84
+//https://mikero.bytex.digital/Downloads
+//'now' is Tue Aug 23 21:41:00 2022 : 'file' last modified on Tue Mar 29 10:57:52 2022
+////////////////////////////////////////////////////////////////////
+
+#define _ARMA_
+
+mainLight = "Sun";
+fogMode = "Fog";
+ambient[] = {0.3,0.3,0.3,1.5};
+diffuse[] = {0.3,0.3,0.3,1};
+forcedDiffuse[] = {0,0,0,0.0};
+emmisive[] = {0.0,0.0,0.0,1.0};
+specular[] = {0.5,0.5,0.1,1.0};
+specularPower = 128.0;
+plantWind[] = {0.03,0.03,1.95,8.5};
+renderFlags[] = {"AlphaTest32"};
+PixelShaderID = "Grass";
+VertexShaderID = "Grass";
+class Stage2
+{
+	texture = "dz\plants\clutter\data\p_articum_nohq.paa";
+	uvSource = "tex";
+	class uvTransform
+	{
+		aside[] = {1,0,0};
+		up[] = {0,1,0};
+		dir[] = {0,0,0};
+		pos[] = {0,0,0};
+	};
+};
+class Stage3
+{
+	texture = "dz\plants\clutter\data\p_articum_mask_co.paa";
+	uvSource = "tex1";
+	class uvTransform
+	{
+		aside[] = {1,0,0};
+		up[] = {0,1,0};
+		dir[] = {0,0,0};
+		pos[] = {0,0,0};
+	};
+};

@@ -1,0 +1,34 @@
+////////////////////////////////////////////////////////////////////
+//DeRap: clutter\data\c_broadleaf_sprouts_tall.rvmat
+//Produced from mikero's Dos Tools Dll version 8.84
+//https://mikero.bytex.digital/Downloads
+//'now' is Tue Aug 23 21:40:58 2022 : 'file' last modified on Tue Mar 29 10:57:45 2022
+////////////////////////////////////////////////////////////////////
+
+#define _ARMA_
+
+mainLight = "Sun";
+fogMode = "Fog";
+ambient[] = {0.4,0.4,0.6,2};
+diffuse[] = {0.6,0.5,0.4,1};
+forcedDiffuse[] = {0,0,0,0};
+emmisive[] = {0,0,0,1};
+specular[] = {0,0,0,1};
+specularPower = 1;
+shadowBias = 0.25;
+plantWind[] = {0.06,0.13,0.94,50.5};
+renderFlags[] = {"AlphaTest32"};
+PixelShaderID = "Grass";
+VertexShaderID = "Grass";
+class Stage3
+{
+	texture = "dz\plants\clutter\data\c_broadleaf_sprouts_mask_co.paa";
+	uvSource = "tex1";
+	class uvTransform
+	{
+		aside[] = {1,0,0};
+		up[] = {0,1,0};
+		dir[] = {0,0,0};
+		pos[] = {0,0,0};
+	};
+};

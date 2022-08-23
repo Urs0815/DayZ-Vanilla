@@ -1,0 +1,6 @@
+//<'gear_optics.pbo' properties via Mikero's dos tools, dll version 8.84>
+product=dayz;
+prefix=DZ\gear\optics;
+version=94122P;
+//PboType=Arma Addon;
+//</properties>

@@ -1,0 +1,12 @@
+////////////////////////////////////////////////////////////////////
+//DeRap: data\penetration\rubber.rvmat
+//Produced from mikero's Dos Tools Dll version 8.84
+//https://mikero.bytex.digital/Downloads
+//'now' is Tue Aug 23 21:39:59 2022 : 'file' last modified on Wed Jun 22 17:46:30 2022
+////////////////////////////////////////////////////////////////////
+
+#define _ARMA_
+
+surfaceInfo = "dz\data\data\penetration\rubber.bisurf";
+diffuse[] = {0.5,0.5,1.0,1.0};
+ambient[] = {0.5,0.5,1.0,1.0};

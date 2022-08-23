@@ -1,0 +1,6 @@
+//<'gear_radio.pbo' properties via Mikero's dos tools, dll version 8.84>
+product=dayz;
+prefix=DZ\gear\radio;
+version=94096P;
+//PboType=Arma Addon;
+//</properties>

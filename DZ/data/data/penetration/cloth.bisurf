@@ -1,0 +1,23 @@
+////////////////////////////////////////////////////////////////////
+//DeRap: data\penetration\cloth.bisurf
+//Produced from mikero's Dos Tools Dll version 8.84
+//https://mikero.bytex.digital/Downloads
+//'now' is Tue Aug 23 21:39:58 2022 : 'file' last modified on Wed Jun 22 17:46:27 2022
+////////////////////////////////////////////////////////////////////
+
+#define _ARMA_
+
+Density = 200;
+thickness = 10;
+deflection = 0.05;
+bulletPenetrability = 200;
+transparency = 1;
+rough = 0.1;
+dust = 0;
+audibility = 0.4;
+soundEnviron = "Empty";
+isLiquid = "false";
+friction = 0.4;
+restitution = 0;
+impact = "Hit_Textile";
+soundHit = "body";

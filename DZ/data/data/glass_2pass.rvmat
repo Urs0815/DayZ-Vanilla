@@ -1,0 +1,18 @@
+////////////////////////////////////////////////////////////////////
+//DeRap: data\glass_2pass.rvmat
+//Produced from mikero's Dos Tools Dll version 8.84
+//https://mikero.bytex.digital/Downloads
+//'now' is Tue Aug 23 21:39:57 2022 : 'file' last modified on Wed Jun 22 17:46:31 2022
+////////////////////////////////////////////////////////////////////
+
+#define _ARMA_
+
+ambient[] = {1,1,1,1};
+diffuse[] = {1,1,1,1};
+forcedDiffuse[] = {0,0,0,0};
+emmisive[] = {0,0,0,1};
+specular[] = {0,0,0,0};
+specularPower = 0;
+PixelShaderID = "AlphaShadow";
+VertexShaderID = "Basic";
+renderFlags[] = {"NoColorWrite"};

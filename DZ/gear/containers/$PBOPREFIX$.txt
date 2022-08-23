@@ -1,0 +1,6 @@
+//<'gear_containers.pbo' properties via Mikero's dos tools, dll version 8.84>
+product=dayz;
+prefix=DZ\gear\containers;
+version=94407P;
+//PboType=Arma Addon;
+//</properties>

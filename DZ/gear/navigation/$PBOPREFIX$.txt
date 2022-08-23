@@ -1,0 +1,6 @@
+//<'gear_navigation.pbo' properties via Mikero's dos tools, dll version 8.84>
+product=dayz;
+prefix=DZ\gear\navigation;
+version=94813P;
+//PboType=Arma Addon;
+//</properties>

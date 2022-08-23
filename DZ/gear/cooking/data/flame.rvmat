@@ -1,0 +1,18 @@
+////////////////////////////////////////////////////////////////////
+//DeRap: data\flame.rvmat
+//Produced from mikero's Dos Tools Dll version 8.84
+//https://mikero.bytex.digital/Downloads
+//'now' is Tue Aug 23 21:40:19 2022 : 'file' last modified on Mon Jun 06 12:12:07 2022
+////////////////////////////////////////////////////////////////////
+
+#define _ARMA_
+
+ambient[] = {10,10,10,1};
+diffuse[] = {1,1,1,1};
+forcedDiffuse[] = {1,1,1,1};
+emmisive[] = {10,10,10,1};
+specular[] = {0,0,0,1};
+specularPower = 1;
+RenderFlags[] = {"NoReceiveShadow","AddBlend"};
+PixelShaderID = "Normal";
+VertexShaderID = "Basic";

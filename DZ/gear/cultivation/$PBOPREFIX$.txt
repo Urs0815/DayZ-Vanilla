@@ -1,0 +1,6 @@
+//<'gear_cultivation.pbo' properties via Mikero's dos tools, dll version 8.84>
+product=dayz;
+prefix=DZ\gear\cultivation;
+version=92632P;
+//PboType=Arma Addon;
+//</properties>

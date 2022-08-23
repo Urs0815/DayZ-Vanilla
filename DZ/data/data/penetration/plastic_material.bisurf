@@ -1,0 +1,22 @@
+////////////////////////////////////////////////////////////////////
+//DeRap: data\penetration\plastic_material.bisurf
+//Produced from mikero's Dos Tools Dll version 8.84
+//https://mikero.bytex.digital/Downloads
+//'now' is Tue Aug 23 21:39:59 2022 : 'file' last modified on Wed Jun 22 17:46:30 2022
+////////////////////////////////////////////////////////////////////
+
+#define _ARMA_
+
+Density = 1380;
+deflection = 0.2;
+bulletPenetrability = 150;
+transparency = 0;
+rough = 0.1;
+dust = 0;
+audibility = 0.7;
+soundEnviron = "Empty";
+isLiquid = "false";
+friction = 0.7;
+restitution = 0.3;
+impact = "Hit_Rubber";
+soundHit = "plastic";

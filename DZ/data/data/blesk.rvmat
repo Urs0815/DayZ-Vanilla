@@ -1,0 +1,17 @@
+////////////////////////////////////////////////////////////////////
+//DeRap: data\blesk.rvmat
+//Produced from mikero's Dos Tools Dll version 8.84
+//https://mikero.bytex.digital/Downloads
+//'now' is Tue Aug 23 21:39:51 2022 : 'file' last modified on Wed Jun 22 17:46:30 2022
+////////////////////////////////////////////////////////////////////
+
+#define _ARMA_
+
+ambient[] = {10.0,10.0,10.0,1.0};
+diffuse[] = {10.0,10.0,10.0,1.0};
+forcedDiffuse[] = {10.0,10.0,10.0,0.0};
+emmisive[] = {3.0,3.0,3.0,1.0};
+specular[] = {0.0,0.0,0.0,0.0};
+specularPower = 0.0;
+PixelShaderID = "Normal";
+VertexShaderID = "Basic";

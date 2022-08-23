@@ -1,0 +1,22 @@
+////////////////////////////////////////////////////////////////////
+//DeRap: clutter\data\c_twigs.rvmat
+//Produced from mikero's Dos Tools Dll version 8.84
+//https://mikero.bytex.digital/Downloads
+//'now' is Tue Aug 23 21:40:59 2022 : 'file' last modified on Tue Mar 29 10:57:43 2022
+////////////////////////////////////////////////////////////////////
+
+#define _ARMA_
+
+mainLight = "Sun";
+fogMode = "Fog";
+ambient[] = {0.4,0.4,0.4,1};
+diffuse[] = {0.3,0.3,0.3,1};
+forcedDiffuse[] = {0,0,0,0.0};
+emmisive[] = {0.0,0.0,0.0,1.0};
+specular[] = {0,0,0,1.0};
+specularPower = 128.0;
+shadowBias = 0.55;
+plantWind[] = {0,0,0,0};
+renderFlags[] = {"AlphaTest32"};
+PixelShaderID = "Grass";
+VertexShaderID = "Grass";

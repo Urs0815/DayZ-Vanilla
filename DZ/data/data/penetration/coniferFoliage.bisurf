@@ -1,0 +1,24 @@
+////////////////////////////////////////////////////////////////////
+//DeRap: data\penetration\coniferFoliage.bisurf
+//Produced from mikero's Dos Tools Dll version 8.84
+//https://mikero.bytex.digital/Downloads
+//'now' is Tue Aug 23 21:39:58 2022 : 'file' last modified on Wed Jun 22 17:46:29 2022
+////////////////////////////////////////////////////////////////////
+
+#define _ARMA_
+
+Density = 600;
+Thickness = 1;
+deflection = 0.3;
+bulletPenetrability = 800;
+bulletPenetrabilityWithThickness = 600;
+transparency = 1;
+rough = 0.1;
+dust = 0;
+audibility = 0.6;
+soundEnviron = "Empty";
+isLiquid = "false";
+friction = 0.7;
+restitution = 0.3;
+impact = "Hit_Foliage";
+soundHit = "foliage";

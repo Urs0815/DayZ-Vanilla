@@ -1,0 +1,23 @@
+////////////////////////////////////////////////////////////////////
+//DeRap: data\penetration\thin_wire.bisurf
+//Produced from mikero's Dos Tools Dll version 8.84
+//https://mikero.bytex.digital/Downloads
+//'now' is Tue Aug 23 21:39:59 2022 : 'file' last modified on Wed Jun 22 17:46:30 2022
+////////////////////////////////////////////////////////////////////
+
+#define _ARMA_
+
+Density = 7800;
+Thickness = 0.1;
+deflection = 0.0;
+bulletPenetrabilityWithThickness = 15000;
+transparency = 0;
+rough = 0.1;
+dust = 0;
+audibility = 1.0;
+soundEnviron = "Empty";
+isLiquid = "false";
+friction = 0.7;
+restitution = 0.3;
+impact = "Hit_Metal";
+soundHit = "metal";

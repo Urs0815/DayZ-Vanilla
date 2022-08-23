@@ -1,0 +1,24 @@
+////////////////////////////////////////////////////////////////////
+//DeRap: data\penetration\plexiplate.bisurf
+//Produced from mikero's Dos Tools Dll version 8.84
+//https://mikero.bytex.digital/Downloads
+//'now' is Tue Aug 23 21:39:59 2022 : 'file' last modified on Wed Jun 22 17:46:30 2022
+////////////////////////////////////////////////////////////////////
+
+#define _ARMA_
+
+Density = 1180;
+Thickness = 2;
+deflection = 0.5;
+bulletPenetrability = 300;
+bulletPenetrabilityWithThickness = 150;
+transparency = 1;
+rough = 0.1;
+dust = 0;
+audibility = 0.8;
+soundEnviron = "Empty";
+isLiquid = "false";
+friction = 0.7;
+restitution = 0.3;
+impact = "Hit_Glass";
+soundHit = "plastic";
