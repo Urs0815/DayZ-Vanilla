@@ -1,0 +1,6 @@
+//<'structures_wrecks.pbo' properties via Mikero's dos tools, dll version 8.84>
+product=dayz;
+prefix=DZ\structures\wrecks;
+version=95744;
+//PboType=Arma Addon;
+//</properties>
