@@ -1,0 +1,6 @@
+//<'characters_data.pbo' properties via Mikero's dos tools, dll version 8.84>
+product=dayz;
+prefix=DZ\characters\data;
+version=95595;
+//PboType=Arma Addon;
+//</properties>
