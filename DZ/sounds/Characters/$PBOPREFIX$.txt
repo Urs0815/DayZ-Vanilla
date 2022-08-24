@@ -1,0 +1,6 @@
+//<'sounds_characters.pbo' properties via Mikero's dos tools, dll version 8.84>
+product=dayz;
+prefix=DZ\sounds\Characters;
+version=94911P;
+//PboType=Arma Unknown pbo type (no config or mission).;
+//</properties>

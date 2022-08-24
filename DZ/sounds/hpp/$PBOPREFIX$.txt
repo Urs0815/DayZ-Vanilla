@@ -1,0 +1,6 @@
+//<'sounds_hpp.pbo' properties via Mikero's dos tools, dll version 8.84>
+product=dayz;
+prefix=DZ\sounds\hpp;
+version=95564;
+//PboType=Arma Addon;
+//</properties>

@@ -1,0 +1,6 @@
+//<'sounds_ai.pbo' properties via Mikero's dos tools, dll version 8.84>
+product=dayz;
+prefix=DZ\sounds\ai;
+version=91744P;
+//PboType=Arma Unknown pbo type (no config or mission).;
+//</properties>

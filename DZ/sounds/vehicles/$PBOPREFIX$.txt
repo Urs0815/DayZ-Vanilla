@@ -1,0 +1,6 @@
+//<'sounds_vehicles.pbo' properties via Mikero's dos tools, dll version 8.84>
+product=dayz;
+prefix=DZ\sounds\vehicles;
+version=86880P;
+//PboType=Arma Unknown pbo type (no config or mission).;
+//</properties>
