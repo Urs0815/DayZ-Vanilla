@@ -1,0 +1,11 @@
+////////////////////////////////////////////////////////////////////
+//DeRap: river\data\enoch_river.rvmat
+//Produced from mikero's Dos Tools Dll version 8.84
+//https://mikero.bytex.digital/Downloads
+//'now' is Tue Aug 23 21:49:50 2022 : 'file' last modified on Fri May 15 09:18:03 2020
+////////////////////////////////////////////////////////////////////
+
+#define _ARMA_
+
+PixelShaderID = "CalmWater";
+VertexShaderID = "CalmWater";

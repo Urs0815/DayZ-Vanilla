@@ -1,0 +1,6 @@
+//<'water.pbo' properties via Mikero's dos tools, dll version 8.84>
+product=dayz;
+prefix=DZ\water;
+version=83542P;
+//PboType=Arma Addon;
+//</properties>

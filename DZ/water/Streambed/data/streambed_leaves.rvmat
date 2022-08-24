@@ -1,0 +1,12 @@
+////////////////////////////////////////////////////////////////////
+//DeRap: Streambed\data\streambed_leaves.rvmat
+//Produced from mikero's Dos Tools Dll version 8.84
+//https://mikero.bytex.digital/Downloads
+//'now' is Tue Aug 23 21:46:36 2022 : 'file' last modified on Thu Jan 23 11:48:25 2020
+////////////////////////////////////////////////////////////////////
+
+#define _ARMA_
+
+ambient[] = {0.3,0.3,0.3,1};
+diffuse[] = {0.3,0.3,0.3,1};
+renderFlags[] = {"NoZWrite"};
