@@ -1,0 +1,6 @@
+//<'weapons_misc.pbo' properties via Mikero's dos tools, dll version 8.84>
+product=dayz;
+prefix=DZ\weapons\misc;
+version=83544P;
+//PboType=Arma Addon;
+//</properties>

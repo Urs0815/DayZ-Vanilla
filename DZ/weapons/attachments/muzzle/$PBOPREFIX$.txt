@@ -1,0 +1,6 @@
+//<'weapon_muzzles.pbo' properties via Mikero's dos tools, dll version 8.84>
+product=dayz;
+prefix=DZ\weapons\attachments\muzzle;
+version=92248P;
+//PboType=Arma Addon;
+//</properties>

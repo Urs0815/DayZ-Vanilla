@@ -1,0 +1,6 @@
+//<'weapons_data.pbo' properties via Mikero's dos tools, dll version 8.84>
+product=dayz;
+prefix=DZ\weapons\data;
+version=95352;
+//PboType=Arma Unknown pbo type (no config or mission).;
+//</properties>

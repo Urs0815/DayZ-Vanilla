@@ -1,0 +1,22 @@
+////////////////////////////////////////////////////////////////////
+//DeRap: data\muzzle_flash_night.rvmat
+//Produced from mikero's Dos Tools Dll version 8.84
+//https://mikero.bytex.digital/Downloads
+//'now' is Tue Aug 23 21:47:20 2022 : 'file' last modified on Thu Jan 23 13:11:55 2020
+////////////////////////////////////////////////////////////////////
+
+#define _ARMA_
+
+class StageTI
+{
+	texture = "dz\data\data\default_hot_ti_ca.paa";
+};
+ambient[] = {0,0,0,0.3};
+diffuse[] = {0,0,0,1};
+forcedDiffuse[] = {0.1,0.1,0.1,1};
+emmisive[] = {1,0.8,0.6,1};
+specular[] = {0,0,0,0};
+specularPower = 0;
+renderFlags[] = {"NoZWrite","NoAlphaWrite","AddBlend"};
+PixelShaderID = "Normal";
+VertexShaderID = "Basic";

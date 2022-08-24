@@ -1,0 +1,6 @@
+//<'weapons_shotguns.pbo' properties via Mikero's dos tools, dll version 8.84>
+product=dayz;
+prefix=DZ\weapons\shotguns;
+version=94818P;
+//PboType=Arma Addon;
+//</properties>

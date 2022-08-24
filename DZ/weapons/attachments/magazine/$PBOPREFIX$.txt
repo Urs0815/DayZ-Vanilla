@@ -1,0 +1,6 @@
+//<'weapon_magazines.pbo' properties via Mikero's dos tools, dll version 8.84>
+product=dayz;
+prefix=DZ\weapons\attachments\magazine;
+version=95104;
+//PboType=Arma Addon;
+//</properties>

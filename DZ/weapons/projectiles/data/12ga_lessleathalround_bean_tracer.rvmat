@@ -1,0 +1,30 @@
+////////////////////////////////////////////////////////////////////
+//DeRap: data\12ga_lessleathalround_bean_tracer.rvmat
+//Produced from mikero's Dos Tools Dll version 8.84
+//https://mikero.bytex.digital/Downloads
+//'now' is Tue Aug 23 21:47:18 2022 : 'file' last modified on Fri Jun 17 09:37:28 2022
+////////////////////////////////////////////////////////////////////
+
+#define _ARMA_
+
+ambient[] = {0.075,0.6,0.15,0.15};
+diffuse[] = {1.0,1.5,1.5,1.0};
+forcedDiffuse[] = {0.5882353,0.58431375,0.47058824,0.47};
+emmisive[] = {1.0,1.5,1.0,0.3};
+specular[] = {0.1254902,0.23529412,0.26666668,0.2};
+specularPower = 50;
+PixelShaderID = "TreeAdv";
+VertexShaderID = "TreeAdv";
+plantWind[] = {0.05,0.01,50.99,10.5};
+class Stage2
+{
+	texture = "dz\plants\tree\data\b_betulapendula_1f_leaves_mca.paa";
+	uvSource = "tex1";
+	class uvTransform
+	{
+		aside[] = {1,0,0};
+		up[] = {0,1,0};
+		dir[] = {0,0,0};
+		pos[] = {0,0,0};
+	};
+};

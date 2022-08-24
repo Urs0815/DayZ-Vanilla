@@ -1,0 +1,6 @@
+//<'weapon_supports.pbo' properties via Mikero's dos tools, dll version 8.84>
+product=dayz;
+prefix=DZ\weapons\attachments\support;
+version=92618P;
+//PboType=Arma Addon;
+//</properties>

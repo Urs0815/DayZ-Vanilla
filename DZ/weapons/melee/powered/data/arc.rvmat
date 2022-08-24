@@ -1,0 +1,18 @@
+////////////////////////////////////////////////////////////////////
+//DeRap: powered\data\arc.rvmat
+//Produced from mikero's Dos Tools Dll version 8.84
+//https://mikero.bytex.digital/Downloads
+//'now' is Tue Aug 23 21:47:15 2022 : 'file' last modified on Tue Apr 12 14:56:10 2022
+////////////////////////////////////////////////////////////////////
+
+#define _ARMA_
+
+ambient[] = {3,1,1,1};
+diffuse[] = {1,1,1,1};
+forcedDiffuse[] = {1,1,1,1};
+emmisive[] = {1,1,1,1};
+specular[] = {0,0,0,1};
+specularPower = 1;
+RenderFlags[] = {"NoReceiveShadow","AddBlend"};
+PixelShaderID = "Normal";
+VertexShaderID = "Basic";

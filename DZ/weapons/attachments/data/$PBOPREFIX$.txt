@@ -1,0 +1,6 @@
+//<'weapon_attachments_textures.pbo' properties via Mikero's dos tools, dll version 8.84>
+product=dayz;
+prefix=DZ\weapons\attachments\data;
+version=94715P;
+//PboType=Arma Addon;
+//</properties>

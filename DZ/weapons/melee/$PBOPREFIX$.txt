@@ -1,0 +1,6 @@
+//<'weapons_melee.pbo' properties via Mikero's dos tools, dll version 8.84>
+product=dayz;
+prefix=DZ\weapons\melee;
+version=94244P;
+//PboType=Arma Addon;
+//</properties>

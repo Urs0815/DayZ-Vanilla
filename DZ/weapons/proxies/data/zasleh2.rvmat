@@ -1,0 +1,18 @@
+////////////////////////////////////////////////////////////////////
+//DeRap: data\zasleh2.rvmat
+//Produced from mikero's Dos Tools Dll version 8.84
+//https://mikero.bytex.digital/Downloads
+//'now' is Tue Aug 23 21:47:20 2022 : 'file' last modified on Thu Jan 23 13:12:00 2020
+////////////////////////////////////////////////////////////////////
+
+#define _ARMA_
+
+ambient[] = {0.0,0.0,0.0,0.5};
+diffuse[] = {0.0,0.0,0.0,0.0};
+forcedDiffuse[] = {0.01,0.01,0.01,1.0};
+emmisive[] = {1.0,1.0,1.0,0.0};
+specular[] = {0.0,0.0,0.0,0.0};
+specularPower = 0.0;
+renderFlags[] = {"NoAlphaWrite","AddBlend"};
+PixelShaderID = "Normal";
+VertexShaderID = "Basic";
