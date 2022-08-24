@@ -1,0 +1,42 @@
+////////////////////////////////////////////////////////////////////
+//DeRap: Bush\data\b_sambucusnigra_2s_lod4.rvmat
+//Produced from mikero's Dos Tools Dll version 8.84
+//https://mikero.bytex.digital/Downloads
+//'now' is Tue Aug 23 21:48:36 2022 : 'file' last modified on Tue Mar 01 18:10:34 2022
+////////////////////////////////////////////////////////////////////
+
+#define _ARMA_
+
+ambient[] = {0.08,0.54,0.43,0.4};
+diffuse[] = {2.0,3.0,1.0,0.7};
+forcedDiffuse[] = {0,0,0,1};
+emmisive[] = {0,0,0,0};
+specular[] = {0.0,0.0,0.0,1.0};
+specularPower = 30;
+PixelShaderID = "TreeAdv";
+VertexShaderID = "TreeAdv";
+plantWind[] = {0.05,0.01,0.99,0.5};
+class Stage1
+{
+	texture = "#(argb,8,8,3)color(0.5,0.5,1,1,NOHQ)";
+	uvSource = "tex";
+	class uvTransform
+	{
+		aside[] = {1,0,0};
+		up[] = {0,1,0};
+		dir[] = {0,0,0};
+		pos[] = {0,0,0};
+	};
+};
+class Stage2
+{
+	texture = "#(argb,8,8,3)color(0.5,0.5,0.5,1,MCA)";
+	uvSource = "tex";
+	class uvTransform
+	{
+		aside[] = {1,0,0};
+		up[] = {0,1,0};
+		dir[] = {0,0,0};
+		pos[] = {0,0,0};
+	};
+};

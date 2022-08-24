@@ -1,0 +1,46 @@
+////////////////////////////////////////////////////////////////////
+//DeRap: Clutter\data\c_leaves_dead.rvmat
+//Produced from mikero's Dos Tools Dll version 8.84
+//https://mikero.bytex.digital/Downloads
+//'now' is Tue Aug 23 21:48:37 2022 : 'file' last modified on Tue Mar 01 18:10:31 2022
+////////////////////////////////////////////////////////////////////
+
+#define _ARMA_
+
+mainLight = "Sun";
+fogMode = "Fog";
+ambient[] = {0.5,0.15,0.1,1};
+diffuse[] = {0.5,0.25,0.25,1};
+forcedDiffuse[] = {0,0,0,0};
+emmisive[] = {0,0,0,0};
+specular[] = {0,0,0,0};
+specularPower = 1;
+shadowBias = 0.2;
+plantWind[] = {0.09,0.11,0.2,10.98};
+renderFlags[] = {"AlphaTest32"};
+PixelShaderID = "Grass";
+VertexShaderID = "Grass";
+class Stage2
+{
+	texture = "#(argb,8,8,3)color(0.5,0.5,1.0,1.0,NOHQ)";
+	uvSource = "tex";
+	class uvTransform
+	{
+		aside[] = {1,0,0};
+		up[] = {0,1,0};
+		dir[] = {0,0,0};
+		pos[] = {0,0,0};
+	};
+};
+class Stage3
+{
+	texture = "#(argb,8,8,3)color(0,0,0,0,MCA)";
+	uvSource = "tex1";
+	class uvTransform
+	{
+		aside[] = {1,0,0};
+		up[] = {0,1,0};
+		dir[] = {0,0,0};
+		pos[] = {0,0,0};
+	};
+};

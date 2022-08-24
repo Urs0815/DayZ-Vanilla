@@ -1,0 +1,22 @@
+////////////////////////////////////////////////////////////////////
+//DeRap: Clutter\data\c_mat2dry.rvmat
+//Produced from mikero's Dos Tools Dll version 8.84
+//https://mikero.bytex.digital/Downloads
+//'now' is Tue Aug 23 21:48:37 2022 : 'file' last modified on Tue Mar 01 18:12:56 2022
+////////////////////////////////////////////////////////////////////
+
+#define _ARMA_
+
+mainLight = "Sun";
+fogMode = "Fog";
+ambient[] = {1,1,0.5,1.5};
+diffuse[] = {0.3,0.3,0.15,1};
+forcedDiffuse[] = {0,0,0,0};
+emmisive[] = {0,0,0,1};
+specular[] = {0,0,0,1};
+specularPower = 1;
+shadowBias = 0.2;
+plantWind[] = {0.11,0.13,0.94,15.5};
+renderFlags[] = {"AlphaTest32"};
+PixelShaderID = "Grass";
+VertexShaderID = "Grass";

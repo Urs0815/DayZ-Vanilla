@@ -1,0 +1,6 @@
+//<'rocks_bliss.pbo' properties via Mikero's dos tools, dll version 8.84>
+product=dayz bliss;
+prefix=DZ\rocks_bliss;
+version=93798P;
+//PboType=Arma Addon;
+//</properties>
