@@ -1,0 +1,41 @@
+////////////////////////////////////////////////////////////////////
+//DeRap: Parts\data\enoch_side.rvmat
+//Produced from mikero's Dos Tools Dll version 8.84
+//https://mikero.bytex.digital/Downloads
+//'now' is Tue Aug 23 21:49:18 2022 : 'file' last modified on Tue Jun 21 19:51:13 2022
+////////////////////////////////////////////////////////////////////
+
+#define _ARMA_
+
+ambient[] = {1,1,1,1};
+diffuse[] = {1,1,1,1};
+forcedDiffuse[] = {0.0,0.0,0.0,0.0};
+emmisive[] = {0.0,0.0,0.0,1.0};
+specular[] = {0.1,0.1,0.1,1.0};
+specularPower = 60.0;
+PixelShaderID = "NormalMapSpecularMap";
+VertexShaderID = "NormalMap";
+class Stage1
+{
+	texture = "dz\structures_bliss\roads\parts\data\enoch_side_dashedline_nohq.paa";
+	uvSource = "tex";
+	class uvTransform
+	{
+		aside[] = {1.0,0.0,0.0};
+		up[] = {0.0,1.0,0.0};
+		dir[] = {0.0,0.0,0.0};
+		pos[] = {0.0,0.0,0.0};
+	};
+};
+class Stage2
+{
+	texture = "#(argb,8,8,3)color(1.0,0.0,1.0,1.0,SM)";
+	uvSource = "tex";
+	class uvTransform
+	{
+		aside[] = {1.0,0.0,0.0};
+		up[] = {0.0,1.0,0.0};
+		dir[] = {0.0,0.0,0.0};
+		pos[] = {0.0,0.0,0.0};
+	};
+};

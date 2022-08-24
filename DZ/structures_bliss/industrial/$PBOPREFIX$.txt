@@ -1,0 +1,6 @@
+//<'structures_industrial_bliss.pbo' properties via Mikero's dos tools, dll version 8.84>
+product=dayz bliss;
+prefix=DZ\structures_bliss\industrial;
+version=95744;
+//PboType=Arma Addon;
+//</properties>
