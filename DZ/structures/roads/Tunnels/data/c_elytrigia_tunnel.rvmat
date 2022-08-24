@@ -1,0 +1,46 @@
+////////////////////////////////////////////////////////////////////
+//DeRap: Tunnels\data\c_elytrigia_tunnel.rvmat
+//Produced from mikero's Dos Tools Dll version 8.84
+//https://mikero.bytex.digital/Downloads
+//'now' is Tue Aug 23 21:44:59 2022 : 'file' last modified on Tue Jun 21 17:52:07 2022
+////////////////////////////////////////////////////////////////////
+
+#define _ARMA_
+
+mainLight = "Sun";
+fogMode = "Fog";
+ambient[] = {3,4,1.5,1.7};
+diffuse[] = {2.5,2,1.5,1};
+forcedDiffuse[] = {0,0,0,0};
+emmisive[] = {0.0,0.0,0.0,1.0};
+specular[] = {0.1,0.075,0.075,0.0};
+specularPower = 64.0;
+shadowBias = 0.45;
+plantWind[] = {0.2,0.25,0.3,0.2};
+renderFlags[] = {"AlphaTest32"};
+PixelShaderID = "Grass";
+VertexShaderID = "Grass";
+class Stage2
+{
+	texture = "dz\plants\clutter\data\c_elytrigia_nohq.paa";
+	uvSource = "tex";
+	class uvTransform
+	{
+		aside[] = {1,0,0};
+		up[] = {0,1,0};
+		dir[] = {0,0,0};
+		pos[] = {0,0,0};
+	};
+};
+class Stage3
+{
+	texture = "dz\plants\clutter\data\c_elytrigia_mask_co.paa";
+	uvSource = "tex1";
+	class uvTransform
+	{
+		aside[] = {1,0,0};
+		up[] = {0,1,0};
+		dir[] = {0,0,0};
+		pos[] = {0,0,0};
+	};
+};

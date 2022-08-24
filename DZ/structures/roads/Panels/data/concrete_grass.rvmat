@@ -1,0 +1,20 @@
+////////////////////////////////////////////////////////////////////
+//DeRap: Panels\data\concrete_grass.rvmat
+//Produced from mikero's Dos Tools Dll version 8.84
+//https://mikero.bytex.digital/Downloads
+//'now' is Tue Aug 23 21:44:56 2022 : 'file' last modified on Tue Jun 21 17:52:05 2022
+////////////////////////////////////////////////////////////////////
+
+#define _ARMA_
+
+mainLight = "Sun";
+fogMode = "Fog";
+ambient[] = {1,1,1,1.3};
+diffuse[] = {0.49019608,0.49019608,0.49019608,1};
+forcedDiffuse[] = {0,0,0,0};
+emmisive[] = {0,0,0,1};
+specular[] = {0,0,0,1};
+specularPower = 1;
+renderFlags[] = {"AlphaTest32"};
+PixelShaderID = "Grass";
+VertexShaderID = "Grass";

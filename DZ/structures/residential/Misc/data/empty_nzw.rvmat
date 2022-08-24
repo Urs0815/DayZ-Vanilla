@@ -1,0 +1,18 @@
+////////////////////////////////////////////////////////////////////
+//DeRap: Misc\data\empty_nzw.rvmat
+//Produced from mikero's Dos Tools Dll version 8.84
+//https://mikero.bytex.digital/Downloads
+//'now' is Tue Aug 23 21:44:38 2022 : 'file' last modified on Tue Jun 21 19:17:58 2022
+////////////////////////////////////////////////////////////////////
+
+#define _ARMA_
+
+ambient[] = {1.0,1.0,1.0,1.0};
+diffuse[] = {1.0,1.0,1.0,1.0};
+forcedDiffuse[] = {0.0,0.0,0.0,0.0};
+emmisive[] = {0.0,0.0,0.0,1.0};
+specular[] = {0.0,0.0,0.0,1.0};
+specularPower = 1.0;
+renderFlags[] = {"NoZWrite"};
+PixelShaderID = "Normal";
+VertexShaderID = "Basic";
