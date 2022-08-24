@@ -1,0 +1,17 @@
+////////////////////////////////////////////////////////////////////
+//DeRap: Tisy\data\tisy_barracks_decals_leaves.rvmat
+//Produced from mikero's Dos Tools Dll version 8.84
+//https://mikero.bytex.digital/Downloads
+//'now' is Tue Aug 23 21:44:15 2022 : 'file' last modified on Tue Jun 21 18:55:16 2022
+////////////////////////////////////////////////////////////////////
+
+#define _ARMA_
+
+ambient[] = {0.25100055,0.25100055,0.25100055,1};
+diffuse[] = {0.65100056,0.65100056,0.65100056,1};
+forcedDiffuse[] = {0,0,0,0};
+emmisive[] = {0,0,0,1};
+specular[] = {0,0,0,0};
+specularPower = 0;
+PixelShaderID = "Normal";
+VertexShaderID = "Basic";

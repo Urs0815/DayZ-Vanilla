@@ -1,0 +1,41 @@
+////////////////////////////////////////////////////////////////////
+//DeRap: Ladders\data\ladder_proxy_mlod.rvmat
+//Produced from mikero's Dos Tools Dll version 8.84
+//https://mikero.bytex.digital/Downloads
+//'now' is Tue Aug 23 21:44:16 2022 : 'file' last modified on Thu Jan 23 04:34:41 2020
+////////////////////////////////////////////////////////////////////
+
+#define _ARMA_
+
+ambient[] = {1,1,1,1};
+diffuse[] = {1,1,1,1};
+forcedDiffuse[] = {0,0,0,0};
+emmisive[] = {0,0,0,1};
+specular[] = {1,1,1,1};
+specularPower = 80;
+PixelShaderID = "NormalMapSpecularDIMap";
+VertexShaderID = "NormalMap";
+class Stage1
+{
+	texture = "dz\structures\proxy_buildingparts\ladders\data\ladder_proxy_mlod_nohq.paa";
+	uvSource = "tex";
+	class uvTransform
+	{
+		aside[] = {1,0,0};
+		up[] = {0,1,0};
+		dir[] = {0,0,0};
+		pos[] = {0,0,0};
+	};
+};
+class Stage2
+{
+	texture = "dz\structures\proxy_buildingparts\ladders\data\ladder_proxy_mlod_smdi.paa";
+	uvSource = "tex";
+	class uvTransform
+	{
+		aside[] = {1,0,0};
+		up[] = {0,1,0};
+		dir[] = {0,0,0};
+		pos[] = {0,0,0};
+	};
+};
