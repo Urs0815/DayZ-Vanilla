@@ -1,6 +1,6 @@
-//<'dz.pbo' properties via Mikero's dos tools, dll version 8.84>
+//<'dz.pbo' properties via Mikero's dos tools, dll version 8.94>
 product=dayz;
 prefix=DZ\data;
-version=95772;
+version=98343;
 //PboType=Arma Addon;
 //</properties>

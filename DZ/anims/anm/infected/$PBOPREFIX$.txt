@@ -1,4 +1,4 @@
-//<'anims_anm_infected.pbo' properties via Mikero's dos tools, dll version 8.84>
+//<'anims_anm_infected.pbo' properties via Mikero's dos tools, dll version 8.94>
 product=dayz;
 prefix=DZ\anims\anm\infected;
 version=94868P;

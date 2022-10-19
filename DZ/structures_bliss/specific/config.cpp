@@ -1,8 +1,8 @@
 ////////////////////////////////////////////////////////////////////
 //DeRap: config.bin
-//Produced from mikero's Dos Tools Dll version 8.84
+//Produced from mikero's Dos Tools Dll version 8.94
 //https://mikero.bytex.digital/Downloads
-//'now' is Tue Aug 23 21:49:33 2022 : 'file' last modified on Tue Jun 21 20:04:35 2022
+//'now' is Wed Oct 19 20:15:05 2022 : 'file' last modified on Mon Oct 03 13:39:41 2022
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -156,7 +156,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 2;
+								damage = 3;
 							};
 							class Blood
 							{
@@ -296,7 +296,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 3;
+								damage = 10;
 							};
 							class Blood
 							{
@@ -441,7 +441,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 3;
+								damage = 10;
 							};
 							class Blood
 							{
@@ -690,7 +690,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 3;
+								damage = 10;
 							};
 							class Blood
 							{
@@ -748,7 +748,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 3;
+								damage = 10;
 							};
 							class Blood
 							{
@@ -806,7 +806,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 3;
+								damage = 10;
 							};
 							class Blood
 							{
@@ -864,7 +864,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 3;
+								damage = 10;
 							};
 							class Blood
 							{
@@ -922,7 +922,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 3;
+								damage = 10;
 							};
 							class Blood
 							{
@@ -980,7 +980,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 3;
+								damage = 10;
 							};
 							class Blood
 							{
@@ -1038,7 +1038,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 3;
+								damage = 10;
 							};
 							class Blood
 							{
@@ -1096,7 +1096,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 3;
+								damage = 10;
 							};
 							class Blood
 							{
@@ -1154,7 +1154,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 3;
+								damage = 10;
 							};
 							class Blood
 							{
@@ -1398,7 +1398,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 3;
+								damage = 10;
 							};
 							class Blood
 							{
@@ -1456,7 +1456,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 3;
+								damage = 10;
 							};
 							class Blood
 							{
@@ -1514,7 +1514,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 3;
+								damage = 10;
 							};
 							class Blood
 							{
@@ -1572,7 +1572,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 3;
+								damage = 10;
 							};
 							class Blood
 							{
@@ -1630,7 +1630,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 3;
+								damage = 10;
 							};
 							class Blood
 							{
@@ -1688,7 +1688,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 3;
+								damage = 10;
 							};
 							class Blood
 							{
@@ -1746,7 +1746,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 3;
+								damage = 10;
 							};
 							class Blood
 							{
@@ -1804,7 +1804,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 3;
+								damage = 10;
 							};
 							class Blood
 							{
@@ -1862,7 +1862,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 3;
+								damage = 10;
 							};
 							class Blood
 							{
@@ -2106,7 +2106,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 3;
+								damage = 10;
 							};
 							class Blood
 							{
@@ -2164,7 +2164,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 3;
+								damage = 10;
 							};
 							class Blood
 							{
@@ -2222,7 +2222,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 3;
+								damage = 10;
 							};
 							class Blood
 							{
@@ -2280,7 +2280,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 3;
+								damage = 10;
 							};
 							class Blood
 							{
@@ -2338,7 +2338,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 3;
+								damage = 10;
 							};
 							class Blood
 							{
@@ -2396,7 +2396,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 3;
+								damage = 10;
 							};
 							class Blood
 							{
@@ -2454,7 +2454,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 3;
+								damage = 10;
 							};
 							class Blood
 							{
@@ -2512,7 +2512,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 3;
+								damage = 10;
 							};
 							class Blood
 							{
@@ -2570,7 +2570,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 3;
+								damage = 10;
 							};
 							class Blood
 							{
@@ -2814,7 +2814,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 3;
+								damage = 10;
 							};
 							class Blood
 							{
@@ -2872,7 +2872,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 3;
+								damage = 10;
 							};
 							class Blood
 							{
@@ -2930,7 +2930,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 3;
+								damage = 10;
 							};
 							class Blood
 							{
@@ -2988,7 +2988,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 3;
+								damage = 10;
 							};
 							class Blood
 							{
@@ -3046,7 +3046,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 3;
+								damage = 10;
 							};
 							class Blood
 							{
@@ -3104,7 +3104,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 3;
+								damage = 10;
 							};
 							class Blood
 							{
@@ -3162,7 +3162,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 3;
+								damage = 10;
 							};
 							class Blood
 							{
@@ -3220,7 +3220,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 3;
+								damage = 10;
 							};
 							class Blood
 							{
@@ -3278,7 +3278,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 3;
+								damage = 10;
 							};
 							class Blood
 							{
@@ -3522,7 +3522,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 3;
+								damage = 10;
 							};
 							class Blood
 							{
@@ -3580,7 +3580,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 3;
+								damage = 10;
 							};
 							class Blood
 							{
@@ -3638,7 +3638,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 3;
+								damage = 10;
 							};
 							class Blood
 							{
@@ -3696,7 +3696,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 3;
+								damage = 10;
 							};
 							class Blood
 							{
@@ -3754,7 +3754,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 3;
+								damage = 10;
 							};
 							class Blood
 							{
@@ -3812,7 +3812,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 3;
+								damage = 10;
 							};
 							class Blood
 							{
@@ -3870,7 +3870,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 3;
+								damage = 10;
 							};
 							class Blood
 							{
@@ -3928,7 +3928,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 3;
+								damage = 10;
 							};
 							class Blood
 							{
@@ -3986,7 +3986,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 3;
+								damage = 10;
 							};
 							class Blood
 							{
@@ -4230,7 +4230,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 3;
+								damage = 10;
 							};
 							class Blood
 							{
@@ -4288,7 +4288,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 3;
+								damage = 10;
 							};
 							class Blood
 							{
@@ -4346,7 +4346,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 3;
+								damage = 10;
 							};
 							class Blood
 							{
@@ -4404,7 +4404,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 3;
+								damage = 10;
 							};
 							class Blood
 							{
@@ -4462,7 +4462,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 3;
+								damage = 10;
 							};
 							class Blood
 							{
@@ -4520,7 +4520,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 3;
+								damage = 10;
 							};
 							class Blood
 							{
@@ -4578,7 +4578,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 3;
+								damage = 10;
 							};
 							class Blood
 							{
@@ -4636,7 +4636,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 3;
+								damage = 10;
 							};
 							class Blood
 							{
@@ -4694,7 +4694,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 3;
+								damage = 10;
 							};
 							class Blood
 							{
@@ -4868,7 +4868,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 2;
+								damage = 3;
 							};
 							class Blood
 							{
@@ -4926,7 +4926,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 2;
+								damage = 3;
 							};
 							class Blood
 							{
@@ -5005,102 +5005,102 @@ class CfgVehicles
 	};
 	class StaticObj_Airfield_LandMark: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures_bliss\Specific\Airfields\Airfield_LandMark.p3d";
 	};
 	class StaticObj_Castle_Wall3: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures_bliss\Specific\Castles\Castle_Wall3.p3d";
 	};
 	class StaticObj_Castle_Wall3_D_L: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures_bliss\Specific\Castles\Castle_Wall3_D_L.p3d";
 	};
 	class StaticObj_Castle_Wall3_D_R: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures_bliss\Specific\Castles\Castle_Wall3_D_R.p3d";
 	};
 	class StaticObj_Monument_Enoch1: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures_bliss\Specific\Cultural\Monument_Enoch1.p3d";
 	};
 	class StaticObj_Monument_Enoch2: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures_bliss\Specific\Cultural\Monument_Enoch2.p3d";
 	};
 	class StaticObj_Statue_Enoch1: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures_bliss\Specific\Cultural\Statue_Enoch1.p3d";
 	};
 	class StaticObj_Forest_Anthill: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures_bliss\Specific\Forest\Forest_Anthill.p3d";
 	};
 	class StaticObj_Forest_BeetleTrap1: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures_bliss\Specific\Forest\Forest_BeetleTrap1.p3d";
 	};
 	class StaticObj_Forest_BeetleTrap2: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures_bliss\Specific\Forest\Forest_BeetleTrap2.p3d";
 	};
 	class StaticObj_Forest_BeetleTrap3: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures_bliss\Specific\Forest\Forest_BeetleTrap3.p3d";
 	};
 	class StaticObj_Forest_DeerSkeleton_Dam: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures_bliss\Specific\Forest\Forest_DeerSkeleton_Dam.p3d";
 	};
 	class StaticObj_Forest_DeerSkeleton_Full: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures_bliss\Specific\Forest\Forest_DeerSkeleton_Full.p3d";
 	};
 	class StaticObj_Forest_DeerSkeleton_Pile: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures_bliss\Specific\Forest\Forest_DeerSkeleton_Pile.p3d";
 	};
 	class StaticObj_Forest_DeerSkeleton_Skull: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures_bliss\Specific\Forest\Forest_DeerSkeleton_Skull.p3d";
 	};
 	class StaticObj_Forest_HumanSkeleton: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures_bliss\Specific\Forest\Forest_HumanSkeleton.p3d";
 	};
 	class StaticObj_Transmitter_Box: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures_bliss\Specific\Towers\Transmitter_Box.p3d";
 	};
 	class StaticObj_Transmitter_Small1: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures_bliss\Specific\Towers\Transmitter_Small1.p3d";
 	};
 	class StaticObj_Transmitter_Small2: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures_bliss\Specific\Towers\Transmitter_Small2.p3d";
 	};
 	class StaticObj_Tribune: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures_bliss\Specific\Tribune\Tribune.p3d";
 	};
 };

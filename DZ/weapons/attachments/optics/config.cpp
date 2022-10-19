@@ -1,8 +1,8 @@
 ////////////////////////////////////////////////////////////////////
 //DeRap: config.bin
-//Produced from mikero's Dos Tools Dll version 8.84
+//Produced from mikero's Dos Tools Dll version 8.94
 //https://mikero.bytex.digital/Downloads
-//'now' is Tue Aug 23 21:46:48 2022 : 'file' last modified on Thu May 05 14:30:47 2022
+//'now' is Wed Oct 19 20:13:30 2022 : 'file' last modified on Wed Oct 05 20:38:11 2022
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -32,8 +32,12 @@ class CfgPatches
 class cfgVehicles
 {
 	class Inventory_Base;
-	class ItemOptics: Inventory_Base
+	class ItemOptics;
+	class ItemOptics_Base: ItemOptics
 	{
+		soundImpactType = "default";
+		repairableWithKits[] = {7};
+		repairCosts[] = {25.0};
 		class AnimEvents
 		{
 			class SoundWeapon
@@ -51,7 +55,7 @@ class cfgVehicles
 			};
 		};
 	};
-	class M4_CarryHandleOptic: ItemOptics
+	class M4_CarryHandleOptic: ItemOptics_Base
 	{
 		scope = 2;
 		displayName = "$STR_cfgVehicles_M4_CarryHandleOptic0";
@@ -98,7 +102,7 @@ class cfgVehicles
 			PPBlurProperties = 0.2;
 		};
 	};
-	class BUISOptic: ItemOptics
+	class BUISOptic: ItemOptics_Base
 	{
 		scope = 2;
 		memoryPointCamera = "eyeScope";
@@ -144,7 +148,7 @@ class cfgVehicles
 			PPBlurProperties = 0.2;
 		};
 	};
-	class M68Optic: ItemOptics
+	class M68Optic: ItemOptics_Base
 	{
 		scope = 2;
 		displayName = "$STR_cfgVehicles_M68Optic0";
@@ -199,8 +203,6 @@ class cfgVehicles
 			PPBlurProperties = 0.2;
 			opticSightTexture = "dz\weapons\attachments\optics\data\collimdot_red_ca.paa";
 		};
-		repairableWithKits[] = {7};
-		repairCosts[] = {25.0};
 		class EnergyManager
 		{
 			hasIcon = 1;
@@ -209,7 +211,7 @@ class cfgVehicles
 			attachmentAction = 1;
 		};
 	};
-	class M4_T3NRDSOptic: ItemOptics
+	class M4_T3NRDSOptic: ItemOptics_Base
 	{
 		scope = 2;
 		displayName = "$STR_cfgVehicles_M4_T3NRDSOptic0";
@@ -264,8 +266,6 @@ class cfgVehicles
 			PPBlurProperties = 0.2;
 			opticSightTexture = "dz\weapons\attachments\optics\data\collimdot_red_ca.paa";
 		};
-		repairableWithKits[] = {7};
-		repairCosts[] = {25.0};
 		class EnergyManager
 		{
 			hasIcon = 1;
@@ -274,7 +274,7 @@ class cfgVehicles
 			attachmentAction = 1;
 		};
 	};
-	class FNP45_MRDSOptic: ItemOptics
+	class FNP45_MRDSOptic: ItemOptics_Base
 	{
 		scope = 2;
 		displayName = "$STR_cfgVehicles_FNP45_MRDSOptic0";
@@ -330,8 +330,6 @@ class cfgVehicles
 			PPDOFProperties[] = {1,0.2,20,185,4,10};
 			opticSightTexture = "dz\weapons\attachments\optics\data\collimdot_red_ca.paa";
 		};
-		repairableWithKits[] = {7};
-		repairCosts[] = {25.0};
 		class EnergyManager
 		{
 			hasIcon = 1;
@@ -340,7 +338,7 @@ class cfgVehicles
 			attachmentAction = 1;
 		};
 	};
-	class Crossbow_RedpointOptic: ItemOptics
+	class Crossbow_RedpointOptic: ItemOptics_Base
 	{
 		scope = 2;
 		displayName = "$STR_cfgVehicles_Crossbow_RedpointOptic0";
@@ -395,8 +393,6 @@ class cfgVehicles
 			PPLensProperties[] = {1,0.15,0,0};
 			PPBlurProperties = 0.2;
 		};
-		repairableWithKits[] = {7};
-		repairCosts[] = {25.0};
 		class EnergyManager
 		{
 			hasIcon = 1;
@@ -405,7 +401,7 @@ class cfgVehicles
 			attachmentAction = 1;
 		};
 	};
-	class ReflexOptic: ItemOptics
+	class ReflexOptic: ItemOptics_Base
 	{
 		scope = 2;
 		displayName = "$STR_cfgVehicles_ReflexOptic0";
@@ -460,8 +456,6 @@ class cfgVehicles
 			PPLensProperties[] = {1,0.15,0,0};
 			PPBlurProperties = 0.2;
 		};
-		repairableWithKits[] = {7};
-		repairCosts[] = {25.0};
 		class EnergyManager
 		{
 			hasIcon = 1;
@@ -470,7 +464,7 @@ class cfgVehicles
 			attachmentAction = 1;
 		};
 	};
-	class ACOGOptic: ItemOptics
+	class ACOGOptic: ItemOptics_Base
 	{
 		scope = 2;
 		displayName = "$STR_cfgVehicles_ACOGOptic0";
@@ -535,7 +529,7 @@ class cfgVehicles
 			PPDOFProperties[] = {1,0.1,20,200,4,10};
 		};
 	};
-	class ACOGOptic_6x: ItemOptics
+	class ACOGOptic_6x: ItemOptics_Base
 	{
 		scope = 2;
 		displayName = "$STR_ACOGOptic_6x_0";
@@ -613,7 +607,7 @@ class cfgVehicles
 			PPBlurProperties = 0.2;
 		};
 	};
-	class PUScopeOptic: ItemOptics
+	class PUScopeOptic: ItemOptics_Base
 	{
 		scope = 2;
 		displayName = "$STR_cfgVehicles_PUScopeOptic0";
@@ -664,7 +658,7 @@ class cfgVehicles
 			PPBlurProperties = 0.6;
 		};
 	};
-	class KashtanOptic: ItemOptics
+	class KashtanOptic: ItemOptics_Base
 	{
 		scope = 2;
 		displayName = "$STR_cfgVehicles_KashtanOptic0";
@@ -715,7 +709,7 @@ class cfgVehicles
 			PPBlurProperties = 0.2;
 		};
 	};
-	class LongrangeOptic: ItemOptics
+	class LongrangeOptic: ItemOptics_Base
 	{
 		scope = 2;
 		displayName = "$STR_cfgVehicles_LongrangeOptic0";
@@ -770,7 +764,7 @@ class cfgVehicles
 			PPBlurProperties = 0.2;
 		};
 	};
-	class HuntingOptic: ItemOptics
+	class HuntingOptic: ItemOptics_Base
 	{
 		scope = 2;
 		displayName = "$STR_cfgVehicles_HuntingOptic0";
@@ -858,7 +852,7 @@ class cfgVehicles
 			};
 		};
 	};
-	class PistolOptic: ItemOptics
+	class PistolOptic: ItemOptics_Base
 	{
 		scope = 2;
 		displayName = "$STR_cfgVehicles_PistolOptic0";
@@ -909,7 +903,7 @@ class cfgVehicles
 			PPBlurProperties = 0.2;
 		};
 	};
-	class PSO1Optic: ItemOptics
+	class PSO1Optic: ItemOptics_Base
 	{
 		scope = 2;
 		displayName = "$STR_cfgVehicles_PSO1Optic0";
@@ -965,8 +959,6 @@ class cfgVehicles
 			PPLensProperties[] = {0.5,0.15,0,0};
 			PPBlurProperties = 0.6;
 		};
-		repairableWithKits[] = {7};
-		repairCosts[] = {25.0};
 		class EnergyManager
 		{
 			hasIcon = 1;
@@ -975,7 +967,7 @@ class cfgVehicles
 			attachmentAction = 1;
 		};
 	};
-	class PSO11Optic: ItemOptics
+	class PSO11Optic: ItemOptics_Base
 	{
 		scope = 2;
 		displayName = "$STR_cfgVehicles_PSO11Optic0";
@@ -1031,8 +1023,6 @@ class cfgVehicles
 			PPLensProperties[] = {0.5,0.15,0,0};
 			PPBlurProperties = 0.6;
 		};
-		repairableWithKits[] = {7};
-		repairCosts[] = {25.0};
 		class EnergyManager
 		{
 			hasIcon = 1;
@@ -1041,7 +1031,7 @@ class cfgVehicles
 			attachmentAction = 1;
 		};
 	};
-	class GrozaOptic: ItemOptics
+	class GrozaOptic: ItemOptics_Base
 	{
 		scope = 2;
 		displayName = "$STR_cfgVehicles_GrozaOptic0";
@@ -1108,7 +1098,7 @@ class cfgVehicles
 			};
 		};
 	};
-	class KobraOptic: ItemOptics
+	class KobraOptic: ItemOptics_Base
 	{
 		scope = 2;
 		displayName = "$STR_cfgVehicles_KobraOptic0";
@@ -1162,8 +1152,6 @@ class cfgVehicles
 			PPBlurProperties = 0.2;
 			opticSightTexture = "dz\weapons\attachments\optics\data\red_chevron_ca.paa";
 		};
-		repairableWithKits[] = {7};
-		repairCosts[] = {25.0};
 		class EnergyManager
 		{
 			hasIcon = 1;
@@ -1172,7 +1160,7 @@ class cfgVehicles
 			attachmentAction = 1;
 		};
 	};
-	class KazuarOptic: ItemOptics
+	class KazuarOptic: ItemOptics_Base
 	{
 		scope = 2;
 		displayName = "$STR_cfgvehicles_1PN51Optic0";
@@ -1194,6 +1182,8 @@ class cfgVehicles
 		memoryPointCamera = "eyeScope_temp";
 		cameraDir = "cameraDir";
 		NVOptic = 1;
+		repairableWithKits[] = {};
+		repairCosts[] = {};
 		class DamageSystem
 		{
 			class GlobalHealth
@@ -1255,7 +1245,7 @@ class cfgVehicles
 			attachmentAction = 1;
 		};
 	};
-	class StarlightOptic: ItemOptics
+	class StarlightOptic: ItemOptics_Base
 	{
 		scope = 2;
 		displayName = "$STR_StarlightOptic0";
@@ -1276,6 +1266,8 @@ class cfgVehicles
 		memoryPointCamera = "eyeScope_temp";
 		cameraDir = "cameraDir";
 		NVOptic = 1;
+		repairableWithKits[] = {};
+		repairCosts[] = {};
 		class DamageSystem
 		{
 			class GlobalHealth

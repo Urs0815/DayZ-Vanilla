@@ -1,4 +1,4 @@
-//<'weapons_archery.pbo' properties via Mikero's dos tools, dll version 8.84>
+//<'weapons_archery.pbo' properties via Mikero's dos tools, dll version 8.94>
 product=dayz;
 prefix=DZ\weapons\archery;
 version=92555P;

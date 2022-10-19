@@ -1,8 +1,8 @@
 ////////////////////////////////////////////////////////////////////
 //DeRap: data\glowplug.rvmat
-//Produced from mikero's Dos Tools Dll version 8.84
+//Produced from mikero's Dos Tools Dll version 8.94
 //https://mikero.bytex.digital/Downloads
-//'now' is Tue Aug 23 21:46:04 2022 : 'file' last modified on Mon Jan 17 13:18:58 2022
+//'now' is Wed Oct 19 20:13:10 2022 : 'file' last modified on Wed Oct 05 20:31:31 2022
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -45,8 +45,8 @@ class Stage3
 	uvSource = "tex";
 	class uvTransform
 	{
-		aside[] = {1,0,0};
-		up[] = {0,1,0};
+		aside[] = {-0.5,0,0};
+		up[] = {0,-0.25,0};
 		dir[] = {0,0,0};
 		pos[] = {0,0,0};
 	};

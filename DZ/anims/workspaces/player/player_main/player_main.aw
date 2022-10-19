@@ -1,6 +1,6 @@
 $animWorkspace {
  #animSetTemplate "{F0C651DE8E24A5DE}DZ/anims/workspaces/player/player_main/player_main.ast"
- #NanimSetInstances 118
+ #NanimSetInstances 122
  #animSetInstance "{0F5E6205A5E823C3}DZ/anims/workspaces/player/player_main/player_main.asi"
  #animSetInstance "{F130A5AAAC3B3DF4}DZ/anims/workspaces/player/player_main/player_main_surrender.asi"
  #animSetInstance "{416372172B0AFA90}DZ/anims/workspaces/player/player_main/player_main_rifle.asi"
@@ -119,6 +119,10 @@ $animWorkspace {
  #animSetInstance "{AE6D08066C4D1BEA}DZ/anims/workspaces/player/player_main/weapons/player_main_PP19.asi"
  #animSetInstance "{624E529D8FCADBB2}DZ/anims/workspaces/player/player_main/weapons/player_main_M79.asi"
  #animSetInstance "{C46A3B9D9EBBD9F9}DZ/anims/workspaces/player/player_main/props/player_main_1h_detonator.asi"
+ #animSetInstance "{92C0BD307885F02A}DZ/anims/workspaces/player/player_main/weapons/player_main_ssg82.asi"
+ #animSetInstance "{9E22C60EB2973411}DZ/anims/workspaces/player/player_main/weapons/player_main_izh18_spartan.asi"
+ #animSetInstance "{04CDD02FE3FDBE3A}DZ/anims/workspaces/player/player_main/props/player_main_1h_GPSReciever.asi"
+ #animSetInstance "{2EADB0E07D8D1F2D}DZ/anims/workspaces/player/player_main/props/player_main_1h_blowtorch.asi"
  #previewModel "{82410A0A5E1022A1}DZ/anims/workspaces/player/Models/player_f_editorpreview.xob"
  #previewModel "{D470A4E7581CCE23}DZ/anims/workspaces/player/Models/player_m_editorpreview.xob"
  #animGraph "{E23437DEB9E1712D}DZ/anims/workspaces/player/player_main/player_main.agr"

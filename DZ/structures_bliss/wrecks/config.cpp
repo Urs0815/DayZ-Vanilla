@@ -1,8 +1,8 @@
 ////////////////////////////////////////////////////////////////////
 //DeRap: config.bin
-//Produced from mikero's Dos Tools Dll version 8.84
+//Produced from mikero's Dos Tools Dll version 8.94
 //https://mikero.bytex.digital/Downloads
-//'now' is Tue Aug 23 21:49:46 2022 : 'file' last modified on Tue Jun 21 20:12:20 2022
+//'now' is Wed Oct 19 20:15:12 2022 : 'file' last modified on Thu Sep 01 15:03:38 2022
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -51,5 +51,20 @@ class CfgVehicles
 	{
 		scope = 1;
 		model = "\DZ\structures_bliss\Wrecks\Vehicles\Wreck_Tractor.p3d";
+	};
+	class Land_Wreck_Tractor_DE: Land_Wreck_Tractor
+	{
+		scope = 2;
+		storageCategory = 4;
+	};
+	class Land_Wreck_Mining_Excavator: HouseNoDestruct
+	{
+		scope = 1;
+		model = "\DZ\structures_bliss\Wrecks\Vehicles\Wreck_Mining_Excavator.p3d";
+	};
+	class Land_Wreck_Mining_HaulTruck: HouseNoDestruct
+	{
+		scope = 1;
+		model = "\DZ\structures_bliss\Wrecks\Vehicles\Wreck_Mining_HaulTruck.p3d";
 	};
 };

@@ -1,6 +1,6 @@
-//<'structures_rail.pbo' properties via Mikero's dos tools, dll version 8.84>
+//<'structures_rail.pbo' properties via Mikero's dos tools, dll version 8.94>
 product=dayz;
 prefix=DZ\structures\rail;
-version=95744;
+version=97111P;
 //PboType=Arma Addon;
 //</properties>

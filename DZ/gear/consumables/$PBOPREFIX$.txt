@@ -1,6 +1,6 @@
-//<'gear_consumables.pbo' properties via Mikero's dos tools, dll version 8.84>
+//<'gear_consumables.pbo' properties via Mikero's dos tools, dll version 8.94>
 product=dayz;
 prefix=DZ\gear\consumables;
-version=94593P;
+version=98076;
 //PboType=Arma Addon;
 //</properties>

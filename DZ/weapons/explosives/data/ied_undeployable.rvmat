@@ -1,8 +1,8 @@
 ////////////////////////////////////////////////////////////////////
 //DeRap: data\ied_undeployable.rvmat
-//Produced from mikero's Dos Tools Dll version 8.84
+//Produced from mikero's Dos Tools Dll version 8.94
 //https://mikero.bytex.digital/Downloads
-//'now' is Tue Aug 23 21:47:00 2022 : 'file' last modified on Thu Jun 16 13:46:01 2022
+//'now' is Wed Oct 19 20:13:34 2022 : 'file' last modified on Mon Aug 08 12:57:21 2022
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -77,7 +77,7 @@ class Stage5
 };
 class Stage6
 {
-	texture = "#(ai,64,64,1)fresnel(0.78,0.08)";
+	texture = "#(ai,64,64,2)fresnel(0.67,0.001)";
 	uvSource = "tex";
 	class uvTransform
 	{
@@ -89,7 +89,7 @@ class Stage6
 };
 class Stage7
 {
-	texture = "dz\data\data\env_land_co.paa";
+	texture = "#(argb,8,8,3)color(1,1,1,1,CO)";
 	uvSource = "tex";
 	class uvTransform
 	{

@@ -1,8 +1,8 @@
 ////////////////////////////////////////////////////////////////////
 //DeRap: config.bin
-//Produced from mikero's Dos Tools Dll version 8.84
+//Produced from mikero's Dos Tools Dll version 8.94
 //https://mikero.bytex.digital/Downloads
-//'now' is Tue Aug 23 21:38:59 2022 : 'file' last modified on Mon Jan 31 17:54:02 2022
+//'now' is Wed Oct 19 20:09:17 2022 : 'file' last modified on Tue Sep 13 09:26:32 2022
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -66,6 +66,7 @@ class CfgVehicles
 			male = "\DZ\characters\glasses\sport_glasses.p3d";
 			female = "\DZ\characters\glasses\sport_glasses.p3d";
 		};
+		soundImpactType = "plastic";
 		class AnimEvents
 		{
 			class SoundWeapon
@@ -129,6 +130,7 @@ class CfgVehicles
 				};
 			};
 		};
+		soundImpactType = "glass";
 		class ClothingTypes
 		{
 			male = "\DZ\characters\glasses\aviator_glasses.p3d";
@@ -182,6 +184,7 @@ class CfgVehicles
 			male = "\DZ\characters\glasses\sunglasses_designer.p3d";
 			female = "\DZ\characters\glasses\sunglasses_designer.p3d";
 		};
+		soundImpactType = "glass";
 		class AnimEvents
 		{
 			class SoundWeapon
@@ -230,6 +233,7 @@ class CfgVehicles
 			male = "\DZ\characters\glasses\glasses_thick_frame.p3d";
 			female = "\DZ\characters\glasses\glasses_thick_frame.p3d";
 		};
+		soundImpactType = "glass";
 		class AnimEvents
 		{
 			class SoundWeapon
@@ -278,6 +282,7 @@ class CfgVehicles
 			male = "\DZ\characters\glasses\glasses_thin_frame.p3d";
 			female = "\DZ\characters\glasses\glasses_thin_frame.p3d";
 		};
+		soundImpactType = "glass";
 		class AnimEvents
 		{
 			class SoundWeapon
@@ -324,6 +329,57 @@ class CfgVehicles
 			male = "\DZ\characters\glasses\TacGoggles.p3d";
 			female = "\DZ\characters\glasses\TacGoggles.p3d";
 		};
+		soundImpactType = "glass";
+		class AnimEvents
+		{
+			class SoundWeapon
+			{
+				class pickUpItem
+				{
+					soundSet = "SportGlasses_pickup_SoundSet";
+					id = 797;
+				};
+				class drop
+				{
+					soundset = "SportGlasses_drop_SoundSet";
+					id = 898;
+				};
+			};
+		};
+	};
+	class EyePatch_Improvised: Clothing
+	{
+		scope = 2;
+		displayName = "$STR_EyePatch_Improvised0";
+		descriptionShort = "$STR_EyePatch_Improvised1";
+		model = "\DZ\characters\glasses\eyepatch_g.p3d";
+		vehicleClass = "Clothing";
+		simulation = "clothing";
+		inventorySlot[] = {"Eyewear"};
+		itemInfo[] = {"Clothing","Eyewear"};
+		rotationFlags = 34;
+		itemSize[] = {3,1};
+		weight = 20;
+		ragQuantity = 1;
+		repairableWithKits[] = {2};
+		repairCosts[] = {25.0};
+		class DamageSystem
+		{
+			class GlobalHealth
+			{
+				class Health
+				{
+					hitpoints = 50;
+					healthLevels[] = {{1.0,{"DZ\characters\glasses\data\eyepatch.rvmat"}},{0.7,{"DZ\characters\glasses\data\eyepatch.rvmat"}},{0.5,{"DZ\characters\glasses\data\eyepatch_damage.rvmat"}},{0.3,{"DZ\characters\glasses\data\eyepatch_damage.rvmat"}},{0.0,{"DZ\characters\glasses\data\eyepatch_destruct.rvmat"}}};
+				};
+			};
+		};
+		class ClothingTypes
+		{
+			male = "\DZ\characters\glasses\eyepatch_m.p3d";
+			female = "\DZ\characters\glasses\eyepatch.p3d";
+		};
+		soundImpactType = "textile";
 		class AnimEvents
 		{
 			class SoundWeapon
@@ -451,6 +507,7 @@ class CfgVehicles
 				initPhase = 0;
 			};
 		};
+		soundImpactType = "glass";
 	};
 };
 class CfgNonAIVehicles

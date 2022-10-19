@@ -1,8 +1,8 @@
 ////////////////////////////////////////////////////////////////////
 //DeRap: config.bin
-//Produced from mikero's Dos Tools Dll version 8.84
+//Produced from mikero's Dos Tools Dll version 8.94
 //https://mikero.bytex.digital/Downloads
-//'now' is Tue Aug 23 21:38:56 2022 : 'file' last modified on Wed Jan 19 07:52:09 2022
+//'now' is Wed Oct 19 20:09:14 2022 : 'file' last modified on Wed Aug 31 11:10:14 2022
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -572,6 +572,30 @@ class cfgVehicles
 				{
 					soundset = "taloonbag_drop_SoundSet";
 					id = 898;
+				};
+			};
+		};
+	};
+	class HuntingBag_Hannah: HuntingBag
+	{
+		scope = 2;
+		descriptionShort = "$STR_cfgVehicles_HuntingBagH1";
+		model = "\dz\characters\backpacks\hunting_hannah_g.p3d";
+		hiddenSelectionsMaterials[] = {"dz\characters\backpacks\data\hunting_hannah.rvmat","dz\characters\backpacks\data\hunting_hannah.rvmat","dz\characters\backpacks\data\hunting_hannah.rvmat"};
+		class ClothingTypes
+		{
+			male = "\DZ\characters\backpacks\hunting_hannah_m.p3d";
+			female = "\DZ\characters\backpacks\hunting_hannah_f.p3d";
+		};
+		class DamageSystem
+		{
+			class GlobalHealth
+			{
+				class Health
+				{
+					hitpoints = 160;
+					transferToAttachmentsCoef = 0.5;
+					healthLevels[] = {{1.0,{"DZ\characters\backpacks\data\hunting_hannah.rvmat","dz\characters\backpacks\data\hunting_hannah_details.rvmat"}},{0.7,{}},{0.5,{"DZ\characters\backpacks\Data\hunting_hannah_damage.rvmat","dz\characters\backpacks\data\hunting_hannah_details_damage.rvmat"}},{0.3,{}},{0.0,{"DZ\characters\backpacks\Data\hunting_hannah_destruct.rvmat","dz\characters\backpacks\data\hunting_hannah_details_destruct.rvmat"}}};
 				};
 			};
 		};

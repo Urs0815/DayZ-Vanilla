@@ -1,8 +1,8 @@
 ////////////////////////////////////////////////////////////////////
 //DeRap: config.bin
-//Produced from mikero's Dos Tools Dll version 8.84
+//Produced from mikero's Dos Tools Dll version 8.94
 //https://mikero.bytex.digital/Downloads
-//'now' is Tue Aug 23 21:49:07 2022 : 'file' last modified on Tue Jun 21 19:41:42 2022
+//'now' is Wed Oct 19 20:14:52 2022 : 'file' last modified on Thu Aug 25 20:44:54 2022
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -238,7 +238,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 2;
+								damage = 3;
 							};
 							class Blood
 							{
@@ -296,7 +296,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 2;
+								damage = 3;
 							};
 							class Blood
 							{
@@ -354,7 +354,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 2;
+								damage = 3;
 							};
 							class Blood
 							{
@@ -412,7 +412,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 2;
+								damage = 3;
 							};
 							class Blood
 							{
@@ -470,7 +470,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 2;
+								damage = 3;
 							};
 							class Blood
 							{
@@ -625,7 +625,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 2;
+								damage = 3;
 							};
 							class Blood
 							{
@@ -643,82 +643,82 @@ class CfgVehicles
 	};
 	class StaticObj_Misc_DeconShower_Large: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures_bliss\Military\Misc\Misc_DeconShower_Large.p3d";
 	};
 	class StaticObj_Misc_DragonTeeth_Multiple: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures_bliss\Military\Misc\Misc_DragonTeeth_Multiple.p3d";
 	};
 	class StaticObj_Misc_DragonTeeth_Multiple_RedWhite: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures_bliss\Military\Misc\Misc_DragonTeeth_Multiple_RedWhite.p3d";
 	};
 	class StaticObj_Misc_DragonTeeth_Single: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures_bliss\Military\Misc\Misc_DragonTeeth_Single.p3d";
 	};
 	class StaticObj_Misc_DragonTeeth_Single_RedWhite: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures_bliss\Military\Misc\Misc_DragonTeeth_Single_RedWhite.p3d";
 	};
 	class StaticObj_ShellCrater1: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures_bliss\Military\Training\ShellCrater1.p3d";
 	};
 	class StaticObj_ShellCrater1_Decal: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures_bliss\Military\Training\ShellCrater1_Decal.p3d";
 	};
 	class StaticObj_ShellCrater2_Debris: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures_bliss\Military\Training\ShellCrater2_Debris.p3d";
 	};
 	class StaticObj_ShellCrater2_Decal: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures_bliss\Military\Training\ShellCrater2_Decal.p3d";
 	};
 	class StaticObj_ShellCrater2_Large: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures_bliss\Military\Training\ShellCrater2_Large.p3d";
 	};
 	class StaticObj_ShellCrater2_Small: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures_bliss\Military\Training\ShellCrater2_Small.p3d";
 	};
 	class StaticObj_Target_Concrete_Block: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures_bliss\Military\Training\Target_Concrete_Block.p3d";
 	};
 	class StaticObj_Target_Concrete_Ramp: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures_bliss\Military\Training\Target_Concrete_Ramp.p3d";
 	};
 	class StaticObj_Target_Concrete1: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures_bliss\Military\Training\Target_Concrete1.p3d";
 	};
 	class StaticObj_Target_Concrete2: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures_bliss\Military\Training\Target_Concrete2.p3d";
 	};
 	class StaticObj_Target_Support: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures_bliss\Military\Training\Target_Support.p3d";
 	};
 };

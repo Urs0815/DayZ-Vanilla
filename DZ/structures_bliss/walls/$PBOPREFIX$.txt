@@ -1,6 +1,6 @@
-//<'structures_walls_bliss.pbo' properties via Mikero's dos tools, dll version 8.84>
+//<'structures_walls_bliss.pbo' properties via Mikero's dos tools, dll version 8.94>
 product=dayz bliss;
 prefix=DZ\structures_bliss\walls;
-version=95744;
+version=97961;
 //PboType=Arma Addon;
 //</properties>

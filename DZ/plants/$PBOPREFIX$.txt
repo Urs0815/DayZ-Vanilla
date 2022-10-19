@@ -1,4 +1,4 @@
-//<'plants.pbo' properties via Mikero's dos tools, dll version 8.84>
+//<'plants.pbo' properties via Mikero's dos tools, dll version 8.94>
 product=dayz;
 prefix=DZ\plants;
 version=94000P;

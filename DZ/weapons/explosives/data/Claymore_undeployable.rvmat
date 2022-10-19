@@ -1,8 +1,8 @@
 ////////////////////////////////////////////////////////////////////
 //DeRap: data\Claymore_undeployable.rvmat
-//Produced from mikero's Dos Tools Dll version 8.84
+//Produced from mikero's Dos Tools Dll version 8.94
 //https://mikero.bytex.digital/Downloads
-//'now' is Tue Aug 23 21:46:59 2022 : 'file' last modified on Thu Jun 16 13:46:01 2022
+//'now' is Wed Oct 19 20:13:34 2022 : 'file' last modified on Mon Aug 08 12:57:21 2022
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -66,7 +66,7 @@ class Stage4
 };
 class Stage5
 {
-	texture = "dz\weapons\explosives\data\claymore_smdi.paa";
+	texture = "#(argb,8,8,3)color(1,1,1,1,SMDI)";
 	uvSource = "tex";
 	class uvTransform
 	{
@@ -78,11 +78,11 @@ class Stage5
 };
 class Stage6
 {
-	texture = "#(ai,32,128,1)fresnel(0.88,0.36)";
+	texture = "#(ai,32,128,1)fresnel(0.92,0.001)";
 	uvSource = "none";
 };
 class Stage7
 {
-	texture = "dz\data\data\env_land_co.paa";
+	texture = "#(argb,8,8,3)color(1,1,1,1,CO)";
 	uvSource = "none";
 };

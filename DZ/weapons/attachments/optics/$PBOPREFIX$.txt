@@ -1,6 +1,6 @@
-//<'weapon_optics.pbo' properties via Mikero's dos tools, dll version 8.84>
+//<'weapon_optics.pbo' properties via Mikero's dos tools, dll version 8.94>
 product=dayz;
 prefix=DZ\weapons\attachments\optics;
-version=94754P;
+version=98353;
 //PboType=Arma Addon;
 //</properties>

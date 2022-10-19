@@ -1,8 +1,8 @@
 ////////////////////////////////////////////////////////////////////
 //DeRap: config.bin
-//Produced from mikero's Dos Tools Dll version 8.84
+//Produced from mikero's Dos Tools Dll version 8.94
 //https://mikero.bytex.digital/Downloads
-//'now' is Tue Aug 23 21:40:02 2022 : 'file' last modified on Wed Jun 22 17:27:13 2022
+//'now' is Wed Oct 19 20:09:51 2022 : 'file' last modified on Thu Aug 25 16:17:17 2022
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -40,6 +40,7 @@ class CfgVehicles
 	class TentBase: Container_Base
 	{
 		destrType = "DestructTent";
+		soundImpactType = "textile";
 	};
 	class MediumTent: TentBase
 	{
@@ -1915,6 +1916,7 @@ class CfgVehicles
 			class Inventory: AnimSourceHidden{};
 			class Placing: AnimSourceHidden{};
 		};
+		soundImpactType = "wood";
 		class AnimEvents
 		{
 			class SoundWeapon
@@ -2034,6 +2036,7 @@ class CfgVehicles
 			class Inventory: AnimSourceHidden{};
 			class Placing: AnimSourceHidden{};
 		};
+		soundImpactType = "wood";
 	};
 	class WatchtowerKitPlacing: WatchtowerKit
 	{
@@ -5809,6 +5812,7 @@ class CfgVehicles
 				initPhase = 0;
 			};
 		};
+		soundImpactType = "metal";
 		class AnimEvents
 		{
 			class SoundWeapon
@@ -5905,6 +5909,7 @@ class CfgVehicles
 				};
 			};
 		};
+		soundImpactType = "metal";
 	};
 	class CombinationLock4: CombinationLock
 	{
@@ -5978,6 +5983,7 @@ class CfgVehicles
 				};
 			};
 		};
+		soundImpactType = "metal";
 		class AnimEvents
 		{
 			class SoundWeapon
@@ -6027,6 +6033,7 @@ class CfgVehicles
 				};
 			};
 		};
+		soundImpactType = "textile";
 		class AnimEvents
 		{
 			class SoundWeapon
@@ -6098,6 +6105,7 @@ class CfgVehicles
 			openable = 0;
 			allowOwnedCargoManipulation = 1;
 		};
+		soundImpactType = "wood";
 		class AnimEvents
 		{
 			class SoundWeapon
@@ -6180,6 +6188,7 @@ class CfgVehicles
 			openable = 0;
 			allowOwnedCargoManipulation = 1;
 		};
+		soundImpactType = "wood";
 		class AnimEvents
 		{
 			class SoundWeapon
@@ -6291,8 +6300,8 @@ class CfgVehicles
 				};
 			};
 		};
-		repairableWithKits[] = {7};
-		repairCosts[] = {25.0};
+		repairableWithKits[] = {7,10};
+		repairCosts[] = {25.0,30.0};
 		class EnergyManager
 		{
 			hasIcon = 1;
@@ -6387,6 +6396,7 @@ class CfgVehicles
 				initPhase = 1;
 			};
 		};
+		soundImpactType = "metal";
 		class AnimEvents
 		{
 			class SoundWeapon
@@ -6484,6 +6494,7 @@ class CfgVehicles
 				initPhase = 0;
 			};
 		};
+		soundImpactType = "plastic";
 	};
 	class Refridgerator: Inventory_Base
 	{
@@ -6511,6 +6522,7 @@ class CfgVehicles
 			openable = 0;
 			allowOwnedCargoManipulation = 1;
 		};
+		soundImpactType = "metal";
 	};
 	class PowerGenerator: Inventory_Base
 	{
@@ -6544,8 +6556,8 @@ class CfgVehicles
 				};
 			};
 		};
-		repairableWithKits[] = {7};
-		repairCosts[] = {25.0};
+		repairableWithKits[] = {7,10};
+		repairCosts[] = {25.0,30.0};
 		class EnergyManager
 		{
 			hasIcon = 1;
@@ -6614,6 +6626,7 @@ class CfgVehicles
 				initPhase = 0;
 			};
 		};
+		soundImpactType = "metal";
 		class AnimEvents
 		{
 			class SoundWeapon
@@ -6709,6 +6722,7 @@ class CfgVehicles
 				initPhase = 0;
 			};
 		};
+		soundImpactType = "plastic";
 		class AnimEvents
 		{
 			class SoundWeapon
@@ -6851,6 +6865,7 @@ class CfgVehicles
 				initPhase = 0;
 			};
 		};
+		soundImpactType = "metal";
 		class AnimEvents
 		{
 			class SoundWeapon
@@ -6950,6 +6965,7 @@ class CfgVehicles
 				initPhase = 1;
 			};
 		};
+		soundImpactType = "textile";
 	};
 	class Fabric: Inventory_Base
 	{
@@ -6978,6 +6994,7 @@ class CfgVehicles
 				};
 			};
 		};
+		soundImpactType = "textile";
 	};
 	class ShelterKit: Inventory_Base
 	{
@@ -7051,6 +7068,7 @@ class CfgVehicles
 			class Inventory: AnimSourceHidden{};
 			class Placing: AnimSourceHidden{};
 		};
+		soundImpactType = "wood";
 		class AnimEvents
 		{
 			class SoundWeapon

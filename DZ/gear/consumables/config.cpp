@@ -1,8 +1,8 @@
 ////////////////////////////////////////////////////////////////////
 //DeRap: config.bin
-//Produced from mikero's Dos Tools Dll version 8.84
+//Produced from mikero's Dos Tools Dll version 8.94
 //https://mikero.bytex.digital/Downloads
-//'now' is Tue Aug 23 21:40:12 2022 : 'file' last modified on Mon May 02 16:33:15 2022
+//'now' is Wed Oct 19 20:09:54 2022 : 'file' last modified on Mon Sep 26 16:24:51 2022
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -45,6 +45,7 @@ class CfgVehicles
 		itemSize[] = {1,1};
 		rotationFlags = 16;
 		inventorySlot[] = {"Paper"};
+		varWetMax = 1.0;
 		class DamageSystem
 		{
 			class GlobalHealth
@@ -64,6 +65,26 @@ class CfgVehicles
 				{
 					soundSet = "pickUpPaper_SoundSet";
 					id = 797;
+				};
+			};
+		};
+	};
+	class PunchedCard: Paper
+	{
+		scope = 2;
+		displayName = "$STR_PunchedCard0";
+		descriptionShort = "$STR_PunchedCard1";
+		model = "\dz\gear\consumables\PunchedCard.p3d";
+		weight = 10;
+		itemSize[] = {2,1};
+		class DamageSystem
+		{
+			class GlobalHealth
+			{
+				class Health
+				{
+					hitpoints = 15;
+					healthLevels[] = {{1.0,{"DZ\gear\consumables\data\PunchedCard.rvmat"}},{0.7,{"DZ\gear\consumables\data\PunchedCard.rvmat"}},{0.5,{"DZ\gear\consumables\data\PunchedCard_damage.rvmat"}},{0.3,{"DZ\gear\consumables\data\PunchedCard_damage.rvmat"}},{0.0,{"DZ\gear\consumables\data\PunchedCard_destruct.rvmat"}}};
 				};
 			};
 		};
@@ -131,6 +152,7 @@ class CfgVehicles
 				};
 			};
 		};
+		soundImpactType = "plastic";
 		class AnimEvents
 		{
 			class SoundWeapon
@@ -246,6 +268,7 @@ class CfgVehicles
 				};
 			};
 		};
+		soundImpactType = "textile";
 		class AnimEvents
 		{
 			class SoundWeapon
@@ -312,6 +335,7 @@ class CfgVehicles
 				};
 			};
 		};
+		soundImpactType = "textile";
 	};
 	class Stone: Inventory_Base
 	{
@@ -392,6 +416,7 @@ class CfgVehicles
 				};
 			};
 		};
+		soundImpactType = "wood";
 		class AnimEvents
 		{
 			class SoundWeapon
@@ -493,6 +518,7 @@ class CfgVehicles
 			compatiblePlugTypes[] = {7};
 			convertEnergyToQuantity = 1;
 		};
+		soundImpactType = "metal";
 	};
 	class MediumGasCanister: Inventory_Base
 	{
@@ -532,6 +558,7 @@ class CfgVehicles
 			compatiblePlugTypes[] = {7};
 			convertEnergyToQuantity = 1;
 		};
+		soundImpactType = "metal";
 	};
 	class SmallGasCanister: Inventory_Base
 	{
@@ -571,6 +598,7 @@ class CfgVehicles
 			compatiblePlugTypes[] = {7};
 			convertEnergyToQuantity = 1;
 		};
+		soundImpactType = "metal";
 	};
 	class ButaneCanister: Inventory_Base
 	{
@@ -594,6 +622,7 @@ class CfgVehicles
 				};
 			};
 		};
+		soundImpactType = "metal";
 	};
 	class Spraycan_ColorBase: Inventory_Base
 	{
@@ -619,6 +648,7 @@ class CfgVehicles
 				};
 			};
 		};
+		soundImpactType = "metal";
 	};
 	class Spraycan_Black: Spraycan_ColorBase
 	{
@@ -711,6 +741,7 @@ class CfgVehicles
 				variable = "quantity";
 			};
 		};
+		soundImpactType = "metal";
 		class AnimEvents
 		{
 			class SoundWeapon
@@ -860,6 +891,7 @@ class CfgVehicles
 			updateInterval = 50;
 			convertEnergyToQuantity = 1;
 		};
+		soundImpactType = "plastic";
 		class AnimEvents
 		{
 			class SoundWeapon
@@ -905,6 +937,7 @@ class CfgVehicles
 		absorbency = 0.3;
 		repairableWithKits[] = {3};
 		repairCosts[] = {25.0};
+		soundImpactType = "organic";
 		class AnimEvents
 		{
 			class SoundWeapon
@@ -1192,6 +1225,7 @@ class CfgVehicles
 		};
 		attachSoundSet[] = {"Shelter_Site_Attach_Leather_SoundSet"};
 		attachSoundSlot[] = {"Material_Shelter_Leather"};
+		soundImpactType = "organic";
 		class AnimEvents
 		{
 			class SoundWeapon
@@ -1268,6 +1302,7 @@ class CfgVehicles
 		varQuantityMin = 0.0;
 		varQuantityMax = 8.0;
 		varQuantityDestroyOnMin = 1;
+		soundImpactType = "wood";
 		class AnimEvents
 		{
 			class SoundWeapon
@@ -1348,6 +1383,7 @@ class CfgVehicles
 			};
 		};
 		inventorySlot[] = {"Material_Nails","Material_L1_Nails","Material_L1W1_Nails","Material_L1W2_Nails","Material_L1W3_Nails","Material_L2_Nails","Material_L2W1_Nails","Material_L2W2_Nails","Material_L2W3_Nails","Material_L3_Nails","Material_L3W1_Nails","Material_L3W2_Nails","Material_L3W3_Nails","Material_FPole_Nails"};
+		soundImpactType = "metal";
 	};
 	class Bone: Inventory_Base
 	{
@@ -1478,6 +1514,7 @@ class CfgVehicles
 			AddEnergyToSlot = 1;
 			ConsumedQuantity = 250.0;
 		};
+		soundImpactType = "organic";
 		class AnimEvents
 		{
 			class SoundWeapon
@@ -1527,6 +1564,7 @@ class CfgVehicles
 				};
 			};
 		};
+		soundImpactType = "textile";
 	};
 	class WoodenPlank: Inventory_Base
 	{
@@ -1554,6 +1592,7 @@ class CfgVehicles
 				};
 			};
 		};
+		soundImpactType = "wood";
 		class AnimEvents
 		{
 			class SoundWeapon
@@ -1622,6 +1661,7 @@ class CfgVehicles
 				initPhase = 0;
 			};
 		};
+		soundImpactType = "wood";
 	};
 	class MetalPlate: Inventory_Base
 	{
@@ -1639,6 +1679,8 @@ class CfgVehicles
 		varQuantityMax = 40.0;
 		varQuantityDestroyOnMin = 1;
 		varStackMax = 10.0;
+		repairableWithKits[] = {10};
+		repairCosts[] = {30.0};
 		inventorySlot[] = {"Truck_01_MetalSheets","Material_MetalSheets","Material_L3_MetalSheets","Material_L1W1_MetalSheets","Material_L1W2_MetalSheets","Material_L1W3_MetalSheets","Material_L2W1_MetalSheets","Material_L2W2_MetalSheets","Material_L2W3_MetalSheets","Material_L3W1_MetalSheets","Material_L3W2_MetalSheets","Material_L3W3_MetalSheets"};
 		class DamageSystem
 		{
@@ -1651,6 +1693,7 @@ class CfgVehicles
 				};
 			};
 		};
+		soundImpactType = "metal";
 	};
 	class WoodenLog: Inventory_Base
 	{
@@ -1679,6 +1722,7 @@ class CfgVehicles
 				};
 			};
 		};
+		soundImpactType = "wood";
 		class AnimEvents
 		{
 			class SoundWeapon
@@ -1721,6 +1765,7 @@ class CfgVehicles
 				};
 			};
 		};
+		soundImpactType = "grenade";
 	};
 	class GasMask_Filter: Inventory_Base
 	{
@@ -1758,6 +1803,7 @@ class CfgVehicles
 				};
 			};
 		};
+		soundImpactType = "plastic";
 	};
 };
 class CfgNonAIVehicles

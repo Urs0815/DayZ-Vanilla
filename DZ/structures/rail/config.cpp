@@ -1,8 +1,8 @@
 ////////////////////////////////////////////////////////////////////
 //DeRap: config.bin
-//Produced from mikero's Dos Tools Dll version 8.84
+//Produced from mikero's Dos Tools Dll version 8.94
 //https://mikero.bytex.digital/Downloads
-//'now' is Tue Aug 23 21:44:19 2022 : 'file' last modified on Tue Jun 21 17:50:27 2022
+//'now' is Wed Oct 19 20:12:23 2022 : 'file' last modified on Thu Aug 25 18:10:27 2022
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -182,7 +182,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 3;
+								damage = 10;
 							};
 							class Blood
 							{
@@ -240,7 +240,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 3;
+								damage = 10;
 							};
 							class Blood
 							{
@@ -298,7 +298,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 2;
+								damage = 3;
 							};
 							class Blood
 							{
@@ -464,7 +464,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 3;
+								damage = 10;
 							};
 							class Blood
 							{
@@ -522,7 +522,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 3;
+								damage = 10;
 							};
 							class Blood
 							{
@@ -580,7 +580,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 2;
+								damage = 3;
 							};
 							class Blood
 							{
@@ -746,7 +746,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 3;
+								damage = 10;
 							};
 							class Blood
 							{
@@ -804,7 +804,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 3;
+								damage = 10;
 							};
 							class Blood
 							{
@@ -862,7 +862,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 3;
+								damage = 10;
 							};
 							class Blood
 							{
@@ -880,382 +880,382 @@ class CfgVehicles
 	};
 	class StaticObj_Rail_Bridge_15: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Rail\Bridges\Rail_Bridge_15.p3d";
 	};
 	class StaticObj_Rail_Bridge_15_3tracks: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Rail\Bridges\Rail_Bridge_15_3tracks.p3d";
 	};
 	class StaticObj_Rail_Bridge_15_Curve: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Rail\Bridges\Rail_Bridge_15_Curve.p3d";
 	};
 	class StaticObj_Rail_Bridge_15_End: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Rail\Bridges\Rail_Bridge_15_End.p3d";
 	};
 	class StaticObj_Rail_Bridge_40: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Rail\Bridges\Rail_Bridge_40.p3d";
 	};
 	class StaticObj_Rail_ConcreteRamp: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Rail\Misc\Rail_ConcreteRamp.p3d";
 	};
 	class StaticObj_Rail_Crossing_Barrier: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Rail\Misc\Rail_Crossing_Barrier.p3d";
 	};
 	class StaticObj_Rail_Crossing_Block_10: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Rail\Misc\Rail_Crossing_Block_10.p3d";
 	};
 	class StaticObj_Rail_Crossing_Block_25: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Rail\Misc\Rail_Crossing_Block_25.p3d";
 	};
 	class StaticObj_Rail_LineBreak_Concrete: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Rail\Misc\Rail_LineBreak_Concrete.p3d";
 	};
 	class StaticObj_Rail_LineBreak_Iron: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Rail\Misc\Rail_LineBreak_Iron.p3d";
 	};
 	class StaticObj_Rail_Platform_Cross: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Rail\Misc\Rail_Platform_Cross.p3d";
 	};
 	class StaticObj_Rail_Platform_Segment: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Rail\Misc\Rail_Platform_Segment.p3d";
 	};
 	class StaticObj_Rail_Platform_Start: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Rail\Misc\Rail_Platform_Start.p3d";
 	};
 	class StaticObj_Rail_PoleF: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Rail\Misc\Rail_PoleF.p3d";
 	};
 	class StaticObj_Rail_PoleT: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Rail\Misc\Rail_PoleT.p3d";
 	};
 	class StaticObj_Rail_PoleTT1: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Rail\Misc\Rail_PoleTT1.p3d";
 	};
 	class StaticObj_Rail_PoleTT2: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Rail\Misc\Rail_PoleTT2.p3d";
 	};
 	class StaticObj_Rail_Signals: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Rail\Misc\Rail_Signals.p3d";
 	};
 	class StaticObj_Rail_Track_25: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Rail\Tracks\Rail_Track_25.p3d";
 	};
 	class StaticObj_Rail_Track_25_lc: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Rail\Tracks\Rail_Track_25_lc.p3d";
 	};
 	class StaticObj_Rail_Track_Down_25: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Rail\Tracks\Rail_Track_Down_25.p3d";
 	};
 	class StaticObj_Rail_Track_Down_25_lc: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Rail\Tracks\Rail_Track_Down_25_lc.p3d";
 	};
 	class StaticObj_Rail_Track_Down_40: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Rail\Tracks\Rail_Track_Down_40.p3d";
 	};
 	class StaticObj_Rail_Track_Down_40_lc: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Rail\Tracks\Rail_Track_Down_40_lc.p3d";
 	};
 	class StaticObj_Rail_Track_L25_10: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Rail\Tracks\Rail_Track_L25_10.p3d";
 	};
 	class StaticObj_Rail_Track_L25_10_lc: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Rail\Tracks\Rail_Track_L25_10_lc.p3d";
 	};
 	class StaticObj_Rail_Track_LB_RE: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Rail\Tracks\Rail_Track_LB_RE.p3d";
 	};
 	class StaticObj_Rail_Track_LB_RE_lc: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Rail\Tracks\Rail_Track_LB_RE_lc.p3d";
 	};
 	class StaticObj_Rail_Track_LB1_RE: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Rail\Tracks\Rail_Track_LB1_RE.p3d";
 	};
 	class StaticObj_Rail_Track_LB1_RE_lc: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Rail\Tracks\Rail_Track_LB1_RE_lc.p3d";
 	};
 	class StaticObj_Rail_Track_LE_RB: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Rail\Tracks\Rail_Track_LE_RB.p3d";
 	};
 	class StaticObj_Rail_Track_LE_RB_lc: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Rail\Tracks\Rail_Track_LE_RB_lc.p3d";
 	};
 	class StaticObj_Rail_Track_LE1_RB: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Rail\Tracks\Rail_Track_LE1_RB.p3d";
 	};
 	class StaticObj_Rail_Track_LE1_RB_lc: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Rail\Tracks\Rail_Track_LE1_RB_lc.p3d";
 	};
 	class StaticObj_Rail_Track_Passing_10: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Rail\Tracks\Rail_Track_Passing_10.p3d";
 	};
 	class StaticObj_Rail_Track_Passing_10_lc: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Rail\Tracks\Rail_Track_Passing_10_lc.p3d";
 	};
 	class StaticObj_Rail_Track_Passing_25: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Rail\Tracks\Rail_Track_Passing_25.p3d";
 	};
 	class StaticObj_Rail_Track_Passing_25_lc: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Rail\Tracks\Rail_Track_Passing_25_lc.p3d";
 	};
 	class StaticObj_Rail_Track_Passing_25_nolc: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Rail\Tracks\Rail_Track_Passing_25_nolc.p3d";
 	};
 	class StaticObj_Rail_Track_R25_10: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Rail\Tracks\Rail_Track_R25_10.p3d";
 	};
 	class StaticObj_Rail_Track_R25_10_lc: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Rail\Tracks\Rail_Track_R25_10_lc.p3d";
 	};
 	class StaticObj_Rail_Track_SP: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Rail\Tracks\Rail_Track_SP.p3d";
 	};
 	class StaticObj_Rail_Track_SP_lc: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Rail\Tracks\Rail_Track_SP_lc.p3d";
 	};
 	class StaticObj_Rail_Track_TurnOutR: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Rail\Tracks\Rail_Track_TurnOutR.p3d";
 	};
 	class StaticObj_Rail_Track_TurnOutL: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Rail\Tracks\Rail_Track_TurnOutL.p3d";
 	};
 	class StaticObj_Rail_Track_TurnOutR_lc: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Rail\Tracks\Rail_Track_TurnOutR_lc.p3d";
 	};
 	class StaticObj_Rail_Track_TurnOutL_lc: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Rail\Tracks\Rail_Track_TurnOutL_lc.p3d";
 	};
 	class StaticObj_Rail_Track_Up_25: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Rail\Tracks\Rail_Track_Up_25.p3d";
 	};
 	class StaticObj_Rail_Track_Up_40: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Rail\Tracks\Rail_Track_Up_40.p3d";
 	};
 	class StaticObj_Rail_Track_Up_25_lc: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Rail\Tracks\Rail_Track_Up_25_lc.p3d";
 	};
 	class StaticObj_Rail_Track_Up_40_lc: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Rail\Tracks\Rail_Track_Up_40_lc.p3d";
 	};
 	class StaticObj_Rail_TrackE_2: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Rail\Tracks\Rail_TrackE_2.p3d";
 	};
 	class StaticObj_Rail_TrackE_4: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Rail\Tracks\Rail_TrackE_4.p3d";
 	};
 	class StaticObj_Rail_TrackE_8: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Rail\Tracks\Rail_TrackE_8.p3d";
 	};
 	class StaticObj_Rail_TrackE_8_nolc: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Rail\Tracks\Rail_TrackE_8_nolc.p3d";
 	};
 	class StaticObj_Rail_TrackE_25: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Rail\Tracks\Rail_TrackE_25.p3d";
 	};
 	class StaticObj_Rail_TrackE_25_lc: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Rail\Tracks\Rail_TrackE_25_lc.p3d";
 	};
 	class StaticObj_Rail_TrackE_40: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Rail\Tracks\Rail_TrackE_40.p3d";
 	};
 	class StaticObj_Rail_TrackE_40_lc: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Rail\Tracks\Rail_TrackE_40_lc.p3d";
 	};
 	class StaticObj_Rail_TrackE_L25_5: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Rail\Tracks\Rail_TrackE_L25_5.p3d";
 	};
 	class StaticObj_Rail_TrackE_L25_5_lc: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Rail\Tracks\Rail_TrackE_L25_5_lc.p3d";
 	};
 	class StaticObj_Rail_TrackE_L25_10: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Rail\Tracks\Rail_TrackE_L25_10.p3d";
 	};
 	class StaticObj_Rail_TrackE_L25_10_lc: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Rail\Tracks\Rail_TrackE_L25_10_lc.p3d";
 	};
 	class StaticObj_Rail_TrackE_L30_20: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Rail\Tracks\Rail_TrackE_L30_20.p3d";
 	};
 	class StaticObj_Rail_TrackE_L30_20_lc: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Rail\Tracks\Rail_TrackE_L30_20_lc.p3d";
 	};
 	class StaticObj_Rail_TrackE_R25_5: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Rail\Tracks\Rail_TrackE_R25_5.p3d";
 	};
 	class StaticObj_Rail_TrackE_R25_5_lc: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Rail\Tracks\Rail_TrackE_R25_5_lc.p3d";
 	};
 	class StaticObj_Rail_TrackE_R25_10: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Rail\Tracks\Rail_TrackE_R25_10.p3d";
 	};
 	class StaticObj_Rail_TrackE_R25_10_lc: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Rail\Tracks\Rail_TrackE_R25_10_lc.p3d";
 	};
 	class StaticObj_Rail_TrackE_R30_20: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Rail\Tracks\Rail_TrackE_R30_20.p3d";
 	};
 	class StaticObj_Rail_TrackE_R30_20_lc: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Rail\Tracks\Rail_TrackE_R30_20_lc.p3d";
 	};
 	class StaticObj_Rail_TrackE_TurnOutL: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Rail\Tracks\Rail_TrackE_TurnOutL.p3d";
 	};
 	class StaticObj_Rail_TrackE_TurnOutR: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Rail\Tracks\Rail_TrackE_TurnOutR.p3d";
 	};
 	class StaticObj_Rail_TrackE_TurnOutL_lc: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Rail\Tracks\Rail_TrackE_TurnOutL_lc.p3d";
 	};
 	class StaticObj_Rail_TrackE_TurnOutR_lc: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Rail\Tracks\Rail_TrackE_TurnOutR_lc.p3d";
 	};
 };

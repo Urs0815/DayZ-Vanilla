@@ -1,6 +1,6 @@
-//<'structures_wrecks_bliss.pbo' properties via Mikero's dos tools, dll version 8.84>
+//<'structures_wrecks_bliss.pbo' properties via Mikero's dos tools, dll version 8.94>
 product=dayz bliss;
 prefix=DZ\structures_bliss\wrecks;
-version=95744;
+version=97256P;
 //PboType=Arma Addon;
 //</properties>

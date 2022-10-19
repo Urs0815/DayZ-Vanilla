@@ -1,6 +1,6 @@
-//<'gear_cooking.pbo' properties via Mikero's dos tools, dll version 8.84>
+//<'gear_cooking.pbo' properties via Mikero's dos tools, dll version 8.94>
 product=dayz;
 prefix=DZ\gear\cooking;
-version=95547;
+version=97411P;
 //PboType=Arma Addon;
 //</properties>

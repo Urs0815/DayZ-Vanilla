@@ -1,8 +1,8 @@
 ////////////////////////////////////////////////////////////////////
 //DeRap: config.bin
-//Produced from mikero's Dos Tools Dll version 8.84
+//Produced from mikero's Dos Tools Dll version 8.94
 //https://mikero.bytex.digital/Downloads
-//'now' is Tue Aug 23 21:46:42 2022 : 'file' last modified on Tue May 17 11:31:16 2022
+//'now' is Wed Oct 19 20:13:28 2022 : 'file' last modified on Fri Aug 19 16:21:26 2022
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -96,8 +96,9 @@ class CfgMagazines
 		};
 		class Reliability
 		{
-			ChanceToJam[] = {0,0.0025,0.015,0.1,1};
+			ChanceToJam[] = {0,0.001,0.01,0.05,1};
 		};
+		soundImpactType = "metal";
 	};
 	class Mag_FNX45_15Rnd: Magazine_Base
 	{
@@ -4174,6 +4175,17 @@ class CfgMagazines
 		count = 25;
 		ammo = "Bullet_45ACP";
 		ammoItems[] = {"Ammo_45ACP"};
+		class DamageSystem
+		{
+			class GlobalHealth
+			{
+				class Health
+				{
+					hitpoints = 100;
+					healthLevels[] = {{1.0,{"DZ\weapons\attachments\magazine\data\ump_mag.rvmat"}},{0.7,{"DZ\weapons\attachments\magazine\data\ump_mag.rvmat"}},{0.5,{"DZ\weapons\attachments\magazine\data\ump_mag_damage.rvmat"}},{0.3,{"DZ\weapons\attachments\magazine\data\ump_mag_damage.rvmat"}},{0.0,{"DZ\weapons\attachments\magazine\data\ump_mag_destruct.rvmat"}}};
+				};
+			};
+		};
 		tracersEvery = 0;
 		class AnimEvents
 		{
@@ -4351,7 +4363,7 @@ class CfgMagazines
 				class Health
 				{
 					hitpoints = 100;
-					healthLevels[] = {{1.0,{"DZ\weapons\attachments\magazine\data\vss_mag.rvmat"}},{0.7,{"DZ\weapons\attachments\magazine\data\vss_mag.rvmat"}},{0.5,{"DZ\weapons\attachments\magazine\data\vss_mag_damage.rvmat"}},{0.3,{"DZ\weapons\attachments\magazine\data\vss_mag_damage.rvmat"}},{0.0,{"DZ\weapons\attachments\magazine\data\vss_mag_destruct.rvmat"}}};
+					healthLevels[] = {{1.0,{"DZ\weapons\attachments\magazine\data\val_mag.rvmat"}},{0.7,{"DZ\weapons\attachments\magazine\data\val_mag.rvmat"}},{0.5,{"DZ\weapons\attachments\magazine\data\val_mag_damage.rvmat"}},{0.3,{"DZ\weapons\attachments\magazine\data\val_mag_damage.rvmat"}},{0.0,{"DZ\weapons\attachments\magazine\data\val_mag_destruct.rvmat"}}};
 				};
 			};
 		};
@@ -4700,6 +4712,95 @@ class CfgMagazines
 				{
 					hitpoints = 100;
 					healthLevels[] = {{1.0,{"DZ\weapons\attachments\magazine\data\magazine_cz550_10rnd.rvmat"}},{0.7,{"DZ\weapons\attachments\magazine\data\magazine_cz550_10rnd.rvmat"}},{0.5,{"DZ\weapons\attachments\magazine\data\magazine_cz550_10rnd_damage.rvmat"}},{0.3,{"DZ\weapons\attachments\magazine\data\magazine_cz550_10rnd_damage.rvmat"}},{0.0,{"DZ\weapons\attachments\magazine\data\magazine_cz550_10rnd_destruct.rvmat"}}};
+				};
+			};
+		};
+		class AnimEvents
+		{
+			class SoundWeapon
+			{
+				class MagRifle_fill_in
+				{
+					soundSet = "MagRifle_fill_in_SoundSet";
+					id = 1;
+				};
+				class MagRifle_fill_loop
+				{
+					soundSet = "MagRifle_fill_loop_SoundSet";
+					id = 2;
+				};
+				class MagRifle_fill_out
+				{
+					soundSet = "MagRifle_fill_out_SoundSet";
+					id = 3;
+				};
+				class MagRifle_empty_in
+				{
+					soundSet = "MagRifle_empty_in_SoundSet";
+					id = 4;
+				};
+				class MagRifle_empty_loop
+				{
+					soundSet = "MagRifle_empty_loop_SoundSet";
+					id = 5;
+				};
+				class MagRifle_empty_out
+				{
+					soundSet = "MagRifle_empty_out_SoundSet";
+					id = 6;
+				};
+				class MagPistol_fill_in
+				{
+					soundSet = "MagPistol_fill_in_SoundSet";
+					id = 7;
+				};
+				class MagPistol_fill_loop
+				{
+					soundSet = "MagPistol_fill_loop_SoundSet";
+					id = 8;
+				};
+				class MagPistol_fill_out
+				{
+					soundSet = "MagPistol_fill_out_SoundSet";
+					id = 9;
+				};
+				class MagPistol_empty_in
+				{
+					soundSet = "MagPistol_empty_in_SoundSet";
+					id = 10;
+				};
+				class MagPistol_empty_loop
+				{
+					soundSet = "MagPistol_empty_loop_SoundSet";
+					id = 11;
+				};
+				class MagPistol_empty_out
+				{
+					soundSet = "MagPistol_empty_out_SoundSet";
+					id = 12;
+				};
+			};
+		};
+	};
+	class Mag_SSG82_5rnd: Magazine_Base
+	{
+		scope = 2;
+		displayName = "$STR_CfgMagazines_Mag_SSG82_5rnd0";
+		descriptionShort = "$STR_CfgMagazines_Mag_SSG82_5rnd1";
+		model = "\DZ\weapons\attachments\magazine\magazine_ssg82.p3d";
+		weight = 220;
+		itemSize[] = {1,1};
+		count = 5;
+		ammo = "Bullet_545x39";
+		ammoItems[] = {"Ammo_545x39","Ammo_545x39Tracer"};
+		class DamageSystem
+		{
+			class GlobalHealth
+			{
+				class Health
+				{
+					hitpoints = 100;
+					healthLevels[] = {{1.0,{"DZ\weapons\attachments\magazine\data\magazine_ssg82.rvmat"}},{0.7,{"DZ\weapons\attachments\magazine\data\magazine_ssg82.rvmat"}},{0.5,{"DZ\weapons\attachments\magazine\data\magazine_ssg82_damage.rvmat"}},{0.3,{"DZ\weapons\attachments\magazine\data\magazine_ssg82_damage.rvmat"}},{0.0,{"DZ\weapons\attachments\magazine\data\magazine_ssg82_destruct.rvmat"}}};
 				};
 			};
 		};

@@ -1,8 +1,8 @@
 ////////////////////////////////////////////////////////////////////
 //DeRap: config.bin
-//Produced from mikero's Dos Tools Dll version 8.84
+//Produced from mikero's Dos Tools Dll version 8.94
 //https://mikero.bytex.digital/Downloads
-//'now' is Tue Aug 23 21:39:40 2022 : 'file' last modified on Wed Jan 19 17:24:41 2022
+//'now' is Wed Oct 19 20:09:39 2022 : 'file' last modified on Thu Sep 08 11:35:21 2022
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -141,6 +141,57 @@ class CfgVehicles
 				{
 					soundset = "SmershVest_drop_SoundSet";
 					id = 898;
+				};
+			};
+		};
+	};
+	class PlateCarrierVest_Black: PlateCarrierVest
+	{
+		hiddenSelections[] = {"camoGround","camoMale","camoFemale"};
+		hiddenSelectionsTextures[] = {"\dz\characters\vests\data\BallisticVest_black_co.paa","\dz\characters\vests\data\BallisticVest_black_co.paa","\dz\characters\vests\data\BallisticVest_black_co.paa"};
+		class DamageSystem: DamageSystem
+		{
+			class GlobalHealth: GlobalHealth
+			{
+				class Health: Health
+				{
+					hitpoints = 225;
+					transferToAttachmentsCoef = 0.5;
+					healthLevels[] = {{1.0,{"DZ\characters\vests\Data\BallisticVest.rvmat"}},{0.7,{"DZ\characters\vests\Data\BallisticVest.rvmat"}},{0.5,{"DZ\characters\vests\Data\BallisticVest_damage.rvmat"}},{0.3,{"DZ\characters\vests\Data\BallisticVest_damage.rvmat"}},{0.0,{"DZ\characters\vests\Data\BallisticVest_destruct.rvmat"}}};
+				};
+			};
+		};
+	};
+	class PlateCarrierVest_Green: PlateCarrierVest
+	{
+		hiddenSelections[] = {"camoGround","camoMale","camoFemale"};
+		hiddenSelectionsTextures[] = {"\dz\characters\vests\data\BallisticVest_green_co.paa","\dz\characters\vests\data\BallisticVest_green_co.paa","\dz\characters\vests\data\BallisticVest_green_co.paa"};
+		class DamageSystem: DamageSystem
+		{
+			class GlobalHealth: GlobalHealth
+			{
+				class Health: Health
+				{
+					hitpoints = 225;
+					transferToAttachmentsCoef = 0.5;
+					healthLevels[] = {{1.0,{"DZ\characters\vests\Data\BallisticVest.rvmat"}},{0.7,{"DZ\characters\vests\Data\BallisticVest.rvmat"}},{0.5,{"DZ\characters\vests\Data\BallisticVest_damage.rvmat"}},{0.3,{"DZ\characters\vests\Data\BallisticVest_damage.rvmat"}},{0.0,{"DZ\characters\vests\Data\BallisticVest_destruct.rvmat"}}};
+				};
+			};
+		};
+	};
+	class PlateCarrierVest_Camo: PlateCarrierVest
+	{
+		hiddenSelections[] = {"camoGround","camoMale","camoFemale"};
+		hiddenSelectionsTextures[] = {"\dz\characters\vests\data\BallisticVest_camo_co.paa","\dz\characters\vests\data\BallisticVest_camo_co.paa","\dz\characters\vests\data\BallisticVest_camo_co.paa"};
+		class DamageSystem: DamageSystem
+		{
+			class GlobalHealth: GlobalHealth
+			{
+				class Health: Health
+				{
+					hitpoints = 225;
+					transferToAttachmentsCoef = 0.5;
+					healthLevels[] = {{1.0,{"DZ\characters\vests\Data\BallisticVest.rvmat"}},{0.7,{"DZ\characters\vests\Data\BallisticVest.rvmat"}},{0.5,{"DZ\characters\vests\Data\BallisticVest_damage.rvmat"}},{0.3,{"DZ\characters\vests\Data\BallisticVest_damage.rvmat"}},{0.0,{"DZ\characters\vests\Data\BallisticVest_destruct.rvmat"}}};
 				};
 			};
 		};
@@ -594,6 +645,57 @@ class CfgVehicles
 				{
 					soundset = "Shirt_drop_SoundSet";
 					id = 898;
+				};
+			};
+		};
+	};
+	class PlateCarrierHolster_Black: PlateCarrierHolster
+	{
+		hiddenSelections[] = {"camoGround"};
+		hiddenSelectionsTextures[] = {"\dz\characters\vests\data\BallisticVest_black_co.paa","\dz\characters\vests\data\BallisticVest_black_co.paa","\dz\characters\vests\data\BallisticVest_black_co.paa"};
+		class DamageSystem
+		{
+			class GlobalHealth
+			{
+				class Health
+				{
+					hitpoints = 100;
+					transferToAttachmentsCoef = 0.5;
+					healthLevels[] = {{1.0,{"DZ\characters\vests\data\ballisticvest.rvmat"}},{0.7,{"DZ\characters\vests\data\ballisticvest.rvmat"}},{0.5,{"DZ\characters\vests\data\ballisticvest_damage.rvmat"}},{0.3,{"DZ\characters\vests\data\ballisticvest_damage.rvmat"}},{0.0,{"DZ\characters\vests\data\ballisticvest_destruct.rvmat"}}};
+				};
+			};
+		};
+	};
+	class PlateCarrierHolster_Green: PlateCarrierHolster
+	{
+		hiddenSelections[] = {"camoGround"};
+		hiddenSelectionsTextures[] = {"\dz\characters\vests\data\BallisticVest_green_co.paa","\dz\characters\vests\data\BallisticVest_green_co.paa","\dz\characters\vests\data\BallisticVest_green_co.paa"};
+		class DamageSystem
+		{
+			class GlobalHealth
+			{
+				class Health
+				{
+					hitpoints = 100;
+					transferToAttachmentsCoef = 0.5;
+					healthLevels[] = {{1.0,{"DZ\characters\vests\data\ballisticvest.rvmat"}},{0.7,{"DZ\characters\vests\data\ballisticvest.rvmat"}},{0.5,{"DZ\characters\vests\data\ballisticvest_damage.rvmat"}},{0.3,{"DZ\characters\vests\data\ballisticvest_damage.rvmat"}},{0.0,{"DZ\characters\vests\data\ballisticvest_destruct.rvmat"}}};
+				};
+			};
+		};
+	};
+	class PlateCarrierHolster_Camo: PlateCarrierHolster
+	{
+		hiddenSelections[] = {"camoGround"};
+		hiddenSelectionsTextures[] = {"\dz\characters\vests\data\BallisticVest_camo_co.paa","\dz\characters\vests\data\BallisticVest_camo_co.paa","\dz\characters\vests\data\BallisticVest_camo_co.paa"};
+		class DamageSystem
+		{
+			class GlobalHealth
+			{
+				class Health
+				{
+					hitpoints = 100;
+					transferToAttachmentsCoef = 0.5;
+					healthLevels[] = {{1.0,{"DZ\characters\vests\data\ballisticvest.rvmat"}},{0.7,{"DZ\characters\vests\data\ballisticvest.rvmat"}},{0.5,{"DZ\characters\vests\data\ballisticvest_damage.rvmat"}},{0.3,{"DZ\characters\vests\data\ballisticvest_damage.rvmat"}},{0.0,{"DZ\characters\vests\data\ballisticvest_destruct.rvmat"}}};
 				};
 			};
 		};

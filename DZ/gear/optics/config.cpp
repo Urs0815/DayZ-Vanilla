@@ -1,8 +1,8 @@
 ////////////////////////////////////////////////////////////////////
 //DeRap: config.bin
-//Produced from mikero's Dos Tools Dll version 8.84
+//Produced from mikero's Dos Tools Dll version 8.94
 //https://mikero.bytex.digital/Downloads
-//'now' is Tue Aug 23 21:40:44 2022 : 'file' last modified on Tue Apr 05 14:32:06 2022
+//'now' is Wed Oct 19 20:10:09 2022 : 'file' last modified on Tue Jul 12 15:53:49 2022
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -95,6 +95,7 @@ class CfgVehicles
 				range = 2.8;
 			};
 		};
+		soundImpactType = "plastic";
 	};
 	class Binoculars: ItemOptics
 	{
@@ -149,6 +150,7 @@ class CfgVehicles
 				range = 2.8;
 			};
 		};
+		soundImpactType = "glass";
 	};
 };
 class CfgNonAIVehicles

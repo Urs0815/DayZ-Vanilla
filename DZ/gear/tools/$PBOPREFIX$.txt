@@ -1,6 +1,6 @@
-//<'gear_tools.pbo' properties via Mikero's dos tools, dll version 8.84>
+//<'gear_tools.pbo' properties via Mikero's dos tools, dll version 8.94>
 product=dayz;
 prefix=DZ\gear\tools;
-version=95369;
+version=98353;
 //PboType=Arma Addon;
 //</properties>

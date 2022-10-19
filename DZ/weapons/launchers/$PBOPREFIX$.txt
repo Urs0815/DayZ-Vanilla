@@ -1,6 +1,6 @@
-//<'weapons_launchers.pbo' properties via Mikero's dos tools, dll version 8.84>
+//<'weapons_launchers.pbo' properties via Mikero's dos tools, dll version 8.94>
 product=dayz;
 prefix=DZ\weapons\launchers;
-version=95350;
+version=95329P;
 //PboType=Arma Addon;
 //</properties>

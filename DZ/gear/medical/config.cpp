@@ -1,8 +1,8 @@
 ////////////////////////////////////////////////////////////////////
 //DeRap: config.bin
-//Produced from mikero's Dos Tools Dll version 8.84
+//Produced from mikero's Dos Tools Dll version 8.94
 //https://mikero.bytex.digital/Downloads
-//'now' is Tue Aug 23 21:40:36 2022 : 'file' last modified on Wed Jan 05 18:03:44 2022
+//'now' is Wed Oct 19 20:10:05 2022 : 'file' last modified on Tue Jul 12 15:51:43 2022
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -67,6 +67,7 @@ class CfgVehicles
 				};
 			};
 		};
+		soundImpactType = "textile";
 		class AnimEvents
 		{
 			class SoundWeapon
@@ -136,6 +137,7 @@ class CfgVehicles
 				};
 			};
 		};
+		soundImpactType = "plastic";
 		class AnimEvents
 		{
 			class SoundWeapon
@@ -219,6 +221,7 @@ class CfgVehicles
 				};
 			};
 		};
+		soundImpactType = "glass";
 		class AnimEvents
 		{
 			class SoundWeapon
@@ -465,6 +468,7 @@ class CfgVehicles
 			treatment = 0.5;
 			diseaseExit = 0;
 		};
+		soundImpactType = "plastic";
 		class AnimEvents
 		{
 			class SoundWeapon
@@ -522,6 +526,7 @@ class CfgVehicles
 				};
 			};
 		};
+		soundImpactType = "glass";
 		class AnimEvents
 		{
 			class SoundWeapon
@@ -642,6 +647,7 @@ class CfgVehicles
 				};
 			};
 		};
+		soundImpactType = "plastic";
 	};
 	class Morphine: Inventory_Base
 	{
@@ -663,6 +669,7 @@ class CfgVehicles
 				};
 			};
 		};
+		soundImpactType = "plastic";
 		class AnimEvents
 		{
 			class SoundWeapon
@@ -703,6 +710,7 @@ class CfgVehicles
 				};
 			};
 		};
+		soundImpactType = "plastic";
 	};
 	class Syringe: Epinephrine
 	{
@@ -874,6 +882,7 @@ class CfgVehicles
 				};
 			};
 		};
+		soundImpactType = "plastic";
 		class AnimEvents
 		{
 			class SoundWeapon
@@ -908,6 +917,7 @@ class CfgVehicles
 				};
 			};
 		};
+		soundImpactType = "plastic";
 		class AnimEvents
 		{
 			class SoundWeapon
@@ -972,6 +982,7 @@ class CfgVehicles
 				};
 			};
 		};
+		soundImpactType = "plastic";
 		class AnimEvents
 		{
 			class SoundWeapon
@@ -1036,6 +1047,7 @@ class CfgVehicles
 				};
 			};
 		};
+		soundImpactType = "plastic";
 		class AnimEvents
 		{
 			class SoundWeapon
@@ -1107,6 +1119,7 @@ class CfgVehicles
 				};
 			};
 		};
+		soundImpactType = "plastic";
 		class AnimEvents
 		{
 			class SoundWeapon
@@ -1177,6 +1190,7 @@ class CfgVehicles
 				};
 			};
 		};
+		soundImpactType = "plastic";
 		class AnimEvents
 		{
 			class SoundWeapon
@@ -1248,6 +1262,7 @@ class CfgVehicles
 				};
 			};
 		};
+		soundImpactType = "plastic";
 		class AnimEvents
 		{
 			class SoundWeapon
@@ -1311,6 +1326,7 @@ class CfgVehicles
 				};
 			};
 		};
+		soundImpactType = "plastic";
 		class AnimEvents
 		{
 			class SoundWeapon
@@ -1451,6 +1467,7 @@ class CfgVehicles
 				range = 3.3;
 			};
 		};
+		soundImpactType = "wood";
 	};
 	class Thermometer: Inventory_Base
 	{
@@ -1483,6 +1500,7 @@ class CfgVehicles
 				initPhase = 1;
 			};
 		};
+		soundImpactType = "glass";
 	};
 	class Defibrillator: Inventory_Base
 	{
@@ -1518,6 +1536,7 @@ class CfgVehicles
 			attachmentAction = 1;
 			wetnessExposure = 0.5;
 		};
+		soundImpactType = "plastic";
 		class AnimEvents
 		{
 			class SoundWeapon

@@ -859,7 +859,7 @@ RFootIKTarget = RightUpLeg, RightUpLegRoll, RightLeg, RightLegRoll, RightFoot"
 				$State {
 					 "FallBack" "" "FallBackAnim" "GetCommandI(CMD_Fall) == 3 || GetCommandI(CMD_Restrained_Fall) == 1" "realtime" 0
 					$EditorData {
-						#EditorPos 18.8999996 9.3000002
+						#EditorPos 18.8000011 9.3000002
 					}
 				}
 				$State {
@@ -946,7 +946,7 @@ RFootIKTarget = RightUpLeg, RightUpLegRoll, RightLeg, RightLegRoll, RightFoot"
 					 "LadderFallLFoot" "FallBack" "RemainingTimeLess(0.1)" "0.1" "" 1 "S"
 				}
 				$Transition {
-					 "JumpRunIn" "JumpRunOut" "IsCommand(CMD_Land)" "0.225" "" 6 "S"
+					 "JumpRunIn" "JumpRunOut" "GetCommandI(CMD_Land) == 0" "0.225" "" 6 "S"
 				}
 				$Transition {
 					 "JumpSpotIn" "JumpSpotOut" "IsCommand(CMD_Land)" "0.15" "" 0 "S"
@@ -964,7 +964,7 @@ RFootIKTarget = RightUpLeg, RightUpLegRoll, RightLeg, RightLegRoll, RightFoot"
 					 "JumpRunIn" "FallForward" "RemainingTimeLess(0.3)" "0.3" "" 1 "S"
 				}
 				$Transition {
-					 "JumpSprintIn" "JumpSprintOut" "IsCommand(CMD_Land)" "0.225" "" 0 "S"
+					 "JumpSprintIn" "JumpSprintOut" "GetCommandI(CMD_Land) == 0" "0.225" "" 0 "S"
 				}
 				$Transition {
 					 "" "LandLight" "GetCommandI(CMD_Land) == 0" "0.1" "" 6 "S"
@@ -3063,7 +3063,15 @@ Y(90): X(-180) = 82, X(-90) = 92, X(0) = 102, X(90) = 112, X(180) = 122"
 			$Predictions {
 			}
 			$EditorData {
-				#EditorPos 6.0 -22.3999996
+				#EditorPos 6.0999999 -22.0
+			}
+		}
+		$Node AnimNodeSource {
+			 "PneRollLeftAnim0" "" "Locomotion.EvadeL" "noloop"
+			$Predictions {
+			}
+			$EditorData {
+				#EditorPos -3.3 -31.1000004
 			}
 		}
 		$Node AnimNodeGroupSelect {
@@ -3089,7 +3097,15 @@ Y(90): X(-180) = 82, X(-90) = 92, X(0) = 102, X(90) = 112, X(180) = 122"
 			$Predictions {
 			}
 			$EditorData {
-				#EditorPos 3.9000001 -22.3999996
+				#EditorPos 4.0 -22.0
+			}
+		}
+		$Node AnimNodeSource {
+			 "PneRollRightAnim0" "" "Locomotion.EvadeR" "noloop"
+			$Predictions {
+			}
+			$EditorData {
+				#EditorPos 3.0 -31.0
 			}
 		}
 		$Node AnimNodeSourceSync {
@@ -3607,7 +3623,53 @@ Y(45):     X(-45) = 7, X(0) = 7, X(45) = 7"
 		$Node AnimNodeBlendT {
 			 "ProneRollRightLeft" "" "PneRollRightAnim" "PneRollLeftAnim" "GetCommandI(CMD_Roll) == 0" "GetCommandI(CMD_Roll) == 1" "" 0.3 "S" 7
 			$EditorData {
-				#EditorPos 5.0 -21.7000008
+				#EditorPos 5.0999999 -21.3000011
+			}
+		}
+		$Node AnimNodeStateMachine {
+			 "ProneRollSTM" ""
+			$States 4 {
+				$State {
+					 "RollLeftLow" "" "RollLeftLowG" "GetCommandI(CMD_Roll) == 0 && !Raised" "realtime" 1
+					$EditorData {
+						#EditorPos -3.3 -25.7000008
+					}
+				}
+				$State {
+					 "RollLeftRas" "" "RollLeftRasG" "GetCommandI(CMD_Roll) == 0 && Raised" "realtime" 1
+					$EditorData {
+						#EditorPos -3.3 -26.8000011
+					}
+				}
+				$State {
+					 "RollRightLow" "" "RollRightLowG" "GetCommandI(CMD_Roll) == 1 && !Raised" "realtime" 1
+					$EditorData {
+						#EditorPos 3.0 -25.6000004
+					}
+				}
+				$State {
+					 "RollRightRas" "" "RollRightRasG" "GetCommandI(CMD_Roll) == 1 && Raised" "realtime" 1
+					$EditorData {
+						#EditorPos 3.0 -26.7000008
+					}
+				}
+			}
+			$Transitions 4 {
+				$Transition {
+					 "RollLeftLow" "RollLeftRas" "HasVariableChanged(Raised, false)" "0.2" "GetLowerTime()" 1 "S"
+				}
+				$Transition {
+					 "RollLeftRas" "RollLeftLow" "HasVariableChanged(Raised, true)" "0.2" "GetLowerTime()" 1 "S"
+				}
+				$Transition {
+					 "RollRightLow" "RollRightRas" "HasVariableChanged(Raised, false)" "0.2" "GetLowerTime()" 1 "S"
+				}
+				$Transition {
+					 "RollRightRas" "RollRightLow" "HasVariableChanged(Raised, true)" "0.2" "GetLowerTime()" 1 "S"
+				}
+			}
+			$EditorData {
+				#EditorPos 0.1 -24.5
 			}
 		}
 		$Node AnimNodeSource {
@@ -3640,6 +3702,30 @@ Y(45):     X(-45) = 7, X(0) = 7, X(45) = 7"
 			}
 			$EditorData {
 				#EditorPos -18.8000011 3.9000001
+			}
+		}
+		$Node AnimNodeGroupSelect {
+			 "RollLeftLowG" "" "PneRollLeftAnim0" "Locomotion" "Pne"
+			$EditorData {
+				#EditorPos -3.3 -28.7000008
+			}
+		}
+		$Node AnimNodeGroupSelect {
+			 "RollLeftRasG" "" "PneRollLeftAnim0" "Locomotion" "PneRas"
+			$EditorData {
+				#EditorPos -3.3 -29.6000004
+			}
+		}
+		$Node AnimNodeGroupSelect {
+			 "RollRightLowG" "" "PneRollRightAnim0" "Locomotion" "Pne"
+			$EditorData {
+				#EditorPos 3.0 -28.6000004
+			}
+		}
+		$Node AnimNodeGroupSelect {
+			 "RollRightRasG" "" "PneRollRightAnim0" "Locomotion" "PneRas"
+			$EditorData {
+				#EditorPos 3.0 -29.5
 			}
 		}
 		$Node AnimNodeBlend {
@@ -4523,7 +4609,7 @@ MovementDirection >= -50 && MovementDirection <= 50
 					}
 				}
 				$State {
-					 "ProneRoll" "TagMoveRolling" "PneRollRaisedT" "" "realtime" 0
+					 "ProneRoll" "TagMoveRolling" "ProneRollSTM" "" "realtime" 0
 					$EditorData {
 						#EditorPos 6.0 -15.8000002
 					}

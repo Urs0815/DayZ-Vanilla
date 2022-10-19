@@ -1,6 +1,6 @@
-//<'characters_tops.pbo' properties via Mikero's dos tools, dll version 8.84>
+//<'characters_tops.pbo' properties via Mikero's dos tools, dll version 8.94>
 product=dayz;
 prefix=DZ\characters\tops;
-version=95394;
+version=97273P;
 //PboType=Arma Addon;
 //</properties>

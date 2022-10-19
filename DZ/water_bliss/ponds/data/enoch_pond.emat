@@ -1,7 +1,7 @@
 MatWaterPool {
- Color 0.0196 0.0196 0 0
+ Color 0.0392 0.0549 0.0667 0.3725
  ZWrite 0
- NormalMap "dz/water_bliss/ponds/data/enoch_pond_nohq.edds" 
+ NormalMap "{126A7892740C80E0}DZ/water_bliss/ponds/data/enoch_pond_nohq.edds" 
  NormalPower 1.55
  NormalMapping 0.1
  SunPower 1024
@@ -13,8 +13,14 @@ MatWaterPool {
  CausticMap "{EA764AD7A6112284}Graphics/Textures/Water/caustic.edds" 
  Caustic 0.05
  WetFloor 0.75
- EnvironmentMap "dz/water_bliss/ponds/data/enoch_pond_env_co.edds" 
+ EnvironmentMap "{46C92AE52447906C}Graphics/Textures/Water/env_lake_co.edds" 
  ReflectionColor 0.2 0.3 0 0
  FresnelRange 0.468
+ "Enable effect" 1
+ "Pixel stride_1" 16
+ "Z thickness_1" 0
+ Iterations_2 100
+ "Pixel stride_2" 16
+ "Z thickness_2" 0
  TimeMul 0.7
 }

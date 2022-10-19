@@ -1,8 +1,8 @@
 ////////////////////////////////////////////////////////////////////
 //DeRap: config.bin
-//Produced from mikero's Dos Tools Dll version 8.84
+//Produced from mikero's Dos Tools Dll version 8.94
 //https://mikero.bytex.digital/Downloads
-//'now' is Tue Aug 23 21:40:27 2022 : 'file' last modified on Wed Jan 05 17:46:44 2022
+//'now' is Wed Oct 19 20:10:01 2022 : 'file' last modified on Tue Jul 12 15:45:23 2022
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -76,7 +76,7 @@ class BaseFoodStageTransitions
 		};
 		class ToBoiled
 		{
-			transition_to = 3;
+			transition_to = 5;
 			cooking_method = 2;
 		};
 		class ToDried
@@ -104,7 +104,7 @@ class BaseFoodStageTransitions
 		};
 		class ToBoiled
 		{
-			transition_to = 3;
+			transition_to = 5;
 			cooking_method = 2;
 		};
 		class ToDried
@@ -132,7 +132,7 @@ class BaseFoodStageTransitions
 		};
 		class ToBoiled
 		{
-			transition_to = 3;
+			transition_to = 5;
 			cooking_method = 2;
 		};
 		class ToDried
@@ -456,6 +456,7 @@ class CfgVehicles
 			strength = 600.0;
 			type = "sound";
 		};
+		soundImpactType = "organic";
 		class AnimEvents
 		{
 			class SoundWeapon
@@ -540,6 +541,7 @@ class CfgVehicles
 			toxicity = 0;
 			agents = 4;
 		};
+		soundImpactType = "organic";
 		class AnimEvents
 		{
 			class SoundWeapon
@@ -668,6 +670,7 @@ class CfgVehicles
 			nutritionalIndex = 1;
 			toxicity = 0;
 		};
+		soundImpactType = "glass";
 		class AnimEvents
 		{
 			class SoundWeapon
@@ -711,6 +714,7 @@ class CfgVehicles
 			nutritionalIndex = 1;
 			toxicity = 0;
 		};
+		soundImpactType = "glass";
 		class AnimEvents
 		{
 			class SoundWeapon
@@ -745,6 +749,7 @@ class CfgVehicles
 				};
 			};
 		};
+		soundImpactType = "plastic";
 		class AnimEvents
 		{
 			class SoundWeapon
@@ -856,6 +861,7 @@ class CfgVehicles
 				};
 			};
 		};
+		soundImpactType = "plastic";
 		class AnimEvents
 		{
 			class SoundWeapon
@@ -973,6 +979,7 @@ class CfgVehicles
 				};
 			};
 		};
+		soundImpactType = "metal";
 		class AnimEvents
 		{
 			class SoundWeapon
@@ -1049,6 +1056,7 @@ class CfgVehicles
 			nutritionalIndex = 1;
 			toxicity = 0;
 		};
+		soundImpactType = "metal";
 		class AnimEvents
 		{
 			class SoundWeapon
@@ -1108,6 +1116,7 @@ class CfgVehicles
 				};
 			};
 		};
+		soundImpactType = "metal";
 		class AnimEvents
 		{
 			class SoundWeapon
@@ -1174,6 +1183,7 @@ class CfgVehicles
 			nutritionalIndex = 1;
 			toxicity = 0;
 		};
+		soundImpactType = "metal";
 		class AnimEvents
 		{
 			class SoundWeapon
@@ -1233,6 +1243,7 @@ class CfgVehicles
 				};
 			};
 		};
+		soundImpactType = "metal";
 		class AnimEvents
 		{
 			class SoundWeapon
@@ -1299,6 +1310,7 @@ class CfgVehicles
 			nutritionalIndex = 1;
 			toxicity = 0;
 		};
+		soundImpactType = "metal";
 		class AnimEvents
 		{
 			class SoundWeapon
@@ -1358,6 +1370,7 @@ class CfgVehicles
 				};
 			};
 		};
+		soundImpactType = "metal";
 		class AnimEvents
 		{
 			class SoundWeapon
@@ -1424,6 +1437,7 @@ class CfgVehicles
 			nutritionalIndex = 1;
 			toxicity = 0;
 		};
+		soundImpactType = "metal";
 		class AnimEvents
 		{
 			class SoundWeapon
@@ -1483,6 +1497,7 @@ class CfgVehicles
 				};
 			};
 		};
+		soundImpactType = "metal";
 		class AnimEvents
 		{
 			class SoundWeapon
@@ -1549,6 +1564,7 @@ class CfgVehicles
 			nutritionalIndex = 1;
 			toxicity = 0;
 		};
+		soundImpactType = "metal";
 		class AnimEvents
 		{
 			class SoundWeapon
@@ -1608,6 +1624,7 @@ class CfgVehicles
 				};
 			};
 		};
+		soundImpactType = "metal";
 		class AnimEvents
 		{
 			class SoundWeapon
@@ -1674,6 +1691,7 @@ class CfgVehicles
 			nutritionalIndex = 1;
 			toxicity = 0;
 		};
+		soundImpactType = "metal";
 		class AnimEvents
 		{
 			class SoundWeapon
@@ -1728,6 +1746,7 @@ class CfgVehicles
 				};
 			};
 		};
+		soundImpactType = "metal";
 		class AnimEvents
 		{
 			class SoundWeapon
@@ -1781,6 +1800,7 @@ class CfgVehicles
 				};
 			};
 		};
+		soundImpactType = "metal";
 		class AnimEvents
 		{
 			class SoundWeapon
@@ -1932,6 +1952,7 @@ class CfgVehicles
 				};
 			};
 		};
+		soundImpactType = "metal";
 		class AnimEvents
 		{
 			class SoundWeapon
@@ -1998,6 +2019,7 @@ class CfgVehicles
 			nutritionalIndex = 1;
 			toxicity = 0;
 		};
+		soundImpactType = "metal";
 		class AnimEvents
 		{
 			class SoundWeapon
@@ -2052,6 +2074,7 @@ class CfgVehicles
 				};
 			};
 		};
+		soundImpactType = "plastic";
 		class AnimEvents
 		{
 			class SoundWeapon
@@ -2251,6 +2274,7 @@ class CfgVehicles
 			};
 			class FoodStageTransitions: FruitStageTransitions{};
 		};
+		soundImpactType = "organic";
 		class AnimEvents
 		{
 			class SoundWeapon
@@ -2363,6 +2387,7 @@ class CfgVehicles
 			};
 			class FoodStageTransitions: FruitStageTransitions{};
 		};
+		soundImpactType = "organic";
 		class AnimEvents
 		{
 			class SoundWeapon
@@ -2475,6 +2500,7 @@ class CfgVehicles
 			};
 			class FoodStageTransitions: FruitStageTransitions{};
 		};
+		soundImpactType = "organic";
 		class AnimEvents
 		{
 			class SoundWeapon
@@ -2564,6 +2590,7 @@ class CfgVehicles
 			};
 			class FoodStageTransitions: NotCookable{};
 		};
+		soundImpactType = "organic";
 		class AnimEvents
 		{
 			class SoundWeapon
@@ -2652,6 +2679,7 @@ class CfgVehicles
 			};
 			class FoodStageTransitions: NotCookable{};
 		};
+		soundImpactType = "organic";
 		class AnimEvents
 		{
 			class SoundWeapon
@@ -2764,6 +2792,7 @@ class CfgVehicles
 			};
 			class FoodStageTransitions: FruitStageTransitions{};
 		};
+		soundImpactType = "organic";
 		class AnimEvents
 		{
 			class SoundWeapon
@@ -2877,6 +2906,7 @@ class CfgVehicles
 			};
 			class FoodStageTransitions: FruitStageTransitions{};
 		};
+		soundImpactType = "organic";
 		class AnimEvents
 		{
 			class SoundWeapon
@@ -2990,6 +3020,7 @@ class CfgVehicles
 			};
 			class FoodStageTransitions: FruitStageTransitions{};
 		};
+		soundImpactType = "organic";
 		class AnimEvents
 		{
 			class SoundWeapon
@@ -3079,6 +3110,7 @@ class CfgVehicles
 			};
 			class FoodStageTransitions: NotCookable{};
 		};
+		soundImpactType = "organic";
 		class AnimEvents
 		{
 			class SoundWeapon
@@ -3192,6 +3224,7 @@ class CfgVehicles
 			};
 			class FoodStageTransitions: FruitStageTransitions{};
 		};
+		soundImpactType = "organic";
 		class AnimEvents
 		{
 			class SoundWeapon
@@ -3309,6 +3342,7 @@ class CfgVehicles
 			};
 			class FoodStageTransitions: FruitStageTransitions{};
 		};
+		soundImpactType = "organic";
 		class AnimEvents
 		{
 			class SoundWeapon
@@ -3398,6 +3432,7 @@ class CfgVehicles
 			};
 			class FoodStageTransitions: NotCookable{};
 		};
+		soundImpactType = "organic";
 		class AnimEvents
 		{
 			class SoundWeapon
@@ -3511,6 +3546,7 @@ class CfgVehicles
 			};
 			class FoodStageTransitions: FruitStageTransitions{};
 		};
+		soundImpactType = "organic";
 		class AnimEvents
 		{
 			class SoundWeapon
@@ -3624,6 +3660,7 @@ class CfgVehicles
 			};
 			class FoodStageTransitions: FruitStageTransitions{};
 		};
+		soundImpactType = "organic";
 		class AnimEvents
 		{
 			class SoundWeapon
@@ -3853,6 +3890,7 @@ class CfgVehicles
 			strength = 600.0;
 			type = "sound";
 		};
+		soundImpactType = "organic";
 		class AnimEvents
 		{
 			class SoundWeapon
@@ -3964,6 +4002,7 @@ class CfgVehicles
 			strength = 600.0;
 			type = "sound";
 		};
+		soundImpactType = "organic";
 		class AnimEvents
 		{
 			class SoundWeapon
@@ -4075,6 +4114,7 @@ class CfgVehicles
 			strength = 600.0;
 			type = "sound";
 		};
+		soundImpactType = "organic";
 		class AnimEvents
 		{
 			class SoundWeapon
@@ -4186,6 +4226,7 @@ class CfgVehicles
 			strength = 600.0;
 			type = "sound";
 		};
+		soundImpactType = "organic";
 		class AnimEvents
 		{
 			class SoundWeapon
@@ -4292,6 +4333,7 @@ class CfgVehicles
 			};
 			class FoodStageTransitions: MeatStageTransitions{};
 		};
+		soundImpactType = "organic";
 		class AnimEvents
 		{
 			class SoundWeapon
@@ -4403,6 +4445,7 @@ class CfgVehicles
 			strength = 600.0;
 			type = "sound";
 		};
+		soundImpactType = "organic";
 		class AnimEvents
 		{
 			class SoundWeapon
@@ -4514,6 +4557,7 @@ class CfgVehicles
 			strength = 600.0;
 			type = "sound";
 		};
+		soundImpactType = "organic";
 		class AnimEvents
 		{
 			class SoundWeapon
@@ -4625,6 +4669,7 @@ class CfgVehicles
 			strength = 600.0;
 			type = "sound";
 		};
+		soundImpactType = "organic";
 		class AnimEvents
 		{
 			class SoundWeapon
@@ -4736,6 +4781,7 @@ class CfgVehicles
 			strength = 600.0;
 			type = "sound";
 		};
+		soundImpactType = "organic";
 		class AnimEvents
 		{
 			class SoundWeapon
@@ -4847,6 +4893,7 @@ class CfgVehicles
 			strength = 600.0;
 			type = "sound";
 		};
+		soundImpactType = "organic";
 		class AnimEvents
 		{
 			class SoundWeapon
@@ -4958,6 +5005,7 @@ class CfgVehicles
 			strength = 600.0;
 			type = "sound";
 		};
+		soundImpactType = "organic";
 		class AnimEvents
 		{
 			class SoundWeapon
@@ -5069,6 +5117,7 @@ class CfgVehicles
 			strength = 600.0;
 			type = "sound";
 		};
+		soundImpactType = "organic";
 		class AnimEvents
 		{
 			class SoundWeapon
@@ -5180,6 +5229,7 @@ class CfgVehicles
 			strength = 600.0;
 			type = "sound";
 		};
+		soundImpactType = "organic";
 		class AnimEvents
 		{
 			class SoundWeapon
@@ -5291,6 +5341,7 @@ class CfgVehicles
 			strength = 600.0;
 			type = "sound";
 		};
+		soundImpactType = "organic";
 		class AnimEvents
 		{
 			class SoundWeapon
@@ -5402,6 +5453,7 @@ class CfgVehicles
 			strength = 600.0;
 			type = "sound";
 		};
+		soundImpactType = "organic";
 		class AnimEvents
 		{
 			class SoundWeapon
@@ -5536,6 +5588,7 @@ class CfgVehicles
 			strength = 600.0;
 			type = "sound";
 		};
+		soundImpactType = "organic";
 		class AnimEvents
 		{
 			class SoundWeapon
@@ -5660,6 +5713,7 @@ class CfgVehicles
 			};
 			class FoodStageTransitions: AnimalCorpsesStageTransitions{};
 		};
+		soundImpactType = "organic";
 		class AnimEvents
 		{
 			class SoundWeapon
@@ -5761,6 +5815,7 @@ class CfgVehicles
 			};
 			class FoodStageTransitions: NotCookable{};
 		};
+		soundImpactType = "organic";
 		class AnimEvents
 		{
 			class SoundWeapon
@@ -5885,6 +5940,7 @@ class CfgVehicles
 			};
 			class FoodStageTransitions: AnimalCorpsesStageTransitions{};
 		};
+		soundImpactType = "organic";
 		class AnimEvents
 		{
 			class SoundWeapon
@@ -5986,6 +6042,7 @@ class CfgVehicles
 			};
 			class FoodStageTransitions: NotCookable{};
 		};
+		soundImpactType = "organic";
 		class AnimEvents
 		{
 			class SoundWeapon
@@ -6061,6 +6118,7 @@ class CfgVehicles
 			};
 			class FoodStageTransitions: NotCookable{};
 		};
+		soundImpactType = "organic";
 		class AnimEvents
 		{
 			class SoundWeapon
@@ -6187,6 +6245,7 @@ class CfgVehicles
 			};
 			class FoodStageTransitions: MeatStageTransitions{};
 		};
+		soundImpactType = "organic";
 		class AnimEvents
 		{
 			class SoundWeapon
@@ -6318,6 +6377,7 @@ class CfgVehicles
 			};
 			class FoodStageTransitions: MeatStageTransitions{};
 		};
+		soundImpactType = "organic";
 		class AnimEvents
 		{
 			class SoundWeapon
@@ -6356,6 +6416,7 @@ class CfgVehicles
 		varQuantityInit = 130;
 		varQuantityMin = 0;
 		varQuantityMax = 130;
+		soundImpactType = "organic";
 	};
 	class AgaricusMushroom: MushroomBase
 	{

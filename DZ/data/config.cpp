@@ -1,8 +1,8 @@
 ////////////////////////////////////////////////////////////////////
 //DeRap: config.bin
-//Produced from mikero's Dos Tools Dll version 8.84
+//Produced from mikero's Dos Tools Dll version 8.94
 //https://mikero.bytex.digital/Downloads
-//'now' is Tue Aug 23 21:39:51 2022 : 'file' last modified on Wed Jun 22 17:46:45 2022
+//'now' is Wed Oct 19 20:09:46 2022 : 'file' last modified on Wed Oct 05 17:12:04 2022
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -371,8 +371,8 @@ class CfgWorlds
 					groundReflectionCloud[] = {0.032,0.0572,0.096};
 					sky[] = {1.2,0.64,1};
 					skyAroundSun[] = {3.5,1.64,1};
-					desiredLuminanceCoef = 0.4;
-					desiredLuminanceCoefCloud = 0.4;
+					desiredLuminanceCoef = 0.42;
+					desiredLuminanceCoefCloud = 0.42;
 					EVMin = -2.0;
 					EVMax = 0.1;
 					filmGrainIntensity = 0.0;
@@ -399,8 +399,8 @@ class CfgWorlds
 					groundReflectionCloud[] = {{0.2,0.23,0.45},3.4};
 					sky[] = {{1.2,0.64,1},7.0};
 					skyAroundSun[] = {{2.2,1.24,1},8.2};
-					desiredLuminanceCoef = 0.45;
-					desiredLuminanceCoefCloud = 0.45;
+					desiredLuminanceCoef = 0.48;
+					desiredLuminanceCoefCloud = 0.48;
 					EVMin = -2.0;
 					EVMax = 0.1;
 					filmGrainIntensity = 0.0;
@@ -427,8 +427,8 @@ class CfgWorlds
 					groundReflectionCloud[] = {{0.12,0.18,0.28},7.4};
 					sky[] = {{0.5,0.64,1},10.4};
 					skyAroundSun[] = {{1.2,0.674,0.294},11};
-					desiredLuminanceCoef = 0.5;
-					desiredLuminanceCoefCloud = 0.5;
+					desiredLuminanceCoef = 0.53;
+					desiredLuminanceCoefCloud = 0.53;
 					EVMin = -2.0;
 					EVMax = 0.1;
 					filmGrainIntensity = 0.0;
@@ -455,8 +455,8 @@ class CfgWorlds
 					groundReflectionCloud[] = {{0.12,0.18,0.28},8.1};
 					sky[] = {{0.5,0.64,1},10.8};
 					skyAroundSun[] = {{1.0,0.874,0.494},11.4};
-					desiredLuminanceCoef = 0.53;
-					desiredLuminanceCoefCloud = 0.53;
+					desiredLuminanceCoef = 0.57;
+					desiredLuminanceCoefCloud = 0.57;
 					EVMin = -2.0;
 					EVMax = 0.1;
 					filmGrainIntensity = 0.0;
@@ -483,8 +483,8 @@ class CfgWorlds
 					groundReflectionCloud[] = {{0.12,0.18,0.24},8.1};
 					sky[] = {{0.5,0.64,1},11.0};
 					skyAroundSun[] = {{1.0,1.0,1.0},11.2};
-					desiredLuminanceCoef = 0.56;
-					desiredLuminanceCoefCloud = 0.56;
+					desiredLuminanceCoef = 0.64;
+					desiredLuminanceCoefCloud = 0.64;
 					EVMin = -2.0;
 					EVMax = 0.1;
 					filmGrainIntensity = 0.0;
@@ -511,8 +511,8 @@ class CfgWorlds
 					groundReflectionCloud[] = {{0.12,0.18,0.24},8.0};
 					sky[] = {{0.7,0.84,1},11.7};
 					skyAroundSun[] = {{1.0,1.0,1.0},12.5};
-					desiredLuminanceCoef = 0.62;
-					desiredLuminanceCoefCloud = 0.62;
+					desiredLuminanceCoef = 0.7;
+					desiredLuminanceCoefCloud = 0.7;
 					EVMin = -2.0;
 					EVMax = 0.2;
 					filmGrainIntensity = 0.0;
@@ -539,8 +539,8 @@ class CfgWorlds
 					groundReflectionCloud[] = {{0.12,0.18,0.24},7.8};
 					sky[] = {{0.7,0.84,1},12.6};
 					skyAroundSun[] = {{1.0,1.0,1.0},13.0};
-					desiredLuminanceCoef = 0.66;
-					desiredLuminanceCoefCloud = 0.66;
+					desiredLuminanceCoef = 0.72;
+					desiredLuminanceCoefCloud = 0.72;
 					EVMin = -2.0;
 					EVMax = 0.2;
 					filmGrainIntensity = 0.0;
@@ -707,8 +707,8 @@ class CfgWorlds
 					groundReflectionCloud[] = {0.02,0.02,0.03};
 					sky[] = {0.1,0.14,0.16};
 					skyAroundSun[] = {0.1,0.14,0.16};
-					desiredLuminanceCoef = 0.3;
-					desiredLuminanceCoefCloud = 0.3;
+					desiredLuminanceCoef = 0.37;
+					desiredLuminanceCoefCloud = 0.37;
 					EVMin = -2.0;
 					EVMax = 0.0;
 					filmGrainIntensity = 0.0;
@@ -735,8 +735,8 @@ class CfgWorlds
 					groundReflectionCloud[] = {{0.145,0.227,0.349},2.4};
 					sky[] = {{1.0,1.0,1.0},4.415};
 					skyAroundSun[] = {{1.0,1.0,1.0},4.799};
-					desiredLuminanceCoef = 0.32;
-					desiredLuminanceCoefCloud = 0.32;
+					desiredLuminanceCoef = 0.4;
+					desiredLuminanceCoefCloud = 0.4;
 					EVMin = -2.0;
 					EVMax = 0.0;
 					filmGrainIntensity = 0.0;
@@ -763,8 +763,8 @@ class CfgWorlds
 					groundReflectionCloud[] = {{0.145,0.227,0.349},6.1};
 					sky[] = {{1.0,1.0,1.0},8.0};
 					skyAroundSun[] = {{1.0,1.0,1.0},8.8};
-					desiredLuminanceCoef = 0.35;
-					desiredLuminanceCoefCloud = 0.35;
+					desiredLuminanceCoef = 0.45;
+					desiredLuminanceCoefCloud = 0.45;
 					EVMin = -2.0;
 					EVMax = 0.0;
 					filmGrainIntensity = 0.0;
@@ -791,8 +791,8 @@ class CfgWorlds
 					groundReflectionCloud[] = {{0.145,0.227,0.349},7.1};
 					sky[] = {{1.0,1.0,1.0},9.0};
 					skyAroundSun[] = {{1.0,1.0,1.0},9.8};
-					desiredLuminanceCoef = 0.37;
-					desiredLuminanceCoefCloud = 0.37;
+					desiredLuminanceCoef = 0.49;
+					desiredLuminanceCoefCloud = 0.49;
 					EVMin = -2.0;
 					EVMax = 0.0;
 					filmGrainIntensity = 0.0;
@@ -819,8 +819,8 @@ class CfgWorlds
 					groundReflectionCloud[] = {{0.15,0.2,0.25},8.1};
 					sky[] = {{1,1,1},11};
 					skyAroundSun[] = {{1,1,1},11.8};
-					desiredLuminanceCoef = 0.4;
-					desiredLuminanceCoefCloud = 0.4;
+					desiredLuminanceCoef = 0.57;
+					desiredLuminanceCoefCloud = 0.57;
 					EVMin = -2.0;
 					EVMax = 0.0;
 					filmGrainIntensity = 0.0;
@@ -847,8 +847,8 @@ class CfgWorlds
 					groundReflectionCloud[] = {{0.2,0.24,0.29},8.4};
 					sky[] = {{1,1,1},12};
 					skyAroundSun[] = {{1,1,1},12.8};
-					desiredLuminanceCoef = 0.45;
-					desiredLuminanceCoefCloud = 0.45;
+					desiredLuminanceCoef = 0.61;
+					desiredLuminanceCoefCloud = 0.61;
 					EVMin = -2.0;
 					EVMax = 0.0;
 					filmGrainIntensity = 0.0;
@@ -1059,27 +1059,27 @@ class MapDefaults
 	colorMainRoadsFill[] = {0.84,0.61,0.21,1.0};
 	colorGrid[] = {0.15,0.15,0.05,0.9};
 	colorGridMap[] = {0.25,0.25,0.1,0.75};
-	fontNames = "GUI_FONT_SYSTEM";
+	fontNames = "gui/fonts/MetronBook-Bold28";
 	sizeExNames = 0.04;
 	colorNames[] = {0.0,0.0,0.0,1.0};
-	fontGrid = "GUI_FONT_SYSTEM";
-	sizeExGrid = 0.01;
-	fontLevel = "GUI_FONT_SYSTEM";
+	fontGrid = "gui/fonts/MetronBook-Bold28";
+	sizeExGrid = 0.015;
+	fontLevel = "gui/fonts/MetronBook-Bold28";
 	sizeExLevel = 0.01;
 	colorMountPoint[] = {0.45,0.4,0.25,1.0};
 	mapPointDensity = 0.12;
 	text = "";
-	fontLabel = "GUI_FONT_SYSTEM";
-	fontInfo = "GUI_FONT_SYSTEM";
+	fontLabel = "gui/fonts/MetronBook-Bold28";
+	fontInfo = "gui/fonts/MetronBook-Bold28";
 	class Legend
 	{
-		x = 0.05;
+		x = 0.01;
 		y = 0.85;
-		w = 0.4;
+		w = 0.3;
 		h = 0.1;
-		font = "GUI_FONT_SYSTEM";
+		font = "gui/fonts/MetronBook-Bold28";
 		sizeEx = 0.02;
-		colorBackground[] = {1,1,1,0.5};
+		colorBackground[] = {0.75,0.75,0.75,0.8};
 		color[] = {0,0,0,1};
 	};
 	class Bush
@@ -2220,6 +2220,10 @@ class PreloadVehicles
 	{
 		loadStyle = 2;
 	};
+	class Offroad_02
+	{
+		loadStyle = 2;
+	};
 };
 class CfgVehicles
 {
@@ -2522,6 +2526,7 @@ class CfgVehicles
 				initPhase = 0;
 			};
 		};
+		soundImpactType = "plastic";
 	};
 	class Grenade_Base: ExplosivesBase
 	{
@@ -2529,6 +2534,7 @@ class CfgVehicles
 		itemSize[] = {1,2};
 		inventorySlot[] = {"IEDExplosiveA","IEDExplosiveB","VestGrenadeA","VestGrenadeB","VestGrenadeC","VestGrenadeD","tripWireAttachment"};
 		lockType = 4;
+		soundImpactType = "grenade";
 	};
 	class Book_Base: Inventory_Base
 	{
@@ -2552,6 +2558,7 @@ class CfgVehicles
 		visibilityModifier = 1.0;
 		allowOwnedCargoManipulation = 1;
 		soundVoiceType = "none";
+		soundImpactType = "textile";
 		class DamageSystem
 		{
 			class GlobalHealth
@@ -3147,7 +3154,7 @@ class cfgWeapons
 		};
 		class Reliability
 		{
-			ChanceToJam[] = {0,0.001,0.005,0.05,1};
+			ChanceToJam[] = {0,0.001,0.01,0.1,1};
 		};
 		class MeleeModes
 		{
@@ -3167,6 +3174,7 @@ class cfgWeapons
 				range = 1.8;
 			};
 		};
+		soundImpactType = "gun";
 	};
 	class BoltActionRifle_Base: Rifle_Base
 	{
@@ -3250,7 +3258,7 @@ class cfgWeapons
 		};
 		class Reliability
 		{
-			ChanceToJam[] = {0,0.0025,0.01,0.05,1};
+			ChanceToJam[] = {0,0.001,0.01,0.05,1};
 		};
 		class MeleeModes
 		{
@@ -3260,6 +3268,7 @@ class cfgWeapons
 				range = 1.2;
 			};
 		};
+		soundImpactType = "gun";
 	};
 	class Archery_Base: RifleCore
 	{
@@ -3359,5 +3368,6 @@ class cfgWeapons
 		maxRange = 500;
 		maxRangeProbab = 0.04;
 		class OpticsInfo: OpticsInfoLauncher{};
+		soundImpactType = "gun";
 	};
 };

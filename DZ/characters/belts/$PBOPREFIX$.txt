@@ -1,6 +1,6 @@
-//<'characters_belts.pbo' properties via Mikero's dos tools, dll version 8.84>
+//<'characters_belts.pbo' properties via Mikero's dos tools, dll version 8.94>
 product=dayz;
 prefix=DZ\characters\belts;
-version=94017P;
+version=97925;
 //PboType=Arma Addon;
 //</properties>

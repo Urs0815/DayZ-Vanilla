@@ -1,7 +1,7 @@
 MatWaterPool {
- Color 0.0196 0.0196 0 0
+ Color 0.0392 0.0549 0.0667 0.3725
  ZWrite 0
- NormalMap "dz/water_bliss/river/data/enoch_river_nohq.edds" 
+ NormalMap "{C57E538AD376F42C}DZ/water_bliss/river/data/enoch_river_nohq.edds" 
  NormalPower 0.55
  NormalMapping 0.1
  SunPower 1024
@@ -14,10 +14,16 @@ MatWaterPool {
  CausticMap "{EA764AD7A6112284}Graphics/Textures/Water/caustic.edds" 
  Caustic 0.05
  WetFloor 0.25
- EnvironmentMap "dz/water_bliss/river/data/enoch_river_env_co.edds" 
- ReflectionColor 0.2 0.3 0.0 0
+ EnvironmentMap "{46C92AE52447906C}Graphics/Textures/Water/env_lake_co.edds" 
+ ReflectionColor 0.2 0.298 0 0
  FresnelRange 0.468
- WaterStreamMap "dz/water_bliss/river/data/enoch_river_flowmap_co.edds" 
+ "Enable effect" 1
+ "Pixel stride_1" 16
+ "Z thickness_1" 0
+ Iterations_2 100
+ "Pixel stride_2" 16
+ "Z thickness_2" 0
+ WaterStreamMap "{EF177E7C8B896505}DZ/water_bliss/river/data/enoch_river_flowmap_co.edds" 
  StreamSpeedInfl 0.15
- StreamNormalPower 2.0
+ StreamNormalPower 2
 }

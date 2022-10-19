@@ -1,8 +1,8 @@
 ////////////////////////////////////////////////////////////////////
 //DeRap: config.bin
-//Produced from mikero's Dos Tools Dll version 8.84
+//Produced from mikero's Dos Tools Dll version 8.94
 //https://mikero.bytex.digital/Downloads
-//'now' is Tue Aug 23 21:46:59 2022 : 'file' last modified on Thu Jun 16 13:46:00 2022
+//'now' is Wed Oct 19 20:13:34 2022 : 'file' last modified on Mon Aug 08 12:57:20 2022
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -163,7 +163,7 @@ class CfgAmmo
 		initSpeed = 3;
 		simulation = "shotShell";
 		simulationStep = 0.05;
-		soundSetExplosion[] = {"Grenade_explosion_SoundSet","Grenade_Tail_SoundSet"};
+		soundSetExplosion[] = {"GasStation_Explosion_SoundSet","GasStation_Explosion_Tail_SoundSet"};
 		class DamageApplied
 		{
 			type = "FragGrenade";
@@ -263,7 +263,7 @@ class CfgAmmo
 		explosive = 1;
 		simulation = "shotShell";
 		simulationStep = 0.05;
-		soundSetExplosion[] = {"Grenade_explosion_SoundSet","Grenade_Tail_SoundSet"};
+		soundSetExplosion[] = {};
 		class DamageApplied
 		{
 			type = "FragGrenade";
@@ -774,7 +774,7 @@ class CfgVehicles
 		displayName = "$STR_ImprovisedExplosive0";
 		descriptionShort = "$STR_ImprovisedExplosive1";
 		model = "\DZ\weapons\explosives\ImprovisedExplosive.p3d";
-		rotationFlags = 16;
+		rotationFlags = 2;
 		itemBehaviour = 2;
 		itemSize[] = {4,3};
 		weight = 2000;

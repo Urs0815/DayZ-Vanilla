@@ -1,8 +1,8 @@
 ////////////////////////////////////////////////////////////////////
 //DeRap: config.bin
-//Produced from mikero's Dos Tools Dll version 8.84
+//Produced from mikero's Dos Tools Dll version 8.94
 //https://mikero.bytex.digital/Downloads
-//'now' is Tue Aug 23 21:46:03 2022 : 'file' last modified on Mon Jan 17 13:19:05 2022
+//'now' is Wed Oct 19 20:13:10 2022 : 'file' last modified on Wed Oct 05 20:31:37 2022
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -261,6 +261,7 @@ class CfgVehicles
 			};
 		};
 		lockType = 1;
+		soundImpactType = "metal";
 		class AnimEvents
 		{
 			class SoundWeapon
@@ -294,6 +295,7 @@ class CfgVehicles
 		absorbency = 0;
 		inventorySlot[] = {"Reflector_1_1","Reflector_2_1"};
 		rotationFlags = 12;
+		soundImpactType = "glass";
 		class DamageSystem
 		{
 			class GlobalHealth
@@ -359,6 +361,29 @@ class CfgVehicles
 			};
 		};
 	};
+	class GlowPlug: Inventory_Base
+	{
+		scope = 2;
+		displayName = "$STR_GlowPlug0";
+		descriptionShort = "$STR_GlowPlug1";
+		model = "\dz\vehicles\parts\GlowPlug.p3d";
+		weight = 200;
+		itemSize[] = {1,2};
+		absorbency = 0;
+		inventorySlot = "GlowPlug";
+		rotationFlags = 12;
+		class DamageSystem
+		{
+			class GlobalHealth
+			{
+				class Health
+				{
+					hitpoints = 20;
+					healthLevels[] = {{1.0,{"DZ\vehicles\parts\data\glowplug.rvmat"}},{0.7,{"DZ\vehicles\parts\data\glowplug.rvmat"}},{0.5,{"DZ\vehicles\parts\data\glowplug_damage.rvmat"}},{0.3,{"DZ\vehicles\parts\data\glowplug_damage.rvmat"}},{0.0,{"DZ\vehicles\parts\data\glowplug_destruct.rvmat"}}};
+				};
+			};
+		};
+	};
 	class TireRepairKit: Inventory_Base
 	{
 		scope = 2;
@@ -375,17 +400,6 @@ class CfgVehicles
 		varQuantityMin = 0.0;
 		varQuantityMax = 100.0;
 		repairKitType = 6;
-		class DamageSystem
-		{
-			class GlobalHealth
-			{
-				class Health
-				{
-					hitpoints = 100;
-					healthLevels[] = {{1.0,{"DZ\vehicles\parts\data\Tire_Repair_Kit.rvmat"}},{0.7,{"DZ\vehicles\parts\data\Tire_Repair_Kit.rvmat"}},{0.5,{"DZ\vehicles\parts\data\Tire_Repair_Kit_damage.rvmat"}},{0.3,{"DZ\vehicles\parts\data\Tire_Repair_Kit_damage.rvmat"}},{0.0,{"DZ\vehicles\parts\data\Tire_Repair_Kit_destruct.rvmat"}}};
-				};
-			};
-		};
 		class AnimEvents
 		{
 			class SoundWeapon
@@ -399,6 +413,18 @@ class CfgVehicles
 				{
 					soundset = "smallprotectorcase_drop_SoundSet";
 					id = 898;
+				};
+			};
+		};
+		soundImpactType = "plastic";
+		class DamageSystem
+		{
+			class GlobalHealth
+			{
+				class Health
+				{
+					hitpoints = 100;
+					healthLevels[] = {{1.0,{"DZ\vehicles\parts\data\Tire_Repair_Kit.rvmat"}},{0.7,{"DZ\vehicles\parts\data\Tire_Repair_Kit.rvmat"}},{0.5,{"DZ\vehicles\parts\data\Tire_Repair_Kit_damage.rvmat"}},{0.3,{"DZ\vehicles\parts\data\Tire_Repair_Kit_damage.rvmat"}},{0.0,{"DZ\vehicles\parts\data\Tire_Repair_Kit_destruct.rvmat"}}};
 				};
 			};
 		};
@@ -442,6 +468,7 @@ class CfgVehicles
 				};
 			};
 		};
+		soundImpactType = "plastic";
 		class DamageSystem
 		{
 			class GlobalHealth
@@ -482,6 +509,11 @@ class CfgNonAIVehicles
 	{
 		model = "DZ\vehicles\parts\sparkplug.p3d";
 		inventorySlot = "SparkPlug";
+	};
+	class ProxyGlowplug: ProxyPart
+	{
+		model = "DZ\vehicles\parts\Glowplug.p3d";
+		inventorySlot = "GlowPlug";
 	};
 	class ProxyReplacement_Headlight: ProxyPart
 	{

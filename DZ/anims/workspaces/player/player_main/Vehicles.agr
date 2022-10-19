@@ -819,6 +819,18 @@ Y(90): 	X(-90) = 6, X(0) = 7, X(90) = 8"
 				#EditorPos 2.8 35.2999992
 			}
 		}
+		$Node AnimNodeGroupSelect {
+			 "Offroad_02ActionG" "" "VehicleTalkingT" "VehicleActions" "Offroad_02"
+			$EditorData {
+				#EditorPos 18.3999996 34.6000023
+			}
+		}
+		$Node AnimNodeGroupSelect {
+			 "Offroad_02G" "" "Offroad_02ActionG" "Vehicle" "Offroad_02"
+			$EditorData {
+				#EditorPos 18.3999996 35.2999992
+			}
+		}
 		$Node AnimNodePose {
 			 "Out" "" "Vehicle.DriverBreak" "0.0"
 			$EditorData {
@@ -1594,7 +1606,7 @@ RHandIKTarget = RightArm, RightArmRoll, RightForeArm, RightForeArmRoll, RightHan
 		}
 		$Node AnimNodeStateMachine {
 			 "VehicleMaster" "TagVehicle"
-			$States 8 {
+			$States 9 {
 				$State {
 					 "Van_01" "" "Van_01G" "VehicleType == 0" "notime" 1
 					$EditorData {
@@ -1641,6 +1653,12 @@ RHandIKTarget = RightArm, RightArmRoll, RightForeArm, RightForeArmRoll, RightHan
 					 "Hatchback_02" "" "Hatchback_02G" "VehicleType == 7" "notime" 1
 					$EditorData {
 						#EditorPos 15.6000004 37.1000023
+					}
+				}
+				$State {
+					 "Offroad_02" "" "Offroad_02G" "VehicleType == 8" "notime" 1
+					$EditorData {
+						#EditorPos 18.3999996 37.1000023
 					}
 				}
 			}

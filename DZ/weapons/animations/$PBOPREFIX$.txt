@@ -1,4 +1,4 @@
-//<'weapons_animations.pbo' properties via Mikero's dos tools, dll version 8.84>
+//<'weapons_animations.pbo' properties via Mikero's dos tools, dll version 8.94>
 product=dayz;
 prefix=DZ\weapons\animations;
 version=83542P;

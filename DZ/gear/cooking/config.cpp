@@ -1,8 +1,8 @@
 ////////////////////////////////////////////////////////////////////
 //DeRap: config.bin
-//Produced from mikero's Dos Tools Dll version 8.84
+//Produced from mikero's Dos Tools Dll version 8.94
 //https://mikero.bytex.digital/Downloads
-//'now' is Tue Aug 23 21:40:19 2022 : 'file' last modified on Mon Jun 06 12:12:15 2022
+//'now' is Wed Oct 19 20:09:57 2022 : 'file' last modified on Tue Sep 06 16:11:17 2022
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -126,6 +126,7 @@ class CfgVehicles
 				initPhase = 1;
 			};
 		};
+		soundImpactType = "wood";
 		class AnimEvents
 		{
 			class SoundWeapon
@@ -443,6 +444,7 @@ class CfgVehicles
 			openable = 0;
 			allowOwnedCargoManipulation = 1;
 		};
+		soundImpactType = "metal";
 		class AnimEvents
 		{
 			class SoundWeapon
@@ -658,6 +660,8 @@ class CfgVehicles
 				};
 			};
 		};
+		repairableWithKits[] = {10};
+		repairCosts[] = {25.0};
 		class AnimationSources
 		{
 			class handleRotate
@@ -667,6 +671,7 @@ class CfgVehicles
 				initPhase = 1;
 			};
 		};
+		soundImpactType = "metal";
 		class AnimEvents
 		{
 			class SoundWeapon
@@ -716,6 +721,9 @@ class CfgVehicles
 				};
 			};
 		};
+		repairableWithKits[] = {10};
+		repairCosts[] = {25.0};
+		soundImpactType = "metal";
 	};
 	class Cauldron: Bottle_Base
 	{
@@ -750,6 +758,8 @@ class CfgVehicles
 				};
 			};
 		};
+		repairableWithKits[] = {10};
+		repairCosts[] = {25.0};
 		class AnimationSources
 		{
 			class handle1Rotate
@@ -759,6 +769,7 @@ class CfgVehicles
 				initPhase = 1;
 			};
 		};
+		soundImpactType = "metal";
 		class AnimEvents
 		{
 			class SoundWeapon
@@ -835,6 +846,7 @@ class CfgVehicles
 				selection = "bulb";
 			};
 		};
+		soundImpactType = "metal";
 	};
 	class PortableGasLamp: Inventory_Base
 	{
@@ -874,6 +886,7 @@ class CfgVehicles
 			attachmentAction = 1;
 			updateInterval = 50;
 		};
+		soundImpactType = "glass";
 	};
 	class Candle: Inventory_Base
 	{
@@ -946,6 +959,7 @@ class CfgVehicles
 				};
 			};
 		};
+		soundImpactType = "plastic";
 	};
 	class Tripod: Inventory_Base
 	{
@@ -986,6 +1000,7 @@ class CfgVehicles
 				initPhase = 1;
 			};
 		};
+		soundImpactType = "metal";
 		class AnimEvents
 		{
 			class SoundWeapon
@@ -1036,6 +1051,7 @@ class CfgVehicles
 				initPhase = 1;
 			};
 		};
+		soundImpactType = "wood";
 		class AnimEvents
 		{
 			class SoundWeapon

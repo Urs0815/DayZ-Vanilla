@@ -1,8 +1,8 @@
 ////////////////////////////////////////////////////////////////////
 //DeRap: config.bin
-//Produced from mikero's Dos Tools Dll version 8.84
+//Produced from mikero's Dos Tools Dll version 8.94
 //https://mikero.bytex.digital/Downloads
-//'now' is Tue Aug 23 21:40:20 2022 : 'file' last modified on Tue Apr 12 14:55:43 2022
+//'now' is Wed Oct 19 20:09:58 2022 : 'file' last modified on Tue Jul 12 15:41:46 2022
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -54,6 +54,7 @@ class CfgVehicles
 				};
 			};
 		};
+		soundImpactType = "textile";
 		class AnimEvents
 		{
 			class SoundWeapon
@@ -94,6 +95,7 @@ class CfgVehicles
 				};
 			};
 		};
+		soundImpactType = "textile";
 		class AnimEvents
 		{
 			class SoundWeapon
@@ -264,6 +266,7 @@ class CfgVehicles
 				initPhase = 0;
 			};
 		};
+		soundImpactType = "metal";
 		class AnimEvents
 		{
 			class SoundWeapon
@@ -387,6 +390,7 @@ class CfgVehicles
 		};
 		attachSoundSet[] = {"Shelter_Site_Attach_Wooden_Stick_SoundSet"};
 		attachSoundSlot[] = {"Material_Shelter_Sticks"};
+		soundImpactType = "wood";
 		class AnimEvents
 		{
 			class SoundWeapon
@@ -490,6 +494,7 @@ class CfgVehicles
 				range = 2.2;
 			};
 		};
+		soundImpactType = "wood";
 		class AnimEvents
 		{
 			class SoundWeapon
@@ -592,6 +597,7 @@ class CfgVehicles
 				range = 3.3;
 			};
 		};
+		soundImpactType = "wood";
 	};
 	class SharpWoodenStick: Inventory_Base
 	{
@@ -641,6 +647,7 @@ class CfgVehicles
 				range = 3.3;
 			};
 		};
+		soundImpactType = "wood";
 	};
 	class GorkaHelmetVisor: Inventory_Base
 	{
@@ -663,6 +670,7 @@ class CfgVehicles
 				};
 			};
 		};
+		soundImpactType = "glass";
 	};
 	class HandDrillKit: Inventory_Base
 	{
@@ -684,6 +692,7 @@ class CfgVehicles
 				};
 			};
 		};
+		soundImpactType = "wood";
 		class AnimEvents
 		{
 			class SoundWeapon
@@ -749,6 +758,7 @@ class CfgVehicles
 				range = 3.7;
 			};
 		};
+		soundImpactType = "wood";
 	};
 	class SpearBone: Spear
 	{
@@ -796,6 +806,7 @@ class CfgVehicles
 				};
 			};
 		};
+		soundImpactType = "plastic";
 	};
 };
 class CfgNonAIVehicles

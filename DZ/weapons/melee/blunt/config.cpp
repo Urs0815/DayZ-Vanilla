@@ -1,8 +1,8 @@
 ////////////////////////////////////////////////////////////////////
 //DeRap: blunt\config.bin
-//Produced from mikero's Dos Tools Dll version 8.84
+//Produced from mikero's Dos Tools Dll version 8.94
 //https://mikero.bytex.digital/Downloads
-//'now' is Tue Aug 23 21:47:13 2022 : 'file' last modified on Tue Apr 12 14:56:20 2022
+//'now' is Wed Oct 19 20:13:41 2022 : 'file' last modified on Mon Oct 10 15:40:38 2022
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -76,6 +76,7 @@ class CfgVehicles
 				};
 			};
 		};
+		soundImpactType = "wood";
 		class AnimEvents
 		{
 			class SoundWeapon
@@ -142,6 +143,7 @@ class CfgVehicles
 				range = 3.7;
 			};
 		};
+		soundImpactType = "wood";
 		class AnimEvents
 		{
 			class SoundWeapon
@@ -208,6 +210,7 @@ class CfgVehicles
 				range = 3.7;
 			};
 		};
+		soundImpactType = "wood";
 		class AnimEvents
 		{
 			class SoundWeapon
@@ -274,6 +277,7 @@ class CfgVehicles
 				};
 			};
 		};
+		soundImpactType = "metal";
 	};
 	class BrassKnuckles_ColorBase: Inventory_Base
 	{
@@ -306,6 +310,7 @@ class CfgVehicles
 				range = 2.8;
 			};
 		};
+		soundImpactType = "metal";
 	};
 	class BrassKnuckles_Dull: BrassKnuckles_ColorBase
 	{
@@ -401,6 +406,7 @@ class CfgVehicles
 				range = 4.1;
 			};
 		};
+		soundImpactType = "plastic";
 		class AnimEvents
 		{
 			class SoundWeapon
@@ -470,6 +476,7 @@ class CfgVehicles
 				range = 3.7;
 			};
 		};
+		soundImpactType = "wood";
 	};
 	class NewHockeyStick: Inventory_Base
 	{
@@ -513,6 +520,7 @@ class CfgVehicles
 				};
 			};
 		};
+		soundImpactType = "wood";
 	};
 	class PoliceBaton: Inventory_Base
 	{
@@ -558,5 +566,6 @@ class CfgVehicles
 				range = 4.1;
 			};
 		};
+		soundImpactType = "plastic";
 	};
 };

@@ -1,8 +1,8 @@
 ////////////////////////////////////////////////////////////////////
 //DeRap: config.bin
-//Produced from mikero's Dos Tools Dll version 8.84
+//Produced from mikero's Dos Tools Dll version 8.94
 //https://mikero.bytex.digital/Downloads
-//'now' is Tue Aug 23 21:40:47 2022 : 'file' last modified on Fri Apr 01 10:45:14 2022
+//'now' is Wed Oct 19 20:10:09 2022 : 'file' last modified on Wed Oct 05 20:36:14 2022
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -96,6 +96,7 @@ class CfgVehicles
 				};
 			};
 		};
+		soundImpactType = "plastic";
 		class AnimEvents
 		{
 			class SoundWeapon
@@ -154,6 +155,7 @@ class CfgVehicles
 				};
 			};
 		};
+		soundImpactType = "metal";
 		soundAttType = "Small";
 	};
 	class Megaphone: Inventory_Base
@@ -210,6 +212,7 @@ class CfgVehicles
 			energyUsagePerSecond = 0.02;
 			attachmentAction = 1;
 		};
+		soundImpactType = "plastic";
 	};
 	class Radio: Inventory_Base
 	{
@@ -277,6 +280,7 @@ class CfgVehicles
 				url = "http://icecast.timlradio.co.uk/a932.ogg";
 			};
 		};
+		soundImpactType = "plastic";
 	};
 };
 class CfgNonAIVehicles

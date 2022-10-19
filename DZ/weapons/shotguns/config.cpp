@@ -1,8 +1,8 @@
 ////////////////////////////////////////////////////////////////////
 //DeRap: config.bin
-//Produced from mikero's Dos Tools Dll version 8.84
+//Produced from mikero's Dos Tools Dll version 8.94
 //https://mikero.bytex.digital/Downloads
-//'now' is Tue Aug 23 21:47:21 2022 : 'file' last modified on Fri May 06 15:32:25 2022
+//'now' is Wed Oct 19 20:13:44 2022 : 'file' last modified on Wed Aug 24 18:51:36 2022
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_

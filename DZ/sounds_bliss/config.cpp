@@ -1,8 +1,8 @@
 ////////////////////////////////////////////////////////////////////
 //DeRap: config.bin
-//Produced from mikero's Dos Tools Dll version 8.84
+//Produced from mikero's Dos Tools Dll version 8.94
 //https://mikero.bytex.digital/Downloads
-//'now' is Tue Aug 23 21:48:49 2022 : 'file' last modified on Tue Apr 07 15:11:19 2020
+//'now' is Wed Oct 19 20:14:42 2022 : 'file' last modified on Mon Oct 03 12:18:57 2022
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -27,6 +27,61 @@ class CfgWorlds
 			soundSetEnvironment[] = {"ForestDay_Bliss_SoundSet","ForestMorning_Bliss_SoundSet","ForestNoon_Bliss_SoundSet","ForestAfternoon_Bliss_SoundSet","ForestNight_Bliss_SoundSet","ForestEarlyNight_Bliss_SoundSet","ForestLateNight_Bliss_SoundSet","MeadowsDay_Bliss_SoundSet","MeadowsMorning_Bliss_SoundSet","MeadowsNoon_Bliss_SoundSet","MeadowsAfterNoon_Bliss_SoundSet","MeadowsLateNight_Bliss_SoundSet","WindForestLight_Bliss_SoundSet","WindForestHeavy_Bliss_SoundSet","WindMeadowsLight_Bliss_SoundSet","WindMeadowsHeavy_Bliss_SoundSet","RainForestLight_Bliss_SoundSet","RainForestMedium_Bliss_SoundSet","RainForestHeavy_Bliss_SoundSet","RainHousesLight_Bliss_SoundSet","RainHousesMedium_Bliss_SoundSet","RainHousesHeavy_Bliss_SoundSet"};
 			class CfgEnvSpatialSounds
 			{
+				class Sound_Insect_1
+				{
+					memPoint = "Sound_Insect_1";
+					soundSets[] = {"UndergroundInsectObject_SoundSet"};
+				};
+				class Sound_Insect_2
+				{
+					memPoint = "Sound_Insect_2";
+					soundSets[] = {"UndergroundInsectObject_SoundSet"};
+				};
+				class Sound_Insect_3
+				{
+					memPoint = "Sound_Insect_3";
+					soundSets[] = {"UndergroundInsectObject_SoundSet"};
+				};
+				class Sound_Rodent_1
+				{
+					memPoint = "Sound_Rodent_1";
+					soundSets[] = {"UndergroundRodentObject_SoundSet"};
+				};
+				class Sound_Rodent_2
+				{
+					memPoint = "Sound_Rodent_2";
+					soundSets[] = {"UndergroundRodentObject_SoundSet"};
+				};
+				class Sound_Rodent_3
+				{
+					memPoint = "Sound_Rodent_3";
+					soundSets[] = {"UndergroundRodentObject_SoundSet"};
+				};
+				class Sound_WaterDrop_1
+				{
+					memPoint = "Sound_WaterDrop_1";
+					soundSets[] = {"UndergroundWaterDropsObject_SoundSet"};
+				};
+				class Sound_WaterDrop_2
+				{
+					memPoint = "Sound_WaterDrop_2";
+					soundSets[] = {"UndergroundWaterDropsObject_SoundSet"};
+				};
+				class Sound_WaterDrop_3
+				{
+					memPoint = "Sound_WaterDrop_3";
+					soundSets[] = {"UndergroundWaterDropsObject_SoundSet"};
+				};
+				class Sound_WaterDrop_4
+				{
+					memPoint = "Sound_WaterDrop_4";
+					soundSets[] = {"UndergroundWaterDropsObject_SoundSet"};
+				};
+				class Sound_WaterDrop_5
+				{
+					memPoint = "Sound_WaterDrop_5";
+					soundSets[] = {"UndergroundWaterDropsObject_SoundSet"};
+				};
 				class sound_rain_metalTin_tiny_1
 				{
 					memPoint = "sound_rain_metalTin_tiny_1";
@@ -345,2655 +400,6 @@ class CfgWorlds
 					memPoint = "sound_net_fence_1";
 					soundSets[] = {"WindObjectInner0SpotMetalFence_SoundSet"};
 				};
-				class sound_RainObjectInner0Metal1_1
-				{
-					memPoint = "sound_RainObjectInner0Metal1_1";
-					soundSets[] = {"RainObjectInner0Metal1_Medium_SoundSet","WindObjectInner0Gust_SoundSet"};
-				};
-				class sound_RainObjectInner0Metal1_2
-				{
-					memPoint = "sound_RainObjectInner0Metal1_2";
-					soundSets[] = {"RainObjectInner0Metal1_Medium_SoundSet","WindObjectInner0Gust_SoundSet"};
-				};
-				class sound_RainObjectInner0Metal1_3
-				{
-					memPoint = "sound_RainObjectInner0Metal1_3";
-					soundSets[] = {"RainObjectInner0Metal1_Medium_SoundSet","WindObjectInner0Gust_SoundSet"};
-				};
-				class sound_RainObjectInner0Metal1_4
-				{
-					memPoint = "sound_RainObjectInner0Metal1_4";
-					soundSets[] = {"RainObjectInner0Metal1_Medium_SoundSet","WindObjectInner0Gust_SoundSet"};
-				};
-				class sound_RainObjectInner0Metal1_5
-				{
-					memPoint = "sound_RainObjectInner0Metal1_5";
-					soundSets[] = {"RainObjectInner0Metal1_Medium_SoundSet","WindObjectInner0Gust_SoundSet"};
-				};
-				class sound_RainObjectInner0Metal1_6
-				{
-					memPoint = "sound_RainObjectInner0Metal1_6";
-					soundSets[] = {"RainObjectInner0Metal1_Medium_SoundSet","WindObjectInner0Gust_SoundSet"};
-				};
-				class sound_RainObjectInner0Metal1_7
-				{
-					memPoint = "sound_RainObjectInner0Metal1_7";
-					soundSets[] = {"RainObjectInner0Metal1_Medium_SoundSet","WindObjectInner0Gust_SoundSet"};
-				};
-				class sound_RainObjectInner0Metal1_8
-				{
-					memPoint = "sound_RainObjectInner0Metal1_8";
-					soundSets[] = {"RainObjectInner0Metal1_Medium_SoundSet","WindObjectInner0Gust_SoundSet"};
-				};
-				class sound_RainObjectInner0Metal1_9
-				{
-					memPoint = "sound_RainObjectInner0Metal1_9";
-					soundSets[] = {"RainObjectInner0Metal1_Medium_SoundSet","WindObjectInner0Gust_SoundSet"};
-				};
-				class sound_RainObjectInner0Metal1_10
-				{
-					memPoint = "sound_RainObjectInner0Metal1_10";
-					soundSets[] = {"RainObjectInner0Metal1_Medium_SoundSet","WindObjectInner0Gust_SoundSet"};
-				};
-				class sound_RainObjectInner0SpotMetal1_1
-				{
-					memPoint = "sound_RainObjectInner0SpotMetal1_1";
-					soundSets[] = {"RainObjectInner0SpotMetalSpot_Medium_SoundSet","WindObjectInner0SpotGust_SoundSet"};
-				};
-				class sound_RainObjectInner0SpotMetal1_2
-				{
-					memPoint = "sound_RainObjectInner0SpotMetal1_2";
-					soundSets[] = {"RainObjectInner0SpotMetalSpot_Medium_SoundSet","WindObjectInner0SpotGust_SoundSet"};
-				};
-				class sound_RainObjectInner0SpotMetal1_3
-				{
-					memPoint = "sound_RainObjectInner0SpotMetal1_3";
-					soundSets[] = {"RainObjectInner0SpotMetalSpot_Medium_SoundSet","WindObjectInner0SpotGust_SoundSet"};
-				};
-				class sound_RainObjectInner0SpotMetal1_4
-				{
-					memPoint = "sound_RainObjectInner0SpotMetal1_4";
-					soundSets[] = {"RainObjectInner0SpotMetalSpot_Medium_SoundSet","WindObjectInner0SpotGust_SoundSet"};
-				};
-				class sound_RainObjectInner0SpotMetal1_5
-				{
-					memPoint = "sound_RainObjectInner0SpotMetal1_5";
-					soundSets[] = {"RainObjectInner0SpotMetalSpot_Medium_SoundSet","WindObjectInner0SpotGust_SoundSet"};
-				};
-				class sound_RainObjectInner0SpotMetal1_6
-				{
-					memPoint = "sound_RainObjectInner0SpotMetal1_6";
-					soundSets[] = {"RainObjectInner0SpotMetalSpot_Medium_SoundSet","WindObjectInner0SpotGust_SoundSet"};
-				};
-				class sound_RainObjectInner0SpotMetal1_7
-				{
-					memPoint = "sound_RainObjectInner0SpotMetal1_7";
-					soundSets[] = {"RainObjectInner0SpotMetalSpot_Medium_SoundSet","WindObjectInner0SpotGust_SoundSet"};
-				};
-				class sound_RainObjectInner0SpotMetal1_8
-				{
-					memPoint = "sound_RainObjectInner0SpotMetal1_8";
-					soundSets[] = {"RainObjectInner0SpotMetalSpot_Medium_SoundSet","WindObjectInner0SpotGust_SoundSet"};
-				};
-				class sound_RainObjectInner1Metal1_1
-				{
-					memPoint = "sound_RainObjectInner1Metal1_1";
-					soundSets[] = {"RainObjectInner1Metal1_Medium_SoundSet","WindObjectInner1Gust_SoundSet"};
-				};
-				class sound_RainObjectInner1Metal1_2
-				{
-					memPoint = "sound_RainObjectInner1Metal1_2";
-					soundSets[] = {"RainObjectInner1Metal1_Medium_SoundSet","WindObjectInner1Gust_SoundSet"};
-				};
-				class sound_RainObjectInner1Metal1_3
-				{
-					memPoint = "sound_RainObjectInner1Metal1_3";
-					soundSets[] = {"RainObjectInner1Metal1_Medium_SoundSet","WindObjectInner1Gust_SoundSet"};
-				};
-				class sound_RainObjectInner1Metal1_4
-				{
-					memPoint = "sound_RainObjectInner1Metal1_4";
-					soundSets[] = {"RainObjectInner1Metal1_Medium_SoundSet","WindObjectInner1Gust_SoundSet"};
-				};
-				class sound_RainObjectInner1Metal1_5
-				{
-					memPoint = "sound_RainObjectInner1Metal1_5";
-					soundSets[] = {"RainObjectInner1Metal1_Medium_SoundSet","WindObjectInner1Gust_SoundSet"};
-				};
-				class sound_RainObjectInner1Metal1_6
-				{
-					memPoint = "sound_RainObjectInner1Metal1_6";
-					soundSets[] = {"RainObjectInner1Metal1_Medium_SoundSet","WindObjectInner1Gust_SoundSet"};
-				};
-				class sound_RainObjectInner1Metal1_7
-				{
-					memPoint = "sound_RainObjectInner1Metal1_7";
-					soundSets[] = {"RainObjectInner1Metal1_Medium_SoundSet","WindObjectInner1Gust_SoundSet"};
-				};
-				class sound_RainObjectInner1Metal1_8
-				{
-					memPoint = "sound_RainObjectInner1Metal1_8";
-					soundSets[] = {"RainObjectInner1Metal1_Medium_SoundSet","WindObjectInner1Gust_SoundSet"};
-				};
-				class sound_RainObjectInner1SpotMetal1_1
-				{
-					memPoint = "sound_RainObjectInner1SpotMetal1_1";
-					soundSets[] = {"RainObjectInner1SpotMetalSpot_Medium_SoundSet","WindObjectInner1SpotGust_SoundSet"};
-				};
-				class sound_RainObjectInner1SpotMetal1_2
-				{
-					memPoint = "sound_RainObjectInner1SpotMetal1_2";
-					soundSets[] = {"RainObjectInner1SpotMetalSpot_Medium_SoundSet","WindObjectInner1SpotGust_SoundSet"};
-				};
-				class sound_RainObjectInner2Metal1_1
-				{
-					memPoint = "sound_RainObjectInner2Metal1_1";
-					soundSets[] = {"RainObjectInner2Metal1_Medium_SoundSet","WindObjectInner2Gust_SoundSet"};
-				};
-				class sound_RainObjectInner2Metal1_2
-				{
-					memPoint = "sound_RainObjectInner2Metal1_2";
-					soundSets[] = {"RainObjectInner2Metal1_Medium_SoundSet","WindObjectInner2Gust_SoundSet"};
-				};
-				class sound_RainObjectInner2Metal1_3
-				{
-					memPoint = "sound_RainObjectInner2Metal1_3";
-					soundSets[] = {"RainObjectInner2Metal1_Medium_SoundSet","WindObjectInner2Gust_SoundSet"};
-				};
-				class sound_RainObjectInner2Metal1_4
-				{
-					memPoint = "sound_RainObjectInner2Metal1_4";
-					soundSets[] = {"RainObjectInner2Metal1_Medium_SoundSet","WindObjectInner2Gust_SoundSet"};
-				};
-				class sound_RainObjectInner2Metal1_5
-				{
-					memPoint = "sound_RainObjectInner2Metal1_5";
-					soundSets[] = {"RainObjectInner2Metal1_Medium_SoundSet","WindObjectInner2Gust_SoundSet"};
-				};
-				class sound_RainObjectInner2Metal1_6
-				{
-					memPoint = "sound_RainObjectInner2Metal1_6";
-					soundSets[] = {"RainObjectInner2Metal1_Medium_SoundSet","WindObjectInner2Gust_SoundSet"};
-				};
-				class sound_RainObjectInner2Metal1_7
-				{
-					memPoint = "sound_RainObjectInner2Metal1_7";
-					soundSets[] = {"RainObjectInner2Metal1_Medium_SoundSet","WindObjectInner2Gust_SoundSet"};
-				};
-				class sound_RainObjectInner2Metal1_8
-				{
-					memPoint = "sound_RainObjectInner2Metal1_8";
-					soundSets[] = {"RainObjectInner2Metal1_Medium_SoundSet","WindObjectInner2Gust_SoundSet"};
-				};
-				class sound_RainObjectInner2Metal1_9
-				{
-					memPoint = "sound_RainObjectInner2Metal1_9";
-					soundSets[] = {"RainObjectInner2Metal1_Medium_SoundSet","WindObjectInner2Gust_SoundSet"};
-				};
-				class sound_RainObjectInner2Metal1_10
-				{
-					memPoint = "sound_RainObjectInner2Metal1_10";
-					soundSets[] = {"RainObjectInner2Metal1_Medium_SoundSet","WindObjectInner2Gust_SoundSet"};
-				};
-				class sound_RainObjectInner25Metal1_1
-				{
-					memPoint = "sound_RainObjectInner25Metal1_1";
-					soundSets[] = {"RainObjectInner25Metal1_Medium_SoundSet","WindObjectInner25Gust_SoundSet"};
-				};
-				class sound_RainObjectInner25Metal1_2
-				{
-					memPoint = "sound_RainObjectInner25Metal1_2";
-					soundSets[] = {"RainObjectInner25Metal1_Medium_SoundSet","WindObjectInner25Gust_SoundSet"};
-				};
-				class sound_RainObjectInner25Metal1_3
-				{
-					memPoint = "sound_RainObjectInner25Metal1_3";
-					soundSets[] = {"RainObjectInner25Metal1_Medium_SoundSet","WindObjectInner25Gust_SoundSet"};
-				};
-				class sound_RainObjectInner25Metal1_4
-				{
-					memPoint = "sound_RainObjectInner25Metal1_4";
-					soundSets[] = {"RainObjectInner25Metal1_Medium_SoundSet","WindObjectInner25Gust_SoundSet"};
-				};
-				class sound_RainObjectInner25Metal1_5
-				{
-					memPoint = "sound_RainObjectInner25Metal1_5";
-					soundSets[] = {"RainObjectInner25Metal1_Medium_SoundSet","WindObjectInner25Gust_SoundSet"};
-				};
-				class sound_RainObjectInner25Metal1_6
-				{
-					memPoint = "sound_RainObjectInner25Metal1_6";
-					soundSets[] = {"RainObjectInner25Metal1_Medium_SoundSet","WindObjectInner25Gust_SoundSet"};
-				};
-				class sound_RainObjectInner25Metal1_7
-				{
-					memPoint = "sound_RainObjectInner25Metal1_7";
-					soundSets[] = {"RainObjectInner25Metal1_Medium_SoundSet","WindObjectInner25Gust_SoundSet"};
-				};
-				class sound_RainObjectInner25Metal1_8
-				{
-					memPoint = "sound_RainObjectInner25Metal1_8";
-					soundSets[] = {"RainObjectInner25Metal1_Medium_SoundSet","WindObjectInner25Gust_SoundSet"};
-				};
-				class sound_RainObjectInner25Metal1_9
-				{
-					memPoint = "sound_RainObjectInner25Metal1_9";
-					soundSets[] = {"RainObjectInner25Metal1_Medium_SoundSet","WindObjectInner25Gust_SoundSet"};
-				};
-				class sound_RainObjectInner25Metal1_10
-				{
-					memPoint = "sound_RainObjectInner25Metal1_10";
-					soundSets[] = {"RainObjectInner25Metal1_Medium_SoundSet","WindObjectInner25Gust_SoundSet"};
-				};
-				class sound_RainObjectInner25Metal1_11
-				{
-					memPoint = "sound_RainObjectInner25Metal1_11";
-					soundSets[] = {"RainObjectInner25Metal1_Medium_SoundSet","WindObjectInner25Gust_SoundSet"};
-				};
-				class sound_RainObjectInner25Metal1_12
-				{
-					memPoint = "sound_RainObjectInner25Metal1_12";
-					soundSets[] = {"RainObjectInner25Metal1_Medium_SoundSet","WindObjectInner25Gust_SoundSet"};
-				};
-				class sound_RainObjectInner3Metal1_1
-				{
-					memPoint = "sound_RainObjectInner3Metal1_1";
-					soundSets[] = {"RainObjectInner3Metal1_Medium_SoundSet","WindObjectInner3Metal1_Mid_SoundSet","WindObjectInner3Gust_SoundSet"};
-					soundSetsAttenuation[] = {"true","false","false"};
-				};
-				class sound_RainObjectInner3Metal1_2
-				{
-					memPoint = "sound_RainObjectInner3Metal1_2";
-					soundSets[] = {"RainObjectInner3Metal1_Medium_SoundSet","WindObjectInner3Metal1_Mid_SoundSet","WindObjectInner3Gust_SoundSet"};
-					soundSetsAttenuation[] = {"true","false","false"};
-				};
-				class sound_RainObjectInner3Metal1_3
-				{
-					memPoint = "sound_RainObjectInner3Metal1_3";
-					soundSets[] = {"RainObjectInner3Metal1_Medium_SoundSet","WindObjectInner3Metal1_Mid_SoundSet","WindObjectInner3Gust_SoundSet"};
-					soundSetsAttenuation[] = {"true","false","false"};
-				};
-				class sound_RainObjectInner3Metal1_4
-				{
-					memPoint = "sound_RainObjectInner3Metal1_4";
-					soundSets[] = {"RainObjectInner3Metal1_Medium_SoundSet","WindObjectInner3Metal1_Mid_SoundSet","WindObjectInner3Gust_SoundSet"};
-					soundSetsAttenuation[] = {"true","false","false"};
-				};
-				class sound_RainObjectInner3Metal1_5
-				{
-					memPoint = "sound_RainObjectInner3Metal1_5";
-					soundSets[] = {"RainObjectInner3Metal1_Medium_SoundSet","WindObjectInner3Metal1_Mid_SoundSet","WindObjectInner3Gust_SoundSet"};
-					soundSetsAttenuation[] = {"true","false","false"};
-				};
-				class sound_RainObjectInner3Metal1_6
-				{
-					memPoint = "sound_RainObjectInner3Metal1_6";
-					soundSets[] = {"RainObjectInner3Metal1_Medium_SoundSet","WindObjectInner3Metal1_Mid_SoundSet","WindObjectInner3Gust_SoundSet"};
-					soundSetsAttenuation[] = {"true","false","false"};
-				};
-				class sound_RainObjectInner3Metal1_7
-				{
-					memPoint = "sound_RainObjectInner3Metal1_7";
-					soundSets[] = {"RainObjectInner3Metal1_Medium_SoundSet","WindObjectInner3Metal1_Mid_SoundSet","WindObjectInner3Gust_SoundSet"};
-					soundSetsAttenuation[] = {"true","false","false"};
-				};
-				class sound_RainObjectInner3Metal1_8
-				{
-					memPoint = "sound_RainObjectInner3Metal1_8";
-					soundSets[] = {"RainObjectInner3Metal1_Medium_SoundSet","WindObjectInner3Metal1_Mid_SoundSet","WindObjectInner3Gust_SoundSet"};
-					soundSetsAttenuation[] = {"true","false","false"};
-				};
-				class sound_RainObjectInner3Metal1_9
-				{
-					memPoint = "sound_RainObjectInner3Metal1_9";
-					soundSets[] = {"RainObjectInner3Metal1_Medium_SoundSet","WindObjectInner3Metal1_Mid_SoundSet","WindObjectInner3Gust_SoundSet"};
-					soundSetsAttenuation[] = {"true","false","false"};
-				};
-				class sound_RainObjectInner3Metal1_10
-				{
-					memPoint = "sound_RainObjectInner3Metal1_10";
-					soundSets[] = {"RainObjectInner3Metal1_Medium_SoundSet","WindObjectInner3Metal1_Mid_SoundSet","WindObjectInner3Gust_SoundSet"};
-					soundSetsAttenuation[] = {"true","false","false"};
-				};
-				class sound_RainObjectInner3Metal1_11
-				{
-					memPoint = "sound_RainObjectInner3Metal1_11";
-					soundSets[] = {"RainObjectInner3Metal1_Medium_SoundSet","WindObjectInner3Metal1_Mid_SoundSet","WindObjectInner3Gust_SoundSet"};
-					soundSetsAttenuation[] = {"true","false","false"};
-				};
-				class sound_RainObjectInner3Metal1_12
-				{
-					memPoint = "sound_RainObjectInner3Metal1_12";
-					soundSets[] = {"RainObjectInner3Metal1_Medium_SoundSet","WindObjectInner3Metal1_Mid_SoundSet","WindObjectInner3Gust_SoundSet"};
-					soundSetsAttenuation[] = {"true","false","false"};
-				};
-				class sound_RainObjectInner4Metal1_1
-				{
-					memPoint = "sound_RainObjectInner4Metal1_1";
-					soundSets[] = {"RainObjectInner4Metal1_Medium_SoundSet","WindObjectInner4Metal1_Mid_SoundSet","WindObjectInner4Gust_SoundSet"};
-					soundSetsAttenuation[] = {"true","false","false"};
-				};
-				class sound_RainObjectInner4Metal1_2
-				{
-					memPoint = "sound_RainObjectInner4Metal1_2";
-					soundSets[] = {"RainObjectInner4Metal1_Medium_SoundSet","WindObjectInner4Metal1_Mid_SoundSet","WindObjectInner4Gust_SoundSet"};
-					soundSetsAttenuation[] = {"true","false","false"};
-				};
-				class sound_RainObjectInner4Metal1_3
-				{
-					memPoint = "sound_RainObjectInner4Metal1_3";
-					soundSets[] = {"RainObjectInner4Metal1_Medium_SoundSet","WindObjectInner4Metal1_Mid_SoundSet","WindObjectInner4Gust_SoundSet"};
-					soundSetsAttenuation[] = {"true","false","false"};
-				};
-				class sound_RainObjectInner4Metal1_4
-				{
-					memPoint = "sound_RainObjectInner4Metal1_4";
-					soundSets[] = {"RainObjectInner4Metal1_Medium_SoundSet","WindObjectInner4Metal1_Mid_SoundSet","WindObjectInner4Gust_SoundSet"};
-					soundSetsAttenuation[] = {"true","false","false"};
-				};
-				class sound_RainObjectInner4Metal1_5
-				{
-					memPoint = "sound_RainObjectInner4Metal1_5";
-					soundSets[] = {"RainObjectInner4Metal1_Medium_SoundSet","WindObjectInner4Metal1_Mid_SoundSet","WindObjectInner4Gust_SoundSet"};
-					soundSetsAttenuation[] = {"true","false","false"};
-				};
-				class sound_RainObjectInner4Metal1_6
-				{
-					memPoint = "sound_RainObjectInner4Metal1_6";
-					soundSets[] = {"RainObjectInner4Metal1_Medium_SoundSet","WindObjectInner4Metal1_Mid_SoundSet","WindObjectInner4Gust_SoundSet"};
-					soundSetsAttenuation[] = {"true","false","false"};
-				};
-				class sound_RainObjectInner4Metal1_7
-				{
-					memPoint = "sound_RainObjectInner4Metal1_7";
-					soundSets[] = {"RainObjectInner4Metal1_Medium_SoundSet","WindObjectInner4Metal1_Mid_SoundSet","WindObjectInner4Gust_SoundSet"};
-					soundSetsAttenuation[] = {"true","false","false"};
-				};
-				class sound_RainObjectInner4Metal1_8
-				{
-					memPoint = "sound_RainObjectInner4Metal1_8";
-					soundSets[] = {"RainObjectInner4Metal1_Medium_SoundSet","WindObjectInner4Metal1_Mid_SoundSet","WindObjectInner4Gust_SoundSet"};
-					soundSetsAttenuation[] = {"true","false","false"};
-				};
-				class sound_RainObjectInner4Metal1_9
-				{
-					memPoint = "sound_RainObjectInner4Metal1_9";
-					soundSets[] = {"RainObjectInner4Metal1_Medium_SoundSet","WindObjectInner4Metal1_Mid_SoundSet","WindObjectInner4Gust_SoundSet"};
-					soundSetsAttenuation[] = {"true","false","false"};
-				};
-				class sound_RainObjectInner4Metal1_10
-				{
-					memPoint = "sound_RainObjectInner4Metal1_10";
-					soundSets[] = {"RainObjectInner4Metal1_Medium_SoundSet","WindObjectInner4Metal1_Mid_SoundSet","WindObjectInner4Gust_SoundSet"};
-					soundSetsAttenuation[] = {"true","false","false"};
-				};
-				class sound_RainObjectInner4Metal1_11
-				{
-					memPoint = "sound_RainObjectInner4Metal1_11";
-					soundSets[] = {"RainObjectInner4Metal1_Medium_SoundSet","WindObjectInner4Metal1_Mid_SoundSet","WindObjectInner4Gust_SoundSet"};
-					soundSetsAttenuation[] = {"true","false","false"};
-				};
-				class sound_RainObjectInner4Metal1_12
-				{
-					memPoint = "sound_RainObjectInner4Metal1_12";
-					soundSets[] = {"RainObjectInner4Metal1_Medium_SoundSet","WindObjectInner4Metal1_Mid_SoundSet","WindObjectInner4Gust_SoundSet"};
-					soundSetsAttenuation[] = {"true","false","false"};
-				};
-				class sound_RainObjectInner5Metal1_1
-				{
-					memPoint = "sound_RainObjectInner5Metal1_1";
-					soundSets[] = {"RainObjectInner5Metal1_Medium_SoundSet","WindObjectInner5Metal1_Mid_SoundSet","WindObjectInner5Gust_SoundSet"};
-					soundSetsAttenuation[] = {"true","false","false"};
-				};
-				class sound_RainObjectInner5Metal1_2
-				{
-					memPoint = "sound_RainObjectInner5Metal1_2";
-					soundSets[] = {"RainObjectInner5Metal1_Medium_SoundSet","WindObjectInner5Metal1_Mid_SoundSet","WindObjectInner5Gust_SoundSet"};
-					soundSetsAttenuation[] = {"true","false","false"};
-				};
-				class sound_RainObjectInner5Metal1_3
-				{
-					memPoint = "sound_RainObjectInner5Metal1_3";
-					soundSets[] = {"RainObjectInner5Metal1_Medium_SoundSet","WindObjectInner5Metal1_Mid_SoundSet","WindObjectInner5Gust_SoundSet"};
-					soundSetsAttenuation[] = {"true","false","false"};
-				};
-				class sound_RainObjectInner5Metal1_4
-				{
-					memPoint = "sound_RainObjectInner5Metal1_4";
-					soundSets[] = {"RainObjectInner5Metal1_Medium_SoundSet","WindObjectInner5Metal1_Mid_SoundSet","WindObjectInner5Gust_SoundSet"};
-					soundSetsAttenuation[] = {"true","false","false"};
-				};
-				class sound_RainObjectInner5Metal1_5
-				{
-					memPoint = "sound_RainObjectInner5Metal1_5";
-					soundSets[] = {"RainObjectInner5Metal1_Medium_SoundSet","WindObjectInner5Metal1_Mid_SoundSet","WindObjectInner5Gust_SoundSet"};
-					soundSetsAttenuation[] = {"true","false","false"};
-				};
-				class sound_RainObjectInner5Metal1_6
-				{
-					memPoint = "sound_RainObjectInner5Metal1_6";
-					soundSets[] = {"RainObjectInner5Metal1_Medium_SoundSet","WindObjectInner5Metal1_Mid_SoundSet","WindObjectInner5Gust_SoundSet"};
-					soundSetsAttenuation[] = {"true","false","false"};
-				};
-				class sound_RainObjectInner5Metal1_7
-				{
-					memPoint = "sound_RainObjectInner5Metal1_7";
-					soundSets[] = {"RainObjectInner5Metal1_Medium_SoundSet","WindObjectInner5Metal1_Mid_SoundSet","WindObjectInner5Gust_SoundSet"};
-					soundSetsAttenuation[] = {"true","false","false"};
-				};
-				class sound_RainObjectInner5Metal1_8
-				{
-					memPoint = "sound_RainObjectInner5Metal1_8";
-					soundSets[] = {"RainObjectInner5Metal1_Medium_SoundSet","WindObjectInner5Metal1_Mid_SoundSet","WindObjectInner5Gust_SoundSet"};
-					soundSetsAttenuation[] = {"true","false","false"};
-				};
-				class sound_RainObjectInner5Metal1_9
-				{
-					memPoint = "sound_RainObjectInner5Metal1_9";
-					soundSets[] = {"RainObjectInner5Metal1_Medium_SoundSet","WindObjectInner5Metal1_Mid_SoundSet","WindObjectInner5Gust_SoundSet"};
-					soundSetsAttenuation[] = {"true","false","false"};
-				};
-				class sound_RainObjectInner5Metal1_10
-				{
-					memPoint = "sound_RainObjectInner5Metal1_10";
-					soundSets[] = {"RainObjectInner5Metal1_Medium_SoundSet","WindObjectInner5Metal1_Mid_SoundSet","WindObjectInner5Gust_SoundSet"};
-					soundSetsAttenuation[] = {"true","false","false"};
-				};
-				class sound_RainObjectInner5Metal1_11
-				{
-					memPoint = "sound_RainObjectInner5Metal1_11";
-					soundSets[] = {"RainObjectInner5Metal1_Medium_SoundSet","WindObjectInner5Metal1_Mid_SoundSet","WindObjectInner5Gust_SoundSet"};
-					soundSetsAttenuation[] = {"true","false","false"};
-				};
-				class sound_RainObjectInner5Metal1_12
-				{
-					memPoint = "sound_RainObjectInner5Metal1_12";
-					soundSets[] = {"RainObjectInner5Metal1_Medium_SoundSet","WindObjectInner5Metal1_Mid_SoundSet","WindObjectInner5Gust_SoundSet"};
-					soundSetsAttenuation[] = {"true","false","false"};
-				};
-				class sound_RainObjectInner7Metal1_1
-				{
-					memPoint = "sound_RainObjectInner7Metal1_1";
-					soundSets[] = {"RainObjectInner7Metal1_Medium_SoundSet","WindObjectInner7Metal1_Mid_SoundSet","WindObjectInner7Gust_SoundSet"};
-					soundSetsAttenuation[] = {"true","false","false"};
-				};
-				class sound_RainObjectInner7Metal1_2
-				{
-					memPoint = "sound_RainObjectInner7Metal1_2";
-					soundSets[] = {"RainObjectInner7Metal1_Medium_SoundSet","WindObjectInner7Metal1_Mid_SoundSet","WindObjectInner7Gust_SoundSet"};
-					soundSetsAttenuation[] = {"true","false","false"};
-				};
-				class sound_RainObjectInner7Metal1_3
-				{
-					memPoint = "sound_RainObjectInner7Metal1_3";
-					soundSets[] = {"RainObjectInner7Metal1_Medium_SoundSet","WindObjectInner7Metal1_Mid_SoundSet","WindObjectInner7Gust_SoundSet"};
-					soundSetsAttenuation[] = {"true","false","false"};
-				};
-				class sound_RainObjectInner7Metal1_4
-				{
-					memPoint = "sound_RainObjectInner7Metal1_4";
-					soundSets[] = {"RainObjectInner7Metal1_Medium_SoundSet","WindObjectInner7Metal1_Mid_SoundSet","WindObjectInner7Gust_SoundSet"};
-					soundSetsAttenuation[] = {"true","false","false"};
-				};
-				class sound_RainObjectInner7Metal1_5
-				{
-					memPoint = "sound_RainObjectInner7Metal1_5";
-					soundSets[] = {"RainObjectInner7Metal1_Medium_SoundSet","WindObjectInner7Metal1_Mid_SoundSet","WindObjectInner7Gust_SoundSet"};
-					soundSetsAttenuation[] = {"true","false","false"};
-				};
-				class sound_RainObjectInner7Metal1_6
-				{
-					memPoint = "sound_RainObjectInner7Metal1_6";
-					soundSets[] = {"RainObjectInner7Metal1_Medium_SoundSet","WindObjectInner7Metal1_Mid_SoundSet","WindObjectInner7Gust_SoundSet"};
-					soundSetsAttenuation[] = {"true","false","false"};
-				};
-				class sound_RainObjectInner7Metal1_7
-				{
-					memPoint = "sound_RainObjectInner7Metal1_7";
-					soundSets[] = {"RainObjectInner7Metal1_Medium_SoundSet","WindObjectInner7Metal1_Mid_SoundSet","WindObjectInner7Gust_SoundSet"};
-					soundSetsAttenuation[] = {"true","false","false"};
-				};
-				class sound_RainObjectInner7Metal1_8
-				{
-					memPoint = "sound_RainObjectInner7Metal1_8";
-					soundSets[] = {"RainObjectInner7Metal1_Medium_SoundSet","WindObjectInner7Metal1_Mid_SoundSet","WindObjectInner7Gust_SoundSet"};
-					soundSetsAttenuation[] = {"true","false","false"};
-				};
-				class sound_RainObjectInner7Metal1_9
-				{
-					memPoint = "sound_RainObjectInner7Metal1_9";
-					soundSets[] = {"RainObjectInner7Metal1_Medium_SoundSet","WindObjectInner7Metal1_Mid_SoundSet","WindObjectInner7Gust_SoundSet"};
-					soundSetsAttenuation[] = {"true","false","false"};
-				};
-				class sound_RainObjectInner7Metal1_10
-				{
-					memPoint = "sound_RainObjectInner7Metal1_10";
-					soundSets[] = {"RainObjectInner7Metal1_Medium_SoundSet","WindObjectInner7Metal1_Mid_SoundSet","WindObjectInner7Gust_SoundSet"};
-					soundSetsAttenuation[] = {"true","false","false"};
-				};
-				class sound_RainObjectInner7Metal1_11
-				{
-					memPoint = "sound_RainObjectInner7Metal1_11";
-					soundSets[] = {"RainObjectInner7Metal1_Medium_SoundSet","WindObjectInner7Metal1_Mid_SoundSet","WindObjectInner7Gust_SoundSet"};
-					soundSetsAttenuation[] = {"true","false","false"};
-				};
-				class sound_RainObjectInner7Metal1_12
-				{
-					memPoint = "sound_RainObjectInner7Metal1_12";
-					soundSets[] = {"RainObjectInner7Metal1_Medium_SoundSet","WindObjectInner7Metal1_Mid_SoundSet","WindObjectInner7Gust_SoundSet"};
-					soundSetsAttenuation[] = {"true","false","false"};
-				};
-				class sound_RainObjectInner0Metal2_1
-				{
-					memPoint = "sound_RainObjectInner0Metal2_1";
-					soundSets[] = {"RainObjectInner0Metal2_Medium_SoundSet","WindObjectInner0Gust_SoundSet"};
-				};
-				class sound_RainObjectInner0Metal2_2
-				{
-					memPoint = "sound_RainObjectInner0Metal2_2";
-					soundSets[] = {"RainObjectInner0Metal2_Medium_SoundSet","WindObjectInner0Gust_SoundSet"};
-				};
-				class sound_RainObjectInner0Metal2_3
-				{
-					memPoint = "sound_RainObjectInner0Metal2_3";
-					soundSets[] = {"RainObjectInner0Metal2_Medium_SoundSet","WindObjectInner0Gust_SoundSet"};
-				};
-				class sound_RainObjectInner0Metal2_4
-				{
-					memPoint = "sound_RainObjectInner0Metal2_4";
-					soundSets[] = {"RainObjectInner0Metal2_Medium_SoundSet","WindObjectInner0Gust_SoundSet"};
-				};
-				class sound_RainObjectInner0Metal2_5
-				{
-					memPoint = "sound_RainObjectInner0Metal2_5";
-					soundSets[] = {"RainObjectInner0Metal2_Medium_SoundSet","WindObjectInner0Gust_SoundSet"};
-				};
-				class sound_RainObjectInner0Metal2_6
-				{
-					memPoint = "sound_RainObjectInner0Metal2_6";
-					soundSets[] = {"RainObjectInner0Metal2_Medium_SoundSet","WindObjectInner0Gust_SoundSet"};
-				};
-				class sound_RainObjectInner0Metal2_7
-				{
-					memPoint = "sound_RainObjectInner0Metal2_7";
-					soundSets[] = {"RainObjectInner0Metal2_Medium_SoundSet","WindObjectInner0Gust_SoundSet"};
-				};
-				class sound_RainObjectInner0Metal2_8
-				{
-					memPoint = "sound_RainObjectInner0Metal2_8";
-					soundSets[] = {"RainObjectInner0Metal2_Medium_SoundSet","WindObjectInner0Gust_SoundSet"};
-				};
-				class sound_RainObjectInner0Metal2_9
-				{
-					memPoint = "sound_RainObjectInner0Metal2_9";
-					soundSets[] = {"RainObjectInner0Metal2_Medium_SoundSet","WindObjectInner0Gust_SoundSet"};
-				};
-				class sound_RainObjectInner0Metal2_10
-				{
-					memPoint = "sound_RainObjectInner0Metal2_10";
-					soundSets[] = {"RainObjectInner0Metal2_Medium_SoundSet","WindObjectInner0Gust_SoundSet"};
-				};
-				class sound_RainObjectInner0Metal2_11
-				{
-					memPoint = "sound_RainObjectInner0Metal2_11";
-					soundSets[] = {"RainObjectInner0Metal2_Medium_SoundSet","WindObjectInner0Gust_SoundSet"};
-				};
-				class sound_RainObjectInner0Metal2_12
-				{
-					memPoint = "sound_RainObjectInner0Metal2_12";
-					soundSets[] = {"RainObjectInner0Metal2_Medium_SoundSet","WindObjectInner0Gust_SoundSet"};
-				};
-				class sound_RainObjectInner0SpotMetal2_1
-				{
-					memPoint = "sound_RainObjectInner0SpotMetal2_1";
-					soundSets[] = {"RainObjectInner0SpotMetalSpot_Medium_SoundSet","WindObjectInner0SpotGust_SoundSet"};
-				};
-				class sound_RainObjectInner0SpotMetal2_2
-				{
-					memPoint = "sound_RainObjectInner0SpotMetal2_2";
-					soundSets[] = {"RainObjectInner0SpotMetalSpot_Medium_SoundSet","WindObjectInner0SpotGust_SoundSet"};
-				};
-				class sound_RainObjectInner0SpotMetal2_3
-				{
-					memPoint = "sound_RainObjectInner0SpotMetal2_3";
-					soundSets[] = {"RainObjectInner0SpotMetalSpot_Medium_SoundSet","WindObjectInner0SpotGust_SoundSet"};
-				};
-				class sound_RainObjectInner0SpotMetal2_4
-				{
-					memPoint = "sound_RainObjectInner0SpotMetal2_4";
-					soundSets[] = {"RainObjectInner0SpotMetalSpot_Medium_SoundSet","WindObjectInner0SpotGust_SoundSet"};
-				};
-				class sound_RainObjectInner0SpotMetal2_5
-				{
-					memPoint = "sound_RainObjectInner0SpotMetal2_5";
-					soundSets[] = {"RainObjectInner0SpotMetalSpot_Medium_SoundSet","WindObjectInner0SpotGust_SoundSet"};
-				};
-				class sound_RainObjectInner0SpotMetal2_6
-				{
-					memPoint = "sound_RainObjectInner0SpotMetal2_6";
-					soundSets[] = {"RainObjectInner0SpotMetalSpot_Medium_SoundSet","WindObjectInner0SpotGust_SoundSet"};
-				};
-				class sound_RainObjectInner0SpotMetal2_7
-				{
-					memPoint = "sound_RainObjectInner0SpotMetal2_7";
-					soundSets[] = {"RainObjectInner0SpotMetalSpot_Medium_SoundSet","WindObjectInner0SpotGust_SoundSet"};
-				};
-				class sound_RainObjectInner0SpotMetal2_8
-				{
-					memPoint = "sound_RainObjectInner0SpotMetal2_8";
-					soundSets[] = {"RainObjectInner0SpotMetalSpot_Medium_SoundSet","WindObjectInner0SpotGust_SoundSet"};
-				};
-				class sound_RainObjectInner0SpotMetal2_9
-				{
-					memPoint = "sound_RainObjectInner0SpotMetal2_9";
-					soundSets[] = {"RainObjectInner0SpotMetalSpot_Medium_SoundSet","WindObjectInner0SpotGust_SoundSet"};
-				};
-				class sound_RainObjectInner0SpotMetal2_10
-				{
-					memPoint = "sound_RainObjectInner0SpotMetal2_10";
-					soundSets[] = {"RainObjectInner0SpotMetalSpot_Medium_SoundSet","WindObjectInner0SpotGust_SoundSet"};
-				};
-				class sound_RainObjectInner0SpotMetal2_11
-				{
-					memPoint = "sound_RainObjectInner0SpotMetal2_11";
-					soundSets[] = {"RainObjectInner0SpotMetalSpot_Medium_SoundSet","WindObjectInner0SpotGust_SoundSet"};
-				};
-				class sound_RainObjectInner1Metal2_1
-				{
-					memPoint = "sound_RainObjectInner1Metal2_1";
-					soundSets[] = {"RainObjectInner1Metal2_Medium_SoundSet","WindObjectInner1Metal2_Mid_SoundSet","WindObjectInner1Gust_SoundSet"};
-					soundSetsAttenuation[] = {"true","false","false"};
-				};
-				class sound_RainObjectInner1Metal2_2
-				{
-					memPoint = "sound_RainObjectInner1Metal2_2";
-					soundSets[] = {"RainObjectInner1Metal2_Medium_SoundSet","WindObjectInner1Metal2_Mid_SoundSet","WindObjectInner1Gust_SoundSet"};
-					soundSetsAttenuation[] = {"true","false","false"};
-				};
-				class sound_RainObjectInner1Metal2_3
-				{
-					memPoint = "sound_RainObjectInner1Metal2_3";
-					soundSets[] = {"RainObjectInner1Metal2_Medium_SoundSet","WindObjectInner1Metal2_Mid_SoundSet","WindObjectInner1Gust_SoundSet"};
-					soundSetsAttenuation[] = {"true","false","false"};
-				};
-				class sound_RainObjectInner1Metal2_4
-				{
-					memPoint = "sound_RainObjectInner1Metal2_4";
-					soundSets[] = {"RainObjectInner1Metal2_Medium_SoundSet","WindObjectInner1Metal2_Mid_SoundSet","WindObjectInner1Gust_SoundSet"};
-					soundSetsAttenuation[] = {"true","false","false"};
-				};
-				class sound_RainObjectInner1Metal2_5
-				{
-					memPoint = "sound_RainObjectInner1Metal2_5";
-					soundSets[] = {"RainObjectInner1Metal2_Medium_SoundSet","WindObjectInner1Metal2_Mid_SoundSet","WindObjectInner1Gust_SoundSet"};
-					soundSetsAttenuation[] = {"true","false","false"};
-				};
-				class sound_RainObjectInner1Metal2_6
-				{
-					memPoint = "sound_RainObjectInner1Metal2_6";
-					soundSets[] = {"RainObjectInner1Metal2_Medium_SoundSet","WindObjectInner1Metal2_Mid_SoundSet","WindObjectInner1Gust_SoundSet"};
-					soundSetsAttenuation[] = {"true","false","false"};
-				};
-				class sound_RainObjectInner1Metal2_7
-				{
-					memPoint = "sound_RainObjectInner1Metal2_7";
-					soundSets[] = {"RainObjectInner1Metal2_Medium_SoundSet","WindObjectInner1Metal2_Mid_SoundSet","WindObjectInner1Gust_SoundSet"};
-					soundSetsAttenuation[] = {"true","false","false"};
-				};
-				class sound_RainObjectInner1Metal2_8
-				{
-					memPoint = "sound_RainObjectInner1Metal2_8";
-					soundSets[] = {"RainObjectInner1Metal2_Medium_SoundSet","WindObjectInner1Metal2_Mid_SoundSet","WindObjectInner1Gust_SoundSet"};
-					soundSetsAttenuation[] = {"true","false","false"};
-				};
-				class sound_RainObjectInner1Metal2_9
-				{
-					memPoint = "sound_RainObjectInner1Metal2_9";
-					soundSets[] = {"RainObjectInner1Metal2_Medium_SoundSet","WindObjectInner1Metal2_Mid_SoundSet","WindObjectInner1Gust_SoundSet"};
-					soundSetsAttenuation[] = {"true","false","false"};
-				};
-				class sound_RainObjectInner1Metal2_10
-				{
-					memPoint = "sound_RainObjectInner1Metal2_10";
-					soundSets[] = {"RainObjectInner1Metal2_Medium_SoundSet","WindObjectInner1Metal2_Mid_SoundSet","WindObjectInner1Gust_SoundSet"};
-					soundSetsAttenuation[] = {"true","false","false"};
-				};
-				class sound_RainObjectInner1Metal2_11
-				{
-					memPoint = "sound_RainObjectInner1Metal2_11";
-					soundSets[] = {"RainObjectInner1Metal2_Medium_SoundSet","WindObjectInner1Metal2_Mid_SoundSet","WindObjectInner1Gust_SoundSet"};
-					soundSetsAttenuation[] = {"true","false","false"};
-				};
-				class sound_RainObjectInner1Metal2_12
-				{
-					memPoint = "sound_RainObjectInner1Metal2_12";
-					soundSets[] = {"RainObjectInner1Metal2_Medium_SoundSet","WindObjectInner1Metal2_Mid_SoundSet","WindObjectInner1Gust_SoundSet"};
-					soundSetsAttenuation[] = {"true","false","false"};
-				};
-				class sound_RainObjectInner1Metal2_13
-				{
-					memPoint = "sound_RainObjectInner1Metal2_13";
-					soundSets[] = {"RainObjectInner1Metal2_Medium_SoundSet","WindObjectInner1Metal2_Mid_SoundSet","WindObjectInner1Gust_SoundSet"};
-					soundSetsAttenuation[] = {"true","false","false"};
-				};
-				class sound_RainObjectInner1Metal2_14
-				{
-					memPoint = "sound_RainObjectInner1Metal2_14";
-					soundSets[] = {"RainObjectInner1Metal2_Medium_SoundSet","WindObjectInner1Metal2_Mid_SoundSet","WindObjectInner1Gust_SoundSet"};
-					soundSetsAttenuation[] = {"true","false","false"};
-				};
-				class sound_RainObjectInner1Metal2_15
-				{
-					memPoint = "sound_RainObjectInner1Metal2_15";
-					soundSets[] = {"RainObjectInner1Metal2_Medium_SoundSet","WindObjectInner1Metal2_Mid_SoundSet","WindObjectInner1Gust_SoundSet"};
-					soundSetsAttenuation[] = {"true","false","false"};
-				};
-				class sound_RainObjectInner1SpotMetal2_1
-				{
-					memPoint = "sound_RainObjectInner1SpotMetal2_1";
-					soundSets[] = {"RainObjectInner1SpotMetalSpot_Medium_SoundSet","WindObjectInner1SpotGust_SoundSet"};
-				};
-				class sound_RainObjectInner1SpotMetal2_2
-				{
-					memPoint = "sound_RainObjectInner1SpotMetal2_2";
-					soundSets[] = {"RainObjectInner1SpotMetalSpot_Medium_SoundSet","WindObjectInner1SpotGust_SoundSet"};
-				};
-				class sound_RainObjectInner1SpotMetal2_3
-				{
-					memPoint = "sound_RainObjectInner1SpotMetal2_3";
-					soundSets[] = {"RainObjectInner1SpotMetalSpot_Medium_SoundSet","WindObjectInner1SpotGust_SoundSet"};
-				};
-				class sound_RainObjectInner2Metal2_1
-				{
-					memPoint = "sound_RainObjectInner2Metal2_1";
-					soundSets[] = {"RainObjectInner2Metal2_Medium_SoundSet","WindObjectInner2Metal2_Mid_SoundSet","WindObjectInner2Gust_SoundSet"};
-					soundSetsAttenuation[] = {"true","false","false"};
-				};
-				class sound_RainObjectInner2Metal2_2
-				{
-					memPoint = "sound_RainObjectInner2Metal2_2";
-					soundSets[] = {"RainObjectInner2Metal2_Medium_SoundSet","WindObjectInner2Metal2_Mid_SoundSet","WindObjectInner2Gust_SoundSet"};
-					soundSetsAttenuation[] = {"true","false","false"};
-				};
-				class sound_RainObjectInner2Metal2_3
-				{
-					memPoint = "sound_RainObjectInner2Metal2_3";
-					soundSets[] = {"RainObjectInner2Metal2_Medium_SoundSet","WindObjectInner2Metal2_Mid_SoundSet","WindObjectInner2Gust_SoundSet"};
-					soundSetsAttenuation[] = {"true","false","false"};
-				};
-				class sound_RainObjectInner2Metal2_4
-				{
-					memPoint = "sound_RainObjectInner2Metal2_4";
-					soundSets[] = {"RainObjectInner2Metal2_Medium_SoundSet","WindObjectInner2Metal2_Mid_SoundSet","WindObjectInner2Gust_SoundSet"};
-					soundSetsAttenuation[] = {"true","false","false"};
-				};
-				class sound_RainObjectInner2Metal2_5
-				{
-					memPoint = "sound_RainObjectInner2Metal2_5";
-					soundSets[] = {"RainObjectInner2Metal2_Medium_SoundSet","WindObjectInner2Metal2_Mid_SoundSet","WindObjectInner2Gust_SoundSet"};
-					soundSetsAttenuation[] = {"true","false","false"};
-				};
-				class sound_RainObjectInner2Metal2_6
-				{
-					memPoint = "sound_RainObjectInner2Metal2_6";
-					soundSets[] = {"RainObjectInner2Metal2_Medium_SoundSet","WindObjectInner2Metal2_Mid_SoundSet","WindObjectInner2Gust_SoundSet"};
-					soundSetsAttenuation[] = {"true","false","false"};
-				};
-				class sound_RainObjectInner2Metal2_7
-				{
-					memPoint = "sound_RainObjectInner2Metal2_7";
-					soundSets[] = {"RainObjectInner2Metal2_Medium_SoundSet","WindObjectInner2Metal2_Mid_SoundSet","WindObjectInner2Gust_SoundSet"};
-					soundSetsAttenuation[] = {"true","false","false"};
-				};
-				class sound_RainObjectInner2Metal2_8
-				{
-					memPoint = "sound_RainObjectInner2Metal2_8";
-					soundSets[] = {"RainObjectInner2Metal2_Medium_SoundSet","WindObjectInner2Metal2_Mid_SoundSet","WindObjectInner2Gust_SoundSet"};
-					soundSetsAttenuation[] = {"true","false","false"};
-				};
-				class sound_RainObjectInner2Metal2_9
-				{
-					memPoint = "sound_RainObjectInner2Metal2_9";
-					soundSets[] = {"RainObjectInner2Metal2_Medium_SoundSet","WindObjectInner2Metal2_Mid_SoundSet","WindObjectInner2Gust_SoundSet"};
-					soundSetsAttenuation[] = {"true","false","false"};
-				};
-				class sound_RainObjectInner2Metal2_10
-				{
-					memPoint = "sound_RainObjectInner2Metal2_10";
-					soundSets[] = {"RainObjectInner2Metal2_Medium_SoundSet","WindObjectInner2Metal2_Mid_SoundSet","WindObjectInner2Gust_SoundSet"};
-					soundSetsAttenuation[] = {"true","false","false"};
-				};
-				class sound_RainObjectInner2Metal2_11
-				{
-					memPoint = "sound_RainObjectInner2Metal2_11";
-					soundSets[] = {"RainObjectInner2Metal2_Medium_SoundSet","WindObjectInner2Metal2_Mid_SoundSet","WindObjectInner2Gust_SoundSet"};
-					soundSetsAttenuation[] = {"true","false","false"};
-				};
-				class sound_RainObjectInner2Metal2_12
-				{
-					memPoint = "sound_RainObjectInner2Metal2_12";
-					soundSets[] = {"RainObjectInner2Metal2_Medium_SoundSet","WindObjectInner2Metal2_Mid_SoundSet","WindObjectInner2Gust_SoundSet"};
-					soundSetsAttenuation[] = {"true","false","false"};
-				};
-				class sound_RainObjectInner25Metal2_1
-				{
-					memPoint = "sound_RainObjectInner25Metal2_1";
-					soundSets[] = {"RainObjectInner25Metal2_Medium_SoundSet","WindObjectInner25Metal2_Mid_SoundSet","WindObjectInner25Gust_SoundSet"};
-					soundSetsAttenuation[] = {"true","false","false"};
-				};
-				class sound_RainObjectInner25Metal2_2
-				{
-					memPoint = "sound_RainObjectInner25Metal2_2";
-					soundSets[] = {"RainObjectInner25Metal2_Medium_SoundSet","WindObjectInner25Metal2_Mid_SoundSet","WindObjectInner25Gust_SoundSet"};
-					soundSetsAttenuation[] = {"true","false","false"};
-				};
-				class sound_RainObjectInner25Metal2_3
-				{
-					memPoint = "sound_RainObjectInner25Metal2_3";
-					soundSets[] = {"RainObjectInner25Metal2_Medium_SoundSet","WindObjectInner25Metal2_Mid_SoundSet","WindObjectInner25Gust_SoundSet"};
-					soundSetsAttenuation[] = {"true","false","false"};
-				};
-				class sound_RainObjectInner25Metal2_4
-				{
-					memPoint = "sound_RainObjectInner25Metal2_4";
-					soundSets[] = {"RainObjectInner25Metal2_Medium_SoundSet","WindObjectInner25Metal2_Mid_SoundSet","WindObjectInner25Gust_SoundSet"};
-					soundSetsAttenuation[] = {"true","false","false"};
-				};
-				class sound_RainObjectInner25Metal2_5
-				{
-					memPoint = "sound_RainObjectInner25Metal2_5";
-					soundSets[] = {"RainObjectInner25Metal2_Medium_SoundSet","WindObjectInner25Metal2_Mid_SoundSet","WindObjectInner25Gust_SoundSet"};
-					soundSetsAttenuation[] = {"true","false","false"};
-				};
-				class sound_RainObjectInner25Metal2_6
-				{
-					memPoint = "sound_RainObjectInner25Metal2_6";
-					soundSets[] = {"RainObjectInner25Metal2_Medium_SoundSet","WindObjectInner25Metal2_Mid_SoundSet","WindObjectInner25Gust_SoundSet"};
-					soundSetsAttenuation[] = {"true","false","false"};
-				};
-				class sound_RainObjectInner25Metal2_7
-				{
-					memPoint = "sound_RainObjectInner25Metal2_7";
-					soundSets[] = {"RainObjectInner25Metal2_Medium_SoundSet","WindObjectInner25Metal2_Mid_SoundSet","WindObjectInner25Gust_SoundSet"};
-					soundSetsAttenuation[] = {"true","false","false"};
-				};
-				class sound_RainObjectInner25Metal2_8
-				{
-					memPoint = "sound_RainObjectInner25Metal2_8";
-					soundSets[] = {"RainObjectInner25Metal2_Medium_SoundSet","WindObjectInner25Metal2_Mid_SoundSet","WindObjectInner25Gust_SoundSet"};
-					soundSetsAttenuation[] = {"true","false","false"};
-				};
-				class sound_RainObjectInner25Metal2_9
-				{
-					memPoint = "sound_RainObjectInner25Metal2_9";
-					soundSets[] = {"RainObjectInner25Metal2_Medium_SoundSet","WindObjectInner25Metal2_Mid_SoundSet","WindObjectInner25Gust_SoundSet"};
-					soundSetsAttenuation[] = {"true","false","false"};
-				};
-				class sound_RainObjectInner25Metal2_10
-				{
-					memPoint = "sound_RainObjectInner25Metal2_10";
-					soundSets[] = {"RainObjectInner25Metal2_Medium_SoundSet","WindObjectInner25Metal2_Mid_SoundSet","WindObjectInner25Gust_SoundSet"};
-					soundSetsAttenuation[] = {"true","false","false"};
-				};
-				class sound_RainObjectInner25Metal2_11
-				{
-					memPoint = "sound_RainObjectInner25Metal2_11";
-					soundSets[] = {"RainObjectInner25Metal2_Medium_SoundSet","WindObjectInner25Metal2_Mid_SoundSet","WindObjectInner25Gust_SoundSet"};
-					soundSetsAttenuation[] = {"true","false","false"};
-				};
-				class sound_RainObjectInner25Metal2_12
-				{
-					memPoint = "sound_RainObjectInner25Metal2_12";
-					soundSets[] = {"RainObjectInner25Metal2_Medium_SoundSet","WindObjectInner25Metal2_Mid_SoundSet","WindObjectInner25Gust_SoundSet"};
-					soundSetsAttenuation[] = {"true","false","false"};
-				};
-				class sound_RainObjectInner3Metal2_1
-				{
-					memPoint = "sound_RainObjectInner3Metal2_1";
-					soundSets[] = {"RainObjectInner3Metal2_Medium_SoundSet","WindObjectInner3Metal2_Mid_SoundSet","WindObjectInner3Gust_SoundSet"};
-					soundSetsAttenuation[] = {"true","false","false"};
-				};
-				class sound_RainObjectInner3Metal2_2
-				{
-					memPoint = "sound_RainObjectInner3Metal2_2";
-					soundSets[] = {"RainObjectInner3Metal2_Medium_SoundSet","WindObjectInner3Metal2_Mid_SoundSet","WindObjectInner3Gust_SoundSet"};
-					soundSetsAttenuation[] = {"true","false","false"};
-				};
-				class sound_RainObjectInner3Metal2_3
-				{
-					memPoint = "sound_RainObjectInner3Metal2_3";
-					soundSets[] = {"RainObjectInner3Metal2_Medium_SoundSet","WindObjectInner3Metal2_Mid_SoundSet","WindObjectInner3Gust_SoundSet"};
-					soundSetsAttenuation[] = {"true","false","false"};
-				};
-				class sound_RainObjectInner3Metal2_4
-				{
-					memPoint = "sound_RainObjectInner3Metal2_4";
-					soundSets[] = {"RainObjectInner3Metal2_Medium_SoundSet","WindObjectInner3Metal2_Mid_SoundSet","WindObjectInner3Gust_SoundSet"};
-					soundSetsAttenuation[] = {"true","false","false"};
-				};
-				class sound_RainObjectInner3Metal2_5
-				{
-					memPoint = "sound_RainObjectInner3Metal2_5";
-					soundSets[] = {"RainObjectInner3Metal2_Medium_SoundSet","WindObjectInner3Metal2_Mid_SoundSet","WindObjectInner3Gust_SoundSet"};
-					soundSetsAttenuation[] = {"true","false","false"};
-				};
-				class sound_RainObjectInner3Metal2_6
-				{
-					memPoint = "sound_RainObjectInner3Metal2_6";
-					soundSets[] = {"RainObjectInner3Metal2_Medium_SoundSet","WindObjectInner3Metal2_Mid_SoundSet","WindObjectInner3Gust_SoundSet"};
-					soundSetsAttenuation[] = {"true","false","false"};
-				};
-				class sound_RainObjectInner3Metal2_7
-				{
-					memPoint = "sound_RainObjectInner3Metal2_7";
-					soundSets[] = {"RainObjectInner3Metal2_Medium_SoundSet","WindObjectInner3Metal2_Mid_SoundSet","WindObjectInner3Gust_SoundSet"};
-					soundSetsAttenuation[] = {"true","false","false"};
-				};
-				class sound_RainObjectInner3Metal2_8
-				{
-					memPoint = "sound_RainObjectInner3Metal2_8";
-					soundSets[] = {"RainObjectInner3Metal2_Medium_SoundSet","WindObjectInner3Metal2_Mid_SoundSet","WindObjectInner3Gust_SoundSet"};
-					soundSetsAttenuation[] = {"true","false","false"};
-				};
-				class sound_RainObjectInner3Metal2_9
-				{
-					memPoint = "sound_RainObjectInner3Metal2_9";
-					soundSets[] = {"RainObjectInner3Metal2_Medium_SoundSet","WindObjectInner3Metal2_Mid_SoundSet","WindObjectInner3Gust_SoundSet"};
-					soundSetsAttenuation[] = {"true","false","false"};
-				};
-				class sound_RainObjectInner3Metal2_10
-				{
-					memPoint = "sound_RainObjectInner3Metal2_10";
-					soundSets[] = {"RainObjectInner3Metal2_Medium_SoundSet","WindObjectInner3Metal2_Mid_SoundSet","WindObjectInner3Gust_SoundSet"};
-					soundSetsAttenuation[] = {"true","false","false"};
-				};
-				class sound_RainObjectInner3Metal2_11
-				{
-					memPoint = "sound_RainObjectInner3Metal2_11";
-					soundSets[] = {"RainObjectInner3Metal2_Medium_SoundSet","WindObjectInner3Metal2_Mid_SoundSet","WindObjectInner3Gust_SoundSet"};
-					soundSetsAttenuation[] = {"true","false","false"};
-				};
-				class sound_RainObjectInner3Metal2_12
-				{
-					memPoint = "sound_RainObjectInner3Metal2_12";
-					soundSets[] = {"RainObjectInner3Metal2_Medium_SoundSet","WindObjectInner3Metal2_Mid_SoundSet","WindObjectInner3Gust_SoundSet"};
-					soundSetsAttenuation[] = {"true","false","false"};
-				};
-				class sound_RainObjectInner4Metal2_1
-				{
-					memPoint = "sound_RainObjectInner4Metal2_1";
-					soundSets[] = {"RainObjectInner4Metal2_Medium_SoundSet","WindObjectInner4Metal2_Mid_SoundSet","WindObjectInner4Gust_SoundSet"};
-					soundSetsAttenuation[] = {"true","false","false"};
-				};
-				class sound_RainObjectInner4Metal2_2
-				{
-					memPoint = "sound_RainObjectInner4Metal2_2";
-					soundSets[] = {"RainObjectInner4Metal2_Medium_SoundSet","WindObjectInner4Metal2_Mid_SoundSet","WindObjectInner4Gust_SoundSet"};
-					soundSetsAttenuation[] = {"true","false","false"};
-				};
-				class sound_RainObjectInner4Metal2_3
-				{
-					memPoint = "sound_RainObjectInner4Metal2_3";
-					soundSets[] = {"RainObjectInner4Metal2_Medium_SoundSet","WindObjectInner4Metal2_Mid_SoundSet","WindObjectInner4Gust_SoundSet"};
-					soundSetsAttenuation[] = {"true","false","false"};
-				};
-				class sound_RainObjectInner4Metal2_4
-				{
-					memPoint = "sound_RainObjectInner4Metal2_4";
-					soundSets[] = {"RainObjectInner4Metal2_Medium_SoundSet","WindObjectInner4Metal2_Mid_SoundSet","WindObjectInner4Gust_SoundSet"};
-					soundSetsAttenuation[] = {"true","false","false"};
-				};
-				class sound_RainObjectInner4Metal2_5
-				{
-					memPoint = "sound_RainObjectInner4Metal2_5";
-					soundSets[] = {"RainObjectInner4Metal2_Medium_SoundSet","WindObjectInner4Metal2_Mid_SoundSet","WindObjectInner4Gust_SoundSet"};
-					soundSetsAttenuation[] = {"true","false","false"};
-				};
-				class sound_RainObjectInner4Metal2_6
-				{
-					memPoint = "sound_RainObjectInner4Metal2_6";
-					soundSets[] = {"RainObjectInner4Metal2_Medium_SoundSet","WindObjectInner4Metal2_Mid_SoundSet","WindObjectInner4Gust_SoundSet"};
-					soundSetsAttenuation[] = {"true","false","false"};
-				};
-				class sound_RainObjectInner4Metal2_7
-				{
-					memPoint = "sound_RainObjectInner4Metal2_7";
-					soundSets[] = {"RainObjectInner4Metal2_Medium_SoundSet","WindObjectInner4Metal2_Mid_SoundSet","WindObjectInner4Gust_SoundSet"};
-					soundSetsAttenuation[] = {"true","false","false"};
-				};
-				class sound_RainObjectInner4Metal2_8
-				{
-					memPoint = "sound_RainObjectInner4Metal2_8";
-					soundSets[] = {"RainObjectInner4Metal2_Medium_SoundSet","WindObjectInner4Metal2_Mid_SoundSet","WindObjectInner4Gust_SoundSet"};
-					soundSetsAttenuation[] = {"true","false","false"};
-				};
-				class sound_RainObjectInner4Metal2_9
-				{
-					memPoint = "sound_RainObjectInner4Metal2_9";
-					soundSets[] = {"RainObjectInner4Metal2_Medium_SoundSet","WindObjectInner4Metal2_Mid_SoundSet","WindObjectInner4Gust_SoundSet"};
-					soundSetsAttenuation[] = {"true","false","false"};
-				};
-				class sound_RainObjectInner4Metal2_10
-				{
-					memPoint = "sound_RainObjectInner4Metal2_10";
-					soundSets[] = {"RainObjectInner4Metal2_Medium_SoundSet","WindObjectInner4Metal2_Mid_SoundSet","WindObjectInner4Gust_SoundSet"};
-					soundSetsAttenuation[] = {"true","false","false"};
-				};
-				class sound_RainObjectInner4Metal2_11
-				{
-					memPoint = "sound_RainObjectInner4Metal2_11";
-					soundSets[] = {"RainObjectInner4Metal2_Medium_SoundSet","WindObjectInner4Metal2_Mid_SoundSet","WindObjectInner4Gust_SoundSet"};
-					soundSetsAttenuation[] = {"true","false","false"};
-				};
-				class sound_RainObjectInner4Metal2_12
-				{
-					memPoint = "sound_RainObjectInner4Metal2_12";
-					soundSets[] = {"RainObjectInner4Metal2_Medium_SoundSet","WindObjectInner4Metal2_Mid_SoundSet","WindObjectInner4Gust_SoundSet"};
-					soundSetsAttenuation[] = {"true","false","false"};
-				};
-				class sound_RainObjectInner5Metal2_1
-				{
-					memPoint = "sound_RainObjectInner5Metal2_1";
-					soundSets[] = {"RainObjectInner5Metal2_Medium_SoundSet","WindObjectInner5Metal2_Mid_SoundSet","WindObjectInner5Gust_SoundSet"};
-					soundSetsAttenuation[] = {"true","false","false"};
-				};
-				class sound_RainObjectInner5Metal2_2
-				{
-					memPoint = "sound_RainObjectInner5Metal2_2";
-					soundSets[] = {"RainObjectInner5Metal2_Medium_SoundSet","WindObjectInner5Metal2_Mid_SoundSet","WindObjectInner5Gust_SoundSet"};
-					soundSetsAttenuation[] = {"true","false","false"};
-				};
-				class sound_RainObjectInner5Metal2_3
-				{
-					memPoint = "sound_RainObjectInner5Metal2_3";
-					soundSets[] = {"RainObjectInner5Metal2_Medium_SoundSet","WindObjectInner5Metal2_Mid_SoundSet","WindObjectInner5Gust_SoundSet"};
-					soundSetsAttenuation[] = {"true","false","false"};
-				};
-				class sound_RainObjectInner5Metal2_4
-				{
-					memPoint = "sound_RainObjectInner5Metal2_4";
-					soundSets[] = {"RainObjectInner5Metal2_Medium_SoundSet","WindObjectInner5Metal2_Mid_SoundSet","WindObjectInner5Gust_SoundSet"};
-					soundSetsAttenuation[] = {"true","false","false"};
-				};
-				class sound_RainObjectInner5Metal2_5
-				{
-					memPoint = "sound_RainObjectInner5Metal2_5";
-					soundSets[] = {"RainObjectInner5Metal2_Medium_SoundSet","WindObjectInner5Metal2_Mid_SoundSet","WindObjectInner5Gust_SoundSet"};
-					soundSetsAttenuation[] = {"true","false","false"};
-				};
-				class sound_RainObjectInner5Metal2_6
-				{
-					memPoint = "sound_RainObjectInner5Metal2_6";
-					soundSets[] = {"RainObjectInner5Metal2_Medium_SoundSet","WindObjectInner5Metal2_Mid_SoundSet","WindObjectInner5Gust_SoundSet"};
-					soundSetsAttenuation[] = {"true","false","false"};
-				};
-				class sound_RainObjectInner5Metal2_7
-				{
-					memPoint = "sound_RainObjectInner5Metal2_7";
-					soundSets[] = {"RainObjectInner5Metal2_Medium_SoundSet","WindObjectInner5Metal2_Mid_SoundSet","WindObjectInner5Gust_SoundSet"};
-					soundSetsAttenuation[] = {"true","false","false"};
-				};
-				class sound_RainObjectInner5Metal2_8
-				{
-					memPoint = "sound_RainObjectInner5Metal2_8";
-					soundSets[] = {"RainObjectInner5Metal2_Medium_SoundSet","WindObjectInner5Metal2_Mid_SoundSet","WindObjectInner5Gust_SoundSet"};
-					soundSetsAttenuation[] = {"true","false","false"};
-				};
-				class sound_RainObjectInner5Metal2_9
-				{
-					memPoint = "sound_RainObjectInner5Metal2_9";
-					soundSets[] = {"RainObjectInner5Metal2_Medium_SoundSet","WindObjectInner5Metal2_Mid_SoundSet","WindObjectInner5Gust_SoundSet"};
-					soundSetsAttenuation[] = {"true","false","false"};
-				};
-				class sound_RainObjectInner5Metal2_10
-				{
-					memPoint = "sound_RainObjectInner5Metal2_10";
-					soundSets[] = {"RainObjectInner5Metal2_Medium_SoundSet","WindObjectInner5Metal2_Mid_SoundSet","WindObjectInner5Gust_SoundSet"};
-					soundSetsAttenuation[] = {"true","false","false"};
-				};
-				class sound_RainObjectInner5Metal2_11
-				{
-					memPoint = "sound_RainObjectInner5Metal2_11";
-					soundSets[] = {"RainObjectInner5Metal2_Medium_SoundSet","WindObjectInner5Metal2_Mid_SoundSet","WindObjectInner5Gust_SoundSet"};
-					soundSetsAttenuation[] = {"true","false","false"};
-				};
-				class sound_RainObjectInner5Metal2_12
-				{
-					memPoint = "sound_RainObjectInner5Metal2_12";
-					soundSets[] = {"RainObjectInner5Metal2_Medium_SoundSet","WindObjectInner5Metal2_Mid_SoundSet","WindObjectInner5Gust_SoundSet"};
-					soundSetsAttenuation[] = {"true","false","false"};
-				};
-				class sound_RainObjectInner7Metal2_1
-				{
-					memPoint = "sound_RainObjectInner7Metal2_1";
-					soundSets[] = {"RainObjectInner7Metal2_Medium_SoundSet","WindObjectInner7Metal2_Mid_SoundSet","WindObjectInner7Gust_SoundSet"};
-					soundSetsAttenuation[] = {"true","false","false"};
-				};
-				class sound_RainObjectInner7Metal2_2
-				{
-					memPoint = "sound_RainObjectInner7Metal2_2";
-					soundSets[] = {"RainObjectInner7Metal2_Medium_SoundSet","WindObjectInner7Metal2_Mid_SoundSet","WindObjectInner7Gust_SoundSet"};
-					soundSetsAttenuation[] = {"true","false","false"};
-				};
-				class sound_RainObjectInner7Metal2_3
-				{
-					memPoint = "sound_RainObjectInner7Metal2_3";
-					soundSets[] = {"RainObjectInner7Metal2_Medium_SoundSet","WindObjectInner7Metal2_Mid_SoundSet","WindObjectInner7Gust_SoundSet"};
-					soundSetsAttenuation[] = {"true","false","false"};
-				};
-				class sound_RainObjectInner7Metal2_4
-				{
-					memPoint = "sound_RainObjectInner7Metal2_4";
-					soundSets[] = {"RainObjectInner7Metal2_Medium_SoundSet","WindObjectInner7Metal2_Mid_SoundSet","WindObjectInner7Gust_SoundSet"};
-					soundSetsAttenuation[] = {"true","false","false"};
-				};
-				class sound_RainObjectInner7Metal2_5
-				{
-					memPoint = "sound_RainObjectInner7Metal2_5";
-					soundSets[] = {"RainObjectInner7Metal2_Medium_SoundSet","WindObjectInner7Metal2_Mid_SoundSet","WindObjectInner7Gust_SoundSet"};
-					soundSetsAttenuation[] = {"true","false","false"};
-				};
-				class sound_RainObjectInner7Metal2_6
-				{
-					memPoint = "sound_RainObjectInner7Metal2_6";
-					soundSets[] = {"RainObjectInner7Metal2_Medium_SoundSet","WindObjectInner7Metal2_Mid_SoundSet","WindObjectInner7Gust_SoundSet"};
-					soundSetsAttenuation[] = {"true","false","false"};
-				};
-				class sound_RainObjectInner8Metal2_1
-				{
-					memPoint = "sound_RainObjectInner8Metal2_1";
-					soundSets[] = {"RainObjectInner8Metal2_Medium_SoundSet","WindObjectInner8Metal2_Mid_SoundSet","WindObjectInner8Gust_SoundSet"};
-					soundSetsAttenuation[] = {"true","false","false"};
-				};
-				class sound_RainObjectInner8Metal2_2
-				{
-					memPoint = "sound_RainObjectInner8Metal2_2";
-					soundSets[] = {"RainObjectInner8Metal2_Medium_SoundSet","WindObjectInner8Metal2_Mid_SoundSet","WindObjectInner8Gust_SoundSet"};
-					soundSetsAttenuation[] = {"true","false","false"};
-				};
-				class sound_RainObjectInner8Metal2_3
-				{
-					memPoint = "sound_RainObjectInner8Metal2_3";
-					soundSets[] = {"RainObjectInner8Metal2_Medium_SoundSet","WindObjectInner8Metal2_Mid_SoundSet","WindObjectInner8Gust_SoundSet"};
-					soundSetsAttenuation[] = {"true","false","false"};
-				};
-				class sound_RainObjectInner8Metal2_4
-				{
-					memPoint = "sound_RainObjectInner8Metal2_4";
-					soundSets[] = {"RainObjectInner8Metal2_Medium_SoundSet","WindObjectInner8Metal2_Mid_SoundSet","WindObjectInner8Gust_SoundSet"};
-					soundSetsAttenuation[] = {"true","false","false"};
-				};
-				class sound_RainObjectInner8Metal2_5
-				{
-					memPoint = "sound_RainObjectInner8Metal2_5";
-					soundSets[] = {"RainObjectInner8Metal2_Medium_SoundSet","WindObjectInner8Metal2_Mid_SoundSet","WindObjectInner8Gust_SoundSet"};
-					soundSetsAttenuation[] = {"true","false","false"};
-				};
-				class sound_RainObjectInner8Metal2_6
-				{
-					memPoint = "sound_RainObjectInner8Metal2_6";
-					soundSets[] = {"RainObjectInner8Metal2_Medium_SoundSet","WindObjectInner8Metal2_Mid_SoundSet","WindObjectInner8Gust_SoundSet"};
-					soundSetsAttenuation[] = {"true","false","false"};
-				};
-				class sound_RainObjectInner3Metal3_1
-				{
-					memPoint = "sound_RainObjectInner3Metal3_1";
-					soundSets[] = {"RainObjectInner3Metal3_Medium_SoundSet","WindObjectInner3Gust_SoundSet"};
-				};
-				class sound_RainObjectInner4Metal3_1
-				{
-					memPoint = "sound_RainObjectInner4Metal3_1";
-					soundSets[] = {"RainObjectInner4Metal3_Medium_SoundSet","WindObjectInner4Gust_SoundSet"};
-				};
-				class sound_RainObjectInner7Metal3_1
-				{
-					memPoint = "sound_RainObjectInner7Metal3_1";
-					soundSets[] = {"RainObjectInner7Metal3_Medium_SoundSet","WindObjectInner7Gust_SoundSet"};
-				};
-				class sound_RainObjectInner7Metal3_2
-				{
-					memPoint = "sound_RainObjectInner7Metal3_2";
-					soundSets[] = {"RainObjectInner7Metal3_Medium_SoundSet","WindObjectInner7Gust_SoundSet"};
-				};
-				class sound_RainObjectInner7Metal3_3
-				{
-					memPoint = "sound_RainObjectInner7Metal3_3";
-					soundSets[] = {"RainObjectInner7Metal3_Medium_SoundSet","WindObjectInner7Gust_SoundSet"};
-				};
-				class sound_RainObjectInner7Metal3_4
-				{
-					memPoint = "sound_RainObjectInner7Metal3_4";
-					soundSets[] = {"RainObjectInner7Metal3_Medium_SoundSet","WindObjectInner7Gust_SoundSet"};
-				};
-				class sound_RainObjectInner0Fabric1_1
-				{
-					memPoint = "sound_RainObjectInner0Fabric1_1";
-					soundSets[] = {"RainObjectInner0Fabric1_Medium_SoundSet","WindObjectInner0Gust_SoundSet"};
-				};
-				class sound_RainObjectInner0Fabric1_2
-				{
-					memPoint = "sound_RainObjectInner0Fabric1_2";
-					soundSets[] = {"RainObjectInner0Fabric1_Medium_SoundSet","WindObjectInner0Gust_SoundSet"};
-				};
-				class sound_RainObjectInner0Fabric1_3
-				{
-					memPoint = "sound_RainObjectInner0Fabric1_3";
-					soundSets[] = {"RainObjectInner0Fabric1_Medium_SoundSet","WindObjectInner0Gust_SoundSet"};
-				};
-				class sound_RainObjectInner0Fabric1_4
-				{
-					memPoint = "sound_RainObjectInner0Fabric1_4";
-					soundSets[] = {"RainObjectInner0Fabric1_Medium_SoundSet","WindObjectInner0Gust_SoundSet"};
-				};
-				class sound_RainObjectInner0Fabric1_5
-				{
-					memPoint = "sound_RainObjectInner0Fabric1_5";
-					soundSets[] = {"RainObjectInner0Fabric1_Medium_SoundSet","WindObjectInner0Gust_SoundSet"};
-				};
-				class sound_RainObjectInner0Fabric1_6
-				{
-					memPoint = "sound_RainObjectInner0Fabric1_6";
-					soundSets[] = {"RainObjectInner0Fabric1_Medium_SoundSet","WindObjectInner0Gust_SoundSet"};
-				};
-				class sound_RainObjectInner1Fabric1_1
-				{
-					memPoint = "sound_RainObjectInner1Fabric1_1";
-					soundSets[] = {"RainObjectInner1Fabric1_Medium_SoundSet","WindObjectInner1Gust_SoundSet"};
-				};
-				class sound_RainObjectInner1Fabric1_2
-				{
-					memPoint = "sound_RainObjectInner1Fabric1_2";
-					soundSets[] = {"RainObjectInner1Fabric1_Medium_SoundSet","WindObjectInner1Gust_SoundSet"};
-				};
-				class sound_RainObjectInner1Fabric1_3
-				{
-					memPoint = "sound_RainObjectInner1Fabric1_3";
-					soundSets[] = {"RainObjectInner1Fabric1_Medium_SoundSet","WindObjectInner1Gust_SoundSet"};
-				};
-				class sound_RainObjectInner1Fabric1_4
-				{
-					memPoint = "sound_RainObjectInner1Fabric1_4";
-					soundSets[] = {"RainObjectInner1Fabric1_Medium_SoundSet","WindObjectInner1Gust_SoundSet"};
-				};
-				class sound_RainObjectInner1Fabric1_5
-				{
-					memPoint = "sound_RainObjectInner1Fabric1_5";
-					soundSets[] = {"RainObjectInner1Fabric1_Medium_SoundSet","WindObjectInner1Gust_SoundSet"};
-				};
-				class sound_RainObjectInner1Fabric1_6
-				{
-					memPoint = "sound_RainObjectInner1Fabric1_6";
-					soundSets[] = {"RainObjectInner1Fabric1_Medium_SoundSet","WindObjectInner1Gust_SoundSet"};
-				};
-				class sound_RainObjectInner2Fabric1_1
-				{
-					memPoint = "sound_RainObjectInner2Fabric1_1";
-					soundSets[] = {"RainObjectInner2Fabric1_Medium_SoundSet","WindObjectInner2Fabric1_Mid_SoundSet","WindObjectInner2Gust_SoundSet"};
-					soundSetsAttenuation[] = {"true","false","false"};
-				};
-				class sound_RainObjectInner2Fabric1_2
-				{
-					memPoint = "sound_RainObjectInner2Fabric1_2";
-					soundSets[] = {"RainObjectInner2Fabric1_Medium_SoundSet","WindObjectInner2Fabric1_Mid_SoundSet","WindObjectInner2Gust_SoundSet"};
-					soundSetsAttenuation[] = {"true","false","false"};
-				};
-				class sound_RainObjectInner2Fabric1_3
-				{
-					memPoint = "sound_RainObjectInner2Fabric1_3";
-					soundSets[] = {"RainObjectInner2Fabric1_Medium_SoundSet","WindObjectInner2Fabric1_Mid_SoundSet","WindObjectInner2Gust_SoundSet"};
-					soundSetsAttenuation[] = {"true","false","false"};
-				};
-				class sound_RainObjectInner2Fabric1_4
-				{
-					memPoint = "sound_RainObjectInner2Fabric1_4";
-					soundSets[] = {"RainObjectInner2Fabric1_Medium_SoundSet","WindObjectInner2Fabric1_Mid_SoundSet","WindObjectInner2Gust_SoundSet"};
-					soundSetsAttenuation[] = {"true","false","false"};
-				};
-				class sound_RainObjectInner2Fabric1_5
-				{
-					memPoint = "sound_RainObjectInner2Fabric1_5";
-					soundSets[] = {"RainObjectInner2Fabric1_Medium_SoundSet","WindObjectInner2Fabric1_Mid_SoundSet","WindObjectInner2Gust_SoundSet"};
-					soundSetsAttenuation[] = {"true","false","false"};
-				};
-				class sound_RainObjectInner2Fabric1_6
-				{
-					memPoint = "sound_RainObjectInner2Fabric1_6";
-					soundSets[] = {"RainObjectInner2Fabric1_Medium_SoundSet","WindObjectInner2Fabric1_Mid_SoundSet","WindObjectInner2Gust_SoundSet"};
-					soundSetsAttenuation[] = {"true","false","false"};
-				};
-				class sound_RainObjectInner25Fabric1_1
-				{
-					memPoint = "sound_RainObjectInner25Fabric1_1";
-					soundSets[] = {"RainObjectInner25Fabric1_Medium_SoundSet","WindObjectInner25Gust_SoundSet"};
-				};
-				class sound_RainObjectInner25Fabric1_2
-				{
-					memPoint = "sound_RainObjectInner25Fabric1_2";
-					soundSets[] = {"RainObjectInner25Fabric1_Medium_SoundSet","WindObjectInner25Gust_SoundSet"};
-				};
-				class sound_RainObjectInner25Fabric1_3
-				{
-					memPoint = "sound_RainObjectInner25Fabric1_3";
-					soundSets[] = {"RainObjectInner25Fabric1_Medium_SoundSet","WindObjectInner25Gust_SoundSet"};
-				};
-				class sound_RainObjectInner25Fabric1_4
-				{
-					memPoint = "sound_RainObjectInner25Fabric1_4";
-					soundSets[] = {"RainObjectInner25Fabric1_Medium_SoundSet","WindObjectInner25Gust_SoundSet"};
-				};
-				class sound_RainObjectInner25Fabric1_5
-				{
-					memPoint = "sound_RainObjectInner25Fabric1_5";
-					soundSets[] = {"RainObjectInner25Fabric1_Medium_SoundSet","WindObjectInner25Gust_SoundSet"};
-				};
-				class sound_RainObjectInner25Fabric1_6
-				{
-					memPoint = "sound_RainObjectInner25Fabric1_6";
-					soundSets[] = {"RainObjectInner25Fabric1_Medium_SoundSet","WindObjectInner25Gust_SoundSet"};
-				};
-				class sound_RainObjectInner3Fabric1_1
-				{
-					memPoint = "sound_RainObjectInner3Fabric1_1";
-					soundSets[] = {"RainObjectInner3Fabric1_Medium_SoundSet","WindObjectInner3Fabric1_Mid_SoundSet","WindObjectInner3Gust_SoundSet"};
-					soundSetsAttenuation[] = {"true","false","false"};
-				};
-				class sound_RainObjectInner3Fabric1_2
-				{
-					memPoint = "sound_RainObjectInner3Fabric1_2";
-					soundSets[] = {"RainObjectInner3Fabric1_Medium_SoundSet","WindObjectInner3Fabric1_Mid_SoundSet","WindObjectInner3Gust_SoundSet"};
-					soundSetsAttenuation[] = {"true","false","false"};
-				};
-				class sound_RainObjectInner3Fabric1_3
-				{
-					memPoint = "sound_RainObjectInner3Fabric1_3";
-					soundSets[] = {"RainObjectInner3Fabric1_Medium_SoundSet","WindObjectInner3Fabric1_Mid_SoundSet","WindObjectInner3Gust_SoundSet"};
-					soundSetsAttenuation[] = {"true","false","false"};
-				};
-				class sound_RainObjectInner3Fabric1_4
-				{
-					memPoint = "sound_RainObjectInner3Fabric1_4";
-					soundSets[] = {"RainObjectInner3Fabric1_Medium_SoundSet","WindObjectInner3Fabric1_Mid_SoundSet","WindObjectInner3Gust_SoundSet"};
-					soundSetsAttenuation[] = {"true","false","false"};
-				};
-				class sound_RainObjectInner3Fabric1_5
-				{
-					memPoint = "sound_RainObjectInner3Fabric1_5";
-					soundSets[] = {"RainObjectInner3Fabric1_Medium_SoundSet","WindObjectInner3Fabric1_Mid_SoundSet","WindObjectInner3Gust_SoundSet"};
-					soundSetsAttenuation[] = {"true","false","false"};
-				};
-				class sound_RainObjectInner3Fabric1_6
-				{
-					memPoint = "sound_RainObjectInner3Fabric1_6";
-					soundSets[] = {"RainObjectInner3Fabric1_Medium_SoundSet","WindObjectInner3Fabric1_Mid_SoundSet","WindObjectInner3Gust_SoundSet"};
-					soundSetsAttenuation[] = {"true","false","false"};
-				};
-				class sound_RainObjectInner4Fabric1_1
-				{
-					memPoint = "sound_RainObjectInner4Fabric1_1";
-					soundSets[] = {"RainObjectInner4Fabric1_Medium_SoundSet","WindObjectInner4Fabric1_Mid_SoundSet","WindObjectInner4Gust_SoundSet"};
-					soundSetsAttenuation[] = {"true","false","false"};
-				};
-				class sound_RainObjectInner4Fabric1_2
-				{
-					memPoint = "sound_RainObjectInner4Fabric1_2";
-					soundSets[] = {"RainObjectInner4Fabric1_Medium_SoundSet","WindObjectInner4Fabric1_Mid_SoundSet","WindObjectInner4Gust_SoundSet"};
-					soundSetsAttenuation[] = {"true","false","false"};
-				};
-				class sound_RainObjectInner4Fabric1_3
-				{
-					memPoint = "sound_RainObjectInner4Fabric1_3";
-					soundSets[] = {"RainObjectInner4Fabric1_Medium_SoundSet","WindObjectInner4Fabric1_Mid_SoundSet","WindObjectInner4Gust_SoundSet"};
-					soundSetsAttenuation[] = {"true","false","false"};
-				};
-				class sound_RainObjectInner4Fabric1_4
-				{
-					memPoint = "sound_RainObjectInner4Fabric1_4";
-					soundSets[] = {"RainObjectInner4Fabric1_Medium_SoundSet","WindObjectInner4Fabric1_Mid_SoundSet","WindObjectInner4Gust_SoundSet"};
-					soundSetsAttenuation[] = {"true","false","false"};
-				};
-				class sound_RainObjectInner4Fabric1_5
-				{
-					memPoint = "sound_RainObjectInner4Fabric1_5";
-					soundSets[] = {"RainObjectInner4Fabric1_Medium_SoundSet","WindObjectInner4Fabric1_Mid_SoundSet","WindObjectInner4Gust_SoundSet"};
-					soundSetsAttenuation[] = {"true","false","false"};
-				};
-				class sound_RainObjectInner4Fabric1_6
-				{
-					memPoint = "sound_RainObjectInner4Fabric1_6";
-					soundSets[] = {"RainObjectInner4Fabric1_Medium_SoundSet","WindObjectInner4Fabric1_Mid_SoundSet","WindObjectInner4Gust_SoundSet"};
-					soundSetsAttenuation[] = {"true","false","false"};
-				};
-				class sound_RainObjectInner5Fabric1_1
-				{
-					memPoint = "sound_RainObjectInner5Fabric1_1";
-					soundSets[] = {"RainObjectInner5Fabric1_Medium_SoundSet","WindObjectInner5Fabric1_Mid_SoundSet","WindObjectInner5Gust_SoundSet"};
-					soundSetsAttenuation[] = {"true","false","false"};
-				};
-				class sound_RainObjectInner5Fabric1_2
-				{
-					memPoint = "sound_RainObjectInner5Fabric1_2";
-					soundSets[] = {"RainObjectInner5Fabric1_Medium_SoundSet","WindObjectInner5Fabric1_Mid_SoundSet","WindObjectInner5Gust_SoundSet"};
-					soundSetsAttenuation[] = {"true","false","false"};
-				};
-				class sound_RainObjectInner5Fabric1_3
-				{
-					memPoint = "sound_RainObjectInner5Fabric1_3";
-					soundSets[] = {"RainObjectInner5Fabric1_Medium_SoundSet","WindObjectInner5Fabric1_Mid_SoundSet","WindObjectInner5Gust_SoundSet"};
-					soundSetsAttenuation[] = {"true","false","false"};
-				};
-				class sound_RainObjectInner5Fabric1_4
-				{
-					memPoint = "sound_RainObjectInner5Fabric1_4";
-					soundSets[] = {"RainObjectInner5Fabric1_Medium_SoundSet","WindObjectInner5Fabric1_Mid_SoundSet","WindObjectInner5Gust_SoundSet"};
-					soundSetsAttenuation[] = {"true","false","false"};
-				};
-				class sound_RainObjectInner5Fabric1_5
-				{
-					memPoint = "sound_RainObjectInner5Fabric1_5";
-					soundSets[] = {"RainObjectInner5Fabric1_Medium_SoundSet","WindObjectInner5Fabric1_Mid_SoundSet","WindObjectInner5Gust_SoundSet"};
-					soundSetsAttenuation[] = {"true","false","false"};
-				};
-				class sound_RainObjectInner5Fabric1_6
-				{
-					memPoint = "sound_RainObjectInner5Fabric1_6";
-					soundSets[] = {"RainObjectInner5Fabric1_Medium_SoundSet","WindObjectInner5Fabric1_Mid_SoundSet","WindObjectInner5Gust_SoundSet"};
-					soundSetsAttenuation[] = {"true","false","false"};
-				};
-				class sound_RainObjectInner7Fabric1_1
-				{
-					memPoint = "sound_RainObjectInner7Fabric1_1";
-					soundSets[] = {"RainObjectInner7Fabric1_Medium_SoundSet","WindObjectInner7Gust_SoundSet"};
-				};
-				class sound_RainObjectInner7Fabric1_2
-				{
-					memPoint = "sound_RainObjectInner7Fabric1_2";
-					soundSets[] = {"RainObjectInner7Fabric1_Medium_SoundSet","WindObjectInner7Gust_SoundSet"};
-				};
-				class sound_RainObjectInner7Fabric1_3
-				{
-					memPoint = "sound_RainObjectInner7Fabric1_3";
-					soundSets[] = {"RainObjectInner7Fabric1_Medium_SoundSet","WindObjectInner7Gust_SoundSet"};
-				};
-				class sound_RainObjectInner7Fabric1_4
-				{
-					memPoint = "sound_RainObjectInner7Fabric1_4";
-					soundSets[] = {"RainObjectInner7Fabric1_Medium_SoundSet","WindObjectInner7Gust_SoundSet"};
-				};
-				class sound_RainObjectInner7Fabric1_5
-				{
-					memPoint = "sound_RainObjectInner7Fabric1_5";
-					soundSets[] = {"RainObjectInner7Fabric1_Medium_SoundSet","WindObjectInner7Gust_SoundSet"};
-				};
-				class sound_RainObjectInner7Fabric1_6
-				{
-					memPoint = "sound_RainObjectInner7Fabric1_6";
-					soundSets[] = {"RainObjectInner7Fabric1_Medium_SoundSet","WindObjectInner7Gust_SoundSet"};
-				};
-				class sound_RainObjectInner0Fabric2_1
-				{
-					memPoint = "sound_RainObjectInner0Fabric2_1";
-					soundSets[] = {"RainObjectInner0Fabric2_Medium_SoundSet","WindObjectInner0Gust_SoundSet"};
-				};
-				class sound_RainObjectInner0Fabric2_2
-				{
-					memPoint = "sound_RainObjectInner0Fabric2_2";
-					soundSets[] = {"RainObjectInner0Fabric2_Medium_SoundSet","WindObjectInner0Gust_SoundSet"};
-				};
-				class sound_RainObjectInner0Fabric2_3
-				{
-					memPoint = "sound_RainObjectInner0Fabric2_3";
-					soundSets[] = {"RainObjectInner0Fabric2_Medium_SoundSet","WindObjectInner0Gust_SoundSet"};
-				};
-				class sound_RainObjectInner0Fabric2_4
-				{
-					memPoint = "sound_RainObjectInner0Fabric2_4";
-					soundSets[] = {"RainObjectInner0Fabric2_Medium_SoundSet","WindObjectInner0Gust_SoundSet"};
-				};
-				class sound_RainObjectInner0Fabric2_5
-				{
-					memPoint = "sound_RainObjectInner0Fabric2_5";
-					soundSets[] = {"RainObjectInner0Fabric2_Medium_SoundSet","WindObjectInner0Gust_SoundSet"};
-				};
-				class sound_RainObjectInner0Fabric2_6
-				{
-					memPoint = "sound_RainObjectInner0Fabric2_6";
-					soundSets[] = {"RainObjectInner0Fabric2_Medium_SoundSet","WindObjectInner0Gust_SoundSet"};
-				};
-				class sound_RainObjectInner1Fabric2_1
-				{
-					memPoint = "sound_RainObjectInner1Fabric2_1";
-					soundSets[] = {"RainObjectInner1Fabric2_Medium_SoundSet","WindObjectInner1Gust_SoundSet"};
-				};
-				class sound_RainObjectInner1Fabric2_2
-				{
-					memPoint = "sound_RainObjectInner1Fabric2_2";
-					soundSets[] = {"RainObjectInner1Fabric2_Medium_SoundSet","WindObjectInner1Gust_SoundSet"};
-				};
-				class sound_RainObjectInner1Fabric2_3
-				{
-					memPoint = "sound_RainObjectInner1Fabric2_3";
-					soundSets[] = {"RainObjectInner1Fabric2_Medium_SoundSet","WindObjectInner1Gust_SoundSet"};
-				};
-				class sound_RainObjectInner1Fabric2_4
-				{
-					memPoint = "sound_RainObjectInner1Fabric2_4";
-					soundSets[] = {"RainObjectInner1Fabric2_Medium_SoundSet","WindObjectInner1Gust_SoundSet"};
-				};
-				class sound_RainObjectInner1Fabric2_5
-				{
-					memPoint = "sound_RainObjectInner1Fabric2_5";
-					soundSets[] = {"RainObjectInner1Fabric2_Medium_SoundSet","WindObjectInner1Gust_SoundSet"};
-				};
-				class sound_RainObjectInner1Fabric2_6
-				{
-					memPoint = "sound_RainObjectInner1Fabric2_6";
-					soundSets[] = {"RainObjectInner1Fabric2_Medium_SoundSet","WindObjectInner1Gust_SoundSet"};
-				};
-				class sound_RainObjectInner2Fabric2_1
-				{
-					memPoint = "sound_RainObjectInner2Fabric2_1";
-					soundSets[] = {"RainObjectInner2Fabric2_Medium_SoundSet","WindObjectInner2Gust_SoundSet"};
-				};
-				class sound_RainObjectInner2Fabric2_2
-				{
-					memPoint = "sound_RainObjectInner2Fabric2_2";
-					soundSets[] = {"RainObjectInner2Fabric2_Medium_SoundSet","WindObjectInner2Gust_SoundSet"};
-				};
-				class sound_RainObjectInner2Fabric2_3
-				{
-					memPoint = "sound_RainObjectInner2Fabric2_3";
-					soundSets[] = {"RainObjectInner2Fabric2_Medium_SoundSet","WindObjectInner2Gust_SoundSet"};
-				};
-				class sound_RainObjectInner2Fabric2_4
-				{
-					memPoint = "sound_RainObjectInner2Fabric2_4";
-					soundSets[] = {"RainObjectInner2Fabric2_Medium_SoundSet","WindObjectInner2Gust_SoundSet"};
-				};
-				class sound_RainObjectInner2Fabric2_5
-				{
-					memPoint = "sound_RainObjectInner2Fabric2_5";
-					soundSets[] = {"RainObjectInner2Fabric2_Medium_SoundSet","WindObjectInner2Gust_SoundSet"};
-				};
-				class sound_RainObjectInner2Fabric2_6
-				{
-					memPoint = "sound_RainObjectInner2Fabric2_6";
-					soundSets[] = {"RainObjectInner2Fabric2_Medium_SoundSet","WindObjectInner2Gust_SoundSet"};
-				};
-				class sound_RainObjectInner25Fabric2_1
-				{
-					memPoint = "sound_RainObjectInner25Fabric2_1";
-					soundSets[] = {"RainObjectInner25Fabric2_Medium_SoundSet","WindObjectInner25Gust_SoundSet"};
-				};
-				class sound_RainObjectInner25Fabric2_2
-				{
-					memPoint = "sound_RainObjectInner25Fabric2_2";
-					soundSets[] = {"RainObjectInner25Fabric2_Medium_SoundSet","WindObjectInner25Gust_SoundSet"};
-				};
-				class sound_RainObjectInner25Fabric2_3
-				{
-					memPoint = "sound_RainObjectInner25Fabric2_3";
-					soundSets[] = {"RainObjectInner25Fabric2_Medium_SoundSet","WindObjectInner25Gust_SoundSet"};
-				};
-				class sound_RainObjectInner25Fabric2_4
-				{
-					memPoint = "sound_RainObjectInner25Fabric2_4";
-					soundSets[] = {"RainObjectInner25Fabric2_Medium_SoundSet","WindObjectInner25Gust_SoundSet"};
-				};
-				class sound_RainObjectInner25Fabric2_5
-				{
-					memPoint = "sound_RainObjectInner25Fabric2_5";
-					soundSets[] = {"RainObjectInner25Fabric2_Medium_SoundSet","WindObjectInner25Gust_SoundSet"};
-				};
-				class sound_RainObjectInner25Fabric2_6
-				{
-					memPoint = "sound_RainObjectInner25Fabric2_6";
-					soundSets[] = {"RainObjectInner25Fabric2_Medium_SoundSet","WindObjectInner25Gust_SoundSet"};
-				};
-				class sound_RainObjectInner3Fabric2_1
-				{
-					memPoint = "sound_RainObjectInner3Fabric2_1";
-					soundSets[] = {"RainObjectInner3Fabric2_Medium_SoundSet","WindObjectInner3Gust_SoundSet"};
-				};
-				class sound_RainObjectInner3Fabric2_2
-				{
-					memPoint = "sound_RainObjectInner3Fabric2_2";
-					soundSets[] = {"RainObjectInner3Fabric2_Medium_SoundSet","WindObjectInner3Gust_SoundSet"};
-				};
-				class sound_RainObjectInner3Fabric2_3
-				{
-					memPoint = "sound_RainObjectInner3Fabric2_3";
-					soundSets[] = {"RainObjectInner3Fabric2_Medium_SoundSet","WindObjectInner3Gust_SoundSet"};
-				};
-				class sound_RainObjectInner3Fabric2_4
-				{
-					memPoint = "sound_RainObjectInner3Fabric2_4";
-					soundSets[] = {"RainObjectInner3Fabric2_Medium_SoundSet","WindObjectInner3Gust_SoundSet"};
-				};
-				class sound_RainObjectInner3Fabric2_5
-				{
-					memPoint = "sound_RainObjectInner3Fabric2_5";
-					soundSets[] = {"RainObjectInner3Fabric2_Medium_SoundSet","WindObjectInner3Gust_SoundSet"};
-				};
-				class sound_RainObjectInner3Fabric2_6
-				{
-					memPoint = "sound_RainObjectInner3Fabric2_6";
-					soundSets[] = {"RainObjectInner3Fabric2_Medium_SoundSet","WindObjectInner3Gust_SoundSet"};
-				};
-				class sound_RainObjectInner4Fabric2_1
-				{
-					memPoint = "sound_RainObjectInner4Fabric2_1";
-					soundSets[] = {"RainObjectInner4Fabric2_Medium_SoundSet","WindObjectInner4Gust_SoundSet"};
-				};
-				class sound_RainObjectInner4Fabric2_2
-				{
-					memPoint = "sound_RainObjectInner4Fabric2_2";
-					soundSets[] = {"RainObjectInner4Fabric2_Medium_SoundSet","WindObjectInner4Gust_SoundSet"};
-				};
-				class sound_RainObjectInner4Fabric2_3
-				{
-					memPoint = "sound_RainObjectInner4Fabric2_3";
-					soundSets[] = {"RainObjectInner4Fabric2_Medium_SoundSet","WindObjectInner4Gust_SoundSet"};
-				};
-				class sound_RainObjectInner4Fabric2_4
-				{
-					memPoint = "sound_RainObjectInner4Fabric2_4";
-					soundSets[] = {"RainObjectInner4Fabric2_Medium_SoundSet","WindObjectInner4Gust_SoundSet"};
-				};
-				class sound_RainObjectInner4Fabric2_5
-				{
-					memPoint = "sound_RainObjectInner4Fabric2_5";
-					soundSets[] = {"RainObjectInner4Fabric2_Medium_SoundSet","WindObjectInner4Gust_SoundSet"};
-				};
-				class sound_RainObjectInner4Fabric2_6
-				{
-					memPoint = "sound_RainObjectInner4Fabric2_6";
-					soundSets[] = {"RainObjectInner4Fabric2_Medium_SoundSet","WindObjectInner4Gust_SoundSet"};
-				};
-				class sound_RainObjectInner5Fabric2_1
-				{
-					memPoint = "sound_RainObjectInner5Fabric2_1";
-					soundSets[] = {"RainObjectInner5Fabric2_Medium_SoundSet","WindObjectInner5Gust_SoundSet"};
-				};
-				class sound_RainObjectInner5Fabric2_2
-				{
-					memPoint = "sound_RainObjectInner5Fabric2_2";
-					soundSets[] = {"RainObjectInner5Fabric2_Medium_SoundSet","WindObjectInner5Gust_SoundSet"};
-				};
-				class sound_RainObjectInner5Fabric2_3
-				{
-					memPoint = "sound_RainObjectInner5Fabric2_3";
-					soundSets[] = {"RainObjectInner5Fabric2_Medium_SoundSet","WindObjectInner5Gust_SoundSet"};
-				};
-				class sound_RainObjectInner5Fabric2_4
-				{
-					memPoint = "sound_RainObjectInner5Fabric2_4";
-					soundSets[] = {"RainObjectInner5Fabric2_Medium_SoundSet","WindObjectInner5Gust_SoundSet"};
-				};
-				class sound_RainObjectInner5Fabric2_5
-				{
-					memPoint = "sound_RainObjectInner5Fabric2_5";
-					soundSets[] = {"RainObjectInner5Fabric2_Medium_SoundSet","WindObjectInner5Gust_SoundSet"};
-				};
-				class sound_RainObjectInner5Fabric2_6
-				{
-					memPoint = "sound_RainObjectInner5Fabric2_6";
-					soundSets[] = {"RainObjectInner5Fabric2_Medium_SoundSet","WindObjectInner5Gust_SoundSet"};
-				};
-				class sound_RainObjectInner7Fabric2_1
-				{
-					memPoint = "sound_RainObjectInner7Fabric2_1";
-					soundSets[] = {"RainObjectInner7Fabric2_Medium_SoundSet","WindObjectInner7Gust_SoundSet"};
-				};
-				class sound_RainObjectInner7Fabric2_2
-				{
-					memPoint = "sound_RainObjectInner7Fabric2_2";
-					soundSets[] = {"RainObjectInner7Fabric2_Medium_SoundSet","WindObjectInner7Gust_SoundSet"};
-				};
-				class sound_RainObjectInner7Fabric2_3
-				{
-					memPoint = "sound_RainObjectInner7Fabric2_3";
-					soundSets[] = {"RainObjectInner7Fabric2_Medium_SoundSet","WindObjectInner7Gust_SoundSet"};
-				};
-				class sound_RainObjectInner7Fabric2_4
-				{
-					memPoint = "sound_RainObjectInner7Fabric2_4";
-					soundSets[] = {"RainObjectInner7Fabric2_Medium_SoundSet","WindObjectInner7Gust_SoundSet"};
-				};
-				class sound_RainObjectInner7Fabric2_5
-				{
-					memPoint = "sound_RainObjectInner7Fabric2_5";
-					soundSets[] = {"RainObjectInner7Fabric2_Medium_SoundSet","WindObjectInner7Gust_SoundSet"};
-				};
-				class sound_RainObjectInner7Fabric2_6
-				{
-					memPoint = "sound_RainObjectInner7Fabric2_6";
-					soundSets[] = {"RainObjectInner7Fabric2_Medium_SoundSet","WindObjectInner7Gust_SoundSet"};
-				};
-				class sound_RainObjectInner0Tile_1
-				{
-					memPoint = "sound_RainObjectInner0Tile_1";
-					soundSets[] = {"RainObjectInner0Tile_Medium_SoundSet","WindObjectInner0Gust_SoundSet"};
-				};
-				class sound_RainObjectInner0Tile_2
-				{
-					memPoint = "sound_RainObjectInner0Tile_2";
-					soundSets[] = {"RainObjectInner0Tile_Medium_SoundSet","WindObjectInner0Gust_SoundSet"};
-				};
-				class sound_RainObjectInner0Tile_3
-				{
-					memPoint = "sound_RainObjectInner0Tile_3";
-					soundSets[] = {"RainObjectInner0Tile_Medium_SoundSet","WindObjectInner0Gust_SoundSet"};
-				};
-				class sound_RainObjectInner0Tile_4
-				{
-					memPoint = "sound_RainObjectInner0Tile_4";
-					soundSets[] = {"RainObjectInner0Tile_Medium_SoundSet","WindObjectInner0Gust_SoundSet"};
-				};
-				class sound_RainObjectInner0Tile_5
-				{
-					memPoint = "sound_RainObjectInner0Tile_5";
-					soundSets[] = {"RainObjectInner0Tile_Medium_SoundSet","WindObjectInner0Gust_SoundSet"};
-				};
-				class sound_RainObjectInner0Tile_6
-				{
-					memPoint = "sound_RainObjectInner0Tile_6";
-					soundSets[] = {"RainObjectInner0Tile_Medium_SoundSet","WindObjectInner0Gust_SoundSet"};
-				};
-				class sound_RainObjectInner1Tile_1
-				{
-					memPoint = "sound_RainObjectInner1Tile_1";
-					soundSets[] = {"RainObjectInner1Tile_Medium_SoundSet","WindObjectInner1Gust_SoundSet"};
-				};
-				class sound_RainObjectInner1Tile_2
-				{
-					memPoint = "sound_RainObjectInner1Tile_2";
-					soundSets[] = {"RainObjectInner1Tile_Medium_SoundSet","WindObjectInner1Gust_SoundSet"};
-				};
-				class sound_RainObjectInner1Tile_3
-				{
-					memPoint = "sound_RainObjectInner1Tile_3";
-					soundSets[] = {"RainObjectInner1Tile_Medium_SoundSet","WindObjectInner1Gust_SoundSet"};
-				};
-				class sound_RainObjectInner1Tile_4
-				{
-					memPoint = "sound_RainObjectInner1Tile_4";
-					soundSets[] = {"RainObjectInner1Tile_Medium_SoundSet","WindObjectInner1Gust_SoundSet"};
-				};
-				class sound_RainObjectInner1Tile_5
-				{
-					memPoint = "sound_RainObjectInner1Tile_5";
-					soundSets[] = {"RainObjectInner1Tile_Medium_SoundSet","WindObjectInner1Gust_SoundSet"};
-				};
-				class sound_RainObjectInner1Tile_6
-				{
-					memPoint = "sound_RainObjectInner1Tile_6";
-					soundSets[] = {"RainObjectInner1Tile_Medium_SoundSet","WindObjectInner1Gust_SoundSet"};
-				};
-				class sound_RainObjectInner2Tile_1
-				{
-					memPoint = "sound_RainObjectInner2Tile_1";
-					soundSets[] = {"RainObjectInner2Tile_Medium_SoundSet","WindObjectInner2Gust_SoundSet"};
-				};
-				class sound_RainObjectInner2Tile_2
-				{
-					memPoint = "sound_RainObjectInner2Tile_2";
-					soundSets[] = {"RainObjectInner2Tile_Medium_SoundSet","WindObjectInner2Gust_SoundSet"};
-				};
-				class sound_RainObjectInner2Tile_3
-				{
-					memPoint = "sound_RainObjectInner2Tile_3";
-					soundSets[] = {"RainObjectInner2Tile_Medium_SoundSet","WindObjectInner2Gust_SoundSet"};
-				};
-				class sound_RainObjectInner2Tile_4
-				{
-					memPoint = "sound_RainObjectInner2Tile_4";
-					soundSets[] = {"RainObjectInner2Tile_Medium_SoundSet","WindObjectInner2Gust_SoundSet"};
-				};
-				class sound_RainObjectInner2Tile_5
-				{
-					memPoint = "sound_RainObjectInner2Tile_5";
-					soundSets[] = {"RainObjectInner2Tile_Medium_SoundSet","WindObjectInner2Gust_SoundSet"};
-				};
-				class sound_RainObjectInner2Tile_6
-				{
-					memPoint = "sound_RainObjectInner2Tile_6";
-					soundSets[] = {"RainObjectInner2Tile_Medium_SoundSet","WindObjectInner2Gust_SoundSet"};
-				};
-				class sound_RainObjectInner25Tile_1
-				{
-					memPoint = "sound_RainObjectInner25Tile_1";
-					soundSets[] = {"RainObjectInner25Tile_Medium_SoundSet","WindObjectInner25Gust_SoundSet"};
-				};
-				class sound_RainObjectInner25Tile_2
-				{
-					memPoint = "sound_RainObjectInner25Tile_2";
-					soundSets[] = {"RainObjectInner25Tile_Medium_SoundSet","WindObjectInner25Gust_SoundSet"};
-				};
-				class sound_RainObjectInner25Tile_3
-				{
-					memPoint = "sound_RainObjectInner25Tile_3";
-					soundSets[] = {"RainObjectInner25Tile_Medium_SoundSet","WindObjectInner25Gust_SoundSet"};
-				};
-				class sound_RainObjectInner25Tile_4
-				{
-					memPoint = "sound_RainObjectInner25Tile_4";
-					soundSets[] = {"RainObjectInner25Tile_Medium_SoundSet","WindObjectInner25Gust_SoundSet"};
-				};
-				class sound_RainObjectInner25Tile_5
-				{
-					memPoint = "sound_RainObjectInner25Tile_5";
-					soundSets[] = {"RainObjectInner25Tile_Medium_SoundSet","WindObjectInner25Gust_SoundSet"};
-				};
-				class sound_RainObjectInner25Tile_6
-				{
-					memPoint = "sound_RainObjectInner25Tile_6";
-					soundSets[] = {"RainObjectInner25Tile_Medium_SoundSet","WindObjectInner25Gust_SoundSet"};
-				};
-				class sound_RainObjectInner3Tile_1
-				{
-					memPoint = "sound_RainObjectInner3Tile_1";
-					soundSets[] = {"RainObjectInner3Tile_Medium_SoundSet","WindObjectInner3Gust_SoundSet"};
-				};
-				class sound_RainObjectInner3Tile_2
-				{
-					memPoint = "sound_RainObjectInner3Tile_2";
-					soundSets[] = {"RainObjectInner3Tile_Medium_SoundSet","WindObjectInner3Gust_SoundSet"};
-				};
-				class sound_RainObjectInner3Tile_3
-				{
-					memPoint = "sound_RainObjectInner3Tile_3";
-					soundSets[] = {"RainObjectInner3Tile_Medium_SoundSet","WindObjectInner3Gust_SoundSet"};
-				};
-				class sound_RainObjectInner3Tile_4
-				{
-					memPoint = "sound_RainObjectInner3Tile_4";
-					soundSets[] = {"RainObjectInner3Tile_Medium_SoundSet","WindObjectInner3Gust_SoundSet"};
-				};
-				class sound_RainObjectInner3Tile_5
-				{
-					memPoint = "sound_RainObjectInner3Tile_5";
-					soundSets[] = {"RainObjectInner3Tile_Medium_SoundSet","WindObjectInner3Gust_SoundSet"};
-				};
-				class sound_RainObjectInner3Tile_6
-				{
-					memPoint = "sound_RainObjectInner3Tile_6";
-					soundSets[] = {"RainObjectInner3Tile_Medium_SoundSet","WindObjectInner3Gust_SoundSet"};
-				};
-				class sound_RainObjectInner3Tile_7
-				{
-					memPoint = "sound_RainObjectInner3Tile_7";
-					soundSets[] = {"RainObjectInner3Tile_Medium_SoundSet","WindObjectInner3Gust_SoundSet"};
-				};
-				class sound_RainObjectInner3Tile_8
-				{
-					memPoint = "sound_RainObjectInner3Tile_8";
-					soundSets[] = {"RainObjectInner3Tile_Medium_SoundSet","WindObjectInner3Gust_SoundSet"};
-				};
-				class sound_RainObjectInner4Tile_1
-				{
-					memPoint = "sound_RainObjectInner4Tile_1";
-					soundSets[] = {"RainObjectInner4Tile_Medium_SoundSet","WindObjectInner4Gust_SoundSet"};
-				};
-				class sound_RainObjectInner4Tile_2
-				{
-					memPoint = "sound_RainObjectInner4Tile_2";
-					soundSets[] = {"RainObjectInner4Tile_Medium_SoundSet","WindObjectInner4Gust_SoundSet"};
-				};
-				class sound_RainObjectInner4Tile_3
-				{
-					memPoint = "sound_RainObjectInner4Tile_3";
-					soundSets[] = {"RainObjectInner4Tile_Medium_SoundSet","WindObjectInner4Gust_SoundSet"};
-				};
-				class sound_RainObjectInner4Tile_4
-				{
-					memPoint = "sound_RainObjectInner4Tile_4";
-					soundSets[] = {"RainObjectInner4Tile_Medium_SoundSet","WindObjectInner4Gust_SoundSet"};
-				};
-				class sound_RainObjectInner4Tile_5
-				{
-					memPoint = "sound_RainObjectInner4Tile_5";
-					soundSets[] = {"RainObjectInner4Tile_Medium_SoundSet","WindObjectInner4Gust_SoundSet"};
-				};
-				class sound_RainObjectInner4Tile_6
-				{
-					memPoint = "sound_RainObjectInner4Tile_6";
-					soundSets[] = {"RainObjectInner4Tile_Medium_SoundSet","WindObjectInner4Gust_SoundSet"};
-				};
-				class sound_RainObjectInner4Tile_7
-				{
-					memPoint = "sound_RainObjectInner4Tile_7";
-					soundSets[] = {"RainObjectInner4Tile_Medium_SoundSet","WindObjectInner4Gust_SoundSet"};
-				};
-				class sound_RainObjectInner4Tile_8
-				{
-					memPoint = "sound_RainObjectInner4Tile_8";
-					soundSets[] = {"RainObjectInner4Tile_Medium_SoundSet","WindObjectInner4Gust_SoundSet"};
-				};
-				class sound_RainObjectInner5Tile_1
-				{
-					memPoint = "sound_RainObjectInner5Tile_1";
-					soundSets[] = {"RainObjectInner5Tile_Medium_SoundSet","WindObjectInner5Gust_SoundSet"};
-				};
-				class sound_RainObjectInner5Tile_2
-				{
-					memPoint = "sound_RainObjectInner5Tile_2";
-					soundSets[] = {"RainObjectInner5Tile_Medium_SoundSet","WindObjectInner5Gust_SoundSet"};
-				};
-				class sound_RainObjectInner5Tile_3
-				{
-					memPoint = "sound_RainObjectInner5Tile_3";
-					soundSets[] = {"RainObjectInner5Tile_Medium_SoundSet","WindObjectInner5Gust_SoundSet"};
-				};
-				class sound_RainObjectInner5Tile_4
-				{
-					memPoint = "sound_RainObjectInner5Tile_4";
-					soundSets[] = {"RainObjectInner5Tile_Medium_SoundSet","WindObjectInner5Gust_SoundSet"};
-				};
-				class sound_RainObjectInner5Tile_5
-				{
-					memPoint = "sound_RainObjectInner5Tile_5";
-					soundSets[] = {"RainObjectInner5Tile_Medium_SoundSet","WindObjectInner5Gust_SoundSet"};
-				};
-				class sound_RainObjectInner5Tile_6
-				{
-					memPoint = "sound_RainObjectInner5Tile_6";
-					soundSets[] = {"RainObjectInner5Tile_Medium_SoundSet","WindObjectInner5Gust_SoundSet"};
-				};
-				class sound_RainObjectInner5Tile_7
-				{
-					memPoint = "sound_RainObjectInner5Tile_7";
-					soundSets[] = {"RainObjectInner5Tile_Medium_SoundSet","WindObjectInner5Gust_SoundSet"};
-				};
-				class sound_RainObjectInner5Tile_8
-				{
-					memPoint = "sound_RainObjectInner5Tile_8";
-					soundSets[] = {"RainObjectInner5Tile_Medium_SoundSet","WindObjectInner5Gust_SoundSet"};
-				};
-				class sound_RainObjectInner7Tile_1
-				{
-					memPoint = "sound_RainObjectInner7Tile_1";
-					soundSets[] = {"RainObjectInner7Tile_Medium_SoundSet","WindObjectInner7Gust_SoundSet"};
-				};
-				class sound_RainObjectInner7Tile_2
-				{
-					memPoint = "sound_RainObjectInner7Tile_2";
-					soundSets[] = {"RainObjectInner7Tile_Medium_SoundSet","WindObjectInner7Gust_SoundSet"};
-				};
-				class sound_RainObjectInner7Tile_3
-				{
-					memPoint = "sound_RainObjectInner7Tile_3";
-					soundSets[] = {"RainObjectInner7Tile_Medium_SoundSet","WindObjectInner7Gust_SoundSet"};
-				};
-				class sound_RainObjectInner7Tile_4
-				{
-					memPoint = "sound_RainObjectInner7Tile_4";
-					soundSets[] = {"RainObjectInner7Tile_Medium_SoundSet","WindObjectInner7Gust_SoundSet"};
-				};
-				class sound_RainObjectInner7Tile_5
-				{
-					memPoint = "sound_RainObjectInner7Tile_5";
-					soundSets[] = {"RainObjectInner7Tile_Medium_SoundSet","WindObjectInner7Gust_SoundSet"};
-				};
-				class sound_RainObjectInner7Tile_6
-				{
-					memPoint = "sound_RainObjectInner7Tile_6";
-					soundSets[] = {"RainObjectInner7Tile_Medium_SoundSet","WindObjectInner7Gust_SoundSet"};
-				};
-				class sound_RainObjectInner0Ipa_1
-				{
-					memPoint = "sound_RainObjectInner0Ipa_1";
-					soundSets[] = {"RainObjectInner0Ipa_Medium_SoundSet","WindObjectInner0Gust_SoundSet"};
-				};
-				class sound_RainObjectInner0Ipa_2
-				{
-					memPoint = "sound_RainObjectInner0Ipa_2";
-					soundSets[] = {"RainObjectInner0Ipa_Medium_SoundSet","WindObjectInner0Gust_SoundSet"};
-				};
-				class sound_RainObjectInner0Ipa_3
-				{
-					memPoint = "sound_RainObjectInner0Ipa_3";
-					soundSets[] = {"RainObjectInner0Ipa_Medium_SoundSet","WindObjectInner0Gust_SoundSet"};
-				};
-				class sound_RainObjectInner0Ipa_4
-				{
-					memPoint = "sound_RainObjectInner0Ipa_4";
-					soundSets[] = {"RainObjectInner0Ipa_Medium_SoundSet","WindObjectInner0Gust_SoundSet"};
-				};
-				class sound_RainObjectInner0Ipa_5
-				{
-					memPoint = "sound_RainObjectInner0Ipa_5";
-					soundSets[] = {"RainObjectInner0Ipa_Medium_SoundSet","WindObjectInner0Gust_SoundSet"};
-				};
-				class sound_RainObjectInner0Ipa_6
-				{
-					memPoint = "sound_RainObjectInner0Ipa_6";
-					soundSets[] = {"RainObjectInner0Ipa_Medium_SoundSet","WindObjectInner0Gust_SoundSet"};
-				};
-				class sound_RainObjectInner1Ipa_1
-				{
-					memPoint = "sound_RainObjectInner1Ipa_1";
-					soundSets[] = {"RainObjectInner1Ipa_Medium_SoundSet","WindObjectInner1Gust_SoundSet"};
-				};
-				class sound_RainObjectInner1Ipa_2
-				{
-					memPoint = "sound_RainObjectInner1Ipa_2";
-					soundSets[] = {"RainObjectInner1Ipa_Medium_SoundSet","WindObjectInner1Gust_SoundSet"};
-				};
-				class sound_RainObjectInner1Ipa_3
-				{
-					memPoint = "sound_RainObjectInner1Ipa_3";
-					soundSets[] = {"RainObjectInner1Ipa_Medium_SoundSet","WindObjectInner1Gust_SoundSet"};
-				};
-				class sound_RainObjectInner1Ipa_4
-				{
-					memPoint = "sound_RainObjectInner1Ipa_4";
-					soundSets[] = {"RainObjectInner1Ipa_Medium_SoundSet","WindObjectInner1Gust_SoundSet"};
-				};
-				class sound_RainObjectInner1Ipa_5
-				{
-					memPoint = "sound_RainObjectInner1Ipa_5";
-					soundSets[] = {"RainObjectInner1Ipa_Medium_SoundSet","WindObjectInner1Gust_SoundSet"};
-				};
-				class sound_RainObjectInner1Ipa_6
-				{
-					memPoint = "sound_RainObjectInner1Ipa_6";
-					soundSets[] = {"RainObjectInner1Ipa_Medium_SoundSet","WindObjectInner1Gust_SoundSet"};
-				};
-				class sound_RainObjectInner2Ipa_1
-				{
-					memPoint = "sound_RainObjectInner2Ipa_1";
-					soundSets[] = {"RainObjectInner2Ipa_Medium_SoundSet","WindObjectInner2Gust_SoundSet"};
-				};
-				class sound_RainObjectInner2Ipa_2
-				{
-					memPoint = "sound_RainObjectInner2Ipa_2";
-					soundSets[] = {"RainObjectInner2Ipa_Medium_SoundSet","WindObjectInner2Gust_SoundSet"};
-				};
-				class sound_RainObjectInner2Ipa_3
-				{
-					memPoint = "sound_RainObjectInner2Ipa_3";
-					soundSets[] = {"RainObjectInner2Ipa_Medium_SoundSet","WindObjectInner2Gust_SoundSet"};
-				};
-				class sound_RainObjectInner2Ipa_4
-				{
-					memPoint = "sound_RainObjectInner2Ipa_4";
-					soundSets[] = {"RainObjectInner2Ipa_Medium_SoundSet","WindObjectInner2Gust_SoundSet"};
-				};
-				class sound_RainObjectInner2Ipa_5
-				{
-					memPoint = "sound_RainObjectInner2Ipa_5";
-					soundSets[] = {"RainObjectInner2Ipa_Medium_SoundSet","WindObjectInner2Gust_SoundSet"};
-				};
-				class sound_RainObjectInner2Ipa_6
-				{
-					memPoint = "sound_RainObjectInner2Ipa_6";
-					soundSets[] = {"RainObjectInner2Ipa_Medium_SoundSet","WindObjectInner2Gust_SoundSet"};
-				};
-				class sound_RainObjectInner25Ipa_1
-				{
-					memPoint = "sound_RainObjectInner25Ipa_1";
-					soundSets[] = {"RainObjectInner25Ipa_Medium_SoundSet","WindObjectInner25Gust_SoundSet"};
-				};
-				class sound_RainObjectInner25Ipa_2
-				{
-					memPoint = "sound_RainObjectInner25Ipa_2";
-					soundSets[] = {"RainObjectInner25Ipa_Medium_SoundSet","WindObjectInner25Gust_SoundSet"};
-				};
-				class sound_RainObjectInner25Ipa_3
-				{
-					memPoint = "sound_RainObjectInner25Ipa_3";
-					soundSets[] = {"RainObjectInner25Ipa_Medium_SoundSet","WindObjectInner25Gust_SoundSet"};
-				};
-				class sound_RainObjectInner25Ipa_4
-				{
-					memPoint = "sound_RainObjectInner25Ipa_4";
-					soundSets[] = {"RainObjectInner25Ipa_Medium_SoundSet","WindObjectInner25Gust_SoundSet"};
-				};
-				class sound_RainObjectInner25Ipa_5
-				{
-					memPoint = "sound_RainObjectInner25Ipa_5";
-					soundSets[] = {"RainObjectInner25Ipa_Medium_SoundSet","WindObjectInner25Gust_SoundSet"};
-				};
-				class sound_RainObjectInner25Ipa_6
-				{
-					memPoint = "sound_RainObjectInner25Ipa_6";
-					soundSets[] = {"RainObjectInner25Ipa_Medium_SoundSet","WindObjectInner25Gust_SoundSet"};
-				};
-				class sound_RainObjectInner3Ipa_1
-				{
-					memPoint = "sound_RainObjectInner3Ipa_1";
-					soundSets[] = {"RainObjectInner3Ipa_Medium_SoundSet","WindObjectInner3Gust_SoundSet"};
-				};
-				class sound_RainObjectInner3Ipa_2
-				{
-					memPoint = "sound_RainObjectInner3Ipa_2";
-					soundSets[] = {"RainObjectInner3Ipa_Medium_SoundSet","WindObjectInner3Gust_SoundSet"};
-				};
-				class sound_RainObjectInner3Ipa_3
-				{
-					memPoint = "sound_RainObjectInner3Ipa_3";
-					soundSets[] = {"RainObjectInner3Ipa_Medium_SoundSet","WindObjectInner3Gust_SoundSet"};
-				};
-				class sound_RainObjectInner3Ipa_4
-				{
-					memPoint = "sound_RainObjectInner3Ipa_4";
-					soundSets[] = {"RainObjectInner3Ipa_Medium_SoundSet","WindObjectInner3Gust_SoundSet"};
-				};
-				class sound_RainObjectInner3Ipa_5
-				{
-					memPoint = "sound_RainObjectInner3Ipa_5";
-					soundSets[] = {"RainObjectInner3Ipa_Medium_SoundSet","WindObjectInner3Gust_SoundSet"};
-				};
-				class sound_RainObjectInner3Ipa_6
-				{
-					memPoint = "sound_RainObjectInner3Ipa_6";
-					soundSets[] = {"RainObjectInner3Ipa_Medium_SoundSet","WindObjectInner3Gust_SoundSet"};
-				};
-				class sound_RainObjectInner4Ipa_1
-				{
-					memPoint = "sound_RainObjectInner4Ipa_1";
-					soundSets[] = {"RainObjectInner4Ipa_Medium_SoundSet","WindObjectInner4Gust_SoundSet"};
-				};
-				class sound_RainObjectInner4Ipa_2
-				{
-					memPoint = "sound_RainObjectInner4Ipa_2";
-					soundSets[] = {"RainObjectInner4Ipa_Medium_SoundSet","WindObjectInner4Gust_SoundSet"};
-				};
-				class sound_RainObjectInner4Ipa_3
-				{
-					memPoint = "sound_RainObjectInner4Ipa_3";
-					soundSets[] = {"RainObjectInner4Ipa_Medium_SoundSet","WindObjectInner4Gust_SoundSet"};
-				};
-				class sound_RainObjectInner4Ipa_4
-				{
-					memPoint = "sound_RainObjectInner4Ipa_4";
-					soundSets[] = {"RainObjectInner4Ipa_Medium_SoundSet","WindObjectInner4Gust_SoundSet"};
-				};
-				class sound_RainObjectInner4Ipa_5
-				{
-					memPoint = "sound_RainObjectInner4Ipa_5";
-					soundSets[] = {"RainObjectInner4Ipa_Medium_SoundSet","WindObjectInner4Gust_SoundSet"};
-				};
-				class sound_RainObjectInner4Ipa_6
-				{
-					memPoint = "sound_RainObjectInner4Ipa_6";
-					soundSets[] = {"RainObjectInner4Ipa_Medium_SoundSet","WindObjectInner4Gust_SoundSet"};
-				};
-				class sound_RainObjectInner4Ipa_7
-				{
-					memPoint = "sound_RainObjectInner4Ipa_7";
-					soundSets[] = {"RainObjectInner4Ipa_Medium_SoundSet","WindObjectInner4Gust_SoundSet"};
-				};
-				class sound_RainObjectInner4Ipa_8
-				{
-					memPoint = "sound_RainObjectInner4Ipa_8";
-					soundSets[] = {"RainObjectInner4Ipa_Medium_SoundSet","WindObjectInner4Gust_SoundSet"};
-				};
-				class sound_RainObjectInner5Ipa_1
-				{
-					memPoint = "sound_RainObjectInner5Ipa_1";
-					soundSets[] = {"RainObjectInner5Ipa_Medium_SoundSet","WindObjectInner5Gust_SoundSet"};
-				};
-				class sound_RainObjectInner5Ipa_2
-				{
-					memPoint = "sound_RainObjectInner5Ipa_2";
-					soundSets[] = {"RainObjectInner5Ipa_Medium_SoundSet","WindObjectInner5Gust_SoundSet"};
-				};
-				class sound_RainObjectInner5Ipa_3
-				{
-					memPoint = "sound_RainObjectInner5Ipa_3";
-					soundSets[] = {"RainObjectInner5Ipa_Medium_SoundSet","WindObjectInner5Gust_SoundSet"};
-				};
-				class sound_RainObjectInner5Ipa_4
-				{
-					memPoint = "sound_RainObjectInner5Ipa_4";
-					soundSets[] = {"RainObjectInner5Ipa_Medium_SoundSet","WindObjectInner5Gust_SoundSet"};
-				};
-				class sound_RainObjectInner5Ipa_5
-				{
-					memPoint = "sound_RainObjectInner5Ipa_5";
-					soundSets[] = {"RainObjectInner5Ipa_Medium_SoundSet","WindObjectInner5Gust_SoundSet"};
-				};
-				class sound_RainObjectInner5Ipa_6
-				{
-					memPoint = "sound_RainObjectInner5Ipa_6";
-					soundSets[] = {"RainObjectInner5Ipa_Medium_SoundSet","WindObjectInner5Gust_SoundSet"};
-				};
-				class sound_RainObjectInner7Ipa_1
-				{
-					memPoint = "sound_RainObjectInner7Ipa_1";
-					soundSets[] = {"RainObjectInner7Ipa_Medium_SoundSet","WindObjectInner7Gust_SoundSet"};
-				};
-				class sound_RainObjectInner7Ipa_2
-				{
-					memPoint = "sound_RainObjectInner7Ipa_2";
-					soundSets[] = {"RainObjectInner7Ipa_Medium_SoundSet","WindObjectInner7Gust_SoundSet"};
-				};
-				class sound_RainObjectInner7Ipa_3
-				{
-					memPoint = "sound_RainObjectInner7Ipa_3";
-					soundSets[] = {"RainObjectInner7Ipa_Medium_SoundSet","WindObjectInner7Gust_SoundSet"};
-				};
-				class sound_RainObjectInner7Ipa_4
-				{
-					memPoint = "sound_RainObjectInner7Ipa_4";
-					soundSets[] = {"RainObjectInner7Ipa_Medium_SoundSet","WindObjectInner7Gust_SoundSet"};
-				};
-				class sound_RainObjectInner7Ipa_5
-				{
-					memPoint = "sound_RainObjectInner7Ipa_5";
-					soundSets[] = {"RainObjectInner7Ipa_Medium_SoundSet","WindObjectInner7Gust_SoundSet"};
-				};
-				class sound_RainObjectInner7Ipa_6
-				{
-					memPoint = "sound_RainObjectInner7Ipa_6";
-					soundSets[] = {"RainObjectInner7Ipa_Medium_SoundSet","WindObjectInner7Gust_SoundSet"};
-				};
-				class sound_RainObjectInner0SpotWood1_1
-				{
-					memPoint = "sound_RainObjectInner0SpotWood1_1";
-					soundSets[] = {"RainObjectInner0SpotWood1_Medium_SoundSet","WindObjectInner0SpotGust_SoundSet"};
-				};
-				class sound_RainObjectInner0SpotWood1_2
-				{
-					memPoint = "sound_RainObjectInner0SpotWood1_2";
-					soundSets[] = {"RainObjectInner0SpotWood1_Medium_SoundSet","WindObjectInner0SpotGust_SoundSet"};
-				};
-				class sound_RainObjectInner1Wood1_1
-				{
-					memPoint = "sound_RainObjectInner1Wood1_1";
-					soundSets[] = {"RainObjectInner1Wood1_Medium_SoundSet","WindObjectInner1Gust_SoundSet"};
-				};
-				class sound_RainObjectInner2Wood1_1
-				{
-					memPoint = "sound_RainObjectInner2Wood1_1";
-					soundSets[] = {"RainObjectInner2Wood1_Medium_SoundSet","WindObjectInner2Gust_SoundSet"};
-				};
-				class sound_RainObjectInner2Wood1_2
-				{
-					memPoint = "sound_RainObjectInner2Wood1_2";
-					soundSets[] = {"RainObjectInner2Wood1_Medium_SoundSet","WindObjectInner2Gust_SoundSet"};
-				};
-				class sound_RainObjectInner2Wood1_3
-				{
-					memPoint = "sound_RainObjectInner2Wood1_3";
-					soundSets[] = {"RainObjectInner2Wood1_Medium_SoundSet","WindObjectInner2Gust_SoundSet"};
-				};
-				class sound_RainObjectInner2Wood1_4
-				{
-					memPoint = "sound_RainObjectInner2Wood1_4";
-					soundSets[] = {"RainObjectInner2Wood1_Medium_SoundSet","WindObjectInner2Gust_SoundSet"};
-				};
-				class sound_RainObjectInner3Wood1_1
-				{
-					memPoint = "sound_RainObjectInner3Wood1_1";
-					soundSets[] = {"RainObjectInner3Wood1_Medium_SoundSet","WindObjectInner3Gust_SoundSet"};
-				};
-				class sound_RainObjectInner3Wood1_2
-				{
-					memPoint = "sound_RainObjectInner3Wood1_2";
-					soundSets[] = {"RainObjectInner3Wood1_Medium_SoundSet","WindObjectInner3Gust_SoundSet"};
-				};
-				class sound_RainObjectInner3Wood1_3
-				{
-					memPoint = "sound_RainObjectInner3Wood1_3";
-					soundSets[] = {"RainObjectInner3Wood1_Medium_SoundSet","WindObjectInner3Gust_SoundSet"};
-				};
-				class sound_RainObjectInner3Wood1_4
-				{
-					memPoint = "sound_RainObjectInner3Wood1_4";
-					soundSets[] = {"RainObjectInner3Wood1_Medium_SoundSet","WindObjectInner3Gust_SoundSet"};
-				};
-				class sound_RainObjectInner2Glass_1
-				{
-					memPoint = "sound_RainObjectInner2Glass_1";
-					soundSets[] = {"RainObjectInner2Glass_Medium_SoundSet","WindObjectInner2Gust_SoundSet"};
-				};
-				class sound_RainObjectInner2Glass_2
-				{
-					memPoint = "sound_RainObjectInner2Glass_2";
-					soundSets[] = {"RainObjectInner2Glass_Medium_SoundSet","WindObjectInner2Gust_SoundSet"};
-				};
-				class sound_RainObjectInner1Plastic_1
-				{
-					memPoint = "sound_RainObjectInner1Plastic_1";
-					soundSets[] = {"RainObjectInner1Plastic_Medium_SoundSet","WindObjectInner1Gust_SoundSet"};
-				};
-				class sound_RainObjectInner1SpotIgelit_1
-				{
-					memPoint = "sound_RainObjectInner1SpotIgelit_1";
-					soundSets[] = {"RainObjectInner1SpotIgelit_Medium_SoundSet","WindObjectInner1SpotGust_SoundSet"};
-				};
-				class sound_RainObjectInner1SpotIgelit_2
-				{
-					memPoint = "sound_RainObjectInner1SpotIgelit_2";
-					soundSets[] = {"RainObjectInner1SpotIgelit_Medium_SoundSet","WindObjectInner1SpotGust_SoundSet"};
-				};
-				class sound_RainObjectInner2Igelit_1
-				{
-					memPoint = "sound_RainObjectInner2Igelit_1";
-					soundSets[] = {"RainObjectInner2Igelit_Medium_SoundSet","WindObjectInner2Gust_SoundSet"};
-				};
-				class sound_RainObjectInner2Igelit_2
-				{
-					memPoint = "sound_RainObjectInner2Igelit_2";
-					soundSets[] = {"RainObjectInner2Igelit_Medium_SoundSet","WindObjectInner2Gust_SoundSet"};
-				};
-				class sound_RainObjectInner2Camo_1
-				{
-					memPoint = "sound_RainObjectInner2Camo_1";
-					soundSets[] = {"RainObjectInner2Camo_Medium_SoundSet","WindObjectInner2Gust_SoundSet"};
-				};
-				class sound_RainObjectInner2Camo_2
-				{
-					memPoint = "sound_RainObjectInner2Camo_2";
-					soundSets[] = {"RainObjectInner2Camo_Medium_SoundSet","WindObjectInner2Gust_SoundSet"};
-				};
-				class sound_RainObjectInner2Camo_3
-				{
-					memPoint = "sound_RainObjectInner2Camo_3";
-					soundSets[] = {"RainObjectInner2Camo_Medium_SoundSet","WindObjectInner2Gust_SoundSet"};
-				};
-				class sound_RainObjectInner2Camo_4
-				{
-					memPoint = "sound_RainObjectInner2Camo_4";
-					soundSets[] = {"RainObjectInner2Camo_Medium_SoundSet","WindObjectInner2Gust_SoundSet"};
-				};
-				class sound_RainObjectInner2Camo_5
-				{
-					memPoint = "sound_RainObjectInner2Camo_5";
-					soundSets[] = {"RainObjectInner2Camo_Medium_SoundSet","WindObjectInner2Gust_SoundSet"};
-				};
-				class sound_RainObjectInner2Camo_6
-				{
-					memPoint = "sound_RainObjectInner2Camo_6";
-					soundSets[] = {"RainObjectInner2Camo_Medium_SoundSet","WindObjectInner2Gust_SoundSet"};
-				};
-				class sound_RainObjectInner0Gutter_1
-				{
-					memPoint = "sound_RainObjectInner0Gutter_1";
-					soundSets[] = {"RainObjectInner0Gutter_SoundSet","WindObjectInner1Gust_SoundSet"};
-				};
-				class sound_RainObjectInner0Gutter_2
-				{
-					memPoint = "sound_RainObjectInner0Gutter_2";
-					soundSets[] = {"RainObjectInner0Gutter_SoundSet","WindObjectInner1Gust_SoundSet"};
-				};
-				class sound_RainObjectInner0Gutter_3
-				{
-					memPoint = "sound_RainObjectInner0Gutter_3";
-					soundSets[] = {"RainObjectInner0Gutter_SoundSet","WindObjectInner1Gust_SoundSet"};
-				};
-				class sound_RainObjectInner0Gutter_4
-				{
-					memPoint = "sound_RainObjectInner0Gutter_4";
-					soundSets[] = {"RainObjectInner0Gutter_SoundSet","WindObjectInner1Gust_SoundSet"};
-				};
-				class sound_RainObjectInner0Gutter_5
-				{
-					memPoint = "sound_RainObjectInner0Gutter_5";
-					soundSets[] = {"RainObjectInner0Gutter_SoundSet","WindObjectInner1Gust_SoundSet"};
-				};
-				class sound_RainObjectInner0Gutter_6
-				{
-					memPoint = "sound_RainObjectInner0Gutter_6";
-					soundSets[] = {"RainObjectInner0Gutter_SoundSet","WindObjectInner1Gust_SoundSet"};
-				};
-				class sound_WindObjectInner0SpotRopeSqueak_1
-				{
-					memPoint = "sound_WindObjectInner0SpotRopeSqueak_1";
-					soundSets[] = {"WindObjectInner0SpotRopeSqueak_SoundSet","WindObjectInner1Gust_SoundSet"};
-				};
-				class sound_WindObjectInner0SpotMetalSqueak_1
-				{
-					memPoint = "sound_WindObjectInner0SpotMetalSqueak_1";
-					soundSets[] = {"WindObjectInner0SpotMetalSqueak_SoundSet"};
-				};
-				class sound_WindObjectInner0SpotMetalSqueak_2
-				{
-					memPoint = "sound_WindObjectInner0SpotMetalSqueak_2";
-					soundSets[] = {"WindObjectInner0SpotMetalSqueak_SoundSet"};
-				};
-				class sound_WindObjectInner0SpotMetalSqueak_3
-				{
-					memPoint = "sound_WindObjectInner0SpotMetalSqueak_3";
-					soundSets[] = {"WindObjectInner0SpotMetalSqueak_SoundSet","WindObjectInner1Gust_SoundSet"};
-				};
-				class sound_WindObjectInner0SpotLadderSqueak_1
-				{
-					memPoint = "sound_WindObjectInner0SpotLadderSqueak_1";
-					soundSets[] = {"WindObjectInner0SpotLadderSqueak_SoundSet","WindObjectInner1Gust_SoundSet"};
-				};
-				class sound_WindObjectInner0SpotLadderSqueak_2
-				{
-					memPoint = "sound_WindObjectInner0SpotLadderSqueak_2";
-					soundSets[] = {"WindObjectInner0SpotLadderSqueak_SoundSet","WindObjectInner1Gust_SoundSet"};
-				};
-				class sound_WindObjectInner0SpotLadderSqueak_3
-				{
-					memPoint = "sound_WindObjectInner0SpotLadderSqueak_3";
-					soundSets[] = {"WindObjectInner0SpotLadderSqueak_SoundSet","WindObjectInner1Gust_SoundSet"};
-				};
-				class sound_WindObjectInner0SpotLadderSqueak_4
-				{
-					memPoint = "sound_WindObjectInner0SpotLadderSqueak_4";
-					soundSets[] = {"WindObjectInner0SpotLadderSqueak_SoundSet","WindObjectInner1Gust_SoundSet"};
-				};
-				class sound_WindObjectInner0SpotWoodSqueak_1
-				{
-					memPoint = "sound_WindObjectInner0SpotWoodSqueak_1";
-					soundSets[] = {"WindObjectInner0SpotWoodSqueak_SoundSet","WindObjectInner1Gust_SoundSet"};
-				};
-				class sound_WindObjectInner0SpotWoodSqueak_2
-				{
-					memPoint = "sound_WindObjectInner0SpotWoodSqueak_2";
-					soundSets[] = {"WindObjectInner0SpotWoodSqueak_SoundSet","WindObjectInner1Gust_SoundSet"};
-				};
-				class sound_WindObjectInner0SpotFallingDirt_1
-				{
-					memPoint = "sound_WindObjectInner0SpotFallingDirt_1";
-					soundSets[] = {"WindObjectInner0SpotFallingDirt_SoundSet","WindObjectInner1Gust_SoundSet"};
-				};
-				class sound_WindObjectInner0SpotFallingDirt_2
-				{
-					memPoint = "sound_WindObjectInner0SpotFallingDirt_2";
-					soundSets[] = {"WindObjectInner0SpotFallingDirt_SoundSet","WindObjectInner1Gust_SoundSet"};
-				};
-				class sound_WindObjectInner0SpotFallingDirt_3
-				{
-					memPoint = "sound_WindObjectInner0SpotFallingDirt_3";
-					soundSets[] = {"WindObjectInner0SpotFallingDirt_SoundSet","WindObjectInner1Gust_SoundSet"};
-				};
-				class sound_WindObjectInner0SpotLadder_1
-				{
-					memPoint = "sound_WindObjectInner0SpotLadder_1";
-					soundSets[] = {"WindObjectInner1SpotMetalSqueak_SoundSet","WindObjectInner1Gust_SoundSet"};
-				};
-				class sound_WindObjectInner0SpotLadder_2
-				{
-					memPoint = "sound_WindObjectInner0SpotLadder_2";
-					soundSets[] = {"WindObjectInner1SpotMetalSqueak_SoundSet","WindObjectInner1Gust_SoundSet"};
-				};
-				class sound_WindObjectInner0SpotChains
-				{
-					memPoint = "sound_WindObjectInner0SpotChains";
-					soundSets[] = {"WindObjectInner0SpotChains_SoundSet"};
-				};
-				class sound_WindObjectInner0SpotChain_1
-				{
-					memPoint = "sound_WindObjectInner0SpotChain_1";
-					soundSets[] = {"WindObjectInner0SpotChainSquek_SoundSet","WindObjectInner0SpotChain_SoundSet"};
-				};
-				class sound_WindObjectInner0SpotChain_2
-				{
-					memPoint = "sound_WindObjectInner0SpotChain_2";
-					soundSets[] = {"WindObjectInner0SpotChainSquek_SoundSet","WindObjectInner0SpotChain_SoundSet"};
-				};
-				class sound_WindObjectInner0SpotChain_3
-				{
-					memPoint = "sound_WindObjectInner0SpotChain_3";
-					soundSets[] = {"WindObjectInner0SpotChainSquek_SoundSet","WindObjectInner0SpotChain_SoundSet"};
-				};
-				class sound_WindObjectInner0SpotChain_4
-				{
-					memPoint = "sound_WindObjectInner0SpotChain_4";
-					soundSets[] = {"WindObjectInner0SpotChainSquek_SoundSet","WindObjectInner0SpotChain_SoundSet"};
-				};
-				class sound_WindObjectInner0SpotChain_5
-				{
-					memPoint = "sound_WindObjectInner0SpotChain_5";
-					soundSets[] = {"WindObjectInner0SpotChainSquek_SoundSet","WindObjectInner0SpotChain_SoundSet"};
-				};
-				class sound_WindObjectAutodrome_1
-				{
-					memPoint = "sound_WindObjectAutodrome_1";
-					soundSets[] = {"WindObjectAutodrome_SoundSet","WindObjectAutodromeFence_SoundSet"};
-				};
-				class sound_WindObjectAutodrome_2
-				{
-					memPoint = "sound_WindObjectAutodrome_2";
-					soundSets[] = {"WindObjectAutodrome_SoundSet","WindObjectAutodromeFence_SoundSet"};
-				};
-				class sound_WindObjectAutodrome_3
-				{
-					memPoint = "sound_WindObjectAutodrome_3";
-					soundSets[] = {"WindObjectAutodrome_SoundSet","WindObjectAutodromeFence_SoundSet"};
-				};
-				class sound_WindObjectAutodrome_4
-				{
-					memPoint = "sound_WindObjectAutodrome_4";
-					soundSets[] = {"WindObjectAutodrome_SoundSet","WindObjectAutodromeFence_SoundSet"};
-				};
-				class sound_WindObjectAutodrome_5
-				{
-					memPoint = "sound_WindObjectAutodrome_5";
-					soundSets[] = {"WindObjectAutodrome_SoundSet","WindObjectAutodromeFence_SoundSet"};
-				};
-				class sound_WindObjectAutodrome_6
-				{
-					memPoint = "sound_WindObjectAutodrome_6";
-					soundSets[] = {"WindObjectAutodrome_SoundSet","WindObjectAutodromeFence_SoundSet"};
-				};
-				class sound_WindObjectShootingGallery_1
-				{
-					memPoint = "sound_WindObjectShootingGallery_1";
-					soundSets[] = {"WindObjectShootingGallery_SoundSet","WindObjectInner0SpotGustWall_SoundSet"};
-				};
-				class sound_WindObjectShootingGallery_2
-				{
-					memPoint = "sound_WindObjectShootingGallery_2";
-					soundSets[] = {"WindObjectShootingGallery_SoundSet"};
-				};
-				class sound_WindObjectShootingGallery_3
-				{
-					memPoint = "sound_WindObjectShootingGallery_3";
-					soundSets[] = {"WindObjectShootingGallery_SoundSet"};
-				};
-				class sound_WindObjectInner0SpotMetalStress_1
-				{
-					memPoint = "sound_WindObjectInner0SpotMetalStress_1";
-					soundSets[] = {"WindObjectInner0SpotMetalStress_SoundSet"};
-				};
-				class sound_WindObjectInner0SpotMetalStress_2
-				{
-					memPoint = "sound_WindObjectInner0SpotMetalStress_2";
-					soundSets[] = {"WindObjectInner0SpotMetalStress2_SoundSet"};
-				};
-				class sound_WindObjectInner0SpotMetalStress_3
-				{
-					memPoint = "sound_WindObjectInner0SpotMetalStress_3";
-					soundSets[] = {"WindObjectInner0SpotMetalStress3_SoundSet"};
-				};
-				class sound_WindObjectInner0SpotMetalStress_4
-				{
-					memPoint = "sound_WindObjectInner0SpotMetalStress_4";
-					soundSets[] = {"WindObjectInner0SpotMetalStress4_SoundSet"};
-				};
-				class sound_WindObjectInner0SpotMetalStress_5
-				{
-					memPoint = "sound_WindObjectInner0SpotMetalStress_5";
-					soundSets[] = {"WindObjectInner0SpotMetalStress5_SoundSet"};
-				};
-				class sound_WindObjectInner0SpotMetalStress_6
-				{
-					memPoint = "sound_WindObjectInner0SpotMetalStress_6";
-					soundSets[] = {"WindObjectInner0SpotMetalStress4_SoundSet"};
-				};
-				class sound_WindObjectInner0SpotMetalFence_1
-				{
-					memPoint = "sound_WindObjectInner0SpotMetalFence_1";
-					soundSets[] = {"WindObjectInner0SpotMetalFence_SoundSet"};
-				};
-				class sound_WindObjectInner0SpotMetalGate_1
-				{
-					memPoint = "sound_WindObjectInner0SpotMetalGate_1";
-					soundSets[] = {"WindObjectInner0SpotMetalGate_SoundSet"};
-				};
-				class sound_WindObjectInner0SpotWoodGate_1
-				{
-					memPoint = "sound_WindObjectInner0SpotWoodGate_1";
-					soundSets[] = {"WindObjectInner0SpotWoodGate_SoundSet"};
-				};
-				class sound_WindObjectInner7MetalCreak_1
-				{
-					memPoint = "sound_WindObjectInner7MetalCreak_1";
-					soundSets[] = {"WindObjectInner7MetalCreak_SoundSet"};
-				};
-				class sound_WindObjectInner0SpotDirectional_1
-				{
-					memPoint = "sound_WindObjectInner0SpotDirectional_1";
-					soundSets[] = {"WindObjectInner0SpotMetalGate_SoundSet"};
-				};
-				class sound_WindObjectInner0SpotSettlements_1
-				{
-					memPoint = "sound_WindObjectInner0SpotSettlements_1";
-					soundSets[] = {"WindObjectInner0SpotMetalGate_SoundSet"};
-				};
-				class sound_WindObjectInner0SpotTouristSmall_1
-				{
-					memPoint = "sound_WindObjectInner0SpotTouristSmall_1";
-					soundSets[] = {"WindObjectInner0SpotWoodGate_SoundSet","RainObjectInner0SpotWood1_Medium_SoundSet"};
-				};
-				class sound_WindObjectInner0SpotCitySign_1
-				{
-					memPoint = "sound_WindObjectInner0SpotCitySign_1";
-					soundSets[] = {"WindObjectInner0SpotMetalGate_SoundSet","RainObjectInner0SpotMetal2_Medium_SoundSet"};
-				};
-				class sound_WindObjectInner0SpotCitySign_2
-				{
-					memPoint = "sound_WindObjectInner0SpotCitySign_2";
-					soundSets[] = {"WindObjectInner0SpotMetalGate_SoundSet","RainObjectInner0SpotMetal2_Medium_SoundSet"};
-				};
-				class sound_WindObjectInner0SpotTrailMap_1
-				{
-					memPoint = "sound_WindObjectInner0SpotTrailMap_1";
-					soundSets[] = {"WindObjectInner0SpotWoodGate_SoundSet","RainObjectInner0SpotWood1_Medium_SoundSet"};
-				};
-				class sound_WindObjectInner0SpotTrailMap_2
-				{
-					memPoint = "sound_WindObjectInner0SpotTrailMap_2";
-					soundSets[] = {"WindObjectInner0SpotWoodGate_SoundSet","RainObjectInner0SpotWood1_Medium_SoundSet"};
-				};
-				class sound_WindObjectInner0SpotBillboard_1
-				{
-					memPoint = "sound_WindObjectInner0SpotBillboard_1";
-					soundSets[] = {"WindObjectInner0SpotMetalGate_SoundSet"};
-				};
-				class sound_WindObjectInner0SpotRock_1
-				{
-					memPoint = "sound_WindObjectInner0SpotRock_1";
-					soundSets[] = {"WindObjectInner0SpotFallingDirt_SoundSet","WindObjectInner1Gust_SoundSet"};
-				};
-				class sound_WindObjectInner0SpotRock_2
-				{
-					memPoint = "sound_WindObjectInner0SpotRock_2";
-					soundSets[] = {"WindObjectInner0SpotFallingDirt_SoundSet","WindObjectInner1Gust_SoundSet"};
-				};
-				class sound_WindObjectInner0SpotRock_3
-				{
-					memPoint = "sound_WindObjectInner0SpotRock_3";
-					soundSets[] = {"WindObjectInner0SpotFallingDirt_SoundSet","WindObjectInner1Gust_SoundSet"};
-				};
 				class sound_GrassSmall
 				{
 					memPoint = "sound_GrassSmall";
@@ -3166,6 +572,99 @@ class CfgSoundShaders
 		samples[] = {{"DZ\sounds_bliss\environment\objects\Rain_Dirt_Light_01",1},{"DZ\sounds_bliss\environment\objects\Rain_Dirt_Light_02",1},{"DZ\sounds_bliss\environment\objects\Rain_Dirt_Light_03",1}};
 		volume = "(rain factor[0.05,1.3]) * raindrops";
 		range = 15;
+	};
+	class UndergroundInsectObject_SoundShader
+	{
+		samples[] = {{"DZ\sounds_bliss\environment\insect\insect_underground_1",1},{"DZ\sounds_bliss\environment\insect\insect_underground_2",1},{"DZ\sounds_bliss\environment\insect\insect_underground_3",1},{"DZ\sounds_bliss\environment\insect\insect_underground_4",1},{"DZ\sounds_bliss\environment\insect\insect_underground_5",1}};
+		volume = 0.5;
+		range = 25;
+	};
+	class UndergroundRodentObject_SoundShader
+	{
+		samples[] = {{"DZ\sounds_bliss\environment\insect\rodent_underground_1",1},{"DZ\sounds_bliss\environment\insect\rodent_underground_2",1},{"DZ\sounds_bliss\environment\insect\rodent_underground_3",1},{"DZ\sounds_bliss\environment\insect\rodent_underground_4",1},{"DZ\sounds_bliss\environment\insect\rodent_underground_5",1}};
+		volume = 0.5;
+		range = 25;
+	};
+	class UndergroundWaterDropsObject_SoundShader
+	{
+		samples[] = {{"DZ\sounds_bliss\environment\water\water_drop_underground_1",1},{"DZ\sounds_bliss\environment\water\water_drop_underground_2",1},{"DZ\sounds_bliss\environment\water\water_drop_underground_3",1},{"DZ\sounds_bliss\environment\water\water_drop_underground_4",1},{"DZ\sounds_bliss\environment\water\water_drop_underground_5",1},{"DZ\sounds_bliss\environment\water\water_drop_underground_6",1},{"DZ\sounds_bliss\environment\water\water_drop_underground_7",1},{"DZ\sounds_bliss\environment\water\water_drop_underground_8",1},{"DZ\sounds_bliss\environment\water\water_drop_underground_9",1},{"DZ\sounds_bliss\environment\water\water_drop_underground_10",1},{"DZ\sounds_bliss\environment\water\water_drop_underground_11",1},{"DZ\sounds_bliss\environment\water\water_drop_underground_12",1},{"DZ\sounds_bliss\environment\water\water_drop_underground_13",1},{"DZ\sounds_bliss\environment\water\water_drop_underground_14",1},{"DZ\sounds_bliss\environment\water\water_drop_underground_15",1},{"DZ\sounds_bliss\environment\water\water_drop_underground_16",1},{"DZ\sounds_bliss\environment\water\water_drop_underground_17",1},{"DZ\sounds_bliss\environment\water\water_drop_underground_18",1},{"DZ\sounds_bliss\environment\water\water_drop_underground_19",1},{"DZ\sounds_bliss\environment\water\water_drop_underground_20",1}};
+		volume = 0.5;
+		range = 25;
+	};
+	class WaterObjectUndergroundPipeCreaking_SoundShader
+	{
+		samples[] = {{"DZ\sounds_bliss\environment\objects\WaterObjectUndergroundPipeCreaking_1",1},{"DZ\sounds_bliss\environment\objects\WaterObjectUndergroundPipeCreaking_2",1},{"DZ\sounds_bliss\environment\objects\WaterObjectUndergroundPipeCreaking_3",1},{"DZ\sounds_bliss\environment\objects\WaterObjectUndergroundPipeCreaking_4",1},{"DZ\sounds_bliss\environment\objects\WaterObjectUndergroundPipeCreaking_5",1},{"DZ\sounds_bliss\environment\objects\WaterObjectUndergroundPipeCreaking_6",1}};
+		volume = 0.5;
+		range = 15;
+	};
+	class WaterObjectUndergroundPipeSprinkling_Start_SoundShader
+	{
+		samples[] = {{"DZ\sounds_bliss\environment\objects\WaterObjectUndergroundPipeSprinkling_intro",1}};
+		volume = 1;
+		range = 15;
+		rangeCurve[] = {{0,1},{5,1},{7,0.5},{10,0.35},{15,0}};
+	};
+	class WaterObjectUndergroundPipeSprinkling_End_SoundShader
+	{
+		samples[] = {{"DZ\sounds_bliss\environment\objects\WaterObjectUndergroundPipeSprinkling_outro",1}};
+		volume = 1;
+		range = 15;
+		rangeCurve[] = {{0,1},{5,1},{7,0.5},{10,0.35},{15,0}};
+	};
+	class WaterObjectUndergroundPipeSprinkling_Loop1_SoundShader
+	{
+		samples[] = {{"DZ\sounds_bliss\environment\objects\WaterObjectUndergroundPipeSprinkling_loop_1",1}};
+		volume = 1;
+		range = 16;
+		rangeCurve[] = {{0,1},{5,1},{8,0.5},{11,0.35},{16,0}};
+	};
+	class WaterObjectUndergroundPipeSprinkling_Loop2_SoundShader
+	{
+		samples[] = {{"DZ\sounds_bliss\environment\objects\WaterObjectUndergroundPipeSprinkling_loop_2",1}};
+		volume = 1;
+		range = 16;
+		rangeCurve[] = {{0,1},{5,1},{8,0.5},{11,0.35},{16,0}};
+	};
+	class WaterObjectUndergroundUnderwaterPipe_Start_SoundShader
+	{
+		samples[] = {{"DZ\sounds_bliss\environment\objects\WaterObjectUndergroundUnderwaterPipe_intro",1}};
+		volume = 1.5;
+		range = 17;
+		rangeCurve[] = {{0,1},{5,1},{8,0.5},{12,0.35},{17,0}};
+	};
+	class WaterObjectUndergroundUnderwaterPipe_End_SoundShader
+	{
+		samples[] = {{"DZ\sounds_bliss\environment\objects\WaterObjectUndergroundUnderwaterPipe_outro",1}};
+		volume = 1.5;
+		range = 17;
+		rangeCurve[] = {{0,1},{5,1},{8,0.5},{12,0.35},{17,0}};
+	};
+	class WaterObjectUndergroundUnderwaterPipe_Loop_SoundShader
+	{
+		samples[] = {{"DZ\sounds_bliss\environment\objects\WaterObjectUndergroundUnderwaterPipe_loop",1}};
+		volume = 1.5;
+		range = 17;
+		rangeCurve[] = {{0,1},{5,1},{8,0.5},{12,0.35},{17,0}};
+	};
+	class WaterObjectUndergroundValve_SoundShader
+	{
+		samples[] = {{"DZ\sounds_bliss\environment\objects\valve_rotation_underground",1}};
+		volume = 1.5;
+		range = 10;
+	};
+	class WaterObjectUndergroundUnderwaterFill_Loop_SoundShader
+	{
+		samples[] = {{"DZ\sounds_bliss\environment\objects\WaterObjectUndergroundUnderwaterFill_loop",1}};
+		volume = 1.5;
+		range = 20;
+		rangeCurve[] = {{0,1},{5,1},{8,0.5},{12,0.35},{17,0}};
+	};
+	class WaterObjectUndergroundUnderwaterEmpty_Loop_SoundShader
+	{
+		samples[] = {{"DZ\sounds_bliss\environment\objects\WaterObjectUndergroundUnderwaterEmpty_loop",1}};
+		volume = 1.5;
+		range = 20;
+		rangeCurve[] = {{0,1},{5,1},{8,0.5},{12,0.35},{17,0}};
 	};
 	class Jay1_SoundShader
 	{
@@ -3473,6 +972,116 @@ class CfgSoundShaders
 	{
 		samples[] = {{"DZ\sounds\environment\ambients\WindHills_-9db",1}};
 		volume = "(windy factor[0.6,1]) * (hills factor[0.5,1]) * 0.4 * (1 - 0.3*night)";
+	};
+	class UndergroundDoor_PanelActivation_SoundShader
+	{
+		samples[] = {{"DZ\sounds_bliss\environment\buildings\doors\UndergroundEntranceDoor\MainDoorPanelActivation",1}};
+		volume = 0.55;
+		range = 35;
+	};
+	class UndergroundDoor_Lock_SoundShader
+	{
+		samples[] = {{"DZ\sounds_bliss\environment\buildings\doors\UndergroundEntranceDoor\MainDoor_locking",1}};
+		volume = 0.55;
+		range = 35;
+	};
+	class UndergroundDoor_DoorSliding_Start_SoundShader
+	{
+		samples[] = {{"DZ\sounds_bliss\environment\buildings\doors\UndergroundEntranceDoor\MainDoorSliding_Intro",1}};
+		volume = 1.0;
+		range = 35;
+	};
+	class UndergroundDoor_DoorSliding_End_SoundShader
+	{
+		samples[] = {{"DZ\sounds_bliss\environment\buildings\doors\UndergroundEntranceDoor\MainDoorSliding_Outro",1}};
+		volume = 1.0;
+		range = 35;
+	};
+	class UndergroundDoor_DoorSliding_Loop_SoundShader
+	{
+		samples[] = {{"DZ\sounds_bliss\environment\buildings\doors\UndergroundEntranceDoor\MainDoorSliding_Loop",1}};
+		volume = 1.0;
+		range = 35;
+	};
+	class UndergroundDoor_ElectricMotor_Start_SoundShader
+	{
+		samples[] = {{"DZ\sounds_bliss\environment\buildings\doors\UndergroundEntranceDoor\MainDoorElectricMotor_openIntro",1}};
+		volume = 0.55;
+		range = 35;
+	};
+	class UndergroundDoor_ElectricMotor_End_SoundShader
+	{
+		samples[] = {{"DZ\sounds_bliss\environment\buildings\doors\UndergroundEntranceDoor\MainDoorElectricMotor_openOutro",1}};
+		volume = 0.55;
+		range = 35;
+	};
+	class UndergroundDoor_ElectricMotor_Loop_SoundShader
+	{
+		samples[] = {{"DZ\sounds_bliss\environment\buildings\doors\UndergroundEntranceDoor\MainDoorElectricMotor_openLoop",1}};
+		volume = 0.55;
+		range = 35;
+	};
+	class UndergroundDoor_Alarm_Loop_SoundShader
+	{
+		samples[] = {{"DZ\sounds_bliss\environment\buildings\bells\UndergroundEntranceAlarm_loop",1}};
+		volume = 1.5;
+		range = 150;
+		rangeCurve[] = {{0,1},{75,0.35},{100,0.15},{130,0.05},{150,0}};
+	};
+	class UndergroundDoor_Alarm_Loop_tail_SoundShader
+	{
+		samples[] = {{"DZ\sounds_bliss\environment\buildings\bells\UndergroundEntranceAlarm_loop_tail",1}};
+		volume = 1.45;
+		range = 300;
+		rangeCurve[] = {{0,0},{75,0.65},{130,0.95},{150,1},{200,0.5},{250,0.2},{260,0.025},{300,0}};
+	};
+	class UndergroundDoor_Alarm_Start_SoundShader
+	{
+		samples[] = {{"DZ\sounds_bliss\environment\buildings\bells\UndergroundEntranceAlarm_intro",1}};
+		volume = 1.5;
+		range = 35;
+	};
+	class UndergroundDoor_Alarm_End_SoundShader
+	{
+		samples[] = {{"DZ\sounds_bliss\environment\buildings\bells\UndergroundEntranceAlarm_outro",1}};
+		volume = 1.5;
+		range = 35;
+	};
+	class UndergroundSmallExitDoor_Open_Start_SoundShader
+	{
+		samples[] = {{"DZ\sounds_bliss\environment\buildings\doors\UndergroundExitDoor\UndergroundExitDoor_open_intro",1}};
+		volume = 1.0;
+		range = 35;
+	};
+	class UndergroundSmallExitDoor_Open_End_SoundShader
+	{
+		samples[] = {{"DZ\sounds_bliss\environment\buildings\doors\UndergroundExitDoor\UndergroundExitDoor_open_outro",1}};
+		volume = 1.0;
+		range = 35;
+	};
+	class UndergroundSmallExitDoor_Open_Loop_SoundShader
+	{
+		samples[] = {{"DZ\sounds_bliss\environment\buildings\doors\UndergroundExitDoor\UndergroundExitDoor_open_loop",1}};
+		volume = 1.5;
+		range = 35;
+	};
+	class UndergroundSmallExitDoor_Close_Start_SoundShader
+	{
+		samples[] = {{"DZ\sounds_bliss\environment\buildings\doors\UndergroundExitDoor\UndergroundExitDoor_close_intro",1}};
+		volume = 1.0;
+		range = 35;
+	};
+	class UndergroundSmallExitDoor_Close_End_SoundShader
+	{
+		samples[] = {{"DZ\sounds_bliss\environment\buildings\doors\UndergroundExitDoor\UndergroundExitDoor_close_outro",1}};
+		volume = 1.0;
+		range = 35;
+	};
+	class UndergroundSmallExitDoor_Close_Loop_SoundShader
+	{
+		samples[] = {{"DZ\sounds_bliss\environment\buildings\doors\UndergroundExitDoor\UndergroundExitDoor_close_loop",1}};
+		volume = 1.5;
+		range = 35;
 	};
 	class BearAttack_SoundShader
 	{
@@ -4789,6 +2398,139 @@ class CfgSoundSets
 		sound3DProcessingType = "ObjectsInner13DProcessingType";
 		doppler = "false";
 	};
+	class UndergroundInsectObject_SoundSet
+	{
+		soundshaders[] = {"UndergroundInsectObject_SoundShader"};
+		volumeFactor = "0.9 * 1";
+		volumeCurve = "objectInner1VolumeCurve";
+		volumeRandomizer = 2;
+		frequencyRandomizer = 3;
+		frequencyFactor = 1;
+		loop = "false";
+		spatial = "true";
+		sound3DProcessingType = "ObjectsInner03DProcessingType";
+		doppler = "false";
+		startDelay = 3;
+		startDelayRandomizer = 10;
+		delay = 30;
+		delayRandomizer = 30;
+	};
+	class UndergroundRodentObject_SoundSet
+	{
+		soundshaders[] = {"UndergroundRodentObject_SoundShader"};
+		volumeFactor = "0.9 * 1";
+		volumeCurve = "objectInner1VolumeCurve";
+		volumeRandomizer = 2;
+		frequencyRandomizer = 3;
+		frequencyFactor = 1;
+		loop = "false";
+		spatial = "true";
+		sound3DProcessingType = "ObjectsInner03DProcessingType";
+		doppler = "false";
+		startDelay = 3;
+		startDelayRandomizer = 10;
+		delay = 30;
+		delayRandomizer = 30;
+	};
+	class UndergroundWaterDropsObject_SoundSet
+	{
+		soundshaders[] = {"UndergroundWaterDropsObject_SoundShader"};
+		volumeFactor = "0.9 * 1";
+		volumeCurve = "objectInner1VolumeCurve";
+		volumeRandomizer = 2;
+		frequencyRandomizer = 3;
+		frequencyFactor = 1;
+		loop = "false";
+		spatial = "true";
+		sound3DProcessingType = "ObjectsInner03DProcessingType";
+		doppler = "false";
+		startDelay = 3;
+		startDelayRandomizer = 10;
+		delay = 30;
+		delayRandomizer = 30;
+	};
+	class WaterObjectUndergroundPipeCreaking_SoundSet
+	{
+		soundshaders[] = {"WaterObjectUndergroundPipeCreaking_SoundShader"};
+		volumeFactor = "0.9 * 1";
+		sound3DProcessingType = "smallItem3DProcessingType";
+		volumeCurve = "LinearCurve";
+	};
+	class WaterObjectUndergroundPipeSprinkling_Start_SoundSet
+	{
+		soundshaders[] = {"WaterObjectUndergroundPipeSprinkling_Start_SoundShader"};
+		volumeFactor = "0.9 * 1";
+		sound3DProcessingType = "smallItem3DProcessingType";
+		volumeCurve = "LinearCurve";
+	};
+	class WaterObjectUndergroundPipeSprinkling_End_SoundSet
+	{
+		soundshaders[] = {"WaterObjectUndergroundPipeSprinkling_End_SoundShader"};
+		volumeFactor = "0.9 * 1";
+		sound3DProcessingType = "smallItem3DProcessingType";
+		volumeCurve = "LinearCurve";
+	};
+	class WaterObjectUndergroundPipeSprinkling_Loop1_SoundSet
+	{
+		soundshaders[] = {"WaterObjectUndergroundPipeSprinkling_Loop1_SoundShader"};
+		volumeFactor = "0.9 * 1";
+		loop = "true";
+		sound3DProcessingType = "smallItem3DProcessingType";
+		volumeCurve = "LinearCurve";
+	};
+	class WaterObjectUndergroundPipeSprinkling_Loop2_SoundSet
+	{
+		soundshaders[] = {"WaterObjectUndergroundPipeSprinkling_Loop2_SoundShader"};
+		volumeFactor = "0.9 * 1";
+		loop = "true";
+		sound3DProcessingType = "smallItem3DProcessingType";
+		volumeCurve = "LinearCurve";
+	};
+	class WaterObjectUndergroundUnderwaterPipe_Start_SoundSet
+	{
+		soundshaders[] = {"WaterObjectUndergroundUnderwaterPipe_Start_SoundShader"};
+		volumeFactor = "0.9 * 1";
+		sound3DProcessingType = "smallItem3DProcessingType";
+		volumeCurve = "LinearCurve";
+	};
+	class WaterObjectUndergroundUnderwaterPipe_End_SoundSet
+	{
+		soundshaders[] = {"WaterObjectUndergroundUnderwaterPipe_End_SoundShader"};
+		volumeFactor = "0.9 * 1";
+		sound3DProcessingType = "smallItem3DProcessingType";
+		volumeCurve = "LinearCurve";
+	};
+	class WaterObjectUndergroundUnderwaterPipe_Loop_SoundSet
+	{
+		soundshaders[] = {"WaterObjectUndergroundUnderwaterPipe_Loop_SoundShader"};
+		volumeFactor = "0.9 * 1";
+		loop = "true";
+		sound3DProcessingType = "smallItem3DProcessingType";
+		volumeCurve = "LinearCurve";
+	};
+	class WaterObjectUndergroundValve_SoundSet
+	{
+		soundshaders[] = {"WaterObjectUndergroundValve_SoundShader"};
+		volumeFactor = "0.9 * 1";
+		sound3DProcessingType = "smallItem3DProcessingType";
+		volumeCurve = "LinearCurve";
+	};
+	class WaterObjectUndergroundUnderwaterFill_Loop_SoundSet
+	{
+		soundshaders[] = {"WaterObjectUndergroundUnderwaterFill_Loop_SoundShader"};
+		volumeFactor = "0.9 * 1";
+		loop = "true";
+		sound3DProcessingType = "smallItem3DProcessingType";
+		volumeCurve = "LinearCurve";
+	};
+	class WaterObjectUndergroundUnderwaterEmpty_Loop_SoundSet
+	{
+		soundshaders[] = {"WaterObjectUndergroundUnderwaterEmpty_Loop_SoundShader"};
+		volumeFactor = "0.9 * 1";
+		loop = "true";
+		sound3DProcessingType = "smallItem3DProcessingType";
+		volumeCurve = "LinearCurve";
+	};
 	class Bird_Bliss_Base_SoundSet
 	{
 		spatial = "true";
@@ -5348,6 +3090,130 @@ class CfgSoundSets
 		spatial = "false";
 		loop = "true";
 	};
+	class UndergroundDoor_PanelActivation_SoundSet
+	{
+		soundShaders[] = {"UndergroundDoor_PanelActivation_SoundShader"};
+		sound3DProcessingType = "smallItem3DProcessingType";
+		volumeCurve = "LinearCurve";
+		volumeFactor = 0.5;
+	};
+	class UndergroundDoor_Lock_SoundSet
+	{
+		soundShaders[] = {"UndergroundDoor_Lock_SoundShader"};
+		sound3DProcessingType = "smallItem3DProcessingType";
+		volumeCurve = "LinearCurve";
+		volumeFactor = 0.5;
+	};
+	class UndergroundDoor_DoorOpen_Start_SoundSet
+	{
+		soundShaders[] = {"UndergroundDoor_DoorSliding_Start_SoundShader"};
+		sound3DProcessingType = "smallItem3DProcessingType";
+		volumeCurve = "LinearCurve";
+		volumeFactor = 0.5;
+	};
+	class UndergroundDoor_ElectricMotor_Start_SoundSet
+	{
+		soundShaders[] = {"UndergroundDoor_ElectricMotor_Start_SoundShader"};
+		sound3DProcessingType = "smallItem3DProcessingType";
+		volumeCurve = "LinearCurve";
+		volumeFactor = 0.7;
+	};
+	class UndergroundDoor_DoorOpen_End_SoundSet
+	{
+		soundShaders[] = {"UndergroundDoor_DoorSliding_End_SoundShader"};
+		sound3DProcessingType = "smallItem3DProcessingType";
+		volumeCurve = "LinearCurve";
+		volumeFactor = 0.5;
+	};
+	class UndergroundDoor_ElectricMotor_End_SoundSet
+	{
+		soundShaders[] = {"UndergroundDoor_ElectricMotor_End_SoundShader"};
+		sound3DProcessingType = "smallItem3DProcessingType";
+		volumeCurve = "LinearCurve";
+		volumeFactor = 0.7;
+	};
+	class UndergroundDoor_DoorOpen_Loop_SoundSet
+	{
+		soundShaders[] = {"UndergroundDoor_DoorSliding_Loop_SoundShader"};
+		sound3DProcessingType = "smallItem3DProcessingType";
+		volumeCurve = "LinearCurve";
+		volumeFactor = 0.5;
+		loop = "true";
+	};
+	class UndergroundDoor_ElectricMotor_Loop_SoundSet
+	{
+		soundShaders[] = {"UndergroundDoor_ElectricMotor_Loop_SoundShader"};
+		sound3DProcessingType = "smallItem3DProcessingType";
+		volumeCurve = "InverseSquare2Curve";
+		volumeFactor = 0.7;
+		loop = "true";
+	};
+	class UndergroundDoor_Alarm_Loop_SoundSet
+	{
+		soundShaders[] = {"UndergroundDoor_Alarm_Loop_SoundShader","UndergroundDoor_Alarm_Loop_tail_SoundShader"};
+		sound3DProcessingType = "smallItem3DProcessingType";
+		volumeCurve = "InverseSquare2Curve";
+		volumeFactor = 0.7;
+		loop = "true";
+	};
+	class UndergroundDoor_Alarm_Start_SoundSet
+	{
+		soundShaders[] = {"UndergroundDoor_Alarm_Start_SoundShader"};
+		sound3DProcessingType = "smallItem3DProcessingType";
+		volumeCurve = "LinearCurve";
+		volumeFactor = 0.5;
+	};
+	class UndergroundDoor_Alarm_End_SoundSet
+	{
+		soundShaders[] = {"UndergroundDoor_Alarm_End_SoundShader"};
+		sound3DProcessingType = "smallItem3DProcessingType";
+		volumeCurve = "LinearCurve";
+		volumeFactor = 0.5;
+	};
+	class UndergroundSmallExitDoor_Open_Start_SoundSet
+	{
+		soundShaders[] = {"UndergroundSmallExitDoor_Open_Start_SoundShader"};
+		sound3DProcessingType = "smallItem3DProcessingType";
+		volumeCurve = "LinearCurve";
+		volumeFactor = 0.5;
+	};
+	class UndergroundSmallExitDoor_Open_End_SoundSet
+	{
+		soundShaders[] = {"UndergroundSmallExitDoor_Open_End_SoundShader"};
+		sound3DProcessingType = "smallItem3DProcessingType";
+		volumeCurve = "LinearCurve";
+		volumeFactor = 0.5;
+	};
+	class UndergroundSmallExitDoor_Open_Loop_SoundSet
+	{
+		soundShaders[] = {"UndergroundSmallExitDoor_Open_Loop_SoundShader"};
+		sound3DProcessingType = "smallItem3DProcessingType";
+		volumeCurve = "LinearCurve";
+		volumeFactor = 0.5;
+		loop = "true";
+	};
+	class UndergroundSmallExitDoor_Close_Start_SoundSet
+	{
+		soundShaders[] = {"UndergroundSmallExitDoor_Close_Start_SoundShader"};
+		sound3DProcessingType = "smallItem3DProcessingType";
+		volumeCurve = "LinearCurve";
+		volumeFactor = 0.5;
+	};
+	class UndergroundSmallExitDoor_Close_End_SoundSet
+	{
+		soundShaders[] = {"UndergroundSmallExitDoor_Close_End_SoundShader"};
+		sound3DProcessingType = "smallItem3DProcessingType";
+		volumeCurve = "LinearCurve";
+		volumeFactor = 0.5;
+	};
+	class UndergroundSmallExitDoor_Close_Loop_SoundSet
+	{
+		soundShaders[] = {"UndergroundSmallExitDoor_Close_Loop_SoundShader"};
+		sound3DProcessingType = "smallItem3DProcessingType";
+		volumeCurve = "LinearCurve";
+		volumeFactor = 0.5;
+		loop = "true";
+	};
 	class baseBear_SoundSet
 	{
 		sound3DProcessingType = "animal3DProcessingType";
@@ -5558,6 +3424,11 @@ class CfgSoundTables
 				surface = "en_stones";
 				soundSets[] = {"BirdWalk_Gravel_SoundSet"};
 			};
+			class BirdWalkstepSound_en_deforested
+			{
+				surface = "en_deforested";
+				soundSets[] = {"BirdWalk_Grass_dry_SoundSet"};
+			};
 		};
 		class BirdGrazing_LookupTable
 		{
@@ -5615,6 +3486,11 @@ class CfgSoundTables
 			{
 				surface = "en_stones";
 				soundSets[] = {"BirdGrazing_Gravel_SoundSet"};
+			};
+			class BirdGrazingstepSound_en_deforested
+			{
+				surface = "en_deforested";
+				soundSets[] = {"BirdGrazing_Grass_dry_SoundSet"};
 			};
 		};
 		class BirdBodyfall_LookupTable
@@ -5674,6 +3550,11 @@ class CfgSoundTables
 				surface = "en_stones";
 				soundSets[] = {"BirdBodyfall_Gravel_SoundSet"};
 			};
+			class BirdBodyfallstepSound_en_deforested
+			{
+				surface = "en_deforested";
+				soundSets[] = {"BirdBodyfall_Grass_dry_SoundSet"};
+			};
 		};
 		class HoofMediumWalk_LookupTable
 		{
@@ -5731,6 +3612,11 @@ class CfgSoundTables
 			{
 				surface = "en_stones";
 				soundSets[] = {"HoofMediumWalk_Gravel_SoundSet"};
+			};
+			class HoofMediumWalkstepSound_en_deforested
+			{
+				surface = "en_deforested";
+				soundSets[] = {"HoofMediumWalk_Grass_dry_SoundSet"};
 			};
 		};
 		class HoofMediumRun_LookupTable
@@ -5790,6 +3676,11 @@ class CfgSoundTables
 				surface = "en_stones";
 				soundSets[] = {"HoofMediumRun_Gravel_SoundSet"};
 			};
+			class HoofMediumRunstepSound_en_deforested
+			{
+				surface = "en_deforested";
+				soundSets[] = {"HoofMediumRun_Grass_dry_SoundSet"};
+			};
 		};
 		class HoofMediumGrazing_LookupTable
 		{
@@ -5847,6 +3738,11 @@ class CfgSoundTables
 			{
 				surface = "en_stones";
 				soundSets[] = {"HoofMediumGrazing_Gravel_SoundSet"};
+			};
+			class HoofMediumGrazingstepSound_en_deforested
+			{
+				surface = "en_deforested";
+				soundSets[] = {"HoofMediumGrazing_Grass_dry_SoundSet"};
 			};
 		};
 		class HoofMediumBodyfall_LookupTable
@@ -5906,6 +3802,11 @@ class CfgSoundTables
 				surface = "en_stones";
 				soundSets[] = {"HoofMediumBodyfall_Gravel_SoundSet"};
 			};
+			class HoofMediumBodyfallstepSound_en_deforested
+			{
+				surface = "en_deforested";
+				soundSets[] = {"HoofMediumBodyfall_Grass_dry_SoundSet"};
+			};
 		};
 		class HoofMediumSettle_LookupTable
 		{
@@ -5963,6 +3864,11 @@ class CfgSoundTables
 			{
 				surface = "en_stones";
 				soundSets[] = {"HoofMediumSettle_Gravel_SoundSet"};
+			};
+			class HoofMediumSettlestepSound_en_deforested
+			{
+				surface = "en_deforested";
+				soundSets[] = {"HoofMediumSettle_Grass_dry_SoundSet"};
 			};
 		};
 		class HoofMediumRest2standA_LookupTable
@@ -6022,6 +3928,11 @@ class CfgSoundTables
 				surface = "en_stones";
 				soundSets[] = {"HoofMediumRest2standA_Gravel_SoundSet"};
 			};
+			class HoofMediumRest2standAstepSound_en_deforested
+			{
+				surface = "en_deforested";
+				soundSets[] = {"HoofMediumRest2standA_Grass_dry_SoundSet"};
+			};
 		};
 		class HoofMediumRest2standB_LookupTable
 		{
@@ -6079,6 +3990,11 @@ class CfgSoundTables
 			{
 				surface = "en_stones";
 				soundSets[] = {"HoofMediumRest2standB_Gravel_SoundSet"};
+			};
+			class HoofMediumRest2standBstepSound_en_deforested
+			{
+				surface = "en_deforested";
+				soundSets[] = {"HoofMediumRest2standB_Grass_dry_SoundSet"};
 			};
 		};
 		class HoofMediumStand2restA_LookupTable
@@ -6138,6 +4054,11 @@ class CfgSoundTables
 				surface = "en_stones";
 				soundSets[] = {"HoofMediumStand2restA_Gravel_SoundSet"};
 			};
+			class HoofMediumStand2restAstepSound_en_deforested
+			{
+				surface = "en_deforested";
+				soundSets[] = {"HoofMediumStand2restA_Grass_dry_SoundSet"};
+			};
 		};
 		class HoofMediumStand2restB_LookupTable
 		{
@@ -6195,6 +4116,11 @@ class CfgSoundTables
 			{
 				surface = "en_stones";
 				soundSets[] = {"HoofMediumStand2restB_Gravel_SoundSet"};
+			};
+			class HoofMediumStand2restBstepSound_en_deforested
+			{
+				surface = "en_deforested";
+				soundSets[] = {"HoofMediumStand2restB_Grass_dry_SoundSet"};
 			};
 		};
 		class HoofMediumStand2restC_LookupTable
@@ -6254,6 +4180,11 @@ class CfgSoundTables
 				surface = "en_stones";
 				soundSets[] = {"HoofMediumStand2restC_Gravel_SoundSet"};
 			};
+			class HoofMediumStand2restCstepSound_en_deforested
+			{
+				surface = "en_deforested";
+				soundSets[] = {"HoofMediumStand2restC_Grass_dry_SoundSet"};
+			};
 		};
 		class HoofMediumRub1_LookupTable
 		{
@@ -6311,6 +4242,11 @@ class CfgSoundTables
 			{
 				surface = "en_stones";
 				soundSets[] = {"HoofMediumRub1_Gravel_SoundSet"};
+			};
+			class HoofMediumRub1stepSound_en_deforested
+			{
+				surface = "en_deforested";
+				soundSets[] = {"HoofMediumRub1_Grass_dry_SoundSet"};
 			};
 		};
 		class HoofMediumRub2_LookupTable
@@ -6370,6 +4306,11 @@ class CfgSoundTables
 				surface = "en_stones";
 				soundSets[] = {"HoofMediumRub2_Gravel_SoundSet"};
 			};
+			class HoofMediumRub2stepSound_en_deforested
+			{
+				surface = "en_deforested";
+				soundSets[] = {"HoofMediumRub2_Grass_dry_SoundSet"};
+			};
 		};
 		class HoofSmallWalk_LookupTable
 		{
@@ -6427,6 +4368,11 @@ class CfgSoundTables
 			{
 				surface = "en_stones";
 				soundSets[] = {"HoofSmallWalk_Gravel_SoundSet"};
+			};
+			class HoofSmallWalkstepSound_en_deforested
+			{
+				surface = "en_deforested";
+				soundSets[] = {"HoofSmallWalk_Grass_dry_SoundSet"};
 			};
 		};
 		class HoofSmallRun_LookupTable
@@ -6486,6 +4432,11 @@ class CfgSoundTables
 				surface = "en_stones";
 				soundSets[] = {"HoofSmallRun_Gravel_SoundSet"};
 			};
+			class HoofSmallRunstepSound_en_deforested
+			{
+				surface = "en_deforested";
+				soundSets[] = {"HoofSmallRun_Grass_dry_SoundSet"};
+			};
 		};
 		class HoofSmallGrazing_LookupTable
 		{
@@ -6543,6 +4494,11 @@ class CfgSoundTables
 			{
 				surface = "en_stones";
 				soundSets[] = {"HoofSmallGrazing_Gravel_SoundSet"};
+			};
+			class HoofSmallGrazingstepSound_en_deforested
+			{
+				surface = "en_deforested";
+				soundSets[] = {"HoofSmallGrazing_Grass_dry_SoundSet"};
 			};
 		};
 		class HoofSmallGrazingHard_LookupTable
@@ -6602,6 +4558,11 @@ class CfgSoundTables
 				surface = "en_stones";
 				soundSets[] = {"HoofSmallGrazingHard_Gravel_SoundSet"};
 			};
+			class HoofSmallGrazingHardstepSound_en_deforested
+			{
+				surface = "en_deforested";
+				soundSets[] = {"HoofSmallGrazingHard_Grass_dry_SoundSet"};
+			};
 		};
 		class HoofSmallGrazingLeave_LookupTable
 		{
@@ -6659,6 +4620,11 @@ class CfgSoundTables
 			{
 				surface = "en_stones";
 				soundSets[] = {"HoofSmallGrazingLeave_Gravel_SoundSet"};
+			};
+			class HoofSmallGrazingLeavestepSound_en_deforested
+			{
+				surface = "en_deforested";
+				soundSets[] = {"HoofSmallGrazingLeave_Grass_dry_SoundSet"};
 			};
 		};
 		class HoofSmallBodyfall_LookupTable
@@ -6718,6 +4684,11 @@ class CfgSoundTables
 				surface = "en_stones";
 				soundSets[] = {"HoofSmallBodyfall_Gravel_SoundSet"};
 			};
+			class HoofSmallBodyfallstepSound_en_deforested
+			{
+				surface = "en_deforested";
+				soundSets[] = {"HoofSmallBodyfall_Grass_dry_SoundSet"};
+			};
 		};
 		class HoofSmallSettle_LookupTable
 		{
@@ -6775,6 +4746,11 @@ class CfgSoundTables
 			{
 				surface = "en_stones";
 				soundSets[] = {"HoofSmallSettle_Gravel_SoundSet"};
+			};
+			class HoofSmallSettlestepSound_en_deforested
+			{
+				surface = "en_deforested";
+				soundSets[] = {"HoofSmallSettle_Grass_dry_SoundSet"};
 			};
 		};
 		class HoofSmallRest2standA_LookupTable
@@ -6834,6 +4810,11 @@ class CfgSoundTables
 				surface = "en_stones";
 				soundSets[] = {"HoofSmallRest2standA_Gravel_SoundSet"};
 			};
+			class HoofSmallRest2standAstepSound_en_deforested
+			{
+				surface = "en_deforested";
+				soundSets[] = {"HoofSmallRest2standA_Grass_dry_SoundSet"};
+			};
 		};
 		class HoofSmallRest2standB_LookupTable
 		{
@@ -6891,6 +4872,11 @@ class CfgSoundTables
 			{
 				surface = "en_stones";
 				soundSets[] = {"HoofSmallRest2standB_Gravel_SoundSet"};
+			};
+			class HoofSmallRest2standBstepSound_en_deforested
+			{
+				surface = "en_deforested";
+				soundSets[] = {"HoofSmallRest2standB_Grass_dry_SoundSet"};
 			};
 		};
 		class HoofSmallStand2restA_LookupTable
@@ -6950,6 +4936,11 @@ class CfgSoundTables
 				surface = "en_stones";
 				soundSets[] = {"HoofSmallStand2restA_Gravel_SoundSet"};
 			};
+			class HoofSmallStand2restAstepSound_en_deforested
+			{
+				surface = "en_deforested";
+				soundSets[] = {"HoofSmallStand2restA_Grass_dry_SoundSet"};
+			};
 		};
 		class HoofSmallStand2restB_LookupTable
 		{
@@ -7007,6 +4998,11 @@ class CfgSoundTables
 			{
 				surface = "en_stones";
 				soundSets[] = {"HoofSmallStand2restB_Gravel_SoundSet"};
+			};
+			class HoofSmallStand2restBstepSound_en_deforested
+			{
+				surface = "en_deforested";
+				soundSets[] = {"HoofSmallStand2restB_Grass_dry_SoundSet"};
 			};
 		};
 		class HoofSmallStand2restC_LookupTable
@@ -7066,6 +5062,11 @@ class CfgSoundTables
 				surface = "en_stones";
 				soundSets[] = {"HoofSmallStand2restC_Gravel_SoundSet"};
 			};
+			class HoofSmallStand2restCstepSound_en_deforested
+			{
+				surface = "en_deforested";
+				soundSets[] = {"HoofSmallStand2restC_Grass_dry_SoundSet"};
+			};
 		};
 		class HoofSmallRub1_LookupTable
 		{
@@ -7123,6 +5124,11 @@ class CfgSoundTables
 			{
 				surface = "en_stones";
 				soundSets[] = {"HoofSmallRub1_Gravel_SoundSet"};
+			};
+			class HoofSmallRub1stepSound_en_deforested
+			{
+				surface = "en_deforested";
+				soundSets[] = {"HoofSmallRub1_Grass_dry_SoundSet"};
 			};
 		};
 		class HoofSmallRub2_LookupTable
@@ -7182,6 +5188,11 @@ class CfgSoundTables
 				surface = "en_stones";
 				soundSets[] = {"HoofSmallRub2_Gravel_SoundSet"};
 			};
+			class HoofSmallRub2stepSound_en_deforested
+			{
+				surface = "en_deforested";
+				soundSets[] = {"HoofSmallRub2_Grass_dry_SoundSet"};
+			};
 		};
 		class PawBigWalk_LookupTable
 		{
@@ -7239,6 +5250,11 @@ class CfgSoundTables
 			{
 				surface = "en_stones";
 				soundSets[] = {"PawBigWalk_Gravel_SoundSet"};
+			};
+			class PawBigWalkstepSound_en_deforested
+			{
+				surface = "en_deforested";
+				soundSets[] = {"PawBigWalk_Grass_dry_SoundSet"};
 			};
 		};
 		class PawBigRun_LookupTable
@@ -7298,6 +5314,11 @@ class CfgSoundTables
 				surface = "en_stones";
 				soundSets[] = {"PawBigRun_Gravel_SoundSet"};
 			};
+			class PawBigRunstepSound_en_deforested
+			{
+				surface = "en_deforested";
+				soundSets[] = {"PawBigRun_Grass_dry_SoundSet"};
+			};
 		};
 		class PawBigGrazing_LookupTable
 		{
@@ -7355,6 +5376,11 @@ class CfgSoundTables
 			{
 				surface = "en_stones";
 				soundSets[] = {"PawBigGrazing_Gravel_SoundSet"};
+			};
+			class PawBigGrazingstepSound_en_deforested
+			{
+				surface = "en_deforested";
+				soundSets[] = {"PawBigGrazing_Grass_dry_SoundSet"};
 			};
 		};
 		class PawBigBodyfall_LookupTable
@@ -7414,6 +5440,11 @@ class CfgSoundTables
 				surface = "en_stones";
 				soundSets[] = {"PawBigBodyfall_Gravel_SoundSet"};
 			};
+			class PawBigBodyfallstepSound_en_deforested
+			{
+				surface = "en_deforested";
+				soundSets[] = {"PawBigBodyfall_Grass_dry_SoundSet"};
+			};
 		};
 		class PawBigSettle_LookupTable
 		{
@@ -7471,6 +5502,11 @@ class CfgSoundTables
 			{
 				surface = "en_stones";
 				soundSets[] = {"PawBigSettle_Gravel_SoundSet"};
+			};
+			class PawBigSettlestepSound_en_deforested
+			{
+				surface = "en_deforested";
+				soundSets[] = {"PawBigSettle_Grass_dry_SoundSet"};
 			};
 		};
 		class PawBigRest2standA_LookupTable
@@ -7530,6 +5566,11 @@ class CfgSoundTables
 				surface = "en_stones";
 				soundSets[] = {"PawBigRest2standA_Gravel_SoundSet"};
 			};
+			class PawBigRest2standAstepSound_en_deforested
+			{
+				surface = "en_deforested";
+				soundSets[] = {"PawBigRest2standA_Grass_dry_SoundSet"};
+			};
 		};
 		class PawBigRest2standB_LookupTable
 		{
@@ -7587,6 +5628,11 @@ class CfgSoundTables
 			{
 				surface = "en_stones";
 				soundSets[] = {"PawBigRest2standB_Gravel_SoundSet"};
+			};
+			class PawBigRest2standBstepSound_en_deforested
+			{
+				surface = "en_deforested";
+				soundSets[] = {"PawBigRest2standB_Grass_dry_SoundSet"};
 			};
 		};
 		class PawBigStand2restA_LookupTable
@@ -7646,6 +5692,11 @@ class CfgSoundTables
 				surface = "en_stones";
 				soundSets[] = {"PawBigStand2restA_Gravel_SoundSet"};
 			};
+			class PawBigStand2restAstepSound_en_deforested
+			{
+				surface = "en_deforested";
+				soundSets[] = {"PawBigStand2restA_Grass_dry_SoundSet"};
+			};
 		};
 		class PawBigStand2restB_LookupTable
 		{
@@ -7703,6 +5754,11 @@ class CfgSoundTables
 			{
 				surface = "en_stones";
 				soundSets[] = {"PawBigStand2restB_Gravel_SoundSet"};
+			};
+			class PawBigStand2restBstepSound_en_deforested
+			{
+				surface = "en_deforested";
+				soundSets[] = {"PawBigStand2restB_Grass_dry_SoundSet"};
 			};
 		};
 		class PawBigStand2restC_LookupTable
@@ -7762,6 +5818,11 @@ class CfgSoundTables
 				surface = "en_stones";
 				soundSets[] = {"PawBigStand2restC_Gravel_SoundSet"};
 			};
+			class PawBigStand2restCstepSound_en_deforested
+			{
+				surface = "en_deforested";
+				soundSets[] = {"PawBigStand2restC_Grass_dry_SoundSet"};
+			};
 		};
 		class PawBigJump_LookupTable
 		{
@@ -7819,6 +5880,11 @@ class CfgSoundTables
 			{
 				surface = "en_stones";
 				soundSets[] = {"PawBigJump_Gravel_SoundSet"};
+			};
+			class PawBigJumpstepSound_en_deforested
+			{
+				surface = "en_deforested";
+				soundSets[] = {"PawBigJump_Grass_dry_SoundSet"};
 			};
 		};
 		class PawBigImpact_LookupTable
@@ -7878,6 +5944,11 @@ class CfgSoundTables
 				surface = "en_stones";
 				soundSets[] = {"PawBigImpact_Gravel_SoundSet"};
 			};
+			class PawBigImpactstepSound_en_deforested
+			{
+				surface = "en_deforested";
+				soundSets[] = {"PawBigImpact_Grass_dry_SoundSet"};
+			};
 		};
 		class PawMediumWalk_LookupTable
 		{
@@ -7935,6 +6006,11 @@ class CfgSoundTables
 			{
 				surface = "en_stones";
 				soundSets[] = {"PawMediumWalk_Gravel_SoundSet"};
+			};
+			class PawMediumWalkstepSound_en_deforested
+			{
+				surface = "en_deforested";
+				soundSets[] = {"PawMediumWalk_Grass_dry_SoundSet"};
 			};
 		};
 		class PawMediumRun_LookupTable
@@ -7994,6 +6070,11 @@ class CfgSoundTables
 				surface = "en_stones";
 				soundSets[] = {"PawMediumRun_Gravel_SoundSet"};
 			};
+			class PawMediumRunstepSound_en_deforested
+			{
+				surface = "en_deforested";
+				soundSets[] = {"PawMediumRun_Grass_dry_SoundSet"};
+			};
 		};
 		class PawMediumGrazing_LookupTable
 		{
@@ -8051,6 +6132,11 @@ class CfgSoundTables
 			{
 				surface = "en_stones";
 				soundSets[] = {"PawMediumGrazing_Gravel_SoundSet"};
+			};
+			class PawMediumGrazingstepSound_en_deforested
+			{
+				surface = "en_deforested";
+				soundSets[] = {"PawMediumGrazing_Grass_dry_SoundSet"};
 			};
 		};
 		class PawMediumBodyfall_LookupTable
@@ -8110,6 +6196,11 @@ class CfgSoundTables
 				surface = "en_stones";
 				soundSets[] = {"PawMediumBodyfall_Gravel_SoundSet"};
 			};
+			class PawMediumBodyfallstepSound_en_deforested
+			{
+				surface = "en_deforested";
+				soundSets[] = {"PawMediumBodyfall_Grass_dry_SoundSet"};
+			};
 		};
 		class PawMediumSettle_LookupTable
 		{
@@ -8167,6 +6258,11 @@ class CfgSoundTables
 			{
 				surface = "en_stones";
 				soundSets[] = {"PawMediumSettle_Gravel_SoundSet"};
+			};
+			class PawMediumSettlestepSound_en_deforested
+			{
+				surface = "en_deforested";
+				soundSets[] = {"PawMediumSettle_Grass_dry_SoundSet"};
 			};
 		};
 		class PawMediumRest2standA_LookupTable
@@ -8226,6 +6322,11 @@ class CfgSoundTables
 				surface = "en_stones";
 				soundSets[] = {"PawMediumRest2standA_Gravel_SoundSet"};
 			};
+			class PawMediumRest2standAstepSound_en_deforested
+			{
+				surface = "en_deforested";
+				soundSets[] = {"PawMediumRest2standA_Grass_dry_SoundSet"};
+			};
 		};
 		class PawMediumRest2standB_LookupTable
 		{
@@ -8283,6 +6384,11 @@ class CfgSoundTables
 			{
 				surface = "en_stones";
 				soundSets[] = {"PawMediumRest2standB_Gravel_SoundSet"};
+			};
+			class PawMediumRest2standBstepSound_en_deforested
+			{
+				surface = "en_deforested";
+				soundSets[] = {"PawMediumRest2standB_Grass_dry_SoundSet"};
 			};
 		};
 		class PawMediumStand2restA_LookupTable
@@ -8342,6 +6448,11 @@ class CfgSoundTables
 				surface = "en_stones";
 				soundSets[] = {"PawMediumStand2restA_Gravel_SoundSet"};
 			};
+			class PawMediumStand2restAstepSound_en_deforested
+			{
+				surface = "en_deforested";
+				soundSets[] = {"PawMediumStand2restA_Grass_dry_SoundSet"};
+			};
 		};
 		class PawMediumStand2restB_LookupTable
 		{
@@ -8399,6 +6510,11 @@ class CfgSoundTables
 			{
 				surface = "en_stones";
 				soundSets[] = {"PawMediumStand2restB_Gravel_SoundSet"};
+			};
+			class PawMediumStand2restBstepSound_en_deforested
+			{
+				surface = "en_deforested";
+				soundSets[] = {"PawMediumStand2restB_Grass_dry_SoundSet"};
 			};
 		};
 		class PawMediumStand2restC_LookupTable
@@ -8458,6 +6574,11 @@ class CfgSoundTables
 				surface = "en_stones";
 				soundSets[] = {"PawMediumStand2restC_Gravel_SoundSet"};
 			};
+			class PawMediumStand2restCstepSound_en_deforested
+			{
+				surface = "en_deforested";
+				soundSets[] = {"PawMediumStand2restC_Grass_dry_SoundSet"};
+			};
 		};
 		class PawMediumJump_LookupTable
 		{
@@ -8515,6 +6636,11 @@ class CfgSoundTables
 			{
 				surface = "en_stones";
 				soundSets[] = {"PawMediumJump_Gravel_SoundSet"};
+			};
+			class PawMediumJumpstepSound_en_deforested
+			{
+				surface = "en_deforested";
+				soundSets[] = {"PawMediumJump_Grass_dry_SoundSet"};
 			};
 		};
 		class PawMediumImpact_LookupTable
@@ -8574,6 +6700,11 @@ class CfgSoundTables
 				surface = "en_stones";
 				soundSets[] = {"PawMediumImpact_Gravel_SoundSet"};
 			};
+			class PawMediumImpactstepSound_en_deforested
+			{
+				surface = "en_deforested";
+				soundSets[] = {"PawMediumImpact_Grass_dry_SoundSet"};
+			};
 		};
 		class PawSmallWalk_LookupTable
 		{
@@ -8631,6 +6762,11 @@ class CfgSoundTables
 			{
 				surface = "en_stones";
 				soundSets[] = {"PawSmallWalk_Gravel_SoundSet"};
+			};
+			class PawSmallWalkstepSound_en_deforested
+			{
+				surface = "en_deforested";
+				soundSets[] = {"PawSmallWalk_Grass_dry_SoundSet"};
 			};
 		};
 		class PawSmallRun_LookupTable
@@ -8690,6 +6826,11 @@ class CfgSoundTables
 				surface = "en_stones";
 				soundSets[] = {"PawSmallRun_Gravel_SoundSet"};
 			};
+			class PawSmallRunstepSound_en_deforested
+			{
+				surface = "en_deforested";
+				soundSets[] = {"PawSmallRun_Grass_dry_SoundSet"};
+			};
 		};
 		class PawSmallGrazing_LookupTable
 		{
@@ -8747,6 +6888,11 @@ class CfgSoundTables
 			{
 				surface = "en_stones";
 				soundSets[] = {"PawSmallGrazing_Gravel_SoundSet"};
+			};
+			class PawSmallGrazingstepSound_en_deforested
+			{
+				surface = "en_deforested";
+				soundSets[] = {"PawSmallGrazing_Grass_dry_SoundSet"};
 			};
 		};
 		class PawSmallBodyfall_LookupTable
@@ -8806,6 +6952,11 @@ class CfgSoundTables
 				surface = "en_stones";
 				soundSets[] = {"PawSmallBodyfall_Gravel_SoundSet"};
 			};
+			class PawSmallBodyfallstepSound_en_deforested
+			{
+				surface = "en_deforested";
+				soundSets[] = {"PawSmallBodyfall_Grass_dry_SoundSet"};
+			};
 		};
 		class PawSmallSettle_LookupTable
 		{
@@ -8863,6 +7014,11 @@ class CfgSoundTables
 			{
 				surface = "en_stones";
 				soundSets[] = {"PawSmallSettle_Gravel_SoundSet"};
+			};
+			class PawSmallSettlestepSound_en_deforested
+			{
+				surface = "en_deforested";
+				soundSets[] = {"PawSmallSettle_Grass_dry_SoundSet"};
 			};
 		};
 		class PawSmallRest2standA_LookupTable
@@ -8922,6 +7078,11 @@ class CfgSoundTables
 				surface = "en_stones";
 				soundSets[] = {"PawSmallRest2standA_Gravel_SoundSet"};
 			};
+			class PawSmallRest2standAstepSound_en_deforested
+			{
+				surface = "en_deforested";
+				soundSets[] = {"PawSmallRest2standA_Grass_dry_SoundSet"};
+			};
 		};
 		class PawSmallRest2standB_LookupTable
 		{
@@ -8979,6 +7140,11 @@ class CfgSoundTables
 			{
 				surface = "en_stones";
 				soundSets[] = {"PawSmallRest2standB_Gravel_SoundSet"};
+			};
+			class PawSmallRest2standBstepSound_en_deforested
+			{
+				surface = "en_deforested";
+				soundSets[] = {"PawSmallRest2standB_Grass_dry_SoundSet"};
 			};
 		};
 		class PawSmallStand2restA_LookupTable
@@ -9038,6 +7204,11 @@ class CfgSoundTables
 				surface = "en_stones";
 				soundSets[] = {"PawSmallStand2restA_Gravel_SoundSet"};
 			};
+			class PawSmallStand2restAstepSound_en_deforested
+			{
+				surface = "en_deforested";
+				soundSets[] = {"PawSmallStand2restA_Grass_dry_SoundSet"};
+			};
 		};
 		class PawSmallStand2restB_LookupTable
 		{
@@ -9095,6 +7266,11 @@ class CfgSoundTables
 			{
 				surface = "en_stones";
 				soundSets[] = {"PawSmallStand2restB_Gravel_SoundSet"};
+			};
+			class PawSmallStand2restBstepSound_en_deforested
+			{
+				surface = "en_deforested";
+				soundSets[] = {"PawSmallStand2restB_Grass_dry_SoundSet"};
 			};
 		};
 		class PawSmallStand2restC_LookupTable
@@ -9154,6 +7330,11 @@ class CfgSoundTables
 				surface = "en_stones";
 				soundSets[] = {"PawSmallStand2restC_Gravel_SoundSet"};
 			};
+			class PawSmallStand2restCstepSound_en_deforested
+			{
+				surface = "en_deforested";
+				soundSets[] = {"PawSmallStand2restC_Grass_dry_SoundSet"};
+			};
 		};
 		class PawSmallJump_LookupTable
 		{
@@ -9211,6 +7392,11 @@ class CfgSoundTables
 			{
 				surface = "en_stones";
 				soundSets[] = {"PawSmallJump_Gravel_SoundSet"};
+			};
+			class PawSmallJumpstepSound_en_deforested
+			{
+				surface = "en_deforested";
+				soundSets[] = {"PawSmallJump_Grass_dry_SoundSet"};
 			};
 		};
 		class PawSmallImpact_LookupTable
@@ -9270,6 +7456,11 @@ class CfgSoundTables
 				surface = "en_stones";
 				soundSets[] = {"PawSmallImpact_Gravel_SoundSet"};
 			};
+			class PawSmallImpactstepSound_en_deforested
+			{
+				surface = "en_deforested";
+				soundSets[] = {"PawSmallImpact_Grass_dry_SoundSet"};
+			};
 		};
 		class walkErc_Char_LookupTable
 		{
@@ -9327,6 +7518,11 @@ class CfgSoundTables
 			{
 				surface = "en_stones";
 				soundSets[] = {"walkErc_gravel_small_ext_Char_Soundset"};
+			};
+			class walkErc_en_deforested
+			{
+				surface = "en_deforested";
+				soundSets[] = {"walkErc_grass_dry_ext_Char_Soundset"};
 			};
 		};
 		class walkRasErc_Char_LookupTable
@@ -9386,6 +7582,11 @@ class CfgSoundTables
 				surface = "en_stones";
 				soundSets[] = {"walkRasErc_gravel_small_ext_Char_Soundset"};
 			};
+			class walkRasErc_en_deforested
+			{
+				surface = "en_deforested";
+				soundSets[] = {"walkRasErc_grass_dry_ext_Char_Soundset"};
+			};
 		};
 		class runErc_Char_LookupTable
 		{
@@ -9443,6 +7644,11 @@ class CfgSoundTables
 			{
 				surface = "en_stones";
 				soundSets[] = {"runErc_gravel_small_ext_Char_Soundset"};
+			};
+			class runErc_en_deforested
+			{
+				surface = "en_deforested";
+				soundSets[] = {"runErc_grass_dry_ext_Char_Soundset"};
 			};
 		};
 		class runRasErc_Char_LookupTable
@@ -9502,6 +7708,11 @@ class CfgSoundTables
 				surface = "en_stones";
 				soundSets[] = {"runRasErc_gravel_small_ext_Char_Soundset"};
 			};
+			class runRasErc_en_deforested
+			{
+				surface = "en_deforested";
+				soundSets[] = {"runRasErc_grass_dry_ext_Char_Soundset"};
+			};
 		};
 		class sprintErc_Char_LookupTable
 		{
@@ -9559,6 +7770,11 @@ class CfgSoundTables
 			{
 				surface = "en_stones";
 				soundSets[] = {"sprintErc_gravel_small_ext_Char_Soundset"};
+			};
+			class sprintErc_en_deforested
+			{
+				surface = "en_deforested";
+				soundSets[] = {"sprintErc_grass_dry_ext_Char_Soundset"};
 			};
 		};
 		class landFootErc_Char_LookupTable
@@ -9618,6 +7834,11 @@ class CfgSoundTables
 				surface = "en_stones";
 				soundSets[] = {"landFootErc_gravel_small_ext_Char_Soundset"};
 			};
+			class landFootErc_en_deforested
+			{
+				surface = "en_deforested";
+				soundSets[] = {"landFootErc_grass_dry_ext_Char_Soundset"};
+			};
 		};
 		class landFeetErc_Char_LookupTable
 		{
@@ -9675,6 +7896,11 @@ class CfgSoundTables
 			{
 				surface = "en_stones";
 				soundSets[] = {"landFeetErc_gravel_small_ext_Char_Soundset"};
+			};
+			class landFeetErc_en_deforested
+			{
+				surface = "en_deforested";
+				soundSets[] = {"landFeetErc_grass_dry_ext_Char_Soundset"};
 			};
 		};
 		class scuffErc_Char_LookupTable
@@ -9734,6 +7960,11 @@ class CfgSoundTables
 				surface = "en_stones";
 				soundSets[] = {"scuffErc_gravel_small_ext_Char_Soundset"};
 			};
+			class scuffErc_en_deforested
+			{
+				surface = "en_deforested";
+				soundSets[] = {"scuffErc_grass_dry_ext_Char_Soundset"};
+			};
 		};
 		class walkCro_Char_LookupTable
 		{
@@ -9791,6 +8022,11 @@ class CfgSoundTables
 			{
 				surface = "en_stones";
 				soundSets[] = {"walkCro_gravel_small_ext_Char_Soundset"};
+			};
+			class walkCro_en_deforested
+			{
+				surface = "en_deforested";
+				soundSets[] = {"walkCro_grass_dry_ext_Char_Soundset"};
 			};
 		};
 		class runCro_Char_LookupTable
@@ -9850,6 +8086,11 @@ class CfgSoundTables
 				surface = "en_stones";
 				soundSets[] = {"runCro_gravel_small_ext_Char_Soundset"};
 			};
+			class runCro_en_deforested
+			{
+				surface = "en_deforested";
+				soundSets[] = {"runCro_grass_dry_ext_Char_Soundset"};
+			};
 		};
 		class jumpErc_Char_LookupTable
 		{
@@ -9907,6 +8148,11 @@ class CfgSoundTables
 			{
 				surface = "en_stones";
 				soundSets[] = {"jumpErc_gravel_small_ext_Char_Soundset"};
+			};
+			class jumpErc_en_deforested
+			{
+				surface = "en_deforested";
+				soundSets[] = {"jumpErc_grass_dry_ext_Char_Soundset"};
 			};
 		};
 		class walkProne_Char_LookupTable
@@ -9966,6 +8212,11 @@ class CfgSoundTables
 				surface = "en_stones";
 				soundSets[] = {"walkProne_gravelSmall_ext_Char_Soundset"};
 			};
+			class walkProne_en_deforested
+			{
+				surface = "en_deforested";
+				soundSets[] = {"walkProne_grass_dry_ext_Char_Soundset"};
+			};
 		};
 		class runProne_Char_LookupTable
 		{
@@ -10023,6 +8274,11 @@ class CfgSoundTables
 			{
 				surface = "en_stones";
 				soundSets[] = {"runProne_gravelSmall_ext_Char_Soundset"};
+			};
+			class runProne_en_deforested
+			{
+				surface = "en_deforested";
+				soundSets[] = {"runProne_grass_dry_ext_Char_Soundset"};
 			};
 		};
 		class walkProneElbow_Char_LookupTable
@@ -10082,6 +8338,11 @@ class CfgSoundTables
 				surface = "en_stones";
 				soundSets[] = {"walkProneElbow_gravelSmall_ext_Char_Soundset"};
 			};
+			class walkProneElbow_en_deforested
+			{
+				surface = "en_deforested";
+				soundSets[] = {"walkProneElbow_grass_dry_ext_Char_Soundset"};
+			};
 		};
 		class runProneElbow_Char_LookupTable
 		{
@@ -10139,6 +8400,11 @@ class CfgSoundTables
 			{
 				surface = "en_stones";
 				soundSets[] = {"runProneElbow_gravelSmall_ext_Char_Soundset"};
+			};
+			class runProneElbow_en_deforested
+			{
+				surface = "en_deforested";
+				soundSets[] = {"runProneElbow_grass_dry_ext_Char_Soundset"};
 			};
 		};
 		class walkProne_noHS_Char_LookupTable
@@ -10198,6 +8464,11 @@ class CfgSoundTables
 				surface = "en_stones";
 				soundSets[] = {"walkProne_noHS_gravelSmall_ext_Char_Soundset"};
 			};
+			class walkProne_en_deforested
+			{
+				surface = "en_deforested";
+				soundSets[] = {"walkProne_noHS_grass_dry_ext_Char_Soundset"};
+			};
 		};
 		class walkProneLong_noHS_Char_LookupTable
 		{
@@ -10255,6 +8526,11 @@ class CfgSoundTables
 			{
 				surface = "en_stones";
 				soundSets[] = {"walkProneLong_noHS_gravelSmall_ext_Char_Soundset"};
+			};
+			class walkProneLong_en_deforested
+			{
+				surface = "en_deforested";
+				soundSets[] = {"walkProneLong_noHS_grass_dry_ext_Char_Soundset"};
 			};
 		};
 		class handstepSound_Char_LookupTable
@@ -10314,6 +8590,11 @@ class CfgSoundTables
 				surface = "en_stones";
 				soundSets[] = {"Handstep_gravelSmall_ext_Char_SoundSet"};
 			};
+			class handstepSound_en_deforested
+			{
+				surface = "en_deforested";
+				soundSets[] = {"Handstep_grass_dry_ext_Char_SoundSet"};
+			};
 		};
 		class handstepSound_Hard_Char_LookupTable
 		{
@@ -10371,6 +8652,11 @@ class CfgSoundTables
 			{
 				surface = "en_stones";
 				soundSets[] = {"Handstep_Hard_gravelSmall_ext_Char_SoundSet"};
+			};
+			class handstepSound_Hard_en_deforested
+			{
+				surface = "en_deforested";
+				soundSets[] = {"Handstep_Hard_grass_dry_ext_Char_SoundSet"};
 			};
 		};
 		class handsstepSound_Char_LookupTable
@@ -10430,6 +8716,11 @@ class CfgSoundTables
 				surface = "en_stones";
 				soundSets[] = {"Handsstep_gravelSmall_ext_Char_SoundSet"};
 			};
+			class handsstepSound_en_deforested
+			{
+				surface = "en_deforested";
+				soundSets[] = {"Handsstep_grass_dry_ext_Char_SoundSet"};
+			};
 		};
 		class elbowstepSound_Char_LookupTable
 		{
@@ -10487,6 +8778,11 @@ class CfgSoundTables
 			{
 				surface = "en_stones";
 				soundSets[] = {"Elbowstep_gravelSmall_ext_Char_SoundSet"};
+			};
+			class elbowstepSound_en_deforested
+			{
+				surface = "en_deforested";
+				soundSets[] = {"Elbowstep_grass_dry_ext_Char_SoundSet"};
 			};
 		};
 		class bodyfallSound_Char_LookupTable
@@ -10546,6 +8842,11 @@ class CfgSoundTables
 				surface = "en_stones";
 				soundSets[] = {"bodyfall_gravelSmall_ext_Char_SoundSet"};
 			};
+			class bodyfallSound_en_deforested
+			{
+				surface = "en_deforested";
+				soundSets[] = {"bodyfall_grass_Char_SoundSet"};
+			};
 		};
 		class bodyfall_handSound_Char_LookupTable
 		{
@@ -10603,6 +8904,11 @@ class CfgSoundTables
 			{
 				surface = "en_stones";
 				soundSets[] = {"bodyfall_hand_gravelSmall_ext_Char_SoundSet"};
+			};
+			class bodyfall_handSound_en_deforested
+			{
+				surface = "en_deforested";
+				soundSets[] = {"bodyfall_hand_grass_Char_SoundSet"};
 			};
 		};
 		class bodyfall_rollSound_Char_LookupTable
@@ -10662,6 +8968,11 @@ class CfgSoundTables
 				surface = "en_stones";
 				soundSets[] = {"bodyfall_roll_gravelSmall_ext_Char_SoundSet"};
 			};
+			class bodyfall_rollSound_en_deforested
+			{
+				surface = "en_deforested";
+				soundSets[] = {"bodyfall_roll_grass_Char_SoundSet"};
+			};
 		};
 		class bodyfall_rollHardSound_Char_LookupTable
 		{
@@ -10719,6 +9030,11 @@ class CfgSoundTables
 			{
 				surface = "en_stones";
 				soundSets[] = {"bodyfall_rollHard_gravelSmall_ext_Char_SoundSet"};
+			};
+			class bodyfall_rollHardSound_en_deforested
+			{
+				surface = "en_deforested";
+				soundSets[] = {"bodyfall_rollHard_grass_Char_SoundSet"};
 			};
 		};
 		class bodyfall_slideSound_Char_LookupTable
@@ -10778,6 +9094,11 @@ class CfgSoundTables
 				surface = "en_stones";
 				soundSets[] = {"bodyfall_slide_gravelSmall_ext_Char_SoundSet"};
 			};
+			class bodyfall_slideSound_en_deforested
+			{
+				surface = "en_deforested";
+				soundSets[] = {"bodyfall_slide_grass_Char_SoundSet"};
+			};
 		};
 		class bodyfall_slide_lightSound_Char_LookupTable
 		{
@@ -10835,6 +9156,11 @@ class CfgSoundTables
 			{
 				surface = "en_stones";
 				soundSets[] = {"bodyfall_slide_light_gravelSmall_ext_Char_SoundSet"};
+			};
+			class bodyfall_slide_lightSound_en_deforested
+			{
+				surface = "en_deforested";
+				soundSets[] = {"bodyfall_slide_light_grass_Char_SoundSet"};
 			};
 		};
 		class bodyfall_hand_lightSound_Char_LookupTable
@@ -10894,6 +9220,11 @@ class CfgSoundTables
 				surface = "en_stones";
 				soundSets[] = {"bodyfall_hand_light_gravelSmall_ext_Char_SoundSet"};
 			};
+			class bodyfall_hand_lightSound_en_deforested
+			{
+				surface = "en_deforested";
+				soundSets[] = {"bodyfall_hand_light_grass_Char_SoundSet"};
+			};
 		};
 		class step_ladder_Char_LookupTable
 		{
@@ -10950,6 +9281,11 @@ class CfgSoundTables
 			class handstepSound_en_stones
 			{
 				surface = "en_stones";
+				soundSets[] = {"step_ladder_Char_Soundset"};
+			};
+			class handstepSound_en_deforested
+			{
+				surface = "en_deforested";
 				soundSets[] = {"step_ladder_Char_Soundset"};
 			};
 		};
@@ -11010,6 +9346,11 @@ class CfgSoundTables
 				surface = "en_stones";
 				soundSets[] = {"step_ladder_run_Char_Soundset"};
 			};
+			class handstepSound_en_deforested
+			{
+				surface = "en_deforested";
+				soundSets[] = {"step_ladder_run_Char_Soundset"};
+			};
 		};
 		class drop_item_LookupTable
 		{
@@ -11067,6 +9408,11 @@ class CfgSoundTables
 			{
 				surface = "en_stones";
 				soundSets[] = {"gravel_small_ext_drop_Soundset"};
+			};
+			class en_deforested
+			{
+				surface = "en_deforested";
+				soundSets[] = {"grass_dry_ext_drop_Soundset"};
 			};
 		};
 		class walkErc_Bare_Zmb_LookupTable
@@ -11126,6 +9472,11 @@ class CfgSoundTables
 				surface = "en_stones";
 				soundSets[] = {"walkErc_gravel_small_ext_bare_Zmb_Soundset"};
 			};
+			class walkErc_en_deforested
+			{
+				surface = "en_deforested";
+				soundSets[] = {"walkErc_grass_dry_ext_bare_Zmb_Soundset"};
+			};
 		};
 		class runErc_Bare_Zmb_LookupTable
 		{
@@ -11183,6 +9534,11 @@ class CfgSoundTables
 			{
 				surface = "en_stones";
 				soundSets[] = {"runErc_gravel_small_ext_bare_Zmb_Soundset"};
+			};
+			class runErc_en_deforested
+			{
+				surface = "en_deforested";
+				soundSets[] = {"runErc_grass_dry_ext_bare_Zmb_Soundset"};
 			};
 		};
 		class sprintErc_Bare_Zmb_LookupTable
@@ -11242,6 +9598,11 @@ class CfgSoundTables
 				surface = "en_stones";
 				soundSets[] = {"sprintErc_gravel_small_ext_bare_Zmb_Soundset"};
 			};
+			class sprintErc_en_deforested
+			{
+				surface = "en_deforested";
+				soundSets[] = {"sprintErc_grass_dry_ext_bare_Zmb_Soundset"};
+			};
 		};
 		class landFeetErc_Bare_Zmb_LookupTable
 		{
@@ -11299,6 +9660,11 @@ class CfgSoundTables
 			{
 				surface = "en_stones";
 				soundSets[] = {"landFeetErc_gravel_small_ext_bare_Zmb_Soundset"};
+			};
+			class landFeetErc_en_deforested
+			{
+				surface = "en_deforested";
+				soundSets[] = {"landFeetErc_grass_dry_ext_bare_Zmb_Soundset"};
 			};
 		};
 		class scuffErc_Bare_Zmb_LookupTable
@@ -11358,6 +9724,11 @@ class CfgSoundTables
 				surface = "en_stones";
 				soundSets[] = {"scuffErc_gravel_small_ext_bare_Zmb_Soundset"};
 			};
+			class scuffErc_en_deforested
+			{
+				surface = "en_deforested";
+				soundSets[] = {"scuffErc_grass_dry_ext_bare_Zmb_Soundset"};
+			};
 		};
 		class walkRasErc_Bare_Zmb_LookupTable
 		{
@@ -11415,6 +9786,11 @@ class CfgSoundTables
 			{
 				surface = "en_stones";
 				soundSets[] = {"walkErc_gravel_small_ext_bare_Zmb_Soundset"};
+			};
+			class walkErc_en_deforested
+			{
+				surface = "en_deforested";
+				soundSets[] = {"walkErc_grass_dry_ext_bare_Zmb_Soundset"};
 			};
 		};
 		class runRasErc_Bare_Zmb_LookupTable
@@ -11474,6 +9850,11 @@ class CfgSoundTables
 				surface = "en_stones";
 				soundSets[] = {"runErc_gravel_small_ext_bare_Zmb_Soundset"};
 			};
+			class runErc_en_deforested
+			{
+				surface = "en_deforested";
+				soundSets[] = {"runErc_grass_dry_ext_bare_Zmb_Soundset"};
+			};
 		};
 		class landFootErc_Bare_Zmb_LookupTable
 		{
@@ -11531,6 +9912,11 @@ class CfgSoundTables
 			{
 				surface = "en_stones";
 				soundSets[] = {"runErc_gravel_small_ext_bare_Zmb_Soundset"};
+			};
+			class runErc_en_deforested
+			{
+				surface = "en_deforested";
+				soundSets[] = {"runErc_grass_dry_ext_bare_Zmb_Soundset"};
 			};
 		};
 		class walkCro_Bare_Zmb_LookupTable
@@ -11590,6 +9976,11 @@ class CfgSoundTables
 				surface = "en_stones";
 				soundSets[] = {"walkErc_gravel_small_ext_bare_Zmb_Soundset"};
 			};
+			class walkErc_en_deforested
+			{
+				surface = "en_deforested";
+				soundSets[] = {"walkErc_grass_dry_ext_bare_Zmb_Soundset"};
+			};
 		};
 		class runCro_Bare_Zmb_LookupTable
 		{
@@ -11647,6 +10038,11 @@ class CfgSoundTables
 			{
 				surface = "en_stones";
 				soundSets[] = {"runErc_gravel_small_ext_bare_Zmb_Soundset"};
+			};
+			class runErc_en_deforested
+			{
+				surface = "en_deforested";
+				soundSets[] = {"runErc_grass_dry_ext_bare_Zmb_Soundset"};
 			};
 		};
 		class jumpErc_Bare_Zmb_LookupTable
@@ -11706,6 +10102,11 @@ class CfgSoundTables
 				surface = "en_stones";
 				soundSets[] = {"runErc_gravel_small_ext_bare_Zmb_Soundset"};
 			};
+			class runErc_en_deforested
+			{
+				surface = "en_deforested";
+				soundSets[] = {"runErc_grass_dry_ext_bare_Zmb_Soundset"};
+			};
 		};
 		class walkErc_Boots_Zmb_LookupTable
 		{
@@ -11763,6 +10164,11 @@ class CfgSoundTables
 			{
 				surface = "en_stones";
 				soundSets[] = {"walkErc_gravel_small_ext_boots_Zmb_Soundset"};
+			};
+			class walkErc_en_deforested
+			{
+				surface = "en_deforested";
+				soundSets[] = {"walkErc_grass_dry_ext_boots_Zmb_Soundset"};
 			};
 		};
 		class runErc_Boots_Zmb_LookupTable
@@ -11822,6 +10228,11 @@ class CfgSoundTables
 				surface = "en_stones";
 				soundSets[] = {"runErc_gravel_small_ext_boots_Zmb_Soundset"};
 			};
+			class runErc_en_deforested
+			{
+				surface = "en_deforested";
+				soundSets[] = {"runErc_grass_dry_ext_boots_Zmb_Soundset"};
+			};
 		};
 		class sprintErc_Boots_Zmb_LookupTable
 		{
@@ -11879,6 +10290,11 @@ class CfgSoundTables
 			{
 				surface = "en_stones";
 				soundSets[] = {"sprintErc_gravel_small_ext_boots_Zmb_Soundset"};
+			};
+			class sprintErc_en_deforested
+			{
+				surface = "en_deforested";
+				soundSets[] = {"sprintErc_grass_dry_ext_boots_Zmb_Soundset"};
 			};
 		};
 		class landFeetErc_Boots_Zmb_LookupTable
@@ -11938,6 +10354,11 @@ class CfgSoundTables
 				surface = "en_stones";
 				soundSets[] = {"landFeetErc_gravel_small_ext_boots_Zmb_Soundset"};
 			};
+			class landFeetErc_en_deforested
+			{
+				surface = "en_deforested";
+				soundSets[] = {"landFeetErc_grass_dry_ext_boots_Zmb_Soundset"};
+			};
 		};
 		class scuffErc_Boots_Zmb_LookupTable
 		{
@@ -11995,6 +10416,11 @@ class CfgSoundTables
 			{
 				surface = "en_stones";
 				soundSets[] = {"scuffErc_gravel_small_ext_boots_Zmb_Soundset"};
+			};
+			class scuffErc_en_deforested
+			{
+				surface = "en_deforested";
+				soundSets[] = {"scuffErc_grass_dry_ext_boots_Zmb_Soundset"};
 			};
 		};
 		class walkRasErc_Boots_Zmb_LookupTable
@@ -12054,6 +10480,11 @@ class CfgSoundTables
 				surface = "en_stones";
 				soundSets[] = {"walkErc_gravel_small_ext_boots_Zmb_Soundset"};
 			};
+			class walkErc_en_deforested
+			{
+				surface = "en_deforested";
+				soundSets[] = {"walkErc_grass_dry_ext_boots_Zmb_Soundset"};
+			};
 		};
 		class runRasErc_Boots_Zmb_LookupTable
 		{
@@ -12111,6 +10542,11 @@ class CfgSoundTables
 			{
 				surface = "en_stones";
 				soundSets[] = {"runErc_gravel_small_ext_boots_Zmb_Soundset"};
+			};
+			class runErc_en_deforested
+			{
+				surface = "en_deforested";
+				soundSets[] = {"runErc_grass_dry_ext_boots_Zmb_Soundset"};
 			};
 		};
 		class landFootErc_Boots_Zmb_LookupTable
@@ -12170,6 +10606,11 @@ class CfgSoundTables
 				surface = "en_stones";
 				soundSets[] = {"runErc_gravel_small_ext_boots_Zmb_Soundset"};
 			};
+			class runErc_en_deforested
+			{
+				surface = "en_deforested";
+				soundSets[] = {"runErc_grass_dry_ext_boots_Zmb_Soundset"};
+			};
 		};
 		class walkCro_Boots_Zmb_LookupTable
 		{
@@ -12227,6 +10668,11 @@ class CfgSoundTables
 			{
 				surface = "en_stones";
 				soundSets[] = {"walkErc_gravel_small_ext_boots_Zmb_Soundset"};
+			};
+			class walkErc_en_deforested
+			{
+				surface = "en_deforested";
+				soundSets[] = {"walkErc_grass_dry_ext_boots_Zmb_Soundset"};
 			};
 		};
 		class runCro_Boots_Zmb_LookupTable
@@ -12286,6 +10732,11 @@ class CfgSoundTables
 				surface = "en_stones";
 				soundSets[] = {"runErc_gravel_small_ext_boots_Zmb_Soundset"};
 			};
+			class runErc_en_deforested
+			{
+				surface = "en_deforested";
+				soundSets[] = {"runErc_grass_dry_ext_boots_Zmb_Soundset"};
+			};
 		};
 		class jumpErc_Boots_Zmb_LookupTable
 		{
@@ -12343,6 +10794,11 @@ class CfgSoundTables
 			{
 				surface = "en_stones";
 				soundSets[] = {"runErc_gravel_small_ext_boots_Zmb_Soundset"};
+			};
+			class runErc_en_deforested
+			{
+				surface = "en_deforested";
+				soundSets[] = {"runErc_grass_dry_ext_boots_Zmb_Soundset"};
 			};
 		};
 		class walkErc_Sneakers_Zmb_LookupTable
@@ -12402,6 +10858,11 @@ class CfgSoundTables
 				surface = "en_stones";
 				soundSets[] = {"walkErc_gravel_small_ext_sneakers_Zmb_Soundset"};
 			};
+			class walkErc_en_deforested
+			{
+				surface = "en_deforested";
+				soundSets[] = {"walkErc_grass_dry_ext_sneakers_Zmb_Soundset"};
+			};
 		};
 		class runErc_Sneakers_Zmb_LookupTable
 		{
@@ -12459,6 +10920,11 @@ class CfgSoundTables
 			{
 				surface = "en_stones";
 				soundSets[] = {"runErc_gravel_small_ext_sneakers_Zmb_Soundset"};
+			};
+			class runErc_en_deforested
+			{
+				surface = "en_deforested";
+				soundSets[] = {"runErc_grass_dry_ext_sneakers_Zmb_Soundset"};
 			};
 		};
 		class sprintErc_Sneakers_Zmb_LookupTable
@@ -12518,6 +10984,11 @@ class CfgSoundTables
 				surface = "en_stones";
 				soundSets[] = {"sprintErc_gravel_small_ext_sneakers_Zmb_Soundset"};
 			};
+			class sprintErc_en_deforested
+			{
+				surface = "en_deforested";
+				soundSets[] = {"sprintErc_grass_dry_ext_sneakers_Zmb_Soundset"};
+			};
 		};
 		class landFeetErc_Sneakers_Zmb_LookupTable
 		{
@@ -12575,6 +11046,11 @@ class CfgSoundTables
 			{
 				surface = "en_stones";
 				soundSets[] = {"landFeetErc_gravel_small_ext_sneakers_Zmb_Soundset"};
+			};
+			class landFeetErc_en_deforested
+			{
+				surface = "en_deforested";
+				soundSets[] = {"landFeetErc_grass_dry_ext_sneakers_Zmb_Soundset"};
 			};
 		};
 		class scuffErc_Sneakers_Zmb_LookupTable
@@ -12634,6 +11110,11 @@ class CfgSoundTables
 				surface = "en_stones";
 				soundSets[] = {"scuffErc_gravel_small_ext_sneakers_Zmb_Soundset"};
 			};
+			class scuffErc_en_deforested
+			{
+				surface = "en_deforested";
+				soundSets[] = {"scuffErc_grass_dry_ext_sneakers_Zmb_Soundset"};
+			};
 		};
 		class walkRasErc_Sneakers_Zmb_LookupTable
 		{
@@ -12691,6 +11172,11 @@ class CfgSoundTables
 			{
 				surface = "en_stones";
 				soundSets[] = {"walkErc_gravel_small_ext_sneakers_Zmb_Soundset"};
+			};
+			class walkErc_en_deforested
+			{
+				surface = "en_deforested";
+				soundSets[] = {"walkErc_grass_dry_ext_sneakers_Zmb_Soundset"};
 			};
 		};
 		class runRasErc_Sneakers_Zmb_LookupTable
@@ -12750,6 +11236,11 @@ class CfgSoundTables
 				surface = "en_stones";
 				soundSets[] = {"runErc_gravel_small_ext_sneakers_Zmb_Soundset"};
 			};
+			class runErc_en_deforested
+			{
+				surface = "en_deforested";
+				soundSets[] = {"runErc_grass_dry_ext_sneakers_Zmb_Soundset"};
+			};
 		};
 		class landFootErc_Sneakers_Zmb_LookupTable
 		{
@@ -12807,6 +11298,11 @@ class CfgSoundTables
 			{
 				surface = "en_stones";
 				soundSets[] = {"runErc_gravel_small_ext_sneakers_Zmb_Soundset"};
+			};
+			class runErc_en_deforested
+			{
+				surface = "en_deforested";
+				soundSets[] = {"runErc_grass_dry_ext_sneakers_Zmb_Soundset"};
 			};
 		};
 		class walkCro_Sneakers_Zmb_LookupTable
@@ -12866,6 +11362,11 @@ class CfgSoundTables
 				surface = "en_stones";
 				soundSets[] = {"walkErc_gravel_small_ext_sneakers_Zmb_Soundset"};
 			};
+			class walkErc_en_deforested
+			{
+				surface = "en_deforested";
+				soundSets[] = {"walkErc_grass_dry_ext_sneakers_Zmb_Soundset"};
+			};
 		};
 		class runCro_Sneakers_Zmb_LookupTable
 		{
@@ -12923,6 +11424,11 @@ class CfgSoundTables
 			{
 				surface = "en_stones";
 				soundSets[] = {"runErc_gravel_small_ext_sneakers_Zmb_Soundset"};
+			};
+			class runErc_en_deforested
+			{
+				surface = "en_deforested";
+				soundSets[] = {"runErc_grass_dry_ext_sneakers_Zmb_Soundset"};
 			};
 		};
 		class jumpErc_Sneakers_Zmb_LookupTable
@@ -12982,6 +11488,11 @@ class CfgSoundTables
 				surface = "en_stones";
 				soundSets[] = {"runErc_gravel_small_ext_sneakers_Zmb_Soundset"};
 			};
+			class runErc_en_deforested
+			{
+				surface = "en_deforested";
+				soundSets[] = {"runErc_grass_dry_ext_sneakers_Zmb_Soundset"};
+			};
 		};
 		class walkProne_Zmb_LookupTable
 		{
@@ -13039,6 +11550,11 @@ class CfgSoundTables
 			{
 				surface = "en_stones";
 				soundSets[] = {"walkProne_gravelSmall_ext_Zmb_Soundset"};
+			};
+			class walkProne_en_deforested
+			{
+				surface = "en_deforested";
+				soundSets[] = {"walkProne_grass_dry_ext_Zmb_Soundset"};
 			};
 		};
 		class runProne_Zmb_LookupTable
@@ -13098,6 +11614,11 @@ class CfgSoundTables
 				surface = "en_stones";
 				soundSets[] = {"runProne_gravelSmall_ext_Zmb_Soundset"};
 			};
+			class runProne_en_deforested
+			{
+				surface = "en_deforested";
+				soundSets[] = {"runProne_grass_dry_ext_Zmb_Soundset"};
+			};
 		};
 		class bodyfall_Zmb_LookupTable
 		{
@@ -13155,6 +11676,11 @@ class CfgSoundTables
 			{
 				surface = "en_stones";
 				soundSets[] = {"bodyfall_gravelSmall_ext_Zmb_SoundSet"};
+			};
+			class bodyfall_en_deforested
+			{
+				surface = "en_deforested";
+				soundSets[] = {"bodyfall_grass_Zmb_SoundSet"};
 			};
 		};
 		class bodyfall_hand_Zmb_LookupTable
@@ -13214,6 +11740,11 @@ class CfgSoundTables
 				surface = "en_stones";
 				soundSets[] = {"bodyfall_hand_gravelSmall_ext_Zmb_SoundSet"};
 			};
+			class bodyfall_hand_en_deforested
+			{
+				surface = "en_deforested";
+				soundSets[] = {"bodyfall_hand_grass_Zmb_SoundSet"};
+			};
 		};
 		class bodyfall_slide_Zmb_LookupTable
 		{
@@ -13271,6 +11802,11 @@ class CfgSoundTables
 			{
 				surface = "en_stones";
 				soundSets[] = {"bodyfall_slide_gravelSmall_ext_Zmb_SoundSet"};
+			};
+			class bodyfall_slide_en_deforested
+			{
+				surface = "en_deforested";
+				soundSets[] = {"bodyfall_slide_grass_Zmb_SoundSet"};
 			};
 		};
 	};

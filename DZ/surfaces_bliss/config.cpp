@@ -1,8 +1,8 @@
 ////////////////////////////////////////////////////////////////////
 //DeRap: config.bin
-//Produced from mikero's Dos Tools Dll version 8.84
+//Produced from mikero's Dos Tools Dll version 8.94
 //https://mikero.bytex.digital/Downloads
-//'now' is Tue Aug 23 21:49:47 2022 : 'file' last modified on Sun Sep 06 10:45:16 2020
+//'now' is Wed Oct 19 20:15:12 2022 : 'file' last modified on Thu Sep 01 16:30:14 2022
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -86,12 +86,26 @@ class CfgWorlds
 				scaleMax = 0.9;
 				noSatColor = 0;
 			};
+			class branches_picea_deforested_summer: DefaultClutter
+			{
+				model = "dz\plants_bliss\clutter\c_branches_picea_summer.p3d";
+				scaleMin = 1.7;
+				scaleMax = 3;
+				noSatColor = 1;
+			};
 			class branchesBig_picea_summer: DefaultClutter
 			{
 				model = "dz\plants_bliss\clutter\c_branchesBig_picea_summer.p3d";
 				scaleMin = 0.6;
 				scaleMax = 0.8;
 				noSatColor = 0;
+			};
+			class branchesBig_picea_deforested_summer: DefaultClutter
+			{
+				model = "dz\plants_bliss\clutter\c_branchesBig_picea_summer.p3d";
+				scaleMin = 1;
+				scaleMax = 1.5;
+				noSatColor = 1;
 			};
 			class branches_deciduous_summer: DefaultClutter
 			{
@@ -565,6 +579,11 @@ class CfgSurfaceCharacters
 		probability[] = {};
 		names[] = {};
 	};
+	class en_deforested
+	{
+		probability[] = {0.75,0.1,0.05,0.1};
+		names[] = {"branchesBig_picea_deforested_summer","branches_picea_deforested_summer","Pines_summer","GrassDryHypericum_summer"};
+	};
 };
 class CfgSurfaces
 {
@@ -753,5 +772,21 @@ class CfgSurfaces
 		impact = "Hit_Gravel";
 		isDigable = 0;
 		isFertile = 0;
+	};
+	class en_deforested: DZ_SurfacesExt
+	{
+		files = "en_deforested*";
+		deflection = 0.1;
+		friction = 0.75;
+		restitution = 0.34;
+		soundEnviron = "gravel";
+		soundHit = "soft_ground";
+		character = "en_deforested";
+		footDamage = 0.058;
+		audibility = 0.8;
+		impact = "Hit_Dirt";
+		isDigable = 1;
+		isFertile = 1;
+		vpSurface = "Dirt";
 	};
 };

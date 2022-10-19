@@ -1,0 +1,6 @@
+//<'worlds_enoch_data.pbo' properties via Mikero's dos tools, dll version 8.94>
+product=dayz bliss;
+prefix=DZ\worlds\enoch\data;
+version=98397;
+//PboType=Arma Addon;
+//</properties>

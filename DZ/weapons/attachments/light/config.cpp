@@ -1,8 +1,8 @@
 ////////////////////////////////////////////////////////////////////
 //DeRap: config.bin
-//Produced from mikero's Dos Tools Dll version 8.84
+//Produced from mikero's Dos Tools Dll version 8.94
 //https://mikero.bytex.digital/Downloads
-//'now' is Tue Aug 23 21:46:42 2022 : 'file' last modified on Tue Nov 30 15:34:32 2021
+//'now' is Wed Oct 19 20:13:28 2022 : 'file' last modified on Tue Jul 12 17:17:04 2022
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -70,6 +70,7 @@ class cfgVehicles
 			attachmentAction = 1;
 			updateInterval = 40;
 		};
+		soundImpactType = "plastic";
 	};
 	class TLRLight: Switchable_Base
 	{
@@ -108,6 +109,7 @@ class cfgVehicles
 			attachmentAction = 1;
 			updateInterval = 40;
 		};
+		soundImpactType = "plastic";
 	};
 };
 class CfgNonAIVehicles

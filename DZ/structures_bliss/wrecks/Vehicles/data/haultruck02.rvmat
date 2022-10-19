@@ -1,0 +1,102 @@
+////////////////////////////////////////////////////////////////////
+//DeRap: Vehicles\data\haultruck02.rvmat
+//Produced from mikero's Dos Tools Dll version 8.94
+//https://mikero.bytex.digital/Downloads
+//'now' is Wed Oct 19 20:15:12 2022 : 'file' last modified on Thu Sep 01 15:03:23 2022
+////////////////////////////////////////////////////////////////////
+
+#define _ARMA_
+
+ambient[] = {1.0,1.0,1.0,1.0};
+diffuse[] = {1.0,1.0,1.0,1.0};
+forcedDiffuse[] = {0.0,0.0,0.0,1.0};
+emmisive[] = {0.0,0.0,0.0,0.0};
+specular[] = {0.06,0.06,0.06,1.0};
+specularPower = 100;
+PixelShaderID = "Super";
+VertexShaderID = "Super";
+class Stage1
+{
+	texture = "dz\structures_bliss\wrecks\vehicles\data\haultruck_nohq.paa";
+	uvSource = "tex";
+	class uvTransform
+	{
+		aside[] = {1.0,0.0,0.0};
+		up[] = {0.0,1.0,0.0};
+		dir[] = {0.0,0.0,0.0};
+		pos[] = {0.0,0.0,0.0};
+	};
+};
+class Stage2
+{
+	texture = "#(argb,8,8,3)color(0.5,0.5,0.5,0.5,DT)";
+	uvSource = "tex";
+	class uvTransform
+	{
+		aside[] = {1.0,0.0,0.0};
+		up[] = {0.0,1.0,0.0};
+		dir[] = {0.0,0.0,0.0};
+		pos[] = {0.0,0.0,0.0};
+	};
+};
+class Stage3
+{
+	texture = "dz\structures_bliss\wrecks\vehicles\data\haultruck02_mca.paa";
+	uvSource = "tex1";
+	class uvTransform
+	{
+		aside[] = {1.0,0.0,0.0};
+		up[] = {0.0,1.0,0.0};
+		dir[] = {0.0,0.0,0.0};
+		pos[] = {0.0,0.0,0.0};
+	};
+};
+class Stage4
+{
+	texture = "dz\structures_bliss\wrecks\vehicles\data\haultruck02_as.paa";
+	uvSource = "tex1";
+	class uvTransform
+	{
+		aside[] = {1.0,0.0,0.0};
+		up[] = {0.0,1.0,0.0};
+		dir[] = {0.0,0.0,0.0};
+		pos[] = {0.0,0.0,0.0};
+	};
+};
+class Stage5
+{
+	texture = "dz\structures_bliss\wrecks\vehicles\data\haultruck_smdi.paa";
+	uvSource = "tex";
+	class uvTransform
+	{
+		aside[] = {1.0,0.0,0.0};
+		up[] = {0.0,1.0,0.0};
+		dir[] = {0.0,0.0,0.0};
+		pos[] = {0.0,0.0,0.0};
+	};
+};
+class Stage6
+{
+	texture = "#(ai,64,64,1)fresnel(3.6,1.1)";
+	uvSource = "tex";
+	class uvTransform
+	{
+		aside[] = {1.0,0.0,0.0};
+		up[] = {0.0,1.0,0.0};
+		dir[] = {0.0,0.0,0.0};
+		pos[] = {0.0,0.0,0.0};
+	};
+};
+class Stage7
+{
+	texture = "dz\data\data\env_co.paa";
+	useWorldEnvMap = "true";
+	uvSource = "tex";
+	class uvTransform
+	{
+		aside[] = {1.0,0.0,0.0};
+		up[] = {0.0,1.0,0.0};
+		dir[] = {0.0,0.0,0.0};
+		pos[] = {0.0,0.0,0.0};
+	};
+};

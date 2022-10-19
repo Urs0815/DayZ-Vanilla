@@ -1,8 +1,8 @@
 ////////////////////////////////////////////////////////////////////
 //DeRap: glock\config.bin
-//Produced from mikero's Dos Tools Dll version 8.84
+//Produced from mikero's Dos Tools Dll version 8.94
 //https://mikero.bytex.digital/Downloads
-//'now' is Tue Aug 23 21:47:17 2022 : 'file' last modified on Fri Jun 17 09:35:31 2022
+//'now' is Wed Oct 19 20:13:43 2022 : 'file' last modified on Fri Jun 24 12:02:05 2022
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_

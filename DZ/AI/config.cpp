@@ -1,8 +1,8 @@
 ////////////////////////////////////////////////////////////////////
 //DeRap: config.bin
-//Produced from mikero's Dos Tools Dll version 8.84
+//Produced from mikero's Dos Tools Dll version 8.94
 //https://mikero.bytex.digital/Downloads
-//'now' is Tue Aug 23 21:38:10 2022 : 'file' last modified on Mon Sep 13 14:58:15 2021
+//'now' is Wed Oct 19 20:08:32 2022 : 'file' last modified on Mon Oct 10 11:37:40 2022
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -6098,6 +6098,47 @@ class CfgAIBehaviours
 				damageToAlertMultiplier = 10000.0;
 				noiseShotToAlertMultiplier = 2.0;
 			};
+		};
+	};
+	class InfectedMMummy: InfectedMale
+	{
+		class BehaviourHLZombie: BehaviourHLZombie
+		{
+			class MovementSprint: MovementSprint
+			{
+				maxSpeed = 3.0;
+				minSpeed = 0.0;
+				acceleration = 15.0;
+				maxAngleSpeed = 120.0;
+				slowRadius = 0.0;
+				goalRadius = 1.5;
+				stopRadius = 1.7;
+				useStartAnimation = "false";
+				startAnimationMaxSpeed = 0.0;
+				slowToTurn = "false";
+				smoothAcceleration = "true";
+				pathFilter = "ZombieAlerted";
+			};
+		};
+		class TargetSystemDZBase: TargetSystemDZBase
+		{
+			visionProximityRange = 2.5;
+			visionProximityStrengthMult = 5.0;
+			visionCloseRange = 20.0;
+			visionCloseHeight = 1.8;
+			visionCloseStrengthMult = 2.0;
+			visionRangeMin = 30;
+			visionRangeMax = 60;
+			visionFov = 1.0;
+			visionPeripheralRangeMin = 2.5;
+			visionPeripheralRangeMax = 30;
+			visionPeripheralFov = 2.5;
+			visionNightMinMult = 1.0;
+			visionNightMaxMult = 1.0;
+			visionRainMinMult = 1.0;
+			visionRainMaxMult = 1.0;
+			visionFogMinMult = 1.0;
+			visionFogMaxMult = 1.0;
 		};
 	};
 };

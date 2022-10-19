@@ -1,8 +1,8 @@
 ////////////////////////////////////////////////////////////////////
 //DeRap: config.bin
-//Produced from mikero's Dos Tools Dll version 8.84
+//Produced from mikero's Dos Tools Dll version 8.94
 //https://mikero.bytex.digital/Downloads
-//'now' is Tue Aug 23 21:43:30 2022 : 'file' last modified on Tue Jun 21 18:36:56 2022
+//'now' is Wed Oct 19 20:12:04 2022 : 'file' last modified on Fri Oct 07 14:48:24 2022
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -188,7 +188,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 2;
+								damage = 3;
 							};
 							class Blood
 							{
@@ -246,7 +246,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 2;
+								damage = 3;
 							};
 							class Blood
 							{
@@ -304,7 +304,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 2;
+								damage = 3;
 							};
 							class Blood
 							{
@@ -470,7 +470,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 2;
+								damage = 3;
 							};
 							class Blood
 							{
@@ -528,7 +528,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 2;
+								damage = 3;
 							};
 							class Blood
 							{
@@ -586,7 +586,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 2;
+								damage = 3;
 							};
 							class Blood
 							{
@@ -752,7 +752,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 2;
+								damage = 3;
 							};
 							class Blood
 							{
@@ -810,7 +810,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 2;
+								damage = 3;
 							};
 							class Blood
 							{
@@ -868,7 +868,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 2;
+								damage = 3;
 							};
 							class Blood
 							{
@@ -1060,7 +1060,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 2;
+								damage = 3;
 							};
 							class Blood
 							{
@@ -1118,7 +1118,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 2;
+								damage = 3;
 							};
 							class Blood
 							{
@@ -1176,7 +1176,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 2;
+								damage = 3;
 							};
 							class Blood
 							{
@@ -1234,7 +1234,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 2;
+								damage = 3;
 							};
 							class Blood
 							{
@@ -1292,7 +1292,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 2;
+								damage = 3;
 							};
 							class Blood
 							{
@@ -1484,7 +1484,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 2;
+								damage = 3;
 							};
 							class Blood
 							{
@@ -1542,7 +1542,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 2;
+								damage = 3;
 							};
 							class Blood
 							{
@@ -1600,7 +1600,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 2;
+								damage = 3;
 							};
 							class Blood
 							{
@@ -1658,7 +1658,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 2;
+								damage = 3;
 							};
 							class Blood
 							{
@@ -1716,7 +1716,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 2;
+								damage = 3;
 							};
 							class Blood
 							{
@@ -1874,7 +1874,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 2;
+								damage = 3;
 							};
 							class Blood
 							{
@@ -1932,7 +1932,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 2;
+								damage = 3;
 							};
 							class Blood
 							{
@@ -2085,7 +2085,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 2;
+								damage = 3;
 							};
 							class Blood
 							{
@@ -2143,7 +2143,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 2;
+								damage = 3;
 							};
 							class Blood
 							{
@@ -2323,7 +2323,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 2;
+								damage = 3;
 							};
 							class Blood
 							{
@@ -2482,7 +2482,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 2;
+								damage = 3;
 							};
 							class Blood
 							{
@@ -2540,7 +2540,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 2;
+								damage = 3;
 							};
 							class Blood
 							{
@@ -2699,7 +2699,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 2;
+								damage = 3;
 							};
 							class Blood
 							{
@@ -2757,7 +2757,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 2;
+								damage = 3;
 							};
 							class Blood
 							{
@@ -2903,7 +2903,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 2;
+								damage = 3;
 							};
 							class Blood
 							{
@@ -3087,7 +3087,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 3;
+								damage = 10;
 							};
 							class Blood
 							{
@@ -3145,7 +3145,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 3;
+								damage = 10;
 							};
 							class Blood
 							{
@@ -3203,7 +3203,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 3;
+								damage = 10;
 							};
 							class Blood
 							{
@@ -3261,7 +3261,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 3;
+								damage = 10;
 							};
 							class Blood
 							{
@@ -3440,7 +3440,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 3;
+								damage = 10;
 							};
 							class Blood
 							{
@@ -3498,7 +3498,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 3;
+								damage = 10;
 							};
 							class Blood
 							{
@@ -3556,7 +3556,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 3;
+								damage = 10;
 							};
 							class Blood
 							{
@@ -3614,7 +3614,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 3;
+								damage = 10;
 							};
 							class Blood
 							{
@@ -3819,7 +3819,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 3;
+								damage = 10;
 							};
 							class Blood
 							{
@@ -3877,7 +3877,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 3;
+								damage = 10;
 							};
 							class Blood
 							{
@@ -3935,7 +3935,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 3;
+								damage = 10;
 							};
 							class Blood
 							{
@@ -3993,7 +3993,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 3;
+								damage = 10;
 							};
 							class Blood
 							{
@@ -4051,7 +4051,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 3;
+								damage = 10;
 							};
 							class Blood
 							{
@@ -4109,7 +4109,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 3;
+								damage = 10;
 							};
 							class Blood
 							{
@@ -4301,7 +4301,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 3;
+								damage = 10;
 							};
 							class Blood
 							{
@@ -4359,7 +4359,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 3;
+								damage = 10;
 							};
 							class Blood
 							{
@@ -4417,7 +4417,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 3;
+								damage = 10;
 							};
 							class Blood
 							{
@@ -4475,7 +4475,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 3;
+								damage = 10;
 							};
 							class Blood
 							{
@@ -4533,7 +4533,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 3;
+								damage = 10;
 							};
 							class Blood
 							{
@@ -4712,7 +4712,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 2;
+								damage = 3;
 							};
 							class Blood
 							{
@@ -4770,7 +4770,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 2;
+								damage = 3;
 							};
 							class Blood
 							{
@@ -4828,7 +4828,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 2;
+								damage = 3;
 							};
 							class Blood
 							{
@@ -4886,7 +4886,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 2;
+								damage = 3;
 							};
 							class Blood
 							{
@@ -5065,7 +5065,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 2;
+								damage = 3;
 							};
 							class Blood
 							{
@@ -5123,7 +5123,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 2;
+								damage = 3;
 							};
 							class Blood
 							{
@@ -5181,7 +5181,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 2;
+								damage = 3;
 							};
 							class Blood
 							{
@@ -5239,7 +5239,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 2;
+								damage = 3;
 							};
 							class Blood
 							{
@@ -5431,7 +5431,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 3;
+								damage = 10;
 							};
 							class Blood
 							{
@@ -5489,7 +5489,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 3;
+								damage = 10;
 							};
 							class Blood
 							{
@@ -5547,7 +5547,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 3;
+								damage = 10;
 							};
 							class Blood
 							{
@@ -5605,7 +5605,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 3;
+								damage = 10;
 							};
 							class Blood
 							{
@@ -5663,7 +5663,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 3;
+								damage = 10;
 							};
 							class Blood
 							{
@@ -5808,7 +5808,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 3;
+								damage = 10;
 							};
 							class Blood
 							{
@@ -5989,7 +5989,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 2;
+								damage = 3;
 							};
 							class Blood
 							{
@@ -6047,7 +6047,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 2;
+								damage = 3;
 							};
 							class Blood
 							{
@@ -6105,7 +6105,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 2;
+								damage = 3;
 							};
 							class Blood
 							{
@@ -6310,7 +6310,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 3;
+								damage = 10;
 							};
 							class Blood
 							{
@@ -6368,7 +6368,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 3;
+								damage = 10;
 							};
 							class Blood
 							{
@@ -6426,7 +6426,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 2;
+								damage = 3;
 							};
 							class Blood
 							{
@@ -6484,7 +6484,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 2;
+								damage = 3;
 							};
 							class Blood
 							{
@@ -6542,7 +6542,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 2;
+								damage = 3;
 							};
 							class Blood
 							{
@@ -6600,7 +6600,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 2;
+								damage = 3;
 							};
 							class Blood
 							{
@@ -6766,7 +6766,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 2;
+								damage = 3;
 							};
 							class Blood
 							{
@@ -6824,7 +6824,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 2;
+								damage = 3;
 							};
 							class Blood
 							{
@@ -6882,7 +6882,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 2;
+								damage = 3;
 							};
 							class Blood
 							{
@@ -7061,7 +7061,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 2;
+								damage = 3;
 							};
 							class Blood
 							{
@@ -7119,7 +7119,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 3;
+								damage = 10;
 							};
 							class Blood
 							{
@@ -7177,7 +7177,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 3;
+								damage = 10;
 							};
 							class Blood
 							{
@@ -7235,7 +7235,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 3;
+								damage = 10;
 							};
 							class Blood
 							{
@@ -7375,7 +7375,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 2;
+								damage = 3;
 							};
 							class Blood
 							{
@@ -7515,7 +7515,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 3;
+								damage = 10;
 							};
 							class Blood
 							{
@@ -7790,7 +7790,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 3;
+								damage = 10;
 							};
 							class Blood
 							{
@@ -7848,7 +7848,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 3;
+								damage = 10;
 							};
 							class Blood
 							{
@@ -7906,7 +7906,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 3;
+								damage = 10;
 							};
 							class Blood
 							{
@@ -7964,7 +7964,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 3;
+								damage = 10;
 							};
 							class Blood
 							{
@@ -8022,7 +8022,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 3;
+								damage = 10;
 							};
 							class Blood
 							{
@@ -8080,7 +8080,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 3;
+								damage = 10;
 							};
 							class Blood
 							{
@@ -8138,7 +8138,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 3;
+								damage = 10;
 							};
 							class Blood
 							{
@@ -8196,7 +8196,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 3;
+								damage = 10;
 							};
 							class Blood
 							{
@@ -8254,7 +8254,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 3;
+								damage = 10;
 							};
 							class Blood
 							{
@@ -8312,7 +8312,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 3;
+								damage = 10;
 							};
 							class Blood
 							{
@@ -8517,7 +8517,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 2;
+								damage = 3;
 							};
 							class Blood
 							{
@@ -8575,7 +8575,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 2;
+								damage = 3;
 							};
 							class Blood
 							{
@@ -8633,7 +8633,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 2;
+								damage = 3;
 							};
 							class Blood
 							{
@@ -8691,7 +8691,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 3;
+								damage = 10;
 							};
 							class Blood
 							{
@@ -8749,7 +8749,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 3;
+								damage = 10;
 							};
 							class Blood
 							{
@@ -8807,7 +8807,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 2;
+								damage = 3;
 							};
 							class Blood
 							{
@@ -8947,7 +8947,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 3;
+								damage = 10;
 							};
 							class Blood
 							{
@@ -9100,7 +9100,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 2;
+								damage = 3;
 							};
 							class Blood
 							{
@@ -9158,7 +9158,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 2;
+								damage = 3;
 							};
 							class Blood
 							{
@@ -9298,7 +9298,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 2;
+								damage = 3;
 							};
 							class Blood
 							{
@@ -9451,7 +9451,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 2;
+								damage = 3;
 							};
 							class Blood
 							{
@@ -9509,7 +9509,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 2;
+								damage = 3;
 							};
 							class Blood
 							{
@@ -9662,7 +9662,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 2;
+								damage = 3;
 							};
 							class Blood
 							{
@@ -9720,7 +9720,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 2;
+								damage = 3;
 							};
 							class Blood
 							{
@@ -9899,7 +9899,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 2;
+								damage = 3;
 							};
 							class Blood
 							{
@@ -9957,7 +9957,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 2;
+								damage = 3;
 							};
 							class Blood
 							{
@@ -10015,7 +10015,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 3;
+								damage = 10;
 							};
 							class Blood
 							{
@@ -10073,7 +10073,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 2;
+								damage = 3;
 							};
 							class Blood
 							{
@@ -10239,7 +10239,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 2;
+								damage = 3;
 							};
 							class Blood
 							{
@@ -10297,7 +10297,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 2;
+								damage = 3;
 							};
 							class Blood
 							{
@@ -10355,7 +10355,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 2;
+								damage = 3;
 							};
 							class Blood
 							{
@@ -10534,7 +10534,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 2;
+								damage = 3;
 							};
 							class Blood
 							{
@@ -10592,7 +10592,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 2;
+								damage = 3;
 							};
 							class Blood
 							{
@@ -10650,7 +10650,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 2;
+								damage = 3;
 							};
 							class Blood
 							{
@@ -10708,7 +10708,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 2;
+								damage = 3;
 							};
 							class Blood
 							{
@@ -10861,7 +10861,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 2;
+								damage = 3;
 							};
 							class Blood
 							{
@@ -10919,7 +10919,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 2;
+								damage = 3;
 							};
 							class Blood
 							{
@@ -11118,7 +11118,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 2;
+								damage = 3;
 							};
 							class Blood
 							{
@@ -11176,7 +11176,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 2;
+								damage = 3;
 							};
 							class Blood
 							{
@@ -11316,7 +11316,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 2;
+								damage = 3;
 							};
 							class Blood
 							{
@@ -11505,7 +11505,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 2;
+								damage = 3;
 							};
 							class Blood
 							{
@@ -11563,7 +11563,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 2;
+								damage = 3;
 							};
 							class Blood
 							{
@@ -11703,7 +11703,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 2;
+								damage = 3;
 							};
 							class Blood
 							{
@@ -11861,7 +11861,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 2;
+								damage = 3;
 							};
 							class Blood
 							{
@@ -11919,7 +11919,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 2;
+								damage = 3;
 							};
 							class Blood
 							{
@@ -12164,7 +12164,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 2;
+								damage = 3;
 							};
 							class Blood
 							{
@@ -12222,7 +12222,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 2;
+								damage = 3;
 							};
 							class Blood
 							{
@@ -12280,7 +12280,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 2;
+								damage = 3;
 							};
 							class Blood
 							{
@@ -12338,7 +12338,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 2;
+								damage = 3;
 							};
 							class Blood
 							{
@@ -12396,7 +12396,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 2;
+								damage = 3;
 							};
 							class Blood
 							{
@@ -12454,7 +12454,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 2;
+								damage = 3;
 							};
 							class Blood
 							{
@@ -12512,7 +12512,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 2;
+								damage = 3;
 							};
 							class Blood
 							{
@@ -12540,772 +12540,772 @@ class CfgVehicles
 	};
 	class StaticObj_CementWorks_Conveyor_Up1: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Industrial\CementWorks\CementWorks_Conveyor_Up1.p3d";
 	};
 	class StaticObj_CementWorks_Conveyor_Up2: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Industrial\CementWorks\CementWorks_Conveyor_Up2.p3d";
 	};
 	class StaticObj_CementWorks_Conveyor_Up3: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Industrial\CementWorks\CementWorks_Conveyor_Up3.p3d";
 	};
 	class StaticObj_CementWorks_ConveyorFurnace: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Industrial\CementWorks\CementWorks_ConveyorFurnace.p3d";
 	};
 	class StaticObj_CementWorks_ConveyorMillA: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Industrial\CementWorks\CementWorks_ConveyorMillA.p3d";
 	};
 	class StaticObj_CementWorks_ConveyorMillB: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Industrial\CementWorks\CementWorks_ConveyorMillB.p3d";
 	};
 	class StaticObj_CementWorks_ConveyorTowerA: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Industrial\CementWorks\CementWorks_ConveyorTowerA.p3d";
 	};
 	class StaticObj_CementWorks_ConveyorTowerB: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Industrial\CementWorks\CementWorks_ConveyorTowerB.p3d";
 	};
 	class StaticObj_CementWorks_ConveyorTowerC: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Industrial\CementWorks\CementWorks_ConveyorTowerC.p3d";
 	};
 	class StaticObj_CementWorks_SiloBig1Bridge: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Industrial\CementWorks\CementWorks_SiloBig1Bridge.p3d";
 	};
 	class StaticObj_CementWorks_SiloBig2: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Industrial\CementWorks\CementWorks_SiloBig2.p3d";
 	};
 	class StaticObj_CoalPlant_Conveyor: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Industrial\CoalPlant\CoalPlant_Conveyor.p3d";
 	};
 	class StaticObj_CoalPlant_LoadingHouse: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Industrial\CoalPlant\CoalPlant_LoadingHouse.p3d";
 	};
 	class StaticObj_Container_1C: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Industrial\Containers\Container_1C.p3d";
 	};
 	class StaticObj_Container_1D: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Industrial\Containers\Container_1D.p3d";
 	};
 	class StaticObj_Container_2A: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Industrial\Containers\Container_2A.p3d";
 	};
 	class StaticObj_Container_2B: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Industrial\Containers\Container_2B.p3d";
 	};
 	class StaticObj_Container_2C: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Industrial\Containers\Container_2C.p3d";
 	};
 	class StaticObj_Container_2D: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Industrial\Containers\Container_2D.p3d";
 	};
 	class StaticObj_Container_2E: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Industrial\Containers\Container_2E.p3d";
 	};
 	class StaticObj_Dam_Concrete_20: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Industrial\Dams\Dam_Concrete_20.p3d";
 	};
 	class StaticObj_Dam_Concrete_20_Floodgate: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Industrial\Dams\Dam_Concrete_20_Floodgate.p3d";
 	};
 	class StaticObj_Dam_Concrete_40: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Industrial\Dams\Dam_Stone_40.p3d";
 	};
 	class StaticObj_Barn_CowshedA: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Industrial\Farms\Farm_CowshedA.p3d";
 	};
 	class StaticObj_Barn_CowshedB: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Industrial\Farms\Farm_CowshedB.p3d";
 	};
 	class StaticObj_Barn_CowshedC: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Industrial\Farms\Farm_CowshedC.p3d";
 	};
 	class StaticObj_Barn_Hopper: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Industrial\Farms\Farm_Hopper.p3d";
 	};
 	class StaticObj_Barn_StrawStack: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Industrial\Farms\Farm_StrawStack.p3d";
 	};
 	class StaticObj_Barn_WaterTower: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Industrial\Farms\Farm_WaterTower.p3d";
 	};
 	class StaticObj_Barn_WaterTower_Small: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Industrial\Farms\Farm_WaterTower_Small.p3d";
 	};
 	class StaticObj_Boathouse_PierL: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Industrial\Harbour\Boathouse_PierL.p3d";
 	};
 	class StaticObj_Boathouse_PierR: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Industrial\Harbour\Boathouse_PierR.p3d";
 	};
 	class StaticObj_Boathouse_PierT: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Industrial\Harbour\Boathouse_PierT.p3d";
 	};
 	class StaticObj_Pier_Concrete1: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Industrial\Harbour\Pier_Concrete1.p3d";
 	};
 	class StaticObj_Pier_Concrete1_CornerIn: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Industrial\Harbour\Pier_Concrete1_CornerIn.p3d";
 	};
 	class StaticObj_Pier_Concrete1_CornerOut: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Industrial\Harbour\Pier_Concrete1_CornerOut.p3d";
 	};
 	class StaticObj_Pier_Concrete1_End: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Industrial\Harbour\Pier_Concrete1_End.p3d";
 	};
 	class StaticObj_Pier_Concrete1_L: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Industrial\Harbour\Pier_Concrete1_R.p3d";
 	};
 	class StaticObj_Pier_Concrete1_L10: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Industrial\Harbour\Pier_Concrete1_R10.p3d";
 	};
 	class StaticObj_Pier_Concrete1_L30: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Industrial\Harbour\Pier_Concrete1_R30.p3d";
 	};
 	class StaticObj_Pier_Concrete1_TBig: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Industrial\Harbour\Pier_Concrete1_TBig.p3d";
 	};
 	class StaticObj_Pier_Concrete1_TSmall: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Industrial\Harbour\Pier_Concrete1_TSmall.p3d";
 	};
 	class StaticObj_Pier_Concrete2: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Industrial\Harbour\Pier_Concrete2.p3d";
 	};
 	class StaticObj_Pier_Concrete2_End: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Industrial\Harbour\Pier_Concrete2_End.p3d";
 	};
 	class StaticObj_Pier_Concrete3_1: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Industrial\Harbour\Pier_Concrete3_1.p3d";
 	};
 	class StaticObj_Pier_Concrete3_2: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Industrial\Harbour\Pier_Concrete3_2.p3d";
 	};
 	class StaticObj_Pier_Concrete3_End: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Industrial\Harbour\Pier_Concrete3_End.p3d";
 	};
 	class StaticObj_Pier_Concrete3_Fuel: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Industrial\Harbour\Pier_Concrete3_Fuel.p3d";
 	};
 	class StaticObj_Pier_Crane_Rails: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Industrial\Harbour\Pier_Crane_Rails.p3d";
 	};
 	class StaticObj_Pier_Crane_Rails_End: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Industrial\Harbour\Pier_Crane_Rails_End.p3d";
 	};
 	class StaticObj_Pier_Tube_Big: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Industrial\Harbour\Pier_Tube_Big.p3d";
 	};
 	class StaticObj_Pier_Tube_Small: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Industrial\Harbour\Pier_Tube_Small.p3d";
 	};
 	class StaticObj_Pier_Wooden1: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Industrial\Harbour\Pier_Wooden1.p3d";
 	};
 	class StaticObj_Pier_Wooden1_End: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Industrial\Harbour\Pier_Wooden1_End.p3d";
 	};
 	class StaticObj_Workshop_Box: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Industrial\Houses\Workshop_Box.p3d";
 	};
 	class StaticObj_Mine_Conveyer1_10: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Industrial\Mines\Mine_Conveyer1_10.p3d";
 	};
 	class StaticObj_Mine_Conveyer1_Begin: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Industrial\Mines\Mine_Conveyer1_Begin.p3d";
 	};
 	class StaticObj_Mine_Conveyer1_EndBuild: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Industrial\Mines\Mine_Conveyer1_EndBuild.p3d";
 	};
 	class StaticObj_Mine_Conveyer2_Build: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Industrial\Mines\Mine_Conveyer2_Build.p3d";
 	};
 	class StaticObj_Mine_Heap: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Industrial\Mines\Mine_Heap.p3d";
 	};
 	class StaticObj_Mine_Hopper_Build: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Industrial\Mines\Mine_Hopper_Build.p3d";
 	};
 	class StaticObj_Mine_Rail: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Industrial\Mines\Mine_Rail.p3d";
 	};
 	class StaticObj_Mine_Rail_End: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Industrial\Mines\Mine_Rail_End.p3d";
 	};
 	class StaticObj_Mine_Rail_Switch: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Industrial\Mines\Mine_Rail_Switch.p3d";
 	};
 	class StaticObj_Mine_Rail_Tram: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Industrial\Mines\Mine_Rail_Tram.p3d";
 	};
 	class StaticObj_Mine_Tunnel: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Industrial\Mines\Mine_Tunnel.p3d";
 	};
 	class StaticObj_Lamp_Ind: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Industrial\Misc\Lamp_Ind.p3d";
 	};
 	class StaticObj_Lamp_Rail: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Industrial\Misc\Lamp_Rail.p3d";
 	};
 	class StaticObj_Misc_BoardsPack1: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Industrial\Misc\Misc_BoardsPack1.p3d";
 	};
 	class StaticObj_Misc_BoardsPack2: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Industrial\Misc\Misc_BoardsPack2.p3d";
 	};
 	class StaticObj_Misc_BoardsPack3: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Industrial\Misc\Misc_BoardsPack3.p3d";
 	};
 	class StaticObj_Misc_Coil: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Industrial\Misc\Misc_Coil.p3d";
 	};
 	class StaticObj_Misc_ConcretePanels: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Industrial\Misc\Misc_ConcretePanels.p3d";
 	};
 	class StaticObj_Misc_ConcretePipe: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Industrial\Misc\Misc_ConcretePipe.p3d";
 	};
 	class StaticObj_Misc_ConcretePipe_Gate: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Industrial\Misc\Misc_ConcretePipe_Gate.p3d";
 	};
 	class StaticObj_Misc_Drainage: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Industrial\Misc\Misc_Drainage.p3d";
 	};
 	class StaticObj_Misc_GContainer_Big: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Industrial\Misc\Misc_GContainer_Big.p3d";
 	};
 	class StaticObj_Misc_HayBale: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Industrial\Misc\Misc_HayBale.p3d";
 	};
 	class StaticObj_Misc_HayBale_Decayed: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Industrial\Misc\Misc_HayBale_Decayed.p3d";
 	};
 	class StaticObj_Misc_Pallet: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Industrial\Misc\Misc_Pallet.p3d";
 	};
 	class StaticObj_Misc_Pallets1: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Industrial\Misc\Misc_Pallets1.p3d";
 	};
 	class StaticObj_Misc_Pallets2: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Industrial\Misc\Misc_Pallets2.p3d";
 	};
 	class StaticObj_Misc_Pallets3: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Industrial\Misc\Misc_Pallets3.p3d";
 	};
 	class StaticObj_Misc_Pipes: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Industrial\Misc\Misc_Pipes.p3d";
 	};
 	class StaticObj_Misc_Through_Trailer: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Industrial\Misc\Misc_Through_Trailer.p3d";
 	};
 	class StaticObj_Misc_Timbers_Log1: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Industrial\Misc\Misc_Timbers_Log1.p3d";
 	};
 	class StaticObj_Misc_Timbers_Log2: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Industrial\Misc\Misc_Timbers_Log2.p3d";
 	};
 	class StaticObj_Misc_Timbers_Log3: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Industrial\Misc\Misc_Timbers_Log3.p3d";
 	};
 	class StaticObj_Misc_Timbers_Log4: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Industrial\Misc\Misc_Timbers_Log4.p3d";
 	};
 	class StaticObj_Misc_Timbers_Log5: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Industrial\Misc\Misc_Timbers_Log5.p3d";
 	};
 	class StaticObj_Misc_Timbers1: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Industrial\Misc\Misc_Timbers1.p3d";
 	};
 	class StaticObj_Misc_Timbers2: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Industrial\Misc\Misc_Timbers2.p3d";
 	};
 	class StaticObj_Misc_Timbers3: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Industrial\Misc\Misc_Timbers3.p3d";
 	};
 	class StaticObj_Misc_Timbers4: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Industrial\Misc\Misc_Timbers4.p3d";
 	};
 	class StaticObj_Misc_TirePile: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Industrial\Misc\Misc_TirePile.p3d";
 	};
 	class StaticObj_Misc_TirePile_Group: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Industrial\Misc\Misc_TirePile_Group.p3d";
 	};
 	class StaticObj_Misc_WoodPile_Forest1: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Industrial\Misc\Misc_WoodPile_Forest1.p3d";
 	};
 	class StaticObj_Misc_WoodPile_Forest2: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Industrial\Misc\Misc_WoodPile_Forest2.p3d";
 	};
 	class StaticObj_Misc_WoodPile_Forest3: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Industrial\Misc\Misc_WoodPile_Forest3.p3d";
 	};
 	class StaticObj_Pipe_Big_9m: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Industrial\Pipes\Pipe_Big_9m.p3d";
 	};
 	class StaticObj_Pipe_Big_18m: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Industrial\Pipes\Pipe_Big_18m.p3d";
 	};
 	class StaticObj_Pipe_Big_18m_Ladder: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Industrial\Pipes\Pipe_Big_18m_Ladder.p3d";
 	};
 	class StaticObj_Pipe_Big_SmallConL: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Industrial\Pipes\Pipe_Big_SmallConL.p3d";
 	};
 	class StaticObj_Pipe_Big_SmallConR: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Industrial\Pipes\Pipe_Big_SmallConR.p3d";
 	};
 	class StaticObj_Pipe_Big_Support: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Industrial\Pipes\Pipe_Big_Support.p3d";
 	};
 	class StaticObj_Pipe_Med_9m: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Industrial\Pipes\Pipe_Med_9m.p3d";
 	};
 	class StaticObj_Pipe_Med_Ground1: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Industrial\Pipes\Pipe_Med_Ground1.p3d";
 	};
 	class StaticObj_Pipe_Med_Ground2: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Industrial\Pipes\Pipe_Med_Ground2.p3d";
 	};
 	class StaticObj_Pipe_MedL_BuildR: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Industrial\Pipes\Pipe_MedL_BuildR.p3d";
 	};
 	class StaticObj_Pipe_MedL_CornerL: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Industrial\Pipes\Pipe_MedL_CornerL.p3d";
 	};
 	class StaticObj_Pipe_MedL_CornerR: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Industrial\Pipes\Pipe_MedL_CornerR.p3d";
 	};
 	class StaticObj_Pipe_Med_BuildL: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Industrial\Pipes\Pipe_MedR_BuildL.p3d";
 	};
 	class StaticObj_Pipe_Med_BuildR: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Industrial\Pipes\Pipe_MedR_BuildR.p3d";
 	};
 	class StaticObj_Pipe_Small_20m: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Industrial\Pipes\Pipe_Small_20m.p3d";
 	};
 	class StaticObj_Pipe_Small_Broken: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Industrial\Pipes\Pipe_Small_Broken.p3d";
 	};
 	class StaticObj_Pipe_Small_Ground1: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Industrial\Pipes\Pipe_Small_Ground1.p3d";
 	};
 	class StaticObj_Pipe_Small_Ground2: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Industrial\Pipes\Pipe_Small_Ground2.p3d";
 	};
 	class StaticObj_Pipe_Small_L45: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Industrial\Pipes\Pipe_Small_L45.p3d";
 	};
 	class StaticObj_Pipe_Small_L90: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Industrial\Pipes\Pipe_Small_L90.p3d";
 	};
 	class StaticObj_Pipe_Small_R45: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Industrial\Pipes\Pipe_Small_R45.p3d";
 	};
 	class StaticObj_Pipe_Small_R90: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Industrial\Pipes\Pipe_Small_R90.p3d";
 	};
 	class StaticObj_Pipe_Small_Stairs: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Industrial\Pipes\Pipe_Small_Stairs.p3d";
 	};
 	class StaticObj_Pipe_Small_U: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Industrial\Pipes\Pipe_Small_U.p3d";
 	};
 	class StaticObj_Pipe_Small_Valve: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Industrial\Pipes\Pipe_Small_Valve.p3d";
 	};
 	class StaticObj_Power_HV_Line: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Industrial\Power\Power_HV_Line.p3d";
 	};
 	class StaticObj_Power_HV_Line_80m_damaged: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Industrial\Power\Power_HV_Line_80m_damaged.p3d";
 	};
 	class StaticObj_Power_HV_Line_damaged: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Industrial\Power\Power_HV_Line_damaged.p3d";
 	};
 	class StaticObj_Power_HV_Line_Turn: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Industrial\Power\Power_HV_Line.p3d";
 	};
 	class StaticObj_Power_HV_Line_TurnL: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Industrial\Power\Power_HV_Line_TurnL.p3d";
 	};
 	class StaticObj_Power_HV_Line_TurnR: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Industrial\Power\Power_HV_Line_TurnR.p3d";
 	};
 	class StaticObj_Power_HV_Tower: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Industrial\Power\Power_HV_Tower.p3d";
 	};
 	class StaticObj_Power_Pole_ConcT: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Industrial\Power\Power_Pole_ConcT.p3d";
 	};
 	class StaticObj_Power_Pole_Wood1_Trail_B: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Industrial\Power\Power_Pole_Wood1_Trail_B.p3d";
 	};
 	class StaticObj_Power_Pole_Wood1_Trail_G: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Industrial\Power\Power_Pole_Wood1_Trail_G.p3d";
 	};
 	class StaticObj_Power_Pole_Wood1_Trail_R: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Industrial\Power\Power_Pole_Wood1_Trail_R.p3d";
 	};
 	class StaticObj_Power_Pole_Wood1_Trail_Y: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Industrial\Power\Power_Pole_Wood1_Trail_Y.p3d";
 	};
 	class StaticObj_Power_Pole_Wood2: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Industrial\Power\Power_Pole_Wood2.p3d";
 	};
 	class StaticObj_Power_Pole_Wood3: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Industrial\Power\Power_Pole_Wood3.p3d";
 	};
 	class StaticObj_Power_Transformer_Small: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Industrial\Power\Power_Transformer_Small.p3d";
 	};
 	class StaticObj_Power_TransformerStation_Big: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Industrial\Power\Power_TransformerStation_Big.p3d";
 	};
 	class StaticObj_Power_TransformerStation_Cables: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Industrial\Power\Power_TransformerStation_Cables.p3d";
 	};
 	class StaticObj_Quarry_Conveyer: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Industrial\Quarry\Quarry_Conveyer.p3d";
 	};
 	class StaticObj_Quarry_ConveyerLong: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Industrial\Quarry\Quarry_ConveyerLong.p3d";
 	};
 	class StaticObj_Quarry_HammerMill: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Industrial\Quarry\Quarry_HammerMill.p3d";
 	};
 	class StaticObj_Shed_Open_Big: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Industrial\Sheds\Shed_Open_Big.p3d";
 	};
 	class StaticObj_Shed_Open_Big_end: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Industrial\Sheds\Shed_Open_Big_end.p3d";
 	};
 	class StaticObj_Shed_Open_Sawmill: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Industrial\Sheds\Shed_Open_Sawmill.p3d";
 	};
 	class StaticObj_Shed_Open_SideRoof: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Industrial\Sheds\Shed_Open_SideRoof.p3d";
 	};
 	class StaticObj_Shed_Open_Small: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Industrial\Sheds\Shed_Open_Small.p3d";
 	};
 	class StaticObj_Shed_Open_Small_end: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Industrial\Sheds\Shed_Open_Small_end.p3d";
 	};
 	class StaticObj_Tank_Medium: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Industrial\Tanks\Tank_Medium.p3d";
 	};
 	class StaticObj_Tank_Small_Gas: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Industrial\Tanks\Tank_Small_Gas.p3d";
 	};
 	class StaticObj_Tank_Small_Rusty: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Industrial\Tanks\Tank_Small_Rusty.p3d";
 	};
 	class StaticObj_Tank_Small_White: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Industrial\Tanks\Tank_Small_White.p3d";
 	};
 };

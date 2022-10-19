@@ -1,0 +1,11 @@
+////////////////////////////////////////////////////////////////////
+//DeRap: Ponds\data\water_lake.rvmat
+//Produced from mikero's Dos Tools Dll version 8.94
+//https://mikero.bytex.digital/Downloads
+//'now' is Wed Oct 19 20:13:23 2022 : 'file' last modified on Mon Jul 25 16:23:36 2022
+////////////////////////////////////////////////////////////////////
+
+#define _ARMA_
+
+PixelShaderID = "CalmWater";
+VertexShaderID = "CalmWater";

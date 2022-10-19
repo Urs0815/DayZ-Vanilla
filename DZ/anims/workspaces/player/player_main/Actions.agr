@@ -1036,13 +1036,13 @@ $AnimGraph 7 {
 					}
 				}
 				$State {
-					 "DetonatorTriggerErc" "" "DetonatorTriggerErcG" "Stance == 0 && GetCommandI(CMD_Action) == 526" "notime" 1
+					 "ItemTriggerErc" "" "ItemTriggerErcG" "Stance == 0 && GetCommandI(CMD_Action) == 526" "notime" 1
 					$EditorData {
 						#EditorPos 56.2999992 0.5
 					}
 				}
 				$State {
-					 "DetonatorTriggerCro" "" "DetonatorTriggerCroG" "Stance == 1 && GetCommandI(CMD_Action) == 526" "notime" 1
+					 "ItemTriggerCro" "" "ItemTriggerCroG" "Stance == 1 && GetCommandI(CMD_Action) == 526" "notime" 1
 					$EditorData {
 						#EditorPos 56.2999992 -0.4
 					}
@@ -1987,24 +1987,6 @@ ikpose_secchainmiddlediro = LeftHandOrigin,LeftForeArmDirectionOrigin	// origina
 			}
 		}
 		$Node AnimNodeGroupSelect {
-			 "DetonatorTriggerCroG" "" "ActionOnceSTM" "ActionOnce" "DetonatorTriggerCro"
-			$EditorData {
-				#EditorPos 56.2999992 -3.8
-			}
-		}
-		$Node AnimNodeGroupSelect {
-			 "DetonatorTriggerErcG" "" "ActionOnceSTM" "ActionOnce" "DetonatorTriggerErc"
-			$EditorData {
-				#EditorPos 56.2999992 -3.1000001
-			}
-		}
-		$Node AnimNodeGroupSelect {
-			 "DetonatorTriggerPneG" "" "ActionOnceSTM" "ActionOnce" "DetonatorTriggerPne"
-			$EditorData {
-				#EditorPos -111.0999985 31.2000008
-			}
-		}
-		$Node AnimNodeGroupSelect {
 			 "DigCacheErc" "" "ActionInLoopOutLook" "ActionInLoopOut" "DigCacheErc"
 			$EditorData {
 				#EditorPos -9.8000002 32.6000023
@@ -2508,7 +2490,7 @@ ikpose_secchainmiddlediro = LeftHandOrigin,LeftForeArmDirectionOrigin	// origina
 		}
 		$Node AnimNodeStateMachine {
 			 "FullBodyActionMaster" "TagFullBodyActions"
-			$States 169 {
+			$States 172 {
 				$State {
 					 "LitChemlightPne" "" "LitChemlightPne" "GetCommandI(CMD_FullBodyAction) == 504" "notime" 1
 					$EditorData {
@@ -2782,7 +2764,7 @@ ikpose_secchainmiddlediro = LeftHandOrigin,LeftForeArmDirectionOrigin	// origina
 				$State {
 					 "WringCro" "" "FBWringCro" "GetCommandI(CMD_FullBodyAction) == 54" "notime" 1
 					$EditorData {
-						#EditorPos -76.9000015 35.1000023
+						#EditorPos -76.9000015 35.0
 					}
 				}
 				$State {
@@ -3130,7 +3112,7 @@ ikpose_secchainmiddlediro = LeftHandOrigin,LeftForeArmDirectionOrigin	// origina
 				$State {
 					 "DeployHeavyErc" "" "DeployHeavyErc" "GetCommandI(CMD_FullBodyAction) == 95" "notime" 1
 					$EditorData {
-						#EditorPos -5.4000001 35.9000015
+						#EditorPos -5.3000002 35.9000015
 					}
 				}
 				$State {
@@ -3518,9 +3500,27 @@ ikpose_secchainmiddlediro = LeftHandOrigin,LeftForeArmDirectionOrigin	// origina
 					}
 				}
 				$State {
-					 "DetonatorTriggerPne" "" "DetonatorTriggerPneG" "Stance == 2 && GetCommandI(CMD_FullBodyAction) == 526" "notime" 1
+					 "ItemTriggerPne" "" "ItemTriggerPneG" "Stance == 2 && GetCommandI(CMD_FullBodyAction) == 526" "notime" 1
 					$EditorData {
 						#EditorPos -111.0999985 34.2999992
+					}
+				}
+				$State {
+					 "RepairErc" "" "RepairErcG" "Stance == 0 && GetCommandI(CMD_FullBodyAction) == 115" "notime" 1
+					$EditorData {
+						#EditorPos -113.8000031 35.6000023
+					}
+				}
+				$State {
+					 "RepairCro" "" "RepairCroG" "Stance == 1 && GetCommandI(CMD_FullBodyAction) == 115" "notime" 1
+					$EditorData {
+						#EditorPos -113.8000031 34.2999992
+					}
+				}
+				$State {
+					 "ValveErc" "" "ValveErcG" "Stance == 0 && GetCommandI(CMD_FullBodyAction) == 116" "notime" 1
+					$EditorData {
+						#EditorPos -116.5 34.2999992
 					}
 				}
 			}
@@ -4168,6 +4168,24 @@ ikpose_secchainmiddlediro = LeftHandOrigin,LeftForeArmDirectionOrigin	// origina
 			 "ItemOnPneBack" "" "ActionOncePneBT" "ActionOnce" "ItemOnErc"
 			$EditorData {
 				#EditorPos 61.7999992 18.5
+			}
+		}
+		$Node AnimNodeGroupSelect {
+			 "ItemTriggerCroG" "" "ActionOnceSTM" "ActionOnce" "ItemTriggerCro"
+			$EditorData {
+				#EditorPos 56.2999992 -3.8
+			}
+		}
+		$Node AnimNodeGroupSelect {
+			 "ItemTriggerErcG" "" "ActionOnceSTM" "ActionOnce" "ItemTriggerErc"
+			$EditorData {
+				#EditorPos 56.2999992 -3.1000001
+			}
+		}
+		$Node AnimNodeGroupSelect {
+			 "ItemTriggerPneG" "" "ActionOnceSTM" "ActionOnce" "ItemTriggerPne"
+			$EditorData {
+				#EditorPos -111.0999985 31.2000008
 			}
 		}
 		$Node AnimNodeGroupSelect {
@@ -5134,6 +5152,18 @@ ikpose_secchainmiddlediro = LeftHandOrigin,LeftForeArmDirectionOrigin	// origina
 			}
 		}
 		$Node AnimNodeGroupSelect {
+			 "RepairCroG" "" "ActionContinuousLook" "ActionContinuous" "RepairCro"
+			$EditorData {
+				#EditorPos -113.8000031 31.2000008
+			}
+		}
+		$Node AnimNodeGroupSelect {
+			 "RepairErcG" "" "ActionContinuousLook" "ActionContinuous" "RepairErc"
+			$EditorData {
+				#EditorPos -113.8000031 32.4000015
+			}
+		}
+		$Node AnimNodeGroupSelect {
 			 "ResetKitchenTimerCroG" "" "ActionOnceSTM" "ActionOnce" "ResetKitchenTimerCro"
 			$EditorData {
 				#EditorPos -1.5 -3.9000001
@@ -5376,7 +5406,7 @@ ikpose_secchainmiddlediro = LeftHandOrigin,LeftForeArmDirectionOrigin	// origina
 		$Node AnimNodeGroupSelect {
 			 "StartFireErc" "" "ActionContinuousLook" "ActionContinuous" "StartFireErc"
 			$EditorData {
-				#EditorPos -52.5 32.6000023
+				#EditorPos -52.5 32.5
 			}
 		}
 		$Node AnimNodeGroupSelect {
@@ -5859,6 +5889,12 @@ ikpose_secchainmiddlediro = LeftHandOrigin,LeftForeArmDirectionOrigin	// origina
 			 "UnrestrainTargetErc" "" "ActionContinuousLook" "ActionContinuous" "UnrestrainTargetErc"
 			$EditorData {
 				#EditorPos -34.7000008 32.6000023
+			}
+		}
+		$Node AnimNodeGroupSelect {
+			 "ValveErcG" "" "ActionContinuousLook" "ActionContinuous" "ValveErc"
+			$EditorData {
+				#EditorPos -116.5 32.4000015
 			}
 		}
 		$Node AnimNodeGroupSelect {

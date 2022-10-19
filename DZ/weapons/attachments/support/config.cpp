@@ -1,8 +1,8 @@
 ////////////////////////////////////////////////////////////////////
 //DeRap: config.bin
-//Produced from mikero's Dos Tools Dll version 8.84
+//Produced from mikero's Dos Tools Dll version 8.94
 //https://mikero.bytex.digital/Downloads
-//'now' is Tue Aug 23 21:46:50 2022 : 'file' last modified on Mon Jan 10 10:54:16 2022
+//'now' is Wed Oct 19 20:13:31 2022 : 'file' last modified on Tue Jul 12 17:20:29 2022
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -77,6 +77,7 @@ class cfgVehicles
 				range = 2.8;
 			};
 		};
+		soundImpactType = "plastic";
 	};
 	class M4_OEBttstck_Black: M4_OEBttstck
 	{
@@ -136,6 +137,7 @@ class cfgVehicles
 				range = 2.8;
 			};
 		};
+		soundImpactType = "plastic";
 	};
 	class M4_MPBttstck_Black: M4_MPBttstck
 	{
@@ -255,6 +257,7 @@ class cfgVehicles
 				range = 2.8;
 			};
 		};
+		soundImpactType = "wood";
 	};
 	class AK_WoodBttstck_Black: AK_WoodBttstck
 	{
@@ -316,6 +319,7 @@ class cfgVehicles
 				range = 2.8;
 			};
 		};
+		soundImpactType = "wood";
 	};
 	class AK74_WoodBttstck_Black: AK74_WoodBttstck
 	{
@@ -376,6 +380,7 @@ class cfgVehicles
 				range = 2.8;
 			};
 		};
+		soundImpactType = "metal";
 	};
 	class AK_FoldingBttstck_Black: AK_FoldingBttstck
 	{
@@ -436,6 +441,7 @@ class cfgVehicles
 				range = 2.8;
 			};
 		};
+		soundImpactType = "plastic";
 	};
 	class AK_PlasticBttstck_Black: AK_PlasticBttstck
 	{
@@ -497,6 +503,7 @@ class cfgVehicles
 				range = 2.8;
 			};
 		};
+		soundImpactType = "metal";
 	};
 	class AKS74U_Bttstck_Black: AKS74U_Bttstck
 	{
@@ -556,6 +563,7 @@ class cfgVehicles
 				range = 2.8;
 			};
 		};
+		soundImpactType = "plastic";
 	};
 	class Red9Bttstck: Inventory_Base
 	{
@@ -651,6 +659,7 @@ class cfgVehicles
 				range = 2.8;
 			};
 		};
+		soundImpactType = "plastic";
 	};
 	class Fal_FoldingBttstck: Inventory_Base
 	{
@@ -698,6 +707,7 @@ class cfgVehicles
 				range = 2.8;
 			};
 		};
+		soundImpactType = "plastic";
 	};
 	class Saiga_Bttstck: Inventory_Base
 	{
@@ -745,6 +755,7 @@ class cfgVehicles
 				range = 2.8;
 			};
 		};
+		soundImpactType = "plastic";
 	};
 	class PP19_Bttstck: Inventory_Base
 	{
@@ -792,6 +803,7 @@ class cfgVehicles
 				range = 2.8;
 			};
 		};
+		soundImpactType = "metal";
 	};
 	class M4_PlasticHndgrd: Inventory_Base
 	{
@@ -838,6 +850,7 @@ class cfgVehicles
 				range = 2.8;
 			};
 		};
+		soundImpactType = "plastic";
 	};
 	class M4_PlasticHndgrd_Black: M4_PlasticHndgrd
 	{
@@ -898,6 +911,7 @@ class cfgVehicles
 				range = 2.8;
 			};
 		};
+		soundImpactType = "plastic";
 	};
 	class M4_RISHndgrd_Black: M4_RISHndgrd
 	{
@@ -957,6 +971,7 @@ class cfgVehicles
 				range = 2.8;
 			};
 		};
+		soundImpactType = "plastic";
 	};
 	class M4_MPHndgrd_Black: M4_MPHndgrd
 	{
@@ -1016,6 +1031,7 @@ class cfgVehicles
 				range = 2.8;
 			};
 		};
+		soundImpactType = "wood";
 	};
 	class AK_WoodHndgrd_Black: AK_WoodHndgrd
 	{
@@ -1076,6 +1092,7 @@ class cfgVehicles
 				range = 2.8;
 			};
 		};
+		soundImpactType = "wood";
 	};
 	class AK74_Hndgrd_Black: AK74_Hndgrd
 	{
@@ -1137,6 +1154,7 @@ class cfgVehicles
 				range = 2.8;
 			};
 		};
+		soundImpactType = "plastic";
 	};
 	class AK_RailHndgrd_Black: AK_RailHndgrd
 	{
@@ -1196,6 +1214,7 @@ class cfgVehicles
 				range = 2.8;
 			};
 		};
+		soundImpactType = "plastic";
 	};
 	class MP5_PlasticHndgrd: Inventory_Base
 	{
@@ -1242,6 +1261,7 @@ class cfgVehicles
 				range = 2.8;
 			};
 		};
+		soundImpactType = "plastic";
 	};
 	class MP5_RailHndgrd: Inventory_Base
 	{
@@ -1289,6 +1309,7 @@ class cfgVehicles
 				range = 2.8;
 			};
 		};
+		soundImpactType = "plastic";
 	};
 	class M249_Hndgrd: Inventory_Base
 	{
@@ -1536,6 +1557,7 @@ class cfgVehicles
 				range = 2.8;
 			};
 		};
+		soundImpactType = "textile";
 	};
 	class GhillieAtt_Tan: GhillieAtt_ColorBase
 	{

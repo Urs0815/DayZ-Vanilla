@@ -1,6 +1,6 @@
-//<'characters_shoes.pbo' properties via Mikero's dos tools, dll version 8.84>
+//<'characters_shoes.pbo' properties via Mikero's dos tools, dll version 8.94>
 product=dayz;
 prefix=DZ\characters\shoes;
-version=94112P;
+version=96001P;
 //PboType=Arma Addon;
 //</properties>

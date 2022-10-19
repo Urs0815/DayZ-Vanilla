@@ -67,14 +67,8 @@ ikpose_secchainmiddlediro = LeftHandOrigin,LeftForeArmDirectionOrigin	// origina
 				#EditorPos 14.1000004 8.8000002
 			}
 		}
-		$Node AnimNodeBlend {
-			 "MasterControl" "" "1.0" "APoseSrc" "MasterControl02" 0
-			$EditorData {
-				#EditorPos 4.0 19.1000004
-			}
-		}
 		$Node AnimNodeStateMachine {
-			 "MasterControl02" ""
+			 "MasterControl" ""
 			$States 13 {
 				$State {
 					 "Movement" "" "LocomotionQBufferUse" "VehicleType == -1" "notime" 0
@@ -261,6 +255,12 @@ ikpose_secchainmiddlediro = LeftHandOrigin,LeftForeArmDirectionOrigin	// origina
 			}
 			$EditorData {
 				#EditorPos 4.0999999 15.3000002
+			}
+		}
+		$Node AnimNodeBlend {
+			 "MasterControl03" "" "1.0" "APoseSrc" "MasterControl" 0
+			$EditorData {
+				#EditorPos 4.0 19.1000004
 			}
 		}
 		$Node AnimNodeStateMachine {

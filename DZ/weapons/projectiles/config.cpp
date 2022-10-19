@@ -1,8 +1,8 @@
 ////////////////////////////////////////////////////////////////////
 //DeRap: config.bin
-//Produced from mikero's Dos Tools Dll version 8.84
+//Produced from mikero's Dos Tools Dll version 8.94
 //https://mikero.bytex.digital/Downloads
-//'now' is Tue Aug 23 21:47:18 2022 : 'file' last modified on Fri Jun 17 09:37:28 2022
+//'now' is Wed Oct 19 20:13:43 2022 : 'file' last modified on Tue Jul 19 15:01:48 2022
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -878,7 +878,7 @@ class CfgAmmo
 			bleedThreshold = 1.0;
 			class Health
 			{
-				damage = 80;
+				damage = 115;
 			};
 			class Blood
 			{
@@ -886,7 +886,8 @@ class CfgAmmo
 			};
 			class Shock
 			{
-				damage = 90;
+				damage = 115;
+				damageOverride[] = {{0.9,1.0}};
 			};
 		};
 		class NoiseHit
@@ -2086,6 +2087,8 @@ class CfgAmmo
 		tracerEndTime = 3;
 		caliber = 0;
 		deflecting = 90.0;
+		deflectingMultiplier = "3f";
+		deflectionSlowDown = "0.45f";
 		damageBarrel = 500;
 		damageBarrelDestroyed = 500;
 		weight = 0.23;

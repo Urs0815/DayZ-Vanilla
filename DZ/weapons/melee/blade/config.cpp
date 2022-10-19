@@ -1,8 +1,8 @@
 ////////////////////////////////////////////////////////////////////
 //DeRap: blade\config.bin
-//Produced from mikero's Dos Tools Dll version 8.84
+//Produced from mikero's Dos Tools Dll version 8.94
 //https://mikero.bytex.digital/Downloads
-//'now' is Tue Aug 23 21:47:11 2022 : 'file' last modified on Tue Apr 12 14:56:17 2022
+//'now' is Wed Oct 19 20:13:40 2022 : 'file' last modified on Mon Oct 10 15:40:35 2022
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -83,6 +83,7 @@ class CfgVehicles
 				};
 			};
 		};
+		soundImpactType = "metal";
 		class AnimEvents
 		{
 			class SoundWeapon
@@ -191,6 +192,7 @@ class CfgVehicles
 		};
 		isMeleeWeapon = 1;
 		suicideAnim = "woodaxe";
+		soundImpactType = "metal";
 		class AnimEvents
 		{
 			class SoundWeapon
@@ -306,6 +308,7 @@ class CfgVehicles
 				range = 3.7;
 			};
 		};
+		soundImpactType = "metal";
 		class AnimEvents
 		{
 			class SoundWeapon
@@ -426,6 +429,7 @@ class CfgVehicles
 				range = 3.3;
 			};
 		};
+		soundImpactType = "metal";
 		class AnimEvents
 		{
 			class SoundWeapon
@@ -644,6 +648,7 @@ class CfgVehicles
 				range = 3.3;
 			};
 		};
+		soundImpactType = "metal";
 		class AnimEvents
 		{
 			class SoundWeapon
@@ -841,6 +846,7 @@ class CfgVehicles
 				range = 3.3;
 			};
 		};
+		soundImpactType = "metal";
 		class AnimEvents
 		{
 			class SoundWeapon
@@ -1059,6 +1065,7 @@ class CfgVehicles
 				range = 3.3;
 			};
 		};
+		soundImpactType = "metal";
 		class AnimEvents
 		{
 			class SoundWeapon
@@ -1147,6 +1154,7 @@ class CfgVehicles
 				range = 4.1;
 			};
 		};
+		soundImpactType = "metal";
 		class AnimEvents
 		{
 			class SoundWeapon
@@ -1373,6 +1381,7 @@ class CfgVehicles
 			ToolAnim = "CHOPPINGWOOD";
 			DiggingTimeToComplete = 4.5;
 		};
+		soundImpactType = "metal";
 		class AnimEvents
 		{
 			class SoundWeapon
@@ -1480,6 +1489,7 @@ class CfgVehicles
 				range = 3.7;
 			};
 		};
+		soundImpactType = "metal";
 		class AnimEvents
 		{
 			class SoundWeapon
@@ -1694,6 +1704,7 @@ class CfgVehicles
 				range = 3.3;
 			};
 		};
+		soundImpactType = "metal";
 		class AnimEvents
 		{
 			class SoundWeapon
@@ -1909,6 +1920,7 @@ class CfgVehicles
 				range = 3.3;
 			};
 		};
+		soundImpactType = "metal";
 		class AnimEvents
 		{
 			class SoundWeapon
@@ -2125,6 +2137,7 @@ class CfgVehicles
 				range = 3.3;
 			};
 		};
+		soundImpactType = "metal";
 		class AnimEvents
 		{
 			class SoundWeapon
@@ -2216,6 +2229,7 @@ class CfgVehicles
 				range = 3.3;
 			};
 		};
+		soundImpactType = "metal";
 		class AnimEvents
 		{
 			class SoundWeapon

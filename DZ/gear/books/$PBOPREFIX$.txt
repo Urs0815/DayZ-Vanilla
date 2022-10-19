@@ -1,4 +1,4 @@
-//<'gear_books.pbo' properties via Mikero's dos tools, dll version 8.84>
+//<'gear_books.pbo' properties via Mikero's dos tools, dll version 8.94>
 product=dayz;
 prefix=DZ\gear\books;
 version=83537P;

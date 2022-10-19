@@ -1,4 +1,4 @@
-//<'weapons_nonlethal.pbo' properties via Mikero's dos tools, dll version 8.84>
+//<'weapons_nonlethal.pbo' properties via Mikero's dos tools, dll version 8.94>
 product=dayz;
 prefix=DZ\weapons\nonlethal;
 version=87197P;

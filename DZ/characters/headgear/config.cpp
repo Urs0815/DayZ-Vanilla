@@ -1,8 +1,8 @@
 ////////////////////////////////////////////////////////////////////
 //DeRap: config.bin
-//Produced from mikero's Dos Tools Dll version 8.84
+//Produced from mikero's Dos Tools Dll version 8.94
 //https://mikero.bytex.digital/Downloads
-//'now' is Tue Aug 23 21:39:01 2022 : 'file' last modified on Fri May 13 18:53:41 2022
+//'now' is Wed Oct 19 20:09:18 2022 : 'file' last modified on Tue Jul 12 16:48:54 2022
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -130,6 +130,7 @@ class CfgVehicles
 			male = "\DZ\characters\headgear\HelmetMich_m.p3d";
 			female = "\DZ\characters\headgear\HelmetMich_f.p3d";
 		};
+		soundImpactType = "metal";
 		class AnimEvents
 		{
 			class SoundWeapon
@@ -423,6 +424,7 @@ class CfgVehicles
 			male = "\DZ\characters\headgear\HeloHelmet.p3d";
 			female = "\DZ\characters\headgear\HeloHelmet.p3d";
 		};
+		soundImpactType = "plastic";
 		class AnimEvents
 		{
 			class SoundWeapon
@@ -553,6 +555,7 @@ class CfgVehicles
 			male = "\DZ\characters\headgear\ConstructionHelmet_m.p3d";
 			female = "\DZ\characters\headgear\ConstructionHelmet_f.p3d";
 		};
+		soundImpactType = "plastic";
 		class AnimEvents
 		{
 			class SoundWeapon
@@ -874,6 +877,7 @@ class CfgVehicles
 				};
 			};
 		};
+		soundImpactType = "organic";
 		class AnimEvents
 		{
 			class SoundWeapon
@@ -995,6 +999,7 @@ class CfgVehicles
 				};
 			};
 		};
+		soundImpactType = "plastic";
 		class AnimEvents
 		{
 			class SoundWeapon
@@ -1169,6 +1174,7 @@ class CfgVehicles
 				};
 			};
 		};
+		soundImpactType = "plastic";
 		class AnimEvents
 		{
 			class SoundWeapon
@@ -1398,6 +1404,7 @@ class CfgVehicles
 				selection = "bulb";
 			};
 		};
+		soundImpactType = "glass";
 	};
 	class Headtorch_Grey: Headtorch_ColorBase
 	{
@@ -2447,6 +2454,7 @@ class CfgVehicles
 				};
 			};
 		};
+		soundImpactType = "metal";
 		class AnimEvents
 		{
 			class SoundWeapon
@@ -2575,6 +2583,7 @@ class CfgVehicles
 			male = "\DZ\characters\headgear\FireHelmet.p3d";
 			female = "\DZ\characters\headgear\FireHelmet.p3d";
 		};
+		soundImpactType = "plastic";
 		class AnimEvents
 		{
 			class SoundWeapon
@@ -2703,6 +2712,7 @@ class CfgVehicles
 			male = "\DZ\characters\headgear\ProtecSkateHelmet2_m.p3d";
 			female = "\DZ\characters\headgear\ProtecSkateHelmet2_f.p3d";
 		};
+		soundImpactType = "plastic";
 		class AnimEvents
 		{
 			class SoundWeapon
@@ -2854,6 +2864,7 @@ class CfgVehicles
 		{
 			biological = 0.25;
 		};
+		soundImpactType = "plastic";
 		class AnimEvents
 		{
 			class SoundWeapon
@@ -3317,6 +3328,7 @@ class CfgVehicles
 		{
 			biological = 0.25;
 		};
+		soundImpactType = "metal";
 		class AnimEvents
 		{
 			class SoundWeapon
@@ -3436,6 +3448,7 @@ class CfgVehicles
 			male = "\DZ\characters\headgear\Ssh68Helmet.p3d";
 			female = "\DZ\characters\headgear\Ssh68Helmet.p3d";
 		};
+		soundImpactType = "metal";
 		class AnimEvents
 		{
 			class SoundWeapon
@@ -3550,6 +3563,7 @@ class CfgVehicles
 			male = "\DZ\characters\headgear\MxHelmet.p3d";
 			female = "\DZ\characters\headgear\MxHelmet.p3d";
 		};
+		soundImpactType = "plastic";
 		class AnimEvents
 		{
 			class SoundWeapon
@@ -3630,6 +3644,7 @@ class CfgVehicles
 				};
 			};
 		};
+		soundImpactType = "plastic";
 	};
 	class DirtBikeHelmet_Mouthguard: Clothing
 	{
@@ -3651,6 +3666,7 @@ class CfgVehicles
 				};
 			};
 		};
+		soundImpactType = "plastic";
 	};
 	class NBCHoodBase: Clothing
 	{
@@ -3814,6 +3830,7 @@ class CfgVehicles
 			male = "\DZ\characters\headgear\Hockey_helmet.p3d";
 			female = "\DZ\characters\headgear\Hockey_helmet.p3d";
 		};
+		soundImpactType = "plastic";
 		class AnimEvents
 		{
 			class SoundWeapon
@@ -4083,6 +4100,7 @@ class CfgVehicles
 			male = "\DZ\characters\headgear\Mich2001.p3d";
 			female = "\DZ\characters\headgear\Mich2001.p3d";
 		};
+		soundImpactType = "plastic";
 		class AnimEvents
 		{
 			class SoundWeapon

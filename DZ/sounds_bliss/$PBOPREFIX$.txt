@@ -1,6 +1,6 @@
-//<'sounds_bliss.pbo' properties via Mikero's dos tools, dll version 8.84>
+//<'sounds_bliss.pbo' properties via Mikero's dos tools, dll version 8.94>
 product=dayz bliss;
 prefix=DZ\sounds_bliss;
-version=84150P;
+version=98214;
 //PboType=Arma Addon;
 //</properties>

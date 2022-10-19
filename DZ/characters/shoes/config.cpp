@@ -1,8 +1,8 @@
 ////////////////////////////////////////////////////////////////////
 //DeRap: config.bin
-//Produced from mikero's Dos Tools Dll version 8.84
+//Produced from mikero's Dos Tools Dll version 8.94
 //https://mikero.bytex.digital/Downloads
-//'now' is Tue Aug 23 21:39:27 2022 : 'file' last modified on Tue Apr 05 09:31:31 2022
+//'now' is Wed Oct 19 20:09:31 2022 : 'file' last modified on Tue Jul 12 17:13:16 2022
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -411,6 +411,7 @@ class CfgVehicles
 				};
 			};
 		};
+		soundImpactType = "default";
 		class AnimEvents
 		{
 			class SoundWeapon
@@ -523,6 +524,7 @@ class CfgVehicles
 				};
 			};
 		};
+		soundImpactType = "default";
 		class AnimEvents
 		{
 			class SoundWeapon
@@ -617,6 +619,7 @@ class CfgVehicles
 				};
 			};
 		};
+		soundImpactType = "default";
 		class AnimEvents
 		{
 			class SoundWeapon
@@ -728,6 +731,7 @@ class CfgVehicles
 			biological = 0;
 			chemical = 0.5;
 		};
+		soundImpactType = "default";
 		class AnimEvents
 		{
 			class SoundWeapon
@@ -834,6 +838,7 @@ class CfgVehicles
 				};
 			};
 		};
+		soundImpactType = "default";
 		class AnimEvents
 		{
 			class SoundWeapon
@@ -945,6 +950,7 @@ class CfgVehicles
 				};
 			};
 		};
+		soundImpactType = "default";
 		class AnimEvents
 		{
 			class SoundWeapon
@@ -1057,6 +1063,7 @@ class CfgVehicles
 				};
 			};
 		};
+		soundImpactType = "default";
 		class AnimEvents
 		{
 			class SoundWeapon
@@ -1169,6 +1176,7 @@ class CfgVehicles
 				};
 			};
 		};
+		soundImpactType = "default";
 		class AnimEvents
 		{
 			class SoundWeapon
@@ -1281,6 +1289,7 @@ class CfgVehicles
 				};
 			};
 		};
+		soundImpactType = "default";
 		class AnimEvents
 		{
 			class SoundWeapon
@@ -1360,6 +1369,7 @@ class CfgVehicles
 				};
 			};
 		};
+		soundImpactType = "default";
 		class AnimEvents
 		{
 			class SoundWeapon
@@ -1470,6 +1480,7 @@ class CfgVehicles
 				};
 			};
 		};
+		soundImpactType = "default";
 		class AnimEvents
 		{
 			class SoundWeapon
@@ -1591,6 +1602,7 @@ class CfgVehicles
 				};
 			};
 		};
+		soundImpactType = "default";
 		class AnimEvents
 		{
 			class SoundWeapon
@@ -1707,6 +1719,7 @@ class CfgVehicles
 				};
 			};
 		};
+		soundImpactType = "default";
 	};
 	class NBCBootsGray: NBCBootsBase
 	{
@@ -1750,6 +1763,7 @@ class CfgVehicles
 				};
 			};
 		};
+		soundImpactType = "default";
 		class AnimEvents
 		{
 			class SoundWeapon
@@ -1868,5 +1882,6 @@ class CfgVehicles
 				};
 			};
 		};
+		soundImpactType = "default";
 	};
 };

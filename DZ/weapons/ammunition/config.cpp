@@ -1,8 +1,8 @@
 ////////////////////////////////////////////////////////////////////
 //DeRap: config.bin
-//Produced from mikero's Dos Tools Dll version 8.84
+//Produced from mikero's Dos Tools Dll version 8.94
 //https://mikero.bytex.digital/Downloads
-//'now' is Tue Aug 23 21:46:54 2022 : 'file' last modified on Mon May 30 16:20:35 2022
+//'now' is Wed Oct 19 20:13:32 2022 : 'file' last modified on Wed Aug 17 15:05:08 2022
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -159,7 +159,7 @@ class CfgMagazines
 				class Health
 				{
 					hitpoints = 100;
-					healthLevels[] = {{1.0,{"DZ\weapons\ammunition\data\9mm.rvmat"}},{0.7,{"DZ\weapons\ammunition\data\9mm.rvmat"}},{0.5,{"DZ\weapons\ammunition\data\9mm_damage.rvmat"}},{0.3,{"DZ\weapons\ammunition\data\9mm_damage.rvmat"}},{0.0,{"DZ\weapons\ammunition\data\9mm_destruct.rvmat"}}};
+					healthLevels[] = {{1.0,{"DZ\weapons\attachments\magazine\data\magazine_pm73.rvmat"}},{0.7,{"DZ\weapons\attachments\magazine\data\magazine_pm73.rvmat"}},{0.5,{"DZ\weapons\attachments\magazine\data\magazine_pm73_damage.rvmat"}},{0.3,{"DZ\weapons\attachments\magazine\data\magazine_pm73_damage.rvmat"}},{0.0,{"DZ\weapons\attachments\magazine\data\magazine_pm73_destruct.rvmat"}}};
 				};
 			};
 		};
@@ -438,7 +438,7 @@ class CfgMagazines
 				class Health
 				{
 					hitpoints = 100;
-					healthLevels[] = {{1.0,{"DZ\weapons\ammunition\data\rem870_ammo.rvmat"}},{0.7,{"DZ\weapons\ammunition\data\rem870_ammo.rvmat"}},{0.5,{"DZ\weapons\ammunition\data\rem870_ammo_damage.rvmat"}},{0.3,{"DZ\weapons\ammunition\data\rem870_ammo_damage.rvmat"}},{0.0,{"DZ\weapons\ammunition\data\rem870_ammo_destruct.rvmat"}}};
+					healthLevels[] = {{1.0,{"DZ\weapons\ammunition\data\12ga_lessleathalround.rvmat"}},{0.7,{"DZ\weapons\ammunition\data\12ga_lessleathalround.rvmat"}},{0.5,{"DZ\weapons\ammunition\data\12ga_lessleathalround_damage.rvmat"}},{0.3,{"DZ\weapons\ammunition\data\12ga_lessleathalround_damage.rvmat"}},{0.0,{"DZ\weapons\ammunition\data\12ga_lessleathalround_destruct.rvmat"}}};
 				};
 			};
 		};

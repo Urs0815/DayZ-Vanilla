@@ -1,8 +1,8 @@
 ////////////////////////////////////////////////////////////////////
 //DeRap: config.bin
-//Produced from mikero's Dos Tools Dll version 8.84
+//Produced from mikero's Dos Tools Dll version 8.94
 //https://mikero.bytex.digital/Downloads
-//'now' is Tue Aug 23 21:40:16 2022 : 'file' last modified on Tue Apr 26 11:57:34 2022
+//'now' is Wed Oct 19 20:09:56 2022 : 'file' last modified on Thu Sep 08 11:36:44 2022
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -52,6 +52,8 @@ class CfgVehicles
 		inventorySlot[] = {"Truck_01_Barrel1","Truck_01_Barrel2","Truck_01_Barrel3","Truck_01_Barrel4"};
 		weight = 10000;
 		itemSize[] = {10,15};
+		repairableWithKits[] = {10};
+		repairCosts[] = {30.0};
 		itemBehaviour = 0;
 		stackedUnit = "ml";
 		randomQuantity = 2;
@@ -113,6 +115,7 @@ class CfgVehicles
 				animPeriod = 0.01;
 			};
 		};
+		soundImpactType = "metal";
 		class AnimEvents
 		{
 			class SoundWeapon
@@ -287,6 +290,7 @@ class CfgVehicles
 				};
 			};
 		};
+		soundImpactType = "textile";
 		class AnimEvents
 		{
 			class SoundWeapon
@@ -349,6 +353,7 @@ class CfgVehicles
 				};
 			};
 		};
+		soundImpactType = "plastic";
 		class AnimEvents
 		{
 			class SoundWeapon
@@ -392,6 +397,7 @@ class CfgVehicles
 				};
 			};
 		};
+		soundImpactType = "textile";
 		class AnimEvents
 		{
 			class SoundWeapon
@@ -405,6 +411,57 @@ class CfgVehicles
 				{
 					soundSet = "pickUpCourierBag_SoundSet";
 					id = 797;
+				};
+			};
+		};
+	};
+	class PlateCarrierPouches_Black: PlateCarrierPouches
+	{
+		hiddenSelections[] = {"camoGround"};
+		hiddenSelectionsTextures[] = {"\dz\characters\vests\data\BallisticVest_black_co.paa","\dz\characters\vests\data\BallisticVest_black_co.paa","\dz\characters\vests\data\BallisticVest_black_co.paa"};
+		class DamageSystem
+		{
+			class GlobalHealth
+			{
+				class Health
+				{
+					hitpoints = 200;
+					transferToAttachmentsCoef = 0.5;
+					healthLevels[] = {{1.0,{"DZ\characters\vests\Data\BallisticVest.rvmat"}},{0.7,{"DZ\characters\vests\Data\BallisticVest.rvmat"}},{0.5,{"DZ\characters\vests\Data\BallisticVest_damage.rvmat"}},{0.3,{"DZ\characters\vests\Data\BallisticVest_damage.rvmat"}},{0.0,{"DZ\characters\vests\Data\BallisticVest_destruct.rvmat"}}};
+				};
+			};
+		};
+	};
+	class PlateCarrierPouches_Green: PlateCarrierPouches
+	{
+		hiddenSelections[] = {"camoGround"};
+		hiddenSelectionsTextures[] = {"\dz\characters\vests\data\BallisticVest_green_co.paa","\dz\characters\vests\data\BallisticVest_green_co.paa","\dz\characters\vests\data\BallisticVest_green_co.paa"};
+		class DamageSystem
+		{
+			class GlobalHealth
+			{
+				class Health
+				{
+					hitpoints = 200;
+					transferToAttachmentsCoef = 0.5;
+					healthLevels[] = {{1.0,{"DZ\characters\vests\Data\BallisticVest.rvmat"}},{0.7,{"DZ\characters\vests\Data\BallisticVest.rvmat"}},{0.5,{"DZ\characters\vests\Data\BallisticVest_damage.rvmat"}},{0.3,{"DZ\characters\vests\Data\BallisticVest_damage.rvmat"}},{0.0,{"DZ\characters\vests\Data\BallisticVest_destruct.rvmat"}}};
+				};
+			};
+		};
+	};
+	class PlateCarrierPouches_Camo: PlateCarrierPouches
+	{
+		hiddenSelections[] = {"camoGround"};
+		hiddenSelectionsTextures[] = {"\dz\characters\vests\data\BallisticVest_camo_co.paa","\dz\characters\vests\data\BallisticVest_camo_co.paa","\dz\characters\vests\data\BallisticVest_camo_co.paa"};
+		class DamageSystem
+		{
+			class GlobalHealth
+			{
+				class Health
+				{
+					hitpoints = 200;
+					transferToAttachmentsCoef = 0.5;
+					healthLevels[] = {{1.0,{"DZ\characters\vests\Data\BallisticVest.rvmat"}},{0.7,{"DZ\characters\vests\Data\BallisticVest.rvmat"}},{0.5,{"DZ\characters\vests\Data\BallisticVest_damage.rvmat"}},{0.3,{"DZ\characters\vests\Data\BallisticVest_damage.rvmat"}},{0.0,{"DZ\characters\vests\Data\BallisticVest_destruct.rvmat"}}};
 				};
 			};
 		};
@@ -434,6 +491,7 @@ class CfgVehicles
 				};
 			};
 		};
+		soundImpactType = "metal";
 		class AnimEvents
 		{
 			class SoundWeapon
@@ -451,6 +509,9 @@ class CfgVehicles
 			};
 		};
 	};
+	class AmmoBox_POX: AmmoBox{};
+	class AmmoBox_Explosive: AmmoBox{};
+	class AmmoBox_556: AmmoBox{};
 	class Bear_ColorBase: Container_Base
 	{
 		displayName = "$STR_CfgVehicles_Bear_ColorBase0";
@@ -475,6 +536,7 @@ class CfgVehicles
 				};
 			};
 		};
+		soundImpactType = "textile";
 		class AnimEvents
 		{
 			class SoundWeapon
@@ -539,6 +601,7 @@ class CfgVehicles
 				};
 			};
 		};
+		soundImpactType = "textile";
 		class AnimEvents
 		{
 			class SoundWeapon

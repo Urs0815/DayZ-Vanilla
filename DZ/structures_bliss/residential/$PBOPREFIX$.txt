@@ -1,6 +1,6 @@
-//<'structures_residential_bliss.pbo' properties via Mikero's dos tools, dll version 8.84>
+//<'structures_residential_bliss.pbo' properties via Mikero's dos tools, dll version 8.94>
 product=dayz bliss;
 prefix=DZ\structures_bliss\residential;
-version=95744;
+version=98353;
 //PboType=Arma Addon;
 //</properties>

@@ -1,8 +1,8 @@
 ////////////////////////////////////////////////////////////////////
 //DeRap: config.bin
-//Produced from mikero's Dos Tools Dll version 8.84
+//Produced from mikero's Dos Tools Dll version 8.94
 //https://mikero.bytex.digital/Downloads
-//'now' is Tue Aug 23 21:38:59 2022 : 'file' last modified on Wed Jun 08 12:23:53 2022
+//'now' is Wed Oct 19 20:09:17 2022 : 'file' last modified on Tue Sep 13 21:03:49 2022
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -161,7 +161,7 @@ class CfgVehicles
 			class CommandLookAt
 			{
 				HeadDirFilterTimeout = 0.2;
-				HeadDirFilterSpeed = 3.14;
+				HeadDirFilterSpeed = 6.28;
 			};
 		};
 		class MeleeModes
@@ -947,6 +947,26 @@ class CfgVehicles
 				{
 					soundSet = "KitchenTimer_SetUp_Loop_SoundSet";
 					id = 1570;
+				};
+				class GPSReceiver_TurnOn
+				{
+					soundSet = "GPSReceiver_TurnOn_SoundSet";
+					id = 1575;
+				};
+				class BlowTorch_TurnOn
+				{
+					soundSet = "BlowTorch_TurnOn_SoundSet";
+					id = 1580;
+				};
+				class BlowTorch_TurnOff
+				{
+					soundSet = "BlowTorch_TurnOff_SoundSet";
+					id = 1581;
+				};
+				class BlowTorch_Loop
+				{
+					soundSet = "BlowTorch_Loop_SoundSet";
+					id = 1582;
 				};
 				class Flag_in
 				{
@@ -5038,6 +5058,126 @@ class CfgVehicles
 					soundSet = "Derringer_dry_SoundSet";
 					id = 1705;
 				};
+				class SSG82_charge_open
+				{
+					soundSet = "SSG82_charge_open_SoundSet";
+					id = 1710;
+				};
+				class SSG82_charge_close
+				{
+					soundSet = "SSG82_charge_close_SoundSet";
+					id = 1711;
+				};
+				class SSG82_mag_in
+				{
+					soundSet = "SSG82_mag_in_SoundSet";
+					id = 1713;
+				};
+				class SSG82_mag_load
+				{
+					soundSet = "SSG82_mag_load_SoundSet";
+					id = 1734;
+				};
+				class SSG82_mag_out
+				{
+					soundSet = "SSG82_mag_out_SoundSet";
+					id = 1714;
+				};
+				class SSG82_mag_remove
+				{
+					soundSet = "SSG82_mag_remove_SoundSet";
+					id = 1715;
+				};
+				class SSG82_dry
+				{
+					soundSet = "SSG82_dry_SoundSet";
+					id = 1716;
+				};
+				class SSG82_pullout
+				{
+					soundSet = "SSG82_pullout_SoundSet";
+					id = 1717;
+				};
+				class SSG82_hand1
+				{
+					soundSet = "SSG82_hand1_SoundSet";
+					id = 1718;
+				};
+				class SSG82_hand2
+				{
+					soundSet = "SSG82_hand2_SoundSet";
+					id = 1719;
+				};
+				class SSG82_hand3
+				{
+					soundSet = "SSG82_hand3_SoundSet";
+					id = 1720;
+				};
+				class SSG82_hand4
+				{
+					soundSet = "SSG82_hand4_SoundSet";
+					id = 1721;
+				};
+				class SSG82_jamming1
+				{
+					soundSet = "SSG82_jamming1_SoundSet";
+					id = 1722;
+				};
+				class SSG82_jamming2
+				{
+					soundSet = "SSG82_jamming2_SoundSet";
+					id = 1723;
+				};
+				class SSG82_jamming3
+				{
+					soundSet = "SSG82_jamming3_SoundSet";
+					id = 1724;
+				};
+				class SSG82_jamming4
+				{
+					soundSet = "SSG82_jamming4_SoundSet";
+					id = 1725;
+				};
+				class SSG82_jamming5
+				{
+					soundSet = "SSG82_jamming5_SoundSet";
+					id = 1726;
+				};
+				class SSG82_jamming6
+				{
+					soundSet = "SSG82_jamming6_SoundSet";
+					id = 1727;
+				};
+				class SSG82_jamming7
+				{
+					soundSet = "SSG82_jamming7_SoundSet";
+					id = 1728;
+				};
+				class SSG82_jamming8
+				{
+					soundSet = "SSG82_jamming8_SoundSet";
+					id = 1729;
+				};
+				class SSG82_jamming9
+				{
+					soundSet = "SSG82_jamming9_SoundSet";
+					id = 1730;
+				};
+				class SSG82_jamming10
+				{
+					soundSet = "SSG82_jamming10_SoundSet";
+					id = 1731;
+				};
+				class SSG82_jamming11
+				{
+					soundSet = "SSG82_jamming11_SoundSet";
+					id = 1732;
+				};
+				class SSG82_jam
+				{
+					soundSet = "SSG82_jam_SoundSet";
+					id = 1733;
+				};
 				class MagRifle_fill_loop
 				{
 					soundSet = "MagRifle_fill_loop_SoundSet";
@@ -5258,6 +5398,16 @@ class CfgVehicles
 					soundset = "offroad_hit_character_SoundSet";
 					id = 2040;
 				};
+				class Offroad_Horn_Start
+				{
+					soundset = "Offroad_Horn_Start_SoundSet";
+					id = 2041;
+				};
+				class Offroad_Horn_End
+				{
+					soundset = "Offroad_Horn_End_SoundSet";
+					id = 2042;
+				};
 				class Truck_01_Gear
 				{
 					soundset = "Truck_01_Gear_SoundSet";
@@ -5317,6 +5467,16 @@ class CfgVehicles
 				{
 					soundset = "Truck_01_driver_switchSeat_SoundSet";
 					id = 2121;
+				};
+				class Truck_01_Horn_Start
+				{
+					soundset = "Truck_01_Horn_Start_SoundSet";
+					id = 2122;
+				};
+				class Truck_01_Horn_End
+				{
+					soundset = "Truck_01_Horn_End_SoundSet";
+					id = 2123;
 				};
 				class CivilianSedan_Gear
 				{
@@ -5393,6 +5553,16 @@ class CfgVehicles
 					soundset = "CivilianSedan_switchSeat_hand_SoundSet";
 					id = 2222;
 				};
+				class CivilianSedan_Horn_Start
+				{
+					soundset = "CivilianSedan_Horn_Start_SoundSet";
+					id = 2223;
+				};
+				class CivilianSedan_Horn_End
+				{
+					soundset = "CivilianSedan_Horn_End_SoundSet";
+					id = 2224;
+				};
 				class Hatchback_02_Gear
 				{
 					soundset = "Hatchback_02_Gear_SoundSet";
@@ -5468,6 +5638,16 @@ class CfgVehicles
 					soundset = "Hatchback_02_switchSeat_hand_SoundSet";
 					id = 2322;
 				};
+				class Hatchback_02_Horn_Start
+				{
+					soundset = "Hatchback_02_Horn_Start_SoundSet";
+					id = 2323;
+				};
+				class Hatchback_02_Horn_End
+				{
+					soundset = "Hatchback_02_Horn_End_SoundSet";
+					id = 2324;
+				};
 				class Sedan_02_Gear
 				{
 					soundset = "Sedan_02_Gear_SoundSet";
@@ -5542,6 +5722,111 @@ class CfgVehicles
 				{
 					soundset = "Sedan_02_switchSeat_hand_SoundSet";
 					id = 2422;
+				};
+				class Sedan_02_Horn_Start
+				{
+					soundset = "Sedan_02_Horn_Start_SoundSet";
+					id = 2423;
+				};
+				class Sedan_02_Horn_End
+				{
+					soundset = "Sedan_02_Horn_End_SoundSet";
+					id = 2424;
+				};
+				class offroad_02_Gear
+				{
+					soundset = "offroad_02_Gear_SoundSet";
+					id = 2450;
+				};
+				class Offroad_02_Key_On
+				{
+					soundset = "Offroad_02_Key_On_SoundSet";
+					id = 2451;
+				};
+				class Offroad_02_Key_Off
+				{
+					soundset = "Offroad_02_Key_Off_SoundSet";
+					id = 2452;
+				};
+				class Offroad_02_lights
+				{
+					soundset = "Offroad_02_lights_SoundSet";
+					id = 2453;
+				};
+				class Offroad_02_DriverGetIn
+				{
+					soundset = "Offroad_02_DriverGetIn_SoundSet";
+					id = 2454;
+				};
+				class Offroad_02_DriverGetOut
+				{
+					soundset = "Offroad_02_DriverGetOut_SoundSet";
+					id = 2455;
+				};
+				class Offroad_02_DriverJumpOut
+				{
+					soundset = "Offroad_02_DriverJumpOut_SoundSet";
+					id = 2456;
+				};
+				class Offroad_02_CoDriverGetIn
+				{
+					soundset = "Offroad_02_CoDriverGetIn_SoundSet";
+					id = 2457;
+				};
+				class Offroad_02_CoDriverGetOut
+				{
+					soundset = "Offroad_02_CoDriverGetOut_SoundSet";
+					id = 2458;
+				};
+				class Offroad_02_CoDriverJumpOut
+				{
+					soundset = "Offroad_02_CoDriverJumpOut_SoundSet";
+					id = 2459;
+				};
+				class Offroad_02_PassengerGetIn
+				{
+					soundset = "Offroad_02_PassengerGetIn_SoundSet";
+					id = 2460;
+				};
+				class Offroad_02_PassengerGetOut
+				{
+					soundset = "Offroad_02_PassengerGetOut_SoundSet";
+					id = 2461;
+				};
+				class Offroad_02_driver_switchSeat
+				{
+					soundset = "Offroad_02_driver_switchSeat_SoundSet";
+					id = 2462;
+				};
+				class Offroad_02_passanger_switchSeat
+				{
+					soundset = "Offroad_02_passanger_switchSeat_SoundSet";
+					id = 2463;
+				};
+				class Offroad_02_switchSeat_hand
+				{
+					soundset = "Offroad_02_switchSeat_hand_SoundSet";
+					id = 2464;
+				};
+				class Offroad_02_hit_character
+				{
+					soundset = "offroad_02_hit_character_SoundSet";
+					id = 2465;
+				};
+				class Offroad_02_horn
+				{
+					soundset = "Offroad_02_Horn_SoundSet";
+					id = 2466;
+				};
+				class Offroad_02_Horn_Start
+				{
+					soundset = "Offroad_02_Horn_Start_SoundSet";
+					id = 2467;
+				};
+				class Offroad_02_Horn_End
+				{
+					soundset = "Offroad_02_Horn_End_SoundSet";
+					id = 2468;
 				};
 				class p_1hd_cro_suicide_out
 				{
@@ -6414,6 +6699,16 @@ class CfgVehicles
 				{
 					soundLookupTable = "eating_tablets_SoundVoice_Char_LookupTable";
 					id = 891;
+				};
+				class drowning: SoundVoiceEvent
+				{
+					soundLookupTable = "Drowning_SoundVoice_Char_LookupTable";
+					id = 900;
+				};
+				class underwater_breath_hold: SoundVoiceEvent
+				{
+					soundLookupTable = "UnderwaterBreathHold_SoundVoice_Char_LookupTable";
+					id = 901;
 				};
 			};
 			class SoundWeapon

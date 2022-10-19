@@ -1,8 +1,8 @@
 ////////////////////////////////////////////////////////////////////
 //DeRap: config.bin
-//Produced from mikero's Dos Tools Dll version 8.84
+//Produced from mikero's Dos Tools Dll version 8.94
 //https://mikero.bytex.digital/Downloads
-//'now' is Tue Aug 23 21:46:47 2022 : 'file' last modified on Tue Nov 30 15:42:29 2021
+//'now' is Wed Oct 19 20:13:29 2022 : 'file' last modified on Fri Sep 02 09:09:05 2022
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -49,6 +49,7 @@ class cfgVehicles
 		recoilModifier[] = {1,1,1};
 		swayModifier[] = {1,1,1};
 		isMeleeWeapon = 1;
+		soundImpactType = "metal";
 	};
 	class AK_Bayonet: Inventory_Base
 	{
@@ -69,7 +70,7 @@ class cfgVehicles
 		lootTag[] = {"Military_east"};
 		lootCategory = "Attachments";
 		openItemSpillRange[] = {10,20};
-		inventorySlot[] = {"weaponBayonetAK"};
+		inventorySlot[] = {"weaponBayonetAK","Knife"};
 		recoilModifier[] = {1,1,1};
 		swayModifier[] = {1,1,1};
 		itemInfo[] = {"Knife"};
@@ -102,6 +103,7 @@ class cfgVehicles
 				range = 3.3;
 			};
 		};
+		soundImpactType = "metal";
 		class AnimEvents
 		{
 			class SoundWeapon
@@ -148,7 +150,7 @@ class cfgVehicles
 		lootTag[] = {"Military_west"};
 		lootCategory = "Attachments";
 		openItemSpillRange[] = {10,20};
-		inventorySlot[] = {"weaponBayonet"};
+		inventorySlot[] = {"weaponBayonet","Knife"};
 		recoilModifier[] = {1,1,1};
 		swayModifier[] = {1,1,1};
 		itemInfo[] = {"Knife"};
@@ -181,6 +183,7 @@ class cfgVehicles
 				range = 3.3;
 			};
 		};
+		soundImpactType = "metal";
 		class AnimEvents
 		{
 			class SoundWeapon
@@ -260,6 +263,7 @@ class cfgVehicles
 				range = 3.3;
 			};
 		};
+		soundImpactType = "metal";
 		class AnimEvents
 		{
 			class SoundWeapon
@@ -339,6 +343,7 @@ class cfgVehicles
 				range = 3.3;
 			};
 		};
+		soundImpactType = "metal";
 		class AnimEvents
 		{
 			class SoundWeapon
@@ -408,6 +413,7 @@ class cfgVehicles
 				};
 			};
 		};
+		soundImpactType = "metal";
 	};
 	class MP5_Compensator: ItemSuppressor
 	{
@@ -450,6 +456,7 @@ class cfgVehicles
 				};
 			};
 		};
+		soundImpactType = "metal";
 	};
 	class ImprovisedSuppressor: ItemSuppressor
 	{
@@ -513,6 +520,7 @@ class cfgVehicles
 				};
 			};
 		};
+		soundImpactType = "plastic";
 	};
 	class M4_Suppressor: ItemSuppressor
 	{

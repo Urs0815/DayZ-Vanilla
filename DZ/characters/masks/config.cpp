@@ -1,8 +1,8 @@
 ////////////////////////////////////////////////////////////////////
 //DeRap: config.bin
-//Produced from mikero's Dos Tools Dll version 8.84
+//Produced from mikero's Dos Tools Dll version 8.94
 //https://mikero.bytex.digital/Downloads
-//'now' is Tue Aug 23 21:39:17 2022 : 'file' last modified on Tue Apr 05 09:25:11 2022
+//'now' is Wed Oct 19 20:09:27 2022 : 'file' last modified on Tue Jul 12 17:09:22 2022
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -100,6 +100,7 @@ class CfgVehicles
 				};
 			};
 		};
+		soundImpactType = "plastic";
 		soundVoiceType = "gasmask";
 		soundVoicePriority = 5;
 	};
@@ -305,6 +306,7 @@ class CfgVehicles
 		{
 			biological = 1;
 		};
+		soundImpactType = "plastic";
 		class AnimEvents
 		{
 			class SoundWeapon
@@ -368,6 +370,7 @@ class CfgVehicles
 		{
 			biological = 1;
 		};
+		soundImpactType = "plastic";
 		class AnimEvents
 		{
 			class SoundWeapon
@@ -423,6 +426,7 @@ class CfgVehicles
 				};
 			};
 		};
+		soundImpactType = "metal";
 		class AnimEvents
 		{
 			class SoundWeapon
@@ -744,6 +748,7 @@ class CfgVehicles
 			male = "\DZ\characters\masks\VintageHockeyMask_m.p3d";
 			female = "\DZ\characters\masks\VintageHockeyMask_f.p3d";
 		};
+		soundImpactType = "plastic";
 		class AnimEvents
 		{
 			class SoundWeapon
@@ -793,6 +798,7 @@ class CfgVehicles
 			male = "\DZ\characters\masks\CrookedNose_m.p3d";
 			female = "\DZ\characters\masks\CrookedNose_f.p3d";
 		};
+		soundImpactType = "plastic";
 		class AnimEvents
 		{
 			class SoundWeapon

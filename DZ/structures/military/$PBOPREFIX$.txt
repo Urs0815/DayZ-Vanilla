@@ -1,6 +1,6 @@
-//<'structures_military.pbo' properties via Mikero's dos tools, dll version 8.84>
+//<'structures_military.pbo' properties via Mikero's dos tools, dll version 8.94>
 product=dayz;
 prefix=DZ\structures\military;
-version=95744;
+version=98343;
 //PboType=Arma Addon;
 //</properties>

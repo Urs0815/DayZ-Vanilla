@@ -1,8 +1,8 @@
 ////////////////////////////////////////////////////////////////////
 //DeRap: config.bin
-//Produced from mikero's Dos Tools Dll version 8.84
+//Produced from mikero's Dos Tools Dll version 8.94
 //https://mikero.bytex.digital/Downloads
-//'now' is Tue Aug 23 21:39:31 2022 : 'file' last modified on Mon May 30 15:55:42 2022
+//'now' is Wed Oct 19 20:09:33 2022 : 'file' last modified on Fri Sep 02 08:45:22 2022
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -2527,7 +2527,6 @@ class CfgVehicles
 	class MiniDress_Pink: MiniDress_ColorBase
 	{
 		scope = 2;
-		descriptionShort = "$STR_CfgVehicles_MiniDress_Pink0";
 		hiddenSelectionsTextures[] = {"\dz\characters\tops\data\MiniDress_Pink_co.paa","\dz\characters\tops\data\MiniDress_Pink_co.paa","\dz\characters\tops\data\MiniDress_Pink_co.paa"};
 	};
 	class MiniDress_PinkChecker: MiniDress_ColorBase

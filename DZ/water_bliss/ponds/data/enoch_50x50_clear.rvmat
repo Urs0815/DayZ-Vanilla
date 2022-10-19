@@ -1,0 +1,11 @@
+////////////////////////////////////////////////////////////////////
+//DeRap: ponds\data\enoch_50x50_clear.rvmat
+//Produced from mikero's Dos Tools Dll version 8.94
+//https://mikero.bytex.digital/Downloads
+//'now' is Wed Oct 19 20:15:13 2022 : 'file' last modified on Tue Aug 02 11:21:05 2022
+////////////////////////////////////////////////////////////////////
+
+#define _ARMA_
+
+PixelShaderID = "CalmWater";
+VertexShaderID = "CalmWater";

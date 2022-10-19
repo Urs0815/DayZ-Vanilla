@@ -1,6 +1,6 @@
-//<'gear_traps.pbo' properties via Mikero's dos tools, dll version 8.84>
+//<'gear_traps.pbo' properties via Mikero's dos tools, dll version 8.94>
 product=dayz;
 prefix=DZ\gear\traps;
-version=95009P;
+version=97695;
 //PboType=Arma Addon;
 //</properties>

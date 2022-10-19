@@ -1,6 +1,6 @@
-//<'water_bliss.pbo' properties via Mikero's dos tools, dll version 8.84>
+//<'water_bliss.pbo' properties via Mikero's dos tools, dll version 8.94>
 product=dayz bliss;
 prefix=DZ\water_bliss;
-version=84550P;
+version=96430P;
 //PboType=Arma Addon;
 //</properties>

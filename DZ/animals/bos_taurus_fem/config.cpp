@@ -1,8 +1,8 @@
 ////////////////////////////////////////////////////////////////////
 //DeRap: bos_taurus_fem\config.bin
-//Produced from mikero's Dos Tools Dll version 8.84
+//Produced from mikero's Dos Tools Dll version 8.94
 //https://mikero.bytex.digital/Downloads
-//'now' is Tue Aug 23 21:38:16 2022 : 'file' last modified on Mon Jan 24 09:23:41 2022
+//'now' is Wed Oct 19 20:08:37 2022 : 'file' last modified on Mon Jan 24 09:23:41 2022
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_

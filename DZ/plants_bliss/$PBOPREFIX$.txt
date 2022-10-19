@@ -1,6 +1,6 @@
-//<'plants_bliss.pbo' properties via Mikero's dos tools, dll version 8.84>
+//<'plants_bliss.pbo' properties via Mikero's dos tools, dll version 8.94>
 product=dayz bliss;
 prefix=DZ\plants_bliss;
-version=93344P;
+version=97119P;
 //PboType=Arma Addon;
 //</properties>

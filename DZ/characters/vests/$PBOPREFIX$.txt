@@ -1,6 +1,6 @@
-//<'characters_vests.pbo' properties via Mikero's dos tools, dll version 8.84>
+//<'characters_vests.pbo' properties via Mikero's dos tools, dll version 8.94>
 product=dayz;
 prefix=DZ\characters\vests;
-version=92861P;
+version=97493P;
 //PboType=Arma Addon;
 //</properties>

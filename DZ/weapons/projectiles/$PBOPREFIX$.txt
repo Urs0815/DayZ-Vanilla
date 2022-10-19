@@ -1,6 +1,6 @@
-//<'weapons_projectiles.pbo' properties via Mikero's dos tools, dll version 8.84>
+//<'weapons_projectiles.pbo' properties via Mikero's dos tools, dll version 8.94>
 product=dayz;
 prefix=DZ\weapons\projectiles;
-version=95686;
+version=96133P;
 //PboType=Arma Addon;
 //</properties>

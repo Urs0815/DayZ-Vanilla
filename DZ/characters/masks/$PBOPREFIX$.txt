@@ -1,6 +1,6 @@
-//<'characters_masks.pbo' properties via Mikero's dos tools, dll version 8.84>
+//<'characters_masks.pbo' properties via Mikero's dos tools, dll version 8.94>
 product=dayz;
 prefix=DZ\characters\masks;
-version=94112P;
+version=96001P;
 //PboType=Arma Addon;
 //</properties>

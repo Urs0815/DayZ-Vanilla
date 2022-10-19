@@ -1,8 +1,8 @@
 ////////////////////////////////////////////////////////////////////
 //DeRap: config.bin
-//Produced from mikero's Dos Tools Dll version 8.84
+//Produced from mikero's Dos Tools Dll version 8.94
 //https://mikero.bytex.digital/Downloads
-//'now' is Tue Aug 23 21:40:39 2022 : 'file' last modified on Fri May 06 13:19:27 2022
+//'now' is Wed Oct 19 20:10:06 2022 : 'file' last modified on Fri Sep 23 13:06:25 2022
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -38,7 +38,7 @@ class CfgLocationTypes
 		texture = "#(argb,1,1,1)color(1,1,1,1)";
 		color[] = {0,0,0,1};
 		size = 0;
-		font = "gui/fonts/sdf_MetronBook24";
+		font = "gui/fonts/MetronBook-Bold28";
 		textSize = 0.03;
 		shadow = 0;
 		importance = 1;
@@ -50,7 +50,7 @@ class CfgLocationTypes
 		texture = "#(argb,1,1,1)color(1,1,1,1)";
 		color[] = {0,0,0,1};
 		size = 0;
-		font = "gui/fonts/sdf_MetronBook24";
+		font = "gui/fonts/MetronBook-Bold28";
 		textSize = 0.03;
 		shadow = 0;
 		importance = 1;
@@ -169,6 +169,7 @@ class CfgVehicles
 	class Inventory_Base;
 	class ItemMap: Inventory_Base{};
 	class ItemCompass: Inventory_Base{};
+	class ItemGPS: Inventory_Base{};
 	class ChernarusMap: ItemMap
 	{
 		scope = 2;
@@ -196,7 +197,7 @@ class CfgVehicles
 		class MapProperties: MapDefaults
 		{
 			scaleMin = 0.12;
-			scaleMax = 0.6;
+			scaleMax = 0.347;
 		};
 		class AnimationSources
 		{
@@ -245,6 +246,7 @@ class CfgVehicles
 				initPhase = 0;
 			};
 		};
+		soundImpactType = "glass";
 		class AnimEvents
 		{
 			class SoundWeapon
@@ -292,5 +294,63 @@ class CfgVehicles
 				initPhase = 0;
 			};
 		};
+		soundImpactType = "plastic";
+	};
+	class GPSReceiver: ItemGPS
+	{
+		scope = 2;
+		displayName = "$STR_GPSReceiver0";
+		descriptionShort = "$STR_GPSReceiver1";
+		model = "\dz\gear\navigation\GPSReceiver.p3d";
+		itemSize[] = {1,2};
+		weight = 350;
+		rotationFlags = 1;
+		simulation = "ItemGPS";
+		inventorySlot[] = {"WalkieTalkie"};
+		attachments[] = {"BatteryD"};
+		repairableWithKits[] = {7};
+		repairCosts[] = {50.0};
+		class EnergyManager
+		{
+			hasIcon = 1;
+			autoSwitchOffWhenInCargo = 1;
+			energyUsagePerSecond = 0.01;
+			plugType = 1;
+			attachmentAction = 1;
+			updateInterval = 3;
+		};
+		hiddenSelections[] = {"grid_1_0","grid_1_1","grid_1_2","grid_2_0","grid_2_1","grid_2_2","alt_0","alt_1","alt_2","alt_3"};
+		hiddenSelectionsTextures[] = {"dz\gear\navigation\data\GPS_dash_ca.paa","dz\gear\navigation\data\GPS_dash_ca.paa","dz\gear\navigation\data\GPS_dash_ca.paa","dz\gear\navigation\data\GPS_dash_ca.paa","dz\gear\navigation\data\GPS_dash_ca.paa","dz\gear\navigation\data\GPS_dash_ca.paa","dz\gear\navigation\data\GPS_dash_ca.paa","dz\gear\navigation\data\GPS_dash_ca.paa","dz\gear\navigation\data\GPS_dash_ca.paa","dz\gear\navigation\data\GPS_dash_ca.paa"};
+		class DamageSystem
+		{
+			class GlobalHealth
+			{
+				class Health
+				{
+					hitpoints = 50;
+					healthLevels[] = {{1.0,{"DZ\gear\navigation\data\GPSReceiver.rvmat"}},{0.7,{"DZ\gear\navigation\data\GPSReceiver.rvmat"}},{0.5,{"DZ\gear\navigation\data\GPSReceiver_damage.rvmat"}},{0.3,{"DZ\gear\navigation\data\GPSReceiver_damage.rvmat"}},{0.0,{"DZ\gear\navigation\data\GPSReceiver_destruct.rvmat"}}};
+				};
+			};
+		};
+		class AnimationSources
+		{
+			class DisplayState
+			{
+				source = "user";
+				animPeriod = 0.1;
+				initPhase = 1.0;
+			};
+		};
+		soundImpactType = "plastic";
+	};
+};
+class CfgNonAIVehicles
+{
+	class ProxyAttachment;
+	class ProxyGPSReceiver: ProxyAttachment
+	{
+		scope = 2;
+		inventorySlot[] = {"WalkieTalkie"};
+		model = "\dz\gear\navigation\GPSReceiver.p3d";
 	};
 };

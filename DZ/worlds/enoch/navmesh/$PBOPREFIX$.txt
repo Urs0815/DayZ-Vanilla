@@ -1,0 +1,6 @@
+//<'worlds_enoch_nav.pbo' properties via Mikero's dos tools, dll version 8.94>
+product=dayz bliss;
+prefix=DZ\worlds\enoch\navmesh;
+version=98402;
+//PboType=Arma Addon;
+//</properties>

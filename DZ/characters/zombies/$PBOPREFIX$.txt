@@ -1,6 +1,6 @@
-//<'characters_zombies.pbo' properties via Mikero's dos tools, dll version 8.84>
+//<'characters_zombies.pbo' properties via Mikero's dos tools, dll version 8.94>
 product=dayz;
 prefix=DZ\characters\zombies;
-version=94593P;
+version=98432;
 //PboType=Arma Addon;
 //</properties>

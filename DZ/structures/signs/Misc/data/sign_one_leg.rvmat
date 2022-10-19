@@ -1,18 +1,18 @@
 ////////////////////////////////////////////////////////////////////
 //DeRap: Misc\data\sign_one_leg.rvmat
-//Produced from mikero's Dos Tools Dll version 8.84
+//Produced from mikero's Dos Tools Dll version 8.94
 //https://mikero.bytex.digital/Downloads
-//'now' is Tue Aug 23 21:45:10 2022 : 'file' last modified on Tue Jun 21 17:54:59 2022
+//'now' is Wed Oct 19 20:12:47 2022 : 'file' last modified on Thu Aug 25 19:18:04 2022
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
 
-ambient[] = {1.0,1.0,1.0,1.0};
-diffuse[] = {1.0,1.0,1.0,1.0};
+ambient[] = {0.25,0.25,0.25,1.0};
+diffuse[] = {0.25,0.25,0.25,1.0};
 forcedDiffuse[] = {0.0,0.0,0.0,0.0};
 emmisive[] = {0.0,0.0,0.0,1.0};
 specular[] = {1.0,1.0,1.0,1.0};
-specularPower = 100.0;
+specularPower = 1.0;
 PixelShaderID = "Super";
 VertexShaderID = "Super";
 class Stage1

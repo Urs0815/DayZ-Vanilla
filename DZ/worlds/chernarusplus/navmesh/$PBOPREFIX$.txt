@@ -1,0 +1,6 @@
+//<'worlds_chernarusplus_nav.pbo' properties via Mikero's dos tools, dll version 8.94>
+product=dayz;
+prefix=DZ\worlds\chernarusplus\navmesh;
+version=98259;
+//PboType=Arma Unknown pbo type (no config or mission).;
+//</properties>

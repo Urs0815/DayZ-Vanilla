@@ -1,8 +1,8 @@
 ////////////////////////////////////////////////////////////////////
 //DeRap: config.bin
-//Produced from mikero's Dos Tools Dll version 8.84
+//Produced from mikero's Dos Tools Dll version 8.94
 //https://mikero.bytex.digital/Downloads
-//'now' is Tue Aug 23 21:40:25 2022 : 'file' last modified on Wed Jan 05 17:43:03 2022
+//'now' is Wed Oct 19 20:10:00 2022 : 'file' last modified on Tue Jul 12 15:44:23 2022
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -81,6 +81,7 @@ class CfgVehicles
 				range = 2.8;
 			};
 		};
+		soundImpactType = "plastic";
 		class AnimEvents
 		{
 			class SoundWeapon
@@ -151,6 +152,7 @@ class CfgVehicles
 				};
 			};
 		};
+		soundImpactType = "plastic";
 		class AnimEvents
 		{
 			class SoundWeapon
@@ -224,6 +226,7 @@ class CfgVehicles
 				};
 			};
 		};
+		soundImpactType = "glass";
 		class AnimEvents
 		{
 			class SoundWeapon
@@ -293,6 +296,7 @@ class CfgVehicles
 				};
 			};
 		};
+		soundImpactType = "textile";
 		class AnimEvents
 		{
 			class SoundWeapon
@@ -405,6 +409,7 @@ class CfgVehicles
 				};
 			};
 		};
+		soundImpactType = "metal";
 		class Nutrition
 		{
 			totalVolume = 1;

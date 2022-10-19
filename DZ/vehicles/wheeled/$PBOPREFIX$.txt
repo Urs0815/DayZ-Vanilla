@@ -1,6 +1,6 @@
-//<'vehicles_wheeled.pbo' properties via Mikero's dos tools, dll version 8.84>
+//<'vehicles_wheeled.pbo' properties via Mikero's dos tools, dll version 8.94>
 product=dayz;
 prefix=DZ\vehicles\wheeled;
-version=94593P;
+version=98639;
 //PboType=Arma Addon;
 //</properties>

@@ -1,8 +1,8 @@
 ////////////////////////////////////////////////////////////////////
 //DeRap: config.bin
-//Produced from mikero's Dos Tools Dll version 8.84
+//Produced from mikero's Dos Tools Dll version 8.94
 //https://mikero.bytex.digital/Downloads
-//'now' is Tue Aug 23 21:40:49 2022 : 'file' last modified on Mon May 30 09:15:35 2022
+//'now' is Wed Oct 19 20:10:10 2022 : 'file' last modified on Wed Oct 05 20:40:39 2022
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -74,6 +74,7 @@ class CfgVehicles
 				};
 			};
 		};
+		soundImpactType = "metal";
 	};
 	class AlarmClock_Red: AlarmClock_ColorBase
 	{
@@ -127,6 +128,7 @@ class CfgVehicles
 				};
 			};
 		};
+		soundImpactType = "metal";
 	};
 	class Flashlight: Inventory_Base
 	{
@@ -182,6 +184,7 @@ class CfgVehicles
 			attachmentAction = 1;
 			updateInterval = 40;
 		};
+		soundImpactType = "plastic";
 		class AnimEvents
 		{
 			class SoundWeapon
@@ -268,6 +271,7 @@ class CfgVehicles
 				range = 2.8;
 			};
 		};
+		soundImpactType = "plastic";
 	};
 	class Pen_Black: Pen_ColorBase
 	{
@@ -314,6 +318,7 @@ class CfgVehicles
 				};
 			};
 		};
+		soundImpactType = "metal";
 	};
 	class Heatpack: Inventory_Base
 	{
@@ -347,6 +352,7 @@ class CfgVehicles
 			energyUsagePerSecond = 1;
 			updateInterval = 40;
 		};
+		soundImpactType = "plastic";
 		class AnimEvents
 		{
 			class SoundWeapon
@@ -404,6 +410,7 @@ class CfgVehicles
 				range = 2.8;
 			};
 		};
+		soundImpactType = "metal";
 	};
 	class Pliers: Inventory_Base
 	{
@@ -451,6 +458,7 @@ class CfgVehicles
 				range = 2.8;
 			};
 		};
+		soundImpactType = "metal";
 		class AnimEvents
 		{
 			class SoundWeapon
@@ -511,6 +519,7 @@ class CfgVehicles
 				range = 2.8;
 			};
 		};
+		soundImpactType = "metal";
 		class AnimEvents
 		{
 			class SoundWeapon
@@ -585,6 +594,7 @@ class CfgVehicles
 				range = 2.8;
 			};
 		};
+		soundImpactType = "wood";
 	};
 	class SewingKit: Inventory_Base
 	{
@@ -615,6 +625,7 @@ class CfgVehicles
 				};
 			};
 		};
+		soundImpactType = "metal";
 		class AnimEvents
 		{
 			class SoundWeapon
@@ -666,6 +677,7 @@ class CfgVehicles
 				};
 			};
 		};
+		soundImpactType = "textile";
 		class AnimEvents
 		{
 			class SoundWeapon
@@ -730,6 +742,7 @@ class CfgVehicles
 				range = 2.8;
 			};
 		};
+		soundImpactType = "metal";
 		class AnimEvents
 		{
 			class SoundWeapon
@@ -837,6 +850,7 @@ class CfgVehicles
 				};
 			};
 		};
+		soundImpactType = "metal";
 	};
 	class Cassette: Inventory_Base
 	{
@@ -878,6 +892,7 @@ class CfgVehicles
 				range = 2.8;
 			};
 		};
+		soundImpactType = "plastic";
 	};
 	class Shovel: Inventory_Base
 	{
@@ -930,6 +945,7 @@ class CfgVehicles
 			ToolAnim = "DIGGINGSHOVEL";
 			DiggingTimeToComplete = 4.5;
 		};
+		soundImpactType = "metal";
 		class AnimEvents
 		{
 			class SoundWeapon
@@ -1011,6 +1027,7 @@ class CfgVehicles
 			ToolAnim = "DIGGINGSHOVEL";
 			DiggingTimeToComplete = 5.0;
 		};
+		soundImpactType = "metal";
 		class AnimEvents
 		{
 			class SoundWeapon
@@ -1092,6 +1109,7 @@ class CfgVehicles
 				range = 4.1;
 			};
 		};
+		soundImpactType = "metal";
 		class AnimEvents
 		{
 			class SoundWeapon
@@ -1177,6 +1195,7 @@ class CfgVehicles
 				range = 3.3;
 			};
 		};
+		soundImpactType = "metal";
 	};
 	class Hammer: Inventory_Base
 	{
@@ -1221,6 +1240,7 @@ class CfgVehicles
 				range = 3.3;
 			};
 		};
+		soundImpactType = "metal";
 		class AnimEvents
 		{
 			class SoundWeapon
@@ -1286,6 +1306,7 @@ class CfgVehicles
 				range = 3.3;
 			};
 		};
+		soundImpactType = "wood";
 		class AnimEvents
 		{
 			class SoundWeapon
@@ -1351,6 +1372,7 @@ class CfgVehicles
 				range = 4.1;
 			};
 		};
+		soundImpactType = "metal";
 		class AnimEvents
 		{
 			class SoundWeapon
@@ -1416,6 +1438,7 @@ class CfgVehicles
 				range = 4.1;
 			};
 		};
+		soundImpactType = "metal";
 		class AnimEvents
 		{
 			class SoundWeapon
@@ -1481,6 +1504,7 @@ class CfgVehicles
 				range = 4.1;
 			};
 		};
+		soundImpactType = "metal";
 		class AnimEvents
 		{
 			class SoundWeapon
@@ -1562,6 +1586,7 @@ class CfgVehicles
 				range = 3.3;
 			};
 		};
+		soundImpactType = "metal";
 		class AnimEvents
 		{
 			class SoundWeapon
@@ -1630,6 +1655,7 @@ class CfgVehicles
 				range = 3.3;
 			};
 		};
+		soundImpactType = "metal";
 		class AnimEvents
 		{
 			class SoundWeapon
@@ -1699,6 +1725,7 @@ class CfgVehicles
 				range = 3.3;
 			};
 		};
+		soundImpactType = "metal";
 		class AnimEvents
 		{
 			class SoundWeapon
@@ -1779,6 +1806,7 @@ class CfgVehicles
 				range = 3.3;
 			};
 		};
+		soundImpactType = "metal";
 		class AnimEvents
 		{
 			class SoundWeapon
@@ -1854,6 +1882,7 @@ class CfgVehicles
 				range = 3.3;
 			};
 		};
+		soundImpactType = "metal";
 		class AnimEvents
 		{
 			class SoundWeapon
@@ -1926,6 +1955,7 @@ class CfgVehicles
 				range = 3.3;
 			};
 		};
+		soundImpactType = "metal";
 	};
 	class StoneKnife: Inventory_Base
 	{
@@ -2114,6 +2144,7 @@ class CfgVehicles
 				range = 3.7;
 			};
 		};
+		soundImpactType = "metal";
 	};
 	class FarmingHoe: Inventory_Base
 	{
@@ -2167,6 +2198,7 @@ class CfgVehicles
 			ToolAnim = "DIGGINGHOE";
 			DiggingTimeToComplete = 1.0;
 		};
+		soundImpactType = "metal";
 		class AnimEvents
 		{
 			class SoundWeapon
@@ -2226,6 +2258,7 @@ class CfgVehicles
 				};
 			};
 		};
+		soundImpactType = "wood";
 		class AnimEvents
 		{
 			class SoundWeapon
@@ -2391,6 +2424,7 @@ class CfgVehicles
 				range = 3.7;
 			};
 		};
+		soundImpactType = "wood";
 		class AnimEvents
 		{
 			class SoundWeapon
@@ -2489,6 +2523,7 @@ class CfgVehicles
 				range = 3.7;
 			};
 		};
+		soundImpactType = "metal";
 		class AnimEvents
 		{
 			class SoundWeapon
@@ -2582,6 +2617,7 @@ class CfgVehicles
 			ToolAnim = "defaultSingle";
 			DiggingTimeToComplete = 6.0;
 		};
+		soundImpactType = "metal";
 	};
 	class Broom: Inventory_Base
 	{
@@ -2662,6 +2698,7 @@ class CfgVehicles
 				range = 2.2;
 			};
 		};
+		soundImpactType = "wood";
 	};
 	class Broom_Birch: Broom
 	{
@@ -2675,6 +2712,7 @@ class CfgVehicles
 		rotationFlags = 12;
 		itemSize[] = {2,8};
 		inventorySlot[] = {"Shoulder","Melee"};
+		varWetMax = 0.49;
 		class DamageSystem
 		{
 			class GlobalHealth
@@ -2726,6 +2764,7 @@ class CfgVehicles
 				range = 3.7;
 			};
 		};
+		soundImpactType = "wood";
 	};
 	class ElectronicRepairKit: Inventory_Base
 	{
@@ -2755,6 +2794,7 @@ class CfgVehicles
 				};
 			};
 		};
+		soundImpactType = "textile";
 		class AnimEvents
 		{
 			class SoundWeapon
@@ -2805,6 +2845,7 @@ class CfgVehicles
 				};
 			};
 		};
+		soundImpactType = "plastic";
 		class AnimEvents
 		{
 			class SoundWeapon
@@ -2923,6 +2964,7 @@ class CfgVehicles
 				range = 3.3;
 			};
 		};
+		soundImpactType = "metal";
 		class AnimEvents
 		{
 			class SoundWeapon
@@ -3077,6 +3119,7 @@ class CfgVehicles
 				};
 			};
 		};
+		soundImpactType = "plastic";
 	};
 	class RemoteDetonatorReceiver: RemoteDetonator
 	{
@@ -3100,6 +3143,7 @@ class CfgVehicles
 				};
 			};
 		};
+		soundImpactType = "plastic";
 	};
 	class RemoteDetonatorTrigger: RemoteDetonator
 	{
@@ -3110,6 +3154,7 @@ class CfgVehicles
 		inventorySlot[] = {"tripWireAttachment"};
 		rotationFlags = 12;
 		weight = 150;
+		lockType = 4;
 		hiddenSelections[] = {"LED"};
 		hiddenSelectionsTextures[] = {"\dz\gear\tools\data\remotedetonator_co.paa"};
 		class AnimationSources
@@ -3135,6 +3180,124 @@ class CfgVehicles
 				{
 					hitpoints = 40;
 					healthLevels[] = {{1.0,{"DZ\gear\tools\data\RemoteDetonator.rvmat"}},{0.7,{"DZ\gear\tools\data\RemoteDetonator.rvmat"}},{0.5,{"DZ\gear\tools\data\RemoteDetonator_damage.rvmat"}},{0.3,{"DZ\gear\tools\data\RemoteDetonator_damage.rvmat"}},{0.0,{"DZ\gear\tools\data\RemoteDetonator_destruct.rvmat"}}};
+				};
+			};
+		};
+		soundImpactType = "plastic";
+	};
+	class Blowtorch: Inventory_Base
+	{
+		scope = 2;
+		displayName = "$STR_Blowtorch0";
+		descriptionShort = "$STR_Blowtorch1";
+		model = "\dz\gear\tools\Blowtorch.p3d";
+		rotationFlags = 17;
+		weight = 210;
+		itemSize[] = {3,4};
+		attachments[] = {"GasCanister"};
+		containerSlot = "GasCanister";
+		repairKitType = 10;
+		class DamageSystem
+		{
+			class GlobalHealth
+			{
+				class Health
+				{
+					hitpoints = 100;
+					healthLevels[] = {{1.0,{"DZ\gear\tools\data\Blowtorch.rvmat"}},{0.7,{"DZ\gear\tools\data\Blowtorch.rvmat"}},{0.5,{"DZ\gear\tools\data\Blowtorch_damage.rvmat"}},{0.3,{"DZ\gear\tools\data\Blowtorch_damage.rvmat"}},{0.0,{"DZ\gear\tools\data\Blowtorch_destruct.rvmat"}}};
+				};
+			};
+		};
+		class EnergyManager
+		{
+			switchOnAtSpawn = 0;
+			autoSwitchOff = 1;
+			autoSwitchOffWhenInCargo = 1;
+			energyStorageMax = 0;
+			energyUsagePerSecond = 12;
+			energyAtSpawn = 0;
+			powerSocketsCount = 0;
+			plugType = 7;
+			attachmentAction = 1;
+			updateInterval = 1;
+		};
+		class MeleeModes
+		{
+			class Default
+			{
+				ammo = "MeleeLightBlunt";
+				range = 1.6;
+			};
+			class Heavy
+			{
+				ammo = "MeleeLightBlunt_Heavy";
+				range = 1.6;
+			};
+			class Sprint
+			{
+				ammo = "MeleeLightBlunt_Heavy";
+				range = 2.2;
+			};
+		};
+		hiddenSelections[] = {"flame_hide"};
+		class AnimationSources
+		{
+			class FlameHide
+			{
+				source = "user";
+				animPeriod = 0.1;
+				initPhase = 1;
+			};
+		};
+		soundImpactType = "metal";
+		class AnimEvents
+		{
+			class SoundWeapon
+			{
+				class Fishing_in_SoundSet
+				{
+					soundSet = "Fishing_in_SoundSet";
+					id = 201;
+				};
+				class Fishing_check_SoundSet
+				{
+					soundSet = "Fishing_check_SoundSet";
+					id = 202;
+				};
+				class Fishing_cancel_SoundSet
+				{
+					soundSet = "Fishing_cancel_SoundSet";
+					id = 203;
+				};
+				class FishingRod_extend_SoundSet
+				{
+					soundSet = "FishingRod_extend_SoundSet";
+					id = 204;
+				};
+				class FishingRod_retract_SoundSet
+				{
+					soundSet = "FishingRod_retract_SoundSet";
+					id = 205;
+				};
+				class Fishing_puddle_SoundSet
+				{
+					soundSet = "Fishing_puddle_SoundSet";
+					id = 206;
+				};
+				class Fishing_splash_SoundSet
+				{
+					soundSet = "Fishing_splash_SoundSet";
+					id = 207;
+				};
+				class Fishing_splash_small_SoundSet
+				{
+					soundSet = "Fishing_splash_small_SoundSet";
+					id = 208;
+				};
+				class Fish_struggling_SoundSet
+				{
+					soundSet = "Fish_struggling_SoundSet";
+					id = 209;
 				};
 			};
 		};

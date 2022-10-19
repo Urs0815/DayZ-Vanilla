@@ -1,4 +1,4 @@
-//<'characters_gloves.pbo' properties via Mikero's dos tools, dll version 8.84>
+//<'characters_gloves.pbo' properties via Mikero's dos tools, dll version 8.94>
 product=dayz;
 prefix=DZ\characters\gloves;
 version=94112P;

@@ -1,8 +1,8 @@
 ////////////////////////////////////////////////////////////////////
 //DeRap: config.bin
-//Produced from mikero's Dos Tools Dll version 8.84
+//Produced from mikero's Dos Tools Dll version 8.94
 //https://mikero.bytex.digital/Downloads
-//'now' is Tue Aug 23 21:48:56 2022 : 'file' last modified on Tue Jun 21 19:36:24 2022
+//'now' is Wed Oct 19 20:14:49 2022 : 'file' last modified on Thu Aug 25 20:37:29 2022
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -181,7 +181,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 2;
+								damage = 3;
 							};
 							class Blood
 							{
@@ -347,7 +347,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 3;
+								damage = 10;
 							};
 							class Blood
 							{
@@ -405,7 +405,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 3;
+								damage = 10;
 							};
 							class Blood
 							{
@@ -463,7 +463,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 3;
+								damage = 10;
 							};
 							class Blood
 							{
@@ -642,7 +642,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 2;
+								damage = 3;
 							};
 							class Blood
 							{
@@ -700,7 +700,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 2;
+								damage = 3;
 							};
 							class Blood
 							{
@@ -758,7 +758,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 2;
+								damage = 3;
 							};
 							class Blood
 							{
@@ -816,7 +816,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 2;
+								damage = 3;
 							};
 							class Blood
 							{
@@ -859,252 +859,252 @@ class CfgVehicles
 	};
 	class StaticObj_Construction_Hopper: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures_bliss\Industrial\Construction\Construction_Hopper.p3d";
 	};
 	class StaticObj_Pier_Wooden2: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures_bliss\Industrial\Harbour\Pier_Wooden2.p3d";
 	};
 	class StaticObj_Misc_CinderBlocks: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures_bliss\Industrial\Misc\Misc_CinderBlocks.p3d";
 	};
 	class StaticObj_Misc_HayBale_Packed: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures_bliss\Industrial\Misc\Misc_HayBale_Packed.p3d";
 	};
 	class StaticObj_Misc_HayBale_Packed_Stack: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures_bliss\Industrial\Misc\Misc_HayBale_Packed_Stack.p3d";
 	};
 	class StaticObj_Misc_SurveyMarker_Cover: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures_bliss\Industrial\Misc\Misc_SurveyMarker_Cover.p3d";
 	};
 	class StaticObj_Misc_SurveyMarker_Post: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures_bliss\Industrial\Misc\Misc_SurveyMarker_Post.p3d";
 	};
 	class StaticObj_Misc_SurveyMarker_Rod: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures_bliss\Industrial\Misc\Misc_SurveyMarker_Rod.p3d";
 	};
 	class StaticObj_Misc_Tire: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures_bliss\Industrial\Misc\Misc_Tire.p3d";
 	};
 	class StaticObj_Misc_TirePile_Large: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures_bliss\Industrial\Misc\Misc_TirePile_Large.p3d";
 	};
 	class StaticObj_Misc_Transformer: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures_bliss\Industrial\Misc\Misc_Transformer.p3d";
 	};
 	class StaticObj_Pipe_Small2_8m: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures_bliss\Industrial\Pipes\Pipe_Small2_8m.p3d";
 	};
 	class StaticObj_Pipe_Small2_24m: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures_bliss\Industrial\Pipes\Pipe_Small2_24m.p3d";
 	};
 	class StaticObj_Pipe_Small2_Curve: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures_bliss\Industrial\Pipes\Pipe_Small2_Curve.p3d";
 	};
 	class StaticObj_Pipe_Small2_Ground: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures_bliss\Industrial\Pipes\Pipe_Small2_Ground.p3d";
 	};
 	class StaticObj_Pipe_Small2_High_8m: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures_bliss\Industrial\Pipes\Pipe_Small2_High_8m.p3d";
 	};
 	class StaticObj_Pipe_Small2_High_24m: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures_bliss\Industrial\Pipes\Pipe_Small2_High_24m.p3d";
 	};
 	class StaticObj_Pipe_Small2_High_Curve: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures_bliss\Industrial\Pipes\Pipe_Small2_High_Curve.p3d";
 	};
 	class StaticObj_Pipe_Small2_High_Ground: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures_bliss\Industrial\Pipes\Pipe_Small2_High_Ground.p3d";
 	};
 	class StaticObj_Power_Pole_Wood4: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures_bliss\Industrial\Power\Power_Pole_Wood4.p3d";
 	};
 	class StaticObj_Power_Pole_Wood4_A: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures_bliss\Industrial\Power\Power_Pole_Wood4_A.p3d";
 	};
 	class StaticObj_Power_Pole_Wood4_A_End: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures_bliss\Industrial\Power\Power_Pole_Wood4_A_End.p3d";
 	};
 	class StaticObj_Power_Pole_Wood4_A_J: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures_bliss\Industrial\Power\Power_Pole_Wood4_A_J.p3d";
 	};
 	class StaticObj_Power_Pole_Wood4_A_J_Nest: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures_bliss\Industrial\Power\Power_Pole_Wood4_A_J_Nest.p3d";
 	};
 	class StaticObj_Power_Pole_Wood4_End: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures_bliss\Industrial\Power\Power_Pole_Wood4_End.p3d";
 	};
 	class StaticObj_Power_Pole_Wood4_Lamp: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures_bliss\Industrial\Power\Power_Pole_Wood4_Lamp.p3d";
 	};
 	class StaticObj_Power_Pole_Wood5: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures_bliss\Industrial\Power\Power_Pole_Wood5.p3d";
 	};
 	class StaticObj_Power_Pole_Wood5_End: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures_bliss\Industrial\Power\Power_Pole_Wood5_End.p3d";
 	};
 	class StaticObj_Power_Pole_Wood5_End_rus: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures_bliss\Industrial\Power\Power_Pole_Wood5_End_rus.p3d";
 	};
 	class StaticObj_Power_Pole_Wood5_J: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures_bliss\Industrial\Power\Power_Pole_Wood5_J.p3d";
 	};
 	class StaticObj_Power_Pole_Wood5_J_Nest_rus: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures_bliss\Industrial\Power\Power_Pole_Wood5_J_Nest_rus.p3d";
 	};
 	class StaticObj_Power_Pole_Wood5_J_rus: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures_bliss\Industrial\Power\Power_Pole_Wood5_J_rus.p3d";
 	};
 	class StaticObj_Power_Pole_Wood5_rus: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures_bliss\Industrial\Power\Power_Pole_Wood5_rus.p3d";
 	};
 	class StaticObj_Power_Pole_Wood6_End: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures_bliss\Industrial\Power\Power_Pole_Wood6_End.p3d";
 	};
 	class StaticObj_Power_Pole_Wood6_H: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures_bliss\Industrial\Power\Power_Pole_Wood6_H.p3d";
 	};
 	class StaticObj_Power_Pole_Wood6_H_Trail_B: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures_bliss\Industrial\Power\Power_Pole_Wood6_H_Trail_B.p3d";
 	};
 	class StaticObj_Power_Pole_Wood6_H_Trail_G: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures_bliss\Industrial\Power\Power_Pole_Wood6_H_Trail_G.p3d";
 	};
 	class StaticObj_Power_Pole_Wood6_H_Trail_R: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures_bliss\Industrial\Power\Power_Pole_Wood6_H_Trail_R.p3d";
 	};
 	class StaticObj_Power_Pole_Wood6_H_Trail_Y: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures_bliss\Industrial\Power\Power_Pole_Wood6_H_Trail_Y.p3d";
 	};
 	class StaticObj_Power_Pole_Wood6_J: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures_bliss\Industrial\Power\Power_Pole_Wood6_J.p3d";
 	};
 	class StaticObj_Power_Wire_50: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures_bliss\Industrial\Power\Power_Wire_50.p3d";
 	};
 	class StaticObj_Power_Wire_50_Main: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures_bliss\Industrial\Power\Power_Wire_50_Main.p3d";
 	};
 	class StaticObj_Power_WireTel_50_Main: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures_bliss\Industrial\Power\Power_WireTel_50_Main.p3d";
 	};
 	class StaticObj_Shed_Open_Big_Complete: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures_bliss\Industrial\Sheds\Shed_Open_Big_Complete.p3d";
 	};
 	class StaticObj_Shed_Open_Big2_Complete: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures_bliss\Industrial\Sheds\Shed_Open_Big2_Complete.p3d";
 	};
 	class StaticObj_Shed_Open_Small_Complete: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures_bliss\Industrial\Sheds\Shed_Open_Small_Complete.p3d";
 	};
 	class StaticObj_Smokestack_Big_Ruin_Bottom: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures_bliss\Industrial\Smokestacks\Smokestack_Big_Ruin_Bottom.p3d";
 	};
 	class StaticObj_Smokestack_Big_Ruin_Low: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures_bliss\Industrial\Smokestacks\Smokestack_Big_Ruin_Low.p3d";
 	};
 	class StaticObj_Smokestack_Big_Ruin_Mid: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures_bliss\Industrial\Smokestacks\Smokestack_Big_Ruin_Mid.p3d";
 	};
 	class StaticObj_Smokestack_Big_Ruin_Up: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures_bliss\Industrial\Smokestacks\Smokestack_Big_Ruin_Up.p3d";
 	};
 };

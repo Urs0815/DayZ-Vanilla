@@ -1,8 +1,8 @@
 ////////////////////////////////////////////////////////////////////
 //DeRap: config.bin
-//Produced from mikero's Dos Tools Dll version 8.84
+//Produced from mikero's Dos Tools Dll version 8.94
 //https://mikero.bytex.digital/Downloads
-//'now' is Tue Aug 23 21:40:53 2022 : 'file' last modified on Fri May 13 09:17:33 2022
+//'now' is Wed Oct 19 20:10:12 2022 : 'file' last modified on Tue Sep 13 21:04:37 2022
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -134,6 +134,7 @@ class CfgVehicles
 				initPhase = 0;
 			};
 		};
+		soundImpactType = "metal";
 		class AnimEvents
 		{
 			class SoundWeapon
@@ -210,6 +211,7 @@ class CfgVehicles
 				initPhase = 0;
 			};
 		};
+		soundImpactType = "metal";
 		class AnimEvents
 		{
 			class SoundWeapon
@@ -284,6 +286,7 @@ class CfgVehicles
 				initPhase = 1;
 			};
 		};
+		soundImpactType = "plastic";
 	};
 	class FishNetTrap: Trap_Base
 	{
@@ -335,6 +338,7 @@ class CfgVehicles
 				initPhase = 1;
 			};
 		};
+		soundImpactType = "textile";
 	};
 	class TripwireTrap: Trap_Base
 	{
@@ -386,6 +390,7 @@ class CfgVehicles
 				initPhase = 1;
 			};
 		};
+		soundImpactType = "wood";
 	};
 	class RabbitSnareTrap: Trap_Base
 	{
@@ -455,6 +460,7 @@ class CfgVehicles
 				range = 2.8;
 			};
 		};
+		soundImpactType = "wood";
 	};
 };
 class CfgNonAIVehicles

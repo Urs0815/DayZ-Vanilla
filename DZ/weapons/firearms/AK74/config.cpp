@@ -1,8 +1,8 @@
 ////////////////////////////////////////////////////////////////////
 //DeRap: AK74\config.bin
-//Produced from mikero's Dos Tools Dll version 8.84
+//Produced from mikero's Dos Tools Dll version 8.94
 //https://mikero.bytex.digital/Downloads
-//'now' is Tue Aug 23 21:47:01 2022 : 'file' last modified on Mon May 30 16:12:45 2022
+//'now' is Wed Oct 19 20:13:35 2022 : 'file' last modified on Fri Sep 02 15:59:57 2022
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -47,7 +47,7 @@ class cfgWeapons
 		PPDOFProperties[] = {1,0.5,50,160,4,10};
 		WeaponLength = 0.56;
 		barrelArmor = 2.743;
-		initSpeedMultiplier = 1;
+		initSpeedMultiplier = 0.7;
 		chamberSize = 1;
 		chamberedRound = "";
 		chamberableFrom[] = {"Ammo_545x39","Ammo_545x39Tracer"};
@@ -224,7 +224,7 @@ class cfgWeapons
 		itemSize[] = {6,3};
 		PPDOFProperties[] = {1,0.5,50,175,4,10};
 		WeaponLength = 0.476735;
-		initSpeedMultiplier = 0.8;
+		initSpeedMultiplier = 0.57;
 		recoilModifier[] = {1,1,1};
 		swayModifier[] = {1.8,1.8,1};
 		hiddenSelectionsTextures[] = {"dz\weapons\firearms\AK74\data\aks74u_co.paa"};

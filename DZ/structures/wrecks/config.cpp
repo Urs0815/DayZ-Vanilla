@@ -1,8 +1,8 @@
 ////////////////////////////////////////////////////////////////////
 //DeRap: config.bin
-//Produced from mikero's Dos Tools Dll version 8.84
+//Produced from mikero's Dos Tools Dll version 8.94
 //https://mikero.bytex.digital/Downloads
-//'now' is Tue Aug 23 21:45:53 2022 : 'file' last modified on Tue Jun 21 18:17:25 2022
+//'now' is Wed Oct 19 20:13:04 2022 : 'file' last modified on Wed Oct 12 10:04:52 2022
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -35,6 +35,7 @@ class CfgVehicles
 	class Land_Wreck_Uaz: HouseNoDestruct
 	{
 		scope = 1;
+		storageCategory = 4;
 		model = "\DZ\structures\Wrecks\Vehicles\Wreck_Uaz.p3d";
 	};
 	class Land_Wreck_Uaz_DE: Land_Wreck_Uaz
@@ -99,6 +100,7 @@ class CfgVehicles
 	class Land_Train_Wagon_Box: HouseNoDestruct
 	{
 		scope = 1;
+		storageCategory = 4;
 		model = "\DZ\structures\Wrecks\Trains\Train_Wagon_Box.p3d";
 		class Doors
 		{
@@ -231,7 +233,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 3;
+								damage = 10;
 							};
 							class Blood
 							{
@@ -289,7 +291,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 3;
+								damage = 10;
 							};
 							class Blood
 							{
@@ -318,6 +320,7 @@ class CfgVehicles
 	class Land_Wreck_Caravan_MGreen: HouseNoDestruct
 	{
 		scope = 1;
+		storageCategory = 4;
 		model = "\DZ\structures\Wrecks\Vehicles\Wreck_Caravan_MGreen.p3d";
 		class Doors
 		{
@@ -439,7 +442,7 @@ class CfgVehicles
 						{
 							class Health
 							{
-								damage = 3;
+								damage = 10;
 							};
 							class Blood
 							{
@@ -470,11 +473,13 @@ class CfgVehicles
 	class Land_Wreck_Ikarus: HouseNoDestruct
 	{
 		scope = 1;
+		storageCategory = 4;
 		model = "\DZ\structures\Wrecks\Vehicles\Wreck_Ikarus.p3d";
 	};
 	class Land_Wreck_Lada_Green: HouseNoDestruct
 	{
 		scope = 1;
+		storageCategory = 4;
 		model = "\DZ\structures\Wrecks\Vehicles\Wreck_Lada_Green.p3d";
 		class Doors
 		{
@@ -552,6 +557,7 @@ class CfgVehicles
 	class Land_Wreck_S1023_Blue: HouseNoDestruct
 	{
 		scope = 1;
+		storageCategory = 4;
 		model = "\DZ\structures\Wrecks\Vehicles\Wreck_S1023_Blue.p3d";
 		class Doors
 		{
@@ -810,20 +816,107 @@ class CfgVehicles
 	};
 	class Land_Wreck_hb01_aban2_police: Land_Wreck_hb01_aban1_police
 	{
+		storageCategory = 4;
 		model = "\DZ\structures\Wrecks\Vehicles\Wreck_hb01_aban2_police.p3d";
 	};
 	class Land_Wreck_sed01_aban1_police: Land_Wreck_hb01_aban1_police
 	{
+		storageCategory = 4;
 		model = "\DZ\structures\Wrecks\Vehicles\Wreck_sed01_aban1_police.p3d";
 	};
 	class Land_Wreck_sed01_aban2_police: Land_Wreck_hb01_aban1_police
 	{
+		storageCategory = 4;
 		model = "\DZ\structures\Wrecks\Vehicles\Wreck_sed01_aban2_police.p3d";
 	};
 	class Land_Wreck_hb01_aban1_blue: HouseNoDestruct
 	{
 		scope = 1;
+		storageCategory = 4;
 		model = "\DZ\structures\Wrecks\Vehicles\Wreck_hb01_aban1_blue.p3d";
+		class Doors
+		{
+			class Doors1
+			{
+				displayName = "door 1";
+				component = "Doors1";
+				soundPos = "doors1_action";
+				animPeriod = 1.5;
+				initPhase = 0;
+				initOpened = 0.3;
+				soundOpen = "doorCarWreckOpen";
+				soundClose = "doorCarWreckClose";
+				soundLocked = "doorCarWreckRattle";
+				soundOpenABit = "doorCarWreckOpenABit";
+			};
+			class Doors2
+			{
+				displayName = "door 2";
+				component = "Doors2";
+				soundPos = "doors2_action";
+				animPeriod = 1.5;
+				initPhase = 0;
+				initOpened = 0.3;
+				soundOpen = "doorCarWreckOpen";
+				soundClose = "doorCarWreckClose";
+				soundLocked = "doorCarWreckRattle";
+				soundOpenABit = "doorCarWreckOpenABit";
+			};
+			class Doors3
+			{
+				displayName = "door 3";
+				component = "Doors3";
+				soundPos = "doors3_action";
+				animPeriod = 1.5;
+				initPhase = 0;
+				initOpened = 0.3;
+				soundOpen = "doorCarWreckOpen";
+				soundClose = "doorCarWreckClose";
+				soundLocked = "doorCarWreckRattle";
+				soundOpenABit = "doorCarWreckOpenABit";
+			};
+		};
+	};
+	class Land_Wreck_offroad02_aban1: HouseNoDestruct
+	{
+		scope = 2;
+		storageCategory = 4;
+		model = "\DZ\structures\Wrecks\Vehicles\wreck_offroad02_aban1.p3d";
+		class Doors
+		{
+			class Doors1
+			{
+				displayName = "door 1";
+				component = "Doors1";
+				soundPos = "doors1_action";
+				animPeriod = 1.5;
+				initPhase = 0;
+				initOpened = 0.3;
+				soundOpen = "doorCarWreckOpen";
+				soundClose = "doorCarWreckClose";
+				soundLocked = "doorCarWreckRattle";
+				soundOpenABit = "doorCarWreckOpenABit";
+			};
+			class Doors2
+			{
+				displayName = "door 2";
+				component = "Doors2";
+				soundPos = "doors2_action";
+				animPeriod = 1.5;
+				initPhase = 0;
+				initOpened = 0.3;
+				soundOpen = "doorCarWreckOpen";
+				soundClose = "doorCarWreckClose";
+				soundLocked = "doorCarWreckRattle";
+				soundOpenABit = "doorCarWreckOpenABit";
+			};
+		};
+	};
+	class Land_Wreck_offroad02_aban2: HouseNoDestruct
+	{
+		scope = 2;
+		storageCategory = 4;
+		model = "\DZ\structures\Wrecks\Vehicles\wreck_offroad02_aban2.p3d";
 		class Doors
 		{
 			class Doors1
@@ -962,6 +1055,7 @@ class CfgVehicles
 	class Land_wreck_truck01_aban1_blue: HouseNoDestruct
 	{
 		scope = 1;
+		storageCategory = 4;
 		model = "\DZ\structures\Wrecks\Vehicles\wreck_truck01_aban1_blue.p3d";
 		class Doors
 		{
@@ -982,15 +1076,18 @@ class CfgVehicles
 	};
 	class Land_wreck_truck01_aban1_green: Land_wreck_truck01_aban1_blue
 	{
+		storageCategory = 4;
 		model = "\DZ\structures\Wrecks\Vehicles\wreck_truck01_aban1_green.p3d";
 	};
 	class Land_wreck_truck01_aban1_orange: Land_wreck_truck01_aban1_blue
 	{
+		storageCategory = 4;
 		model = "\DZ\structures\Wrecks\Vehicles\wreck_truck01_aban1_orange.p3d";
 	};
 	class Land_wreck_truck01_aban2_blue: HouseNoDestruct
 	{
 		scope = 1;
+		storageCategory = 4;
 		model = "\DZ\structures\Wrecks\Vehicles\wreck_truck01_aban2_blue.p3d";
 		class Doors
 		{
@@ -1024,10 +1121,12 @@ class CfgVehicles
 	};
 	class Land_wreck_truck01_aban2_green: Land_wreck_truck01_aban2_blue
 	{
+		storageCategory = 4;
 		model = "\DZ\structures\Wrecks\Vehicles\wreck_truck01_aban2_green.p3d";
 	};
 	class Land_wreck_truck01_aban2_orange: Land_wreck_truck01_aban2_blue
 	{
+		storageCategory = 4;
 		model = "\DZ\structures\Wrecks\Vehicles\wreck_truck01_aban2_orange.p3d";
 	};
 	class Wreck_SantasSleigh: HouseNoDestruct
@@ -1038,271 +1137,315 @@ class CfgVehicles
 	};
 	class StaticObj_Wreck_Mi8: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Wrecks\Aircraft\Wreck_Mi8.p3d";
 	};
 	class StaticObj_Wreck_Mi8_Crashed: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Wrecks\Aircraft\Wreck_Mi8_Crashed.p3d";
 	};
 	class StaticObj_Wreck_SantasSleigh: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Wrecks\Aircraft\Wreck_SantasSleigh.p3d";
 	};
 	class StaticObj_Wreck_UH1Y: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Wrecks\Aircraft\Wreck_UH1Y.p3d";
 	};
 	class StaticObj_Wreck_Boat_Small1: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Wrecks\Ships\Boat_Small1.p3d";
 	};
 	class StaticObj_Wreck_Boat_Small2: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Wrecks\Ships\Boat_Small2.p3d";
 	};
 	class StaticObj_Wreck_Boat_Small3: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Wrecks\Ships\Boat_Small3.p3d";
 	};
 	class StaticObj_Wreck_Ship_Big_BackA: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Wrecks\Ships\Ship_Big_BackA.p3d";
 	};
 	class StaticObj_Wreck_Ship_Big_BackB: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Wrecks\Ships\Ship_Big_BackB.p3d";
 	};
 	class StaticObj_Wreck_Ship_Big_Castle: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Wrecks\Ships\Ship_Big_Castle.p3d";
 	};
 	class StaticObj_Wreck_Ship_Big_FrontA: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Wrecks\Ships\Ship_Big_FrontA.p3d";
 	};
 	class StaticObj_Wreck_Ship_Big_FrontB: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Wrecks\Ships\Ship_Big_FrontB.p3d";
 	};
 	class StaticObj_Wreck_Ship_Big_Lifeboat: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Wrecks\Ships\Ship_Big_Lifeboat.p3d";
 	};
 	class StaticObj_Wreck_Ship_Medium_Back: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Wrecks\Ships\Ship_Medium_Back.p3d";
 	};
 	class StaticObj_Wreck_Ship_Medium_Front: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Wrecks\Ships\Ship_Medium_Front.p3d";
 	};
 	class StaticObj_Wreck_Train_742_Blue: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Wrecks\Trains\Train_742_Blue.p3d";
 	};
 	class StaticObj_Wreck_Train_742_Red: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Wrecks\Trains\Train_742_Red.p3d";
 	};
 	class StaticObj_Wreck_Train_Wagon_Flat: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Wrecks\Trains\Train_Wagon_Flat.p3d";
 	};
 	class StaticObj_Wreck_Train_Wagon_Tanker: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Wrecks\Trains\Train_Wagon_Tanker.p3d";
 	};
 	class StaticObj_Wreck_BMP1: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Wrecks\Vehicles\Wreck_BMP1.p3d";
 	};
 	class StaticObj_Wreck_BMP2: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Wrecks\Vehicles\Wreck_BMP2.p3d";
 	};
 	class StaticObj_Wreck_BRDM: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Wrecks\Vehicles\Wreck_BRDM.p3d";
 	};
 	class StaticObj_Wreck_Bulldozer: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Wrecks\Vehicles\Wreck_Bulldozer.p3d";
 	};
 	class StaticObj_Wreck_Decal_Big: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Wrecks\Vehicles\Wreck_Decal_Big.p3d";
 	};
 	class StaticObj_Wreck_Decal_Big_NoLC: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Wrecks\Vehicles\Wreck_Decal_Big_NoLC.p3d";
 	};
 	class StaticObj_Wreck_Decal_Small1: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Wrecks\Vehicles\Wreck_Decal_Small1.p3d";
 	};
 	class StaticObj_Wreck_Decal_Small1_NoLC: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Wrecks\Vehicles\Wreck_Decal_Small1_NoLC.p3d";
 	};
 	class StaticObj_Wreck_Decal_Small2: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Wrecks\Vehicles\Wreck_Decal_Small2.p3d";
 	};
 	class StaticObj_Wreck_Decal_Small2_NoLC: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Wrecks\Vehicles\Wreck_Decal_Small2_NoLC.p3d";
 	};
 	class StaticObj_Wreck_Digger: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Wrecks\Vehicles\Wreck_Digger.p3d";
 	};
 	class StaticObj_Wreck_HMMWV: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Wrecks\Vehicles\Wreck_HMMWV.p3d";
 	};
 	class StaticObj_Wreck_PowGen: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Wrecks\Vehicles\Wreck_PowGen.p3d";
 	};
 	class StaticObj_Wreck_T72_Chassis: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Wrecks\Vehicles\Wreck_T72_Chassis.p3d";
 	};
 	class StaticObj_Wreck_T72_Turret: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Wrecks\Vehicles\Wreck_T72_Turret.p3d";
 	};
 	class StaticObj_Wreck_Trailer_Cistern: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Wrecks\Vehicles\Wreck_Trailer_Cistern.p3d";
 	};
 	class StaticObj_Wreck_Trailer_Flat: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Wrecks\Vehicles\Wreck_Trailer_Flat.p3d";
 	};
 	class StaticObj_Wreck_Ural: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		model = "DZ\structures\Wrecks\Vehicles\Wreck_Ural.p3d";
 	};
 	class StaticObj_Wreck_Train_Wagon_Flat_DE: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		storageCategory = 4;
 		model = "DZ\structures\Wrecks\Trains\Train_Wagon_Flat.p3d";
 	};
 	class StaticObj_Wreck_Train_Wagon_Flat_Mil_DE: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		storageCategory = 4;
 		model = "DZ\structures\Wrecks\Trains\Train_Wagon_Flat.p3d";
 	};
 	class StaticObj_Train_Wagon_Flat_Industrial_Planks_DE: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		storageCategory = 4;
 		model = "DZ\structures\Wrecks\Trains\Train_Wagon_Flat.p3d";
 	};
 	class StaticObj_Train_Wagon_Flat_Industrial_Barrels_DE: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		storageCategory = 4;
 		model = "DZ\structures\Wrecks\Trains\Train_Wagon_Flat.p3d";
 	};
 	class StaticObj_Wreck_Train_Wagon_Tanker_DE: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		storageCategory = 4;
 		model = "DZ\structures\Wrecks\Trains\Train_Wagon_Tanker.p3d";
 	};
 	class StaticObj_Wreck_Train_Wagon_Tanker_Mil_DE: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		storageCategory = 4;
 		model = "DZ\structures\Wrecks\Trains\Train_Wagon_Tanker.p3d";
 	};
 	class StaticObj_Wreck_Train_742_Blue_DE: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		storageCategory = 4;
 		model = "DZ\structures\Wrecks\Trains\Train_742_Blue.p3d";
 	};
 	class StaticObj_Wreck_Train_742_Red_DE: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		storageCategory = 4;
 		model = "DZ\structures\Wrecks\Trains\Train_742_Red.p3d";
 	};
 	class StaticObj_Wreck_Train_742_Blue_Mil_DE: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		storageCategory = 4;
 		model = "DZ\structures\Wrecks\Trains\Train_742_Blue.p3d";
 	};
 	class StaticObj_Wreck_Train_742_Red_Mil_DE: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		storageCategory = 4;
 		model = "DZ\structures\Wrecks\Trains\Train_742_Red.p3d";
 	};
 	class StaticObj_Wreck_BMP1_DE: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		storageCategory = 4;
 		model = "DZ\structures\Wrecks\Vehicles\Wreck_BMP1.p3d";
 	};
 	class StaticObj_Wreck_BMP2_DE: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		storageCategory = 4;
 		model = "DZ\structures\Wrecks\Vehicles\Wreck_BMP2.p3d";
 	};
 	class StaticObj_Wreck_BRDM_DE: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		storageCategory = 4;
 		model = "DZ\structures\Wrecks\Vehicles\Wreck_BRDM.p3d";
 	};
 	class StaticObj_Wreck_Ural_DE: HouseNoDestruct
 	{
-		scope = 2;
+		scope = 1;
 		storageCategory = 4;
 		model = "DZ\structures\Wrecks\Vehicles\Wreck_Ural.p3d";
+	};
+	class StaticObj_Wreck_BMP1_NoPlacement_DE: HouseNoDestruct
+	{
+		scope = 1;
+		storageCategory = 4;
+		model = "DZ\structures\Wrecks\Vehicles\Wreck_BMP1_NoPlacement.p3d";
+	};
+	class StaticObj_Wreck_Uaz_DE: HouseNoDestruct
+	{
+		scope = 1;
+		storageCategory = 4;
+		model = "\DZ\structures\Wrecks\Vehicles\Wreck_Uaz.p3d";
+	};
+	class StaticObj_Wreck_HMMWV_DE: HouseNoDestruct
+	{
+		scope = 1;
+		storageCategory = 4;
+		model = "DZ\structures\Wrecks\Vehicles\Wreck_HMMWV.p3d";
+	};
+	class StaticObj_Wreck_T72_Chassis_DE: HouseNoDestruct
+	{
+		scope = 1;
+		storageCategory = 4;
+		model = "DZ\structures\Wrecks\Vehicles\Wreck_T72_Chassis.p3d";
+	};
+	class Land_wreck_truck01_aban1_green_DE: Land_wreck_truck01_aban1_blue
+	{
+		storageCategory = 4;
+		model = "\DZ\structures\Wrecks\Vehicles\wreck_truck01_aban1_green.p3d";
+	};
+	class Land_wreck_truck01_aban2_green_DE: Land_wreck_truck01_aban2_blue
+	{
+		storageCategory = 4;
+		model = "\DZ\structures\Wrecks\Vehicles\wreck_truck01_aban2_green.p3d";
+	};
+	class Land_Wreck_Ikarus_DE: Land_Wreck_Ikarus
+	{
+		scope = 2;
+		storageCategory = 4;
+	};
+	class Land_Wreck_Trailer_Closed_DE: Land_Wreck_Trailer_Closed
+	{
+		scope = 2;
+		storageCategory = 4;
 	};
 };

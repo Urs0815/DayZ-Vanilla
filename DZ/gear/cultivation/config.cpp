@@ -1,8 +1,8 @@
 ////////////////////////////////////////////////////////////////////
 //DeRap: config.bin
-//Produced from mikero's Dos Tools Dll version 8.84
+//Produced from mikero's Dos Tools Dll version 8.94
 //https://mikero.bytex.digital/Downloads
-//'now' is Tue Aug 23 21:40:23 2022 : 'file' last modified on Mon Jan 10 15:17:03 2022
+//'now' is Wed Oct 19 20:09:59 2022 : 'file' last modified on Tue Jul 12 15:42:25 2022
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -581,6 +581,7 @@ class CfgVehicles
 				};
 			};
 		};
+		soundImpactType = "plastic";
 	};
 	class PlantBase: Inventory_Base
 	{
@@ -779,7 +780,7 @@ class CfgVehicles
 		storageCategory = 1;
 		useEntityHierarchy = "true";
 		slopeTolerance = 0.3;
-		alignHologramToTerain = 0;
+		alignHologramToTerain = 1;
 		yawPitchRollLimit[] = {10,10,10};
 		physLayer = "item_large";
 		attachments[] = {"SeedBase_1","SeedBase_2","SeedBase_3","SeedBase_4","SeedBase_5","SeedBase_6","SeedBase_7","SeedBase_8","SeedBase_9"};

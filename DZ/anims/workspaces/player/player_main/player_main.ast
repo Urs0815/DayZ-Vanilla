@@ -33,7 +33,7 @@ $animsettemplate {
   }
  }
  $groupType "ActionContinuous" {
-  #ngroupnames 117
+  #ngroupnames 120
   #nanims 7
   $groupnames {
     "AnimalSkinningCro"
@@ -108,6 +108,8 @@ $animsettemplate {
     "RaiseItemCro"
     "RaiseItemErc"
     "RaiseItemPne"
+    "RepairCro"
+    "RepairErc"
     "RestrainSelfCro"
     "RestrainSelfErc"
     "RestrainTargetCro"
@@ -140,6 +142,7 @@ $animsettemplate {
     "TakeTempSelfPne"
     "UnrestrainTargetCro"
     "UnrestrainTargetErc"
+    "ValveErc"
     "ViewCompassCro"
     "ViewCompassErc"
     "ViewCompassPne"
@@ -218,9 +221,6 @@ $animsettemplate {
     "CloseItemOncePne"
     "CloseLidCro"
     "CloseLidErc"
-    "DetonatorTriggerCro"
-    "DetonatorTriggerErc"
-    "DetonatorTriggerPne"
     "DropItemHandsCro"
     "DropItemHandsErc"
     "DropItemHandsPne"
@@ -252,6 +252,9 @@ $animsettemplate {
     "ItemOnCro"
     "ItemOnErc"
     "ItemOnPne"
+    "ItemTriggerCro"
+    "ItemTriggerErc"
+    "ItemTriggerPne"
     "LickBatteryCro"
     "LickBatteryErc"
     "LickBatteryPne"
@@ -993,13 +996,14 @@ $animsettemplate {
   }
  }
  $groupType "Vehicle" {
-  #ngroupnames 8
+  #ngroupnames 9
   #nanims 66
   $groupnames {
     "Bus_01"
     "CivilianSedan"
     "Hatchback_02"
     "OffroadHatchback"
+    "Offroad_02"
     "Sedan_02"
     "Truck_01_cargo"
     "Truck_02"
@@ -1077,13 +1081,14 @@ $animsettemplate {
   }
  }
  $groupType "VehicleActions" {
-  #ngroupnames 8
+  #ngroupnames 9
   #nanims 17
   $groupnames {
     "Bus_01"
     "CivilianSedan"
     "Hatchback_02"
     "OffroadHatchback"
+    "Offroad_02"
     "Sedan_02"
     "Truck_01_cargo"
     "Truck_02"

@@ -1,8 +1,8 @@
 ////////////////////////////////////////////////////////////////////
 //DeRap: Forest\data\humanskeleton.rvmat
-//Produced from mikero's Dos Tools Dll version 8.84
+//Produced from mikero's Dos Tools Dll version 8.94
 //https://mikero.bytex.digital/Downloads
-//'now' is Tue Aug 23 21:49:38 2022 : 'file' last modified on Tue Jun 21 20:04:08 2022
+//'now' is Wed Oct 19 20:15:06 2022 : 'file' last modified on Mon Oct 03 13:39:15 2022
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -13,7 +13,7 @@ forcedDiffuse[] = {0,0,0,1};
 emmisive[] = {0,0,0,1};
 specular[] = {0.1,0.1,0.1,0};
 specularPower = 26;
-renderFlags[] = {"NoZwrite"};
+renderFlags[] = {"AlphaTest128"};
 PixelShaderID = "Super";
 VertexShaderID = "Super";
 class Stage1

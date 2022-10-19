@@ -1,8 +1,8 @@
 ////////////////////////////////////////////////////////////////////
 //DeRap: config.bin
-//Produced from mikero's Dos Tools Dll version 8.84
+//Produced from mikero's Dos Tools Dll version 8.94
 //https://mikero.bytex.digital/Downloads
-//'now' is Tue Aug 23 21:46:01 2022 : 'file' last modified on Sun Sep 06 10:44:44 2020
+//'now' is Wed Oct 19 20:13:09 2022 : 'file' last modified on Fri Sep 30 11:46:10 2022
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -339,50 +339,39 @@ class CfgVehicleSurfaces
 {
 	class Asphalt
 	{
-		frictionOffroad = 0.9;
-		frictionSlick = 1;
-		rollResistance = 1;
-		rollDrag = 0.1;
+		friction = 0.95;
 	};
 	class Dirt
 	{
 		noiseSteer = 0.009;
-		noiseFrequency = 0.31;
-		roughness = 0.02;
-		frictionOffroad = 0.87;
-		frictionSlick = 0.7;
-		rollResistance = 6;
-		rollDrag = 30;
+		noiseFrequency = 0.3;
+		roughness = 0.03;
+		drag = 0.07;
+		friction = 0.83;
 	};
 	class Grass
 	{
-		noiseSteer = 0.02;
-		noiseFrequency = 0.65;
-		roughness = 0.03;
-		frictionOffroad = 0.7;
-		frictionSlick = 0.4;
-		rollResistance = 20;
-		rollDrag = 50;
+		noiseSteer = 0.09;
+		noiseFrequency = 1.0;
+		roughness = 0.1;
+		drag = 0.01;
+		friction = 0.78;
 	};
 	class Forest
 	{
-		noiseSteer = 0.04;
-		noiseFrequency = 1.65;
-		roughness = 0.09;
-		frictionOffroad = 0.75;
-		frictionSlick = 0.3;
-		rollResistance = 30;
-		rollDrag = 75;
+		noiseSteer = 0.198;
+		noiseFrequency = 1.3;
+		roughness = 0.12;
+		drag = 0.15;
+		friction = 0.75;
 	};
 	class Gravel
 	{
-		noiseSteer = 0.07;
-		noiseFrequency = 2;
-		roughness = 0.04;
-		frictionOffroad = 0.7;
-		frictionSlick = 0.4;
-		rollResistance = 25;
-		rollDrag = 70;
+		noiseSteer = 0.065;
+		noiseFrequency = 5;
+		roughness = 0.08;
+		drag = 0.1;
+		friction = 0.7;
 	};
 };
 class CfgSurfaces
@@ -942,7 +931,7 @@ class CfgSurfaces
 			stand = 1;
 		};
 		impact = "Hit_Gravel";
-		isDigable = 1;
+		isDigable = 0;
 		isFertile = 0;
 	};
 	class rubble_small_int: DZ_SurfacesInt
