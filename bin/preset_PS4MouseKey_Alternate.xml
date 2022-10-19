@@ -562,6 +562,14 @@
 		<btn name="kLControl" />
 		<btn name="ps4TriggerRight" />
 	</input>
+	<input name="UACarHorn">
+		<btn name="kH" />
+		<btn name="ps4ThumbLeft" />
+	</input>
+	<input name="UACarHandbrake">
+		<btn name="kSpace" />
+		<btn name="ps4ShoulderRight" />
+	</input>
 	
 	<!-- USER INTERFACE -->	
 	<input name="UAUILeft">
@@ -600,6 +608,13 @@
 			<event name="release" />
 		</btn>	
 	</input>
+	<input name="UAMenuSelect">
+		<btn name="mBLeft" />
+	</input>
+	<input name="UAMenuBack">
+		<btn name="mBRight" />
+	</input>
+	
 	<input name="UAUICtrlX">
 		<btn name="ps4X" />
 	</input>
@@ -635,9 +650,11 @@
 		<btn name="ps4PadRight" />
 	</input>
 	<input name="UAUIQuickbarRadialOpen">
+		<btn name="kComma" />
 		<btn name="ps4ShoulderRight" />
 	</input>
 	<input name="UAUIQuickbarRadialInventoryOpen">
+		<btn name="kComma" />
 		<btn name="ps4ShoulderRight" >
 			<event name="hold" />
 		</btn>
@@ -773,6 +790,22 @@
 		<btn name="ps4X" >
 			<event name="click" />
 		</btn>
+	</input>
+
+	<!-- ***** -->
+	<!--  MAP  -->
+	<!-- ***** -->
+	<input name="UAMapToggle">
+		<btn name="kM" />
+	</input>
+	<input name="UAMapMovementHorizontal" >
+		<btn name="ps4LeftThumbHorizontal" />
+	</input>
+	<input name="UAMapMovementVertical">
+		<btn name="ps4LeftThumbVertical" />
+	</input>
+	<input name="UAMapZoom">
+		<btn name="ps4RightThumbVertical" />
 	</input>
 
 	<!-- ****** -->

@@ -203,6 +203,12 @@
 	<input name="UACarShiftGearDown">
 		<btn name="ps4A" />
 	</input>
+	<input name="UACarHorn">
+		<btn name="ps4ThumbLeft" />
+	</input>
+	<input name="UACarHandbrake">
+		<btn name="ps4ShoulderRight" />
+	</input>
 	
 	<!-- USER INTERFACE -->	
 	<input name="UAUILeft">
@@ -293,6 +299,19 @@
 	</input>
 		<input name="UAUIFastTransferItem" >
 		<btn name="ps4X" />
+	</input>
+	
+	<!-- ***** -->
+	<!--  MAP  -->
+	<!-- ***** -->
+	<input name="UAMapMovementHorizontal" >
+		<btn name="ps4LeftThumbHorizontal" />
+	</input>
+	<input name="UAMapMovementVertical">
+		<btn name="ps4LeftThumbVertical" />
+	</input>
+	<input name="UAMapZoom">
+		<btn name="ps4RightThumbVertical" />
 	</input>
 
 	<!-- ****** -->

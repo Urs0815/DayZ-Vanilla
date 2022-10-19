@@ -306,6 +306,12 @@
 	<input name="UAVehicleSlow">
 		<btn name="kLControl" />
 	</input>
+	<input name="UACarHorn">
+		<btn name="kH" />
+	</input>
+	<input name="UACarHandbrake">
+		<btn name="kSpace" />
+	</input>
 	
 	<!-- USER INTERFACE -->	
 	<input name="UAUILeft">
@@ -344,6 +350,13 @@
 	<!-- INVENTORY SPECIFIC -->
 	<input name="UAUIRotateInventory">
 		<btn name="kSpace"/>
+	</input>
+	
+	<!-- ***** -->
+	<!--  MAP  -->
+	<!-- ***** -->
+	<input name="UAMapToggle">
+		<btn name="kM" />
 	</input>
 
 	<!-- ****** -->

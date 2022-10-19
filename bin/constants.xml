@@ -1,4 +1,4 @@
-<inputs version="133">
+<inputs version="137">
 	
 	<actions>
 		<!-- UAMoveForward == 0 !!! -->
@@ -25,6 +25,7 @@
 		<input name="UAPersonCamSwitchSide" loc="STR_USRACT_PERSON_CAM_SWITCH_SIDE" visible="false" />
 		<input name="UAWalkRunToggle" loc="STR_USRACT_WALK_RUN_TOGGLE" />
 		<input name="UAWalkRunTemp" loc="STR_USRACT_WALK_RUN_TEMP" />
+		<input name="UAWalkRunForced" loc="" visible="false" />
 		<input name="UAWalkForward" loc="STR_USRACT_WALK_RUN_TEMP" rangefrom="0.00" rangeto="0.55" visible="false" />
 		<input name="UAWalkBack" loc="STR_USRACT_WALK_RUN_TEMP" rangefrom="0.00" rangeto="0.55" visible="false" />
 		<input name="UAWalkLeft" loc="STR_USRACT_WALK_RUN_TEMP" rangefrom="0.00" rangeto="0.55" visible="false" />
@@ -107,7 +108,7 @@
 		<input name="UAToggleAutorun" loc="" visible="false" />
 		<input name="UATurbo" loc="STR_USRACT_TURBO" />
 		<input name="UAToggleTurbo" loc="STR_USRACT_UAToggleTurbo" visible="false" />
-		<input name="UAVehicleTurbo" loc="STR_USRACT_VEHICLE_TURBO" rangefrom="0.85" />
+		<input name="UAVehicleTurbo" loc="STR_USRACT_CAR_FAST_FORWARD" rangefrom="0.85" />
 		<input name="UAVehicleSlow" loc="STR_USRACT_CAR_SLOW_FORWARD" rangefrom="0.00" rangeto="0.35"/>
 		<input name="UAWalk" loc="" visible="false" />
 		<input name="UAHoldBreath" loc="STR_USRACT_UAHoldBreath" />
@@ -194,10 +195,17 @@
 		<input name="UACarBack" loc="STR_USRACT_CAR_BACK" />
 		<input name="UACarShiftGearUp" loc="STR_USRACT_UACarShiftGearUp" />
 		<input name="UACarShiftGearDown" loc="STR_USRACT_UACarShiftGearDown" />
+		<input name="UACarHorn" loc="STR_Controls_Horn" />
+		<input name="UACarHandbrake" loc="STR_Controls_HandBrake" />
 		<!--<input name="UACarInteractAction" loc="todo: car primary action" />-->
 
 		<input name="UAGear" loc="STR_USRACT_GEAR" />
 		<input name="UAGetOut" loc="" visible="false" />
+		
+		<input name="UAMapToggle" loc="STR_USRACT_MAP_TOGGLE" />
+		<input name="UAMapMovementHorizontal" loc="STR_USRACT_MAP_HORIZONTAL" visible="false" />
+		<input name="UAMapMovementVertical" loc="STR_USRACT_MAP_VERTICAL" visible="false" />
+		<input name="UAMapZoom" loc="STR_USRACT_MAP_ZOOM" visible="false" />
 
 		<!-- // Buldozer actions -->
 		<input name="UABuldFreeLook" loc="" />
@@ -830,6 +838,8 @@
 		<input name="UACarBack" />
 		<input name="UACarShiftGearUp" />
 		<input name="UACarShiftGearDown" />
+		<input name="UACarHorn" />
+		<input name="UACarHandbrake" />
 	</sorting>
 	<sorting name="emotes" loc="layout_pc_keybinding_gestures">
 		<input name="EmoteGreeting"/>
@@ -891,5 +901,9 @@
 		<input name="UAItem9" />
 		<input name="UAUIGesturesOpen" />
 		<input name="UAUIQuickbarToggle" />
+		<input name="UAMapToggle" />
+		<input name="UAMapMovementHorizontal" />
+		<input name="UAMapMovementVertical" />
+		<input name="UAMapZoom" />
 	</sorting>
 </inputs>

@@ -204,6 +204,12 @@
 	<input name="UACarShiftGearDown">
 		<btn name="x1A" />
 	</input>
+	<input name="UACarHorn">
+		<btn name="x1ThumbLeft" />
+	</input>
+	<input name="UACarHandbrake">
+		<btn name="x1ShoulderRight" />
+	</input>
 	
 	<!-- USER INTERFACE -->	
 	<input name="UAUILeft">
@@ -296,6 +302,19 @@
 	</input>
 		<input name="UAUIFastTransferItem" >
 		<btn name="x1X" />
+	</input>
+	
+	<!-- ***** -->
+	<!--  MAP  -->
+	<!-- ***** -->
+	<input name="UAMapMovementHorizontal" >
+		<btn name="x1LeftThumbHorizontal" />
+	</input>
+	<input name="UAMapMovementVertical">
+		<btn name="x1LeftThumbVertical" />
+	</input>
+	<input name="UAMapZoom">
+		<btn name="x1RightThumbVertical" />
 	</input>
 
 	<!-- ****** -->

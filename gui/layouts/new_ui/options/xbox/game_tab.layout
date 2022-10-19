@@ -183,6 +183,88 @@ FrameWidgetClass game_tab_root {
             }
            }
           }
+          ButtonWidgetClass bleeding_indication_button {
+           ignorepointer 0
+           position 0 0
+           size 1 38
+           hexactpos 1
+           vexactpos 1
+           hexactsize 0
+           vexactsize 1
+           style Colorable
+           "next left" "none"
+           "next right" "none"
+           "next up" ""
+           "next down" ""
+           {
+            GridSpacerWidgetClass bleeding_indication_button_panel {
+             ignorepointer 1
+             color 0 0 0 0
+             size 1 30
+             valign center_ref
+             hexactpos 1
+             vexactpos 1
+             hexactsize 0
+             vexactsize 1
+             style Empty
+             "no focus" 1
+             Padding 0
+             Margin 0
+             "Size To Content H" 1
+             Columns 2
+             Rows 1
+             {
+              FrameWidgetClass bleeding_indication_panel {
+               ignorepointer 1
+               position 0 0
+               size 0.5 0.6
+               hexactpos 1
+               vexactpos 1
+               hexactsize 0
+               vexactsize 0
+               {
+                TextWidgetClass bleeding_indication_label {
+                 ignorepointer 1
+                 size 1 0.55
+                 valign center_ref
+                 hexactpos 1
+                 vexactpos 1
+                 hexactsize 0
+                 vexactsize 0
+                 text "#layout_options_pc_bleeding_indication"
+                 font "gui/fonts/sdf_MetronLight24"
+                 "text offset" 8 0
+                 "exact text" 0
+                 "exact text size" 18
+                 "text valign" center
+                }
+               }
+              }
+              FrameWidgetClass bleeding_indication_option {
+               ignorepointer 1
+               position 0 0
+               size 0.5 1
+               hexactpos 1
+               vexactpos 1
+               hexactsize 0
+               vexactsize 0
+              }
+             }
+            }
+            PanelWidgetClass bleeding_indication_disable {
+             visible 0
+             ignorepointer 1
+             color 0.1569 0.1569 0.1569 0.902
+             size 1 1
+             valign center_ref
+             hexactpos 1
+             vexactpos 1
+             hexactsize 0
+             vexactsize 0
+             style rover_sim_colorable
+            }
+           }
+          }
          }
         }
        }
@@ -638,6 +720,88 @@ FrameWidgetClass game_tab_root {
              }
             }
             PanelWidgetClass crosshair_button_disable {
+             visible 0
+             ignorepointer 1
+             color 0.1569 0.1569 0.1569 0.902
+             size 1 1
+             valign center_ref
+             hexactpos 1
+             vexactpos 1
+             hexactsize 0
+             vexactsize 0
+             style rover_sim_colorable
+             "no focus" 1
+            }
+           }
+          }
+          ButtonWidgetClass quickbar_button {
+           position 0 0
+           size 1 38
+           hexactpos 1
+           vexactpos 1
+           hexactsize 0
+           vexactsize 1
+           style Colorable
+           "no focus" 0
+           "next left" "none"
+           "next right" "none"
+           "next up" ""
+           "next down" ""
+           {
+            GridSpacerWidgetClass quickbar_button_panel {
+             ignorepointer 1
+             size 1 30
+             valign center_ref
+             hexactpos 1
+             vexactpos 1
+             hexactsize 0
+             vexactsize 1
+             style Empty
+             "no focus" 1
+             Padding 0
+             Margin 0
+             "Size To Content H" 1
+             Columns 2
+             Rows 1
+             {
+              FrameWidgetClass quickbar_setting_panel {
+               ignorepointer 1
+               position 0 0
+               size 0.5 0.6
+               hexactpos 1
+               vexactpos 1
+               hexactsize 0
+               vexactsize 0
+               {
+                TextWidgetClass quickbar_button_label {
+                 ignorepointer 1
+                 size 1 0.55
+                 valign center_ref
+                 hexactpos 1
+                 vexactpos 1
+                 hexactsize 0
+                 vexactsize 0
+                 text "#layout_options_pc_show_quickbar"
+                 font "gui/fonts/sdf_MetronLight24"
+                 "text offset" 10 0
+                 "exact text" 0
+                 "exact text size" 18
+                 "text valign" center
+                }
+               }
+              }
+              FrameWidgetClass quickbar_setting_option {
+               ignorepointer 1
+               position 0 0
+               size 0.5 1
+               hexactpos 1
+               vexactpos 1
+               hexactsize 0
+               vexactsize 0
+              }
+             }
+            }
+            PanelWidgetClass quickbar_button_disable {
              visible 0
              ignorepointer 1
              color 0.1569 0.1569 0.1569 0.902

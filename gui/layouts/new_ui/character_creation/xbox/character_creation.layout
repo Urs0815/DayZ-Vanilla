@@ -1043,11 +1043,37 @@ FrameWidgetClass character_creation_root {
        "next right" ""
        "next up" "back"
        "next down" "randomize_character"
-       text "#layout_character_creation_save"
        text_proportion 0.8
        font "gui/fonts/sdf_MetronLight72"
        "disabled text color" 0.502 0.502 0.502 1
        switch normal
+       {
+        RichTextWidgetClass apply_text {
+         visible 1
+         disabled 1
+         clipchildren 1
+         inheritalpha 1
+         ignorepointer 1
+         color 0.502 0.502 0.502 1
+         position 0 0
+         size 0.9 1
+         valign center_ref
+         hexactpos 0
+         vexactpos 0
+         hexactsize 0
+         vexactsize 0
+         scaled 1
+         text "#layout_character_creation_save"
+         font "gui/fonts/sdf_MetronBook72"
+         "exact text" 1
+         "exact text size" 72
+         "size to text h" 1
+         "size to text v" 0
+         "text halign" center
+         "text valign" center
+         wrap 0
+        }
+       }
       }
       ButtonWidgetClass save {
        visible 1
@@ -1067,23 +1093,22 @@ FrameWidgetClass character_creation_root {
        "next right" ""
        "next up" "back"
        "next down" "randomize_character"
-       text "#layout_character_creation_save"
        text_proportion 0.8
        font "gui/fonts/sdf_MetronLight72"
        switch normal
        {
         RichTextWidgetClass save_consoleIcon0 {
-         clipchildren 0
-         inheritalpha 0
+         clipchildren 1
+         inheritalpha 1
          ignorepointer 1
-         position 10 0
-         size 38 38
+         position 0 0
+         size 0.1 0.1
          halign right_ref
          valign center_ref
-         hexactpos 1
-         vexactpos 1
-         hexactsize 1
-         vexactsize 1
+         hexactpos 0
+         vexactpos 0
+         hexactsize 0
+         vexactsize 0
          scaled 1
          text "save_consoleIcon0Data"
          font "gui/fonts/sdf_MetronBook24"
@@ -1092,6 +1117,29 @@ FrameWidgetClass character_creation_root {
          "size to text h" 1
          "size to text v" 1
          "text valign" center
+        }
+        RichTextWidgetClass save_text {
+         visible 1
+         clipchildren 1
+         inheritalpha 1
+         ignorepointer 1
+         position 0 0
+         size 0.9 1
+         valign center_ref
+         hexactpos 0
+         vexactpos 0
+         hexactsize 0
+         vexactsize 0
+         scaled 1
+         text "#layout_character_creation_save"
+         font "gui/fonts/sdf_MetronBook72"
+         "exact text" 1
+         "exact text size" 72
+         "size to text h" 1
+         "size to text v" 0
+         "text halign" center
+         "text valign" center
+         wrap 0
         }
        }
       }
@@ -1149,23 +1197,22 @@ FrameWidgetClass character_creation_root {
        "next right" ""
        "next up" "randomize_character"
        "next down" "save"
-       text "#layout_character_creation_back"
        text_proportion 0.55
        font "gui/fonts/sdf_MetronLight24"
        switch normal
        {
         RichTextWidgetClass BackIcon0 {
-         clipchildren 0
-         inheritalpha 0
+         clipchildren 1
+         inheritalpha 1
          ignorepointer 1
-         position 10 0
-         size 38 38
+         position 0 0
+         size 0.1 0.1
          halign right_ref
          valign center_ref
-         hexactpos 1
-         vexactpos 1
-         hexactsize 1
-         vexactsize 1
+         hexactpos 0
+         vexactpos 0
+         hexactsize 0
+         vexactsize 0
          scaled 1
          text "BackIcon0Data"
          font "gui/fonts/sdf_MetronBook24"
@@ -1174,6 +1221,29 @@ FrameWidgetClass character_creation_root {
          "size to text h" 1
          "size to text v" 1
          "text valign" center
+        }
+        RichTextWidgetClass back_text {
+         visible 1
+         clipchildren 1
+         inheritalpha 1
+         ignorepointer 1
+         position 0 0
+         size 0.9 1
+         valign center_ref
+         hexactpos 0
+         vexactpos 0
+         hexactsize 0
+         vexactsize 0
+         scaled 1
+         text "#layout_character_creation_back"
+         font "gui/fonts/sdf_MetronLight24"
+         "exact text" 0
+         "exact text size" 72
+         "size to text h" 1
+         "size to text v" 1
+         "text halign" center
+         "text valign" center
+         wrap 0
         }
        }
       }
@@ -1193,23 +1263,22 @@ FrameWidgetClass character_creation_root {
        "next right" ""
        "next up" "save"
        "next down" "back"
-       text "#layout_character_creation_randomize"
        text_proportion 0.55
        font "gui/fonts/sdf_MetronLight24"
        switch normal
        {
         RichTextWidgetClass RandomizeIcon0 {
-         clipchildren 0
-         inheritalpha 0
+         clipchildren 1
+         inheritalpha 1
          ignorepointer 1
-         position 10 0
-         size 38 38
+         position 0 0
+         size 0.1 0.1
          halign right_ref
          valign center_ref
-         hexactpos 1
-         vexactpos 1
-         hexactsize 1
-         vexactsize 1
+         hexactpos 0
+         vexactpos 0
+         hexactsize 0
+         vexactsize 0
          scaled 1
          text "RandomizeIcon0Data"
          font "gui/fonts/sdf_MetronBook24"
@@ -1218,6 +1287,30 @@ FrameWidgetClass character_creation_root {
          "size to text h" 1
          "size to text v" 1
          "text valign" center
+        }
+        RichTextWidgetClass randomize_character_text {
+         visible 1
+         clipchildren 1
+         inheritalpha 1
+         ignorepointer 1
+         position 0 0
+         size 0.9 1
+         valign center_ref
+         hexactpos 0
+         vexactpos 0
+         hexactsize 0
+         vexactsize 0
+         scaled 1
+         text "#layout_character_creation_randomize"
+         font "gui/fonts/sdf_MetronLight24"
+         "exact text" 0
+         "exact text size" 72
+         text_proportion 0.55
+         "size to text h" 1
+         "size to text v" 1
+         "text halign" center
+         "text valign" center
+         wrap 0
         }
        }
       }

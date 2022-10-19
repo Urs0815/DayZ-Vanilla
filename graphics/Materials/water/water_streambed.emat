@@ -1,5 +1,5 @@
 MatWaterPool {
- Color 0.16 0.1451 0.0614 1
+ Color 0.1569 0.1333 0.0588 0.0863
  ZWrite 0
  DepthScattering 0.8
  NormalMap "{00043BD4DA5F1244}Graphics/Textures/Water/dayzwater1_no.edds" 
@@ -17,8 +17,11 @@ MatWaterPool {
  Caustic 0.5
  WetFloor 0.962
  EnvironmentMap "{C0641DC4133AFA10}Graphics/Textures/Water/envForest_stream_co.edds" 
- ReflectionColor 0.2 0.4 0.2 0
- Fresnel 0.5
+ ReflectionColor 0.0353 0.0235 0.0039 0.2784
+ Fresnel 0.247
+ "Enable effect" 1
+ "Z thickness_1" 0
+ Iterations_2 100
  WaterStreamMap "{7A9D527477F99788}Graphics/Textures/Water/streams_flowmap.edds" 
  StreamSpeedInfl -0.25
  StreamNormalPower 0.25

@@ -470,8 +470,8 @@ FrameWidgetClass settings_menu_root {
     WrapSpacerWidgetClass ConsoleToolbar {
      visible 1
      clipchildren 0
-     position 0.05 0.1
-     size 800 48
+     position 0.01 0.1
+     size 840 48
      halign right_ref
      hexactpos 0
      vexactpos 0
@@ -487,7 +487,7 @@ FrameWidgetClass settings_menu_root {
      content_valign center
      {
       GridSpacerWidgetClass Toggle {
-       visible 1
+       visible 0
        clipchildren 0
        size 120 48
        halign right_ref
@@ -508,6 +508,7 @@ FrameWidgetClass settings_menu_root {
        Rows 1
        {
         RichTextWidgetClass ToggleIcon {
+         visible 0
          clipchildren 0
          inheritalpha 0
          size 48 48
@@ -526,6 +527,7 @@ FrameWidgetClass settings_menu_root {
          "text valign" center
         }
         TextWidgetClass ToggleText {
+         visible 0
          clipchildren 0
          position 40 0
          size 88 48
@@ -545,7 +547,7 @@ FrameWidgetClass settings_menu_root {
        }
       }
       GridSpacerWidgetClass Apply {
-       visible 1
+       visible 0
        clipchildren 0
        size 193 48
        halign right_ref
@@ -566,6 +568,7 @@ FrameWidgetClass settings_menu_root {
        Rows 1
        {
         RichTextWidgetClass ApplyIcon {
+         visible 0
          clipchildren 0
          inheritalpha 0
          size 48 48
@@ -584,6 +587,7 @@ FrameWidgetClass settings_menu_root {
          "text valign" center
         }
         TextWidgetClass ApplyText {
+         visible 0
          clipchildren 0
          size 80 48
          valign center_ref
@@ -602,7 +606,7 @@ FrameWidgetClass settings_menu_root {
        }
       }
       GridSpacerWidgetClass Defaults {
-       visible 1
+       visible 0
        clipchildren 0
        size 159 48
        halign right_ref
@@ -623,6 +627,7 @@ FrameWidgetClass settings_menu_root {
        Rows 1
        {
         RichTextWidgetClass DefaultIcon {
+         visible 0
          clipchildren 0
          inheritalpha 0
          size 48 48
@@ -641,6 +646,7 @@ FrameWidgetClass settings_menu_root {
          "text valign" center
         }
         TextWidgetClass DefaultText {
+         visible 0
          clipchildren 0
          position 40 0
          size 80 48
@@ -660,7 +666,7 @@ FrameWidgetClass settings_menu_root {
        }
       }
       GridSpacerWidgetClass Reset {
-       visible 1
+       visible 0
        clipchildren 0
        size 159 48
        halign right_ref
@@ -681,6 +687,7 @@ FrameWidgetClass settings_menu_root {
        Rows 1
        {
         RichTextWidgetClass ResetIcon {
+         visible 0
          clipchildren 0
          inheritalpha 0
          size 48 48
@@ -699,6 +706,7 @@ FrameWidgetClass settings_menu_root {
          "text valign" center
         }
         TextWidgetClass ResetText {
+         visible 0
          clipchildren 0
          position 40 0
          size 80 48
@@ -718,7 +726,7 @@ FrameWidgetClass settings_menu_root {
        }
       }
       GridSpacerWidgetClass Back {
-       visible 1
+       visible 0
        clipchildren 0
        size 86 48
        halign right_ref
@@ -738,6 +746,7 @@ FrameWidgetClass settings_menu_root {
        Rows 1
        {
         RichTextWidgetClass BackIcon {
+         visible 0
          clipchildren 0
          inheritalpha 0
          size 48 48
@@ -756,6 +765,7 @@ FrameWidgetClass settings_menu_root {
          "text valign" center
         }
         TextWidgetClass BackText {
+         visible 0
          clipchildren 0
          position 48 0
          size 52 48
@@ -773,6 +783,27 @@ FrameWidgetClass settings_menu_root {
          "text valign" center
         }
        }
+      }
+      RichTextWidgetClass ContextToolbarText {
+       clipchildren 0
+       position 0 0
+       size 1 48
+       halign right_ref
+       valign center_ref
+       hexactpos 1
+       vexactpos 1
+       hexactsize 0
+       vexactsize 1
+       text "#layout_console_inventory_toolbar_context"
+       font "gui/fonts/sdf_MetronLight24"
+       "italic text" 0
+       "exact text" 1
+       "exact text size" 22
+       "size to text h" 1
+       "size to text v" 1
+       "text halign" right
+       "text valign" center
+       wrap 1
       }
      }
     }

@@ -4953,6 +4953,7 @@ FrameWidgetClass HudFrameWidget {
            "src alpha" 1
           }
           ImageWidgetClass OilLight {
+           visible 0
            position 45 -15
            size 50 38
            halign center_ref
@@ -5054,6 +5055,7 @@ FrameWidgetClass HudFrameWidget {
            "text valign" center
           }
           ImageWidgetClass BatteryLight {
+           visible 0
            position 0 -45
            size 38 38
            halign center_ref
@@ -5063,6 +5065,32 @@ FrameWidgetClass HudFrameWidget {
            hexactsize 1
            vexactsize 1
            image0 "set:dayz_gui image:battery"
+           mode blend
+           "src alpha" 1
+          }
+          ImageWidgetClass WheelLight {
+           position -50.5423 -13.2674
+           size 44 33
+           halign center_ref
+           valign center_ref
+           hexactpos 1
+           vexactpos 1
+           hexactsize 1
+           vexactsize 1
+           image0 "set:dayz_gui image:blokedWheel"
+           mode blend
+           "src alpha" 1
+          }
+          ImageWidgetClass HandBrakeLight {
+           position 45 -15
+           size 40 34
+           halign center_ref
+           valign center_ref
+           hexactpos 1
+           vexactpos 1
+           hexactsize 1
+           vexactsize 1
+           image0 "set:dayz_gui image:handBrake"
            mode blend
            "src alpha" 1
           }
@@ -5177,27 +5205,6 @@ FrameWidgetClass HudFrameWidget {
            vexactsize 1
            style blank
            {
-            ImageWidgetClass TemperatureDialLow {
-             visible 0
-             color 0 0 1 1
-             position 0 0
-             size 68 56
-             hexactpos 1
-             vexactpos 1
-             hexactsize 1
-             vexactsize 1
-             priority 1
-             image0 ""
-             imageTexture "{22721E7344C22D6A}Gui/textures/cardial_small.edds"
-             mode blend
-             "src alpha" 1
-             "no wrap" 1
-             stretch 1
-             "flip u" 0
-             Mask "{48BFB4B086E16C62}Gui/textures/cardial_small_mask.edds"
-             "Transition width" 0.2
-             Progress 0.3
-            }
             ImageWidgetClass TemperatureDial {
              color 0.6275 0.6275 0.6275 1
              position 0 0
@@ -5215,6 +5222,27 @@ FrameWidgetClass HudFrameWidget {
              "flip u" 1
              Mask "{48BFB4B086E16C62}Gui/textures/cardial_small_mask.edds"
              "Transition width" 0
+            }
+            ImageWidgetClass TemperatureDialLow {
+             visible 1
+             color 1 0 0 1
+             size 68 56
+             halign right_ref
+             hexactpos 1
+             vexactpos 1
+             hexactsize 1
+             vexactsize 1
+             priority 1
+             image0 ""
+             imageTexture "{22721E7344C22D6A}Gui/textures/cardial_small.edds"
+             mode blend
+             "src alpha" 1
+             "no wrap" 1
+             stretch 1
+             "flip u" 1
+             Mask "{48BFB4B086E16C62}Gui/textures/cardial_small_mask.edds"
+             "Transition width" 0.2
+             Progress 0.3
             }
             ImageWidgetClass TemperatureDialHigh {
              visible 0

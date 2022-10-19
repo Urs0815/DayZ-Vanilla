@@ -1043,6 +1043,18 @@ ImageSetClass {
      Size 50 38
      Flags 0
     }
+    ImageSetDefClass handBrake {
+     Name "handBrake"
+     Pos 500 486
+     Size 40 34
+     Flags 0
+    }
+    ImageSetDefClass blokedWheel {
+     Name "blokedWheel"
+     Pos 499 522
+     Size 44 33
+     Flags 0
+    }
     ImageSetDefClass liquid {
      Name "liquid"
      Pos 397 441

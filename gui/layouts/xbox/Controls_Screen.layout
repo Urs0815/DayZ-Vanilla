@@ -7029,7 +7029,7 @@ PanelWidgetClass rootFrame {
                vexactpos 0
                hexactsize 0
                vexactsize 0
-               text "#STR_Controls_Brake"
+               text "#STR_Controls_Brake #action_target_cursor_hold"
                font "gui/fonts/sdf_MetronLight24"
                "exact text" 1
                "exact text size" 22
@@ -7292,7 +7292,7 @@ PanelWidgetClass rootFrame {
                vexactpos 0
                hexactsize 0
                vexactsize 0
-               text "#STR_Controls_Steer"
+               text "#STR_Controls_Horn #action_target_cursor_hold"
                font "gui/fonts/sdf_MetronLight24"
                "exact text" 1
                "exact text size" 22
@@ -7303,6 +7303,67 @@ PanelWidgetClass rootFrame {
                wrap 1
               }
               ImageWidgetClass ImageWidget4116 {
+               ignorepointer 1
+               position 0 0
+               size 55 55
+               halign right_ref
+               valign center_ref
+               hexactpos 0
+               vexactpos 0
+               hexactsize 1
+               vexactsize 1
+               image0 "set:xbox_buttons image:LS"
+               mode blend
+               "src alpha" 1
+               stretch 0
+              }
+             }
+            }
+            GridSpacerWidgetClass PanelWidget41114 {
+             visible 1
+             clipchildren 1
+             ignorepointer 1
+             color 0 0 0 1
+             size 1 1
+             halign right_ref
+             valign center_ref
+             hexactpos 0
+             vexactpos 0
+             hexactsize 0
+             vexactsize 0
+             scaled 1
+             userID 4096
+             style DayZDefaultPanel
+             Padding 5
+             Margin 5
+             "Size To Content H" 1
+             "Size To Content V" 1
+             content_halign right
+             content_valign center
+             Columns 2
+             Rows 1
+             {
+              MultilineTextWidgetClass TextWidget41122 {
+               visible 1
+               ignorepointer 1
+               size 1 1
+               halign center_ref
+               valign center_ref
+               hexactpos 0
+               vexactpos 0
+               hexactsize 0
+               vexactsize 0
+               text "#STR_Controls_Steer"
+               font "gui/fonts/sdf_MetronLight24"
+               "exact text" 1
+               "exact text size" 22
+               "size to text h" 0
+               "size to text v" 1
+               "text halign" right
+               "text valign" center
+               wrap 1
+              }
+              ImageWidgetClass ImageWidget41114 {
                ignorepointer 1
                position 0 0
                size 55 55
@@ -7398,7 +7459,64 @@ PanelWidgetClass rootFrame {
                vexactpos 0
                hexactsize 0
                vexactsize 0
-               text "#STR_Controls_Accelerate"
+               text "#action_target_cursor_hold #STR_Controls_Accelerate"
+               font "gui/fonts/sdf_MetronLight24"
+               "exact text" 1
+               "exact text size" 22
+               "size to text h" 0
+               "size to text v" 1
+               "text valign" center
+               wrap 1
+              }
+             }
+            }
+            GridSpacerWidgetClass PanelWidget41115 {
+             visible 1
+             clipchildren 1
+             ignorepointer 1
+             color 0 0 0 1
+             size 1 1
+             valign center_ref
+             hexactpos 0
+             vexactpos 0
+             hexactsize 0
+             vexactsize 0
+             scaled 1
+             userID 2048
+             style DayZDefaultPanel
+             Padding 5
+             Margin 5
+             "Size To Content H" 1
+             "Size To Content V" 1
+             content_halign right
+             content_valign center
+             Columns 2
+             Rows 1
+             {
+              ImageWidgetClass ImageWidget41115 {
+               ignorepointer 1
+               size 40 32
+               valign center_ref
+               hexactpos 0
+               vexactpos 0
+               hexactsize 1
+               vexactsize 1
+               image0 "set:xbox_buttons image:RB"
+               mode blend
+               "src alpha" 1
+               stretch 0
+              }
+              MultilineTextWidgetClass TextWidget41123 {
+               visible 1
+               ignorepointer 1
+               size 1 1
+               halign center_ref
+               valign center_ref
+               hexactpos 0
+               vexactpos 0
+               hexactsize 0
+               vexactsize 0
+               text "#action_target_cursor_hold #STR_Controls_HandBrake"
                font "gui/fonts/sdf_MetronLight24"
                "exact text" 1
                "exact text size" 22
@@ -7740,7 +7858,7 @@ PanelWidgetClass rootFrame {
                vexactpos 0
                hexactsize 0
                vexactsize 0
-               text "#STR_Controls_Brake"
+               text "#STR_Controls_Brake #action_target_cursor_hold"
                font "gui/fonts/sdf_MetronLight24"
                "exact text" 1
                "exact text size" 22
@@ -7788,6 +7906,67 @@ PanelWidgetClass rootFrame {
              vexactpos 0
              hexactsize 0
              vexactsize 0
+            }
+            GridSpacerWidgetClass PanelWidget41117 {
+             visible 1
+             clipchildren 1
+             ignorepointer 1
+             color 0 0 0 1
+             size 1 1
+             halign right_ref
+             valign center_ref
+             hexactpos 0
+             vexactpos 0
+             hexactsize 0
+             vexactsize 0
+             scaled 1
+             userID 4096
+             style DayZDefaultPanel
+             Padding 5
+             Margin 5
+             "Size To Content H" 1
+             "Size To Content V" 1
+             content_halign right
+             content_valign center
+             Columns 2
+             Rows 1
+             {
+              MultilineTextWidgetClass TextWidget41125 {
+               visible 1
+               ignorepointer 1
+               size 1 1
+               halign center_ref
+               valign center_ref
+               hexactpos 0
+               vexactpos 0
+               hexactsize 0
+               vexactsize 0
+               text "#STR_Controls_Horn #action_target_cursor_hold"
+               font "gui/fonts/sdf_MetronLight24"
+               "exact text" 1
+               "exact text size" 22
+               "size to text h" 0
+               "size to text v" 1
+               "text halign" right
+               "text valign" center
+               wrap 1
+              }
+              ImageWidgetClass ImageWidget41117 {
+               ignorepointer 1
+               position 0 0
+               size 55 55
+               halign right_ref
+               valign center_ref
+               hexactpos 0
+               vexactpos 0
+               hexactsize 1
+               vexactsize 1
+               image0 "set:xbox_buttons image:LS"
+               mode blend
+               "src alpha" 1
+               stretch 0
+              }
+             }
             }
             GridSpacerWidgetClass PanelWidget311111 {
              visible 1
@@ -7928,7 +8107,64 @@ PanelWidgetClass rootFrame {
                vexactpos 0
                hexactsize 0
                vexactsize 0
-               text "#STR_Controls_Accelerate"
+               text "#action_target_cursor_hold #STR_Controls_Accelerate"
+               font "gui/fonts/sdf_MetronLight24"
+               "exact text" 1
+               "exact text size" 22
+               "size to text h" 0
+               "size to text v" 1
+               "text valign" center
+               wrap 1
+              }
+             }
+            }
+            GridSpacerWidgetClass PanelWidget41116 {
+             visible 1
+             clipchildren 1
+             ignorepointer 1
+             color 0 0 0 1
+             size 1 1
+             valign center_ref
+             hexactpos 0
+             vexactpos 0
+             hexactsize 0
+             vexactsize 0
+             scaled 1
+             userID 2048
+             style DayZDefaultPanel
+             Padding 5
+             Margin 5
+             "Size To Content H" 1
+             "Size To Content V" 1
+             content_halign right
+             content_valign center
+             Columns 2
+             Rows 1
+             {
+              ImageWidgetClass ImageWidget41116 {
+               ignorepointer 1
+               size 40 32
+               valign center_ref
+               hexactpos 0
+               vexactpos 0
+               hexactsize 1
+               vexactsize 1
+               image0 "set:xbox_buttons image:RB"
+               mode blend
+               "src alpha" 1
+               stretch 0
+              }
+              MultilineTextWidgetClass TextWidget41124 {
+               visible 1
+               ignorepointer 1
+               size 1 1
+               halign center_ref
+               valign center_ref
+               hexactpos 0
+               vexactpos 0
+               hexactsize 0
+               vexactsize 0
+               text "#action_target_cursor_hold #STR_Controls_HandBrake"
                font "gui/fonts/sdf_MetronLight24"
                "exact text" 1
                "exact text size" 22
@@ -16601,7 +16837,7 @@ PanelWidgetClass rootFrame {
                vexactpos 0
                hexactsize 0
                vexactsize 0
-               text "#STR_Controls_Brake"
+               text "#STR_Controls_Brake #action_target_cursor_hold"
                font "gui/fonts/sdf_MetronLight24"
                "exact text" 1
                "exact text size" 22
@@ -16683,7 +16919,7 @@ PanelWidgetClass rootFrame {
                vexactpos 0
                hexactsize 0
                vexactsize 0
-               text "#STR_Controls_Steer"
+               text "#STR_Controls_Horn #action_target_cursor_hold"
                font "gui/fonts/sdf_MetronLight24"
                "exact text" 1
                "exact text size" 22
@@ -16694,6 +16930,66 @@ PanelWidgetClass rootFrame {
                wrap 1
               }
               ImageWidgetClass ImageWidget415 {
+               ignorepointer 1
+               position 0 0
+               size 55 55
+               halign right_ref
+               valign center_ref
+               hexactpos 0
+               vexactpos 0
+               hexactsize 1
+               vexactsize 1
+               image0 "set:playstation_buttons image:L3"
+               mode blend
+               "src alpha" 1
+               stretch 0
+              }
+             }
+            }
+            GridSpacerWidgetClass PanelWidget412 {
+             visible 1
+             clipchildren 1
+             ignorepointer 1
+             color 0 0 0 1
+             size 1 1
+             halign right_ref
+             valign center_ref
+             hexactpos 0
+             vexactpos 0
+             hexactsize 0
+             vexactsize 0
+             scaled 1
+             style DayZDefaultPanel
+             Padding 5
+             Margin 5
+             "Size To Content H" 1
+             "Size To Content V" 1
+             content_halign right
+             content_valign center
+             Columns 2
+             Rows 1
+             {
+              MultilineTextWidgetClass TextWidget412 {
+               visible 1
+               ignorepointer 1
+               size 1 1
+               halign center_ref
+               valign center_ref
+               hexactpos 0
+               vexactpos 0
+               hexactsize 0
+               vexactsize 0
+               text "#STR_Controls_Steer"
+               font "gui/fonts/sdf_MetronLight24"
+               "exact text" 1
+               "exact text size" 22
+               "size to text h" 0
+               "size to text v" 1
+               "text halign" right
+               "text valign" center
+               wrap 1
+              }
+              ImageWidgetClass ImageWidget413 {
                ignorepointer 1
                position 0 0
                size 55 55
@@ -16788,7 +17084,63 @@ PanelWidgetClass rootFrame {
                vexactpos 0
                hexactsize 0
                vexactsize 0
-               text "#STR_Controls_Accelerate"
+               text "#action_target_cursor_hold #STR_Controls_Accelerate"
+               font "gui/fonts/sdf_MetronLight24"
+               "exact text" 1
+               "exact text size" 22
+               "size to text h" 0
+               "size to text v" 1
+               "text valign" center
+               wrap 1
+              }
+             }
+            }
+            GridSpacerWidgetClass PanelWidget41118 {
+             visible 1
+             clipchildren 1
+             ignorepointer 1
+             color 0 0 0 1
+             size 1 1
+             valign center_ref
+             hexactpos 0
+             vexactpos 0
+             hexactsize 0
+             vexactsize 0
+             scaled 1
+             style DayZDefaultPanel
+             Padding 5
+             Margin 5
+             "Size To Content H" 1
+             "Size To Content V" 1
+             content_halign right
+             content_valign center
+             Columns 2
+             Rows 1
+             {
+              ImageWidgetClass ImageWidget41118 {
+               ignorepointer 1
+               size 40 32
+               valign center_ref
+               hexactpos 0
+               vexactpos 0
+               hexactsize 1
+               vexactsize 1
+               image0 "set:playstation_buttons image:R1"
+               mode blend
+               "src alpha" 1
+               stretch 0
+              }
+              MultilineTextWidgetClass TextWidget41126 {
+               visible 1
+               ignorepointer 1
+               size 1 1
+               halign center_ref
+               valign center_ref
+               hexactpos 0
+               vexactpos 0
+               hexactsize 0
+               vexactsize 0
+               text "#action_target_cursor_hold #STR_Controls_HandBrake"
                font "gui/fonts/sdf_MetronLight24"
                "exact text" 1
                "exact text size" 22
@@ -17175,6 +17527,66 @@ PanelWidgetClass rootFrame {
              hexactsize 0
              vexactsize 0
             }
+            GridSpacerWidgetClass PanelWidget413 {
+             visible 1
+             clipchildren 1
+             ignorepointer 1
+             color 0 0 0 1
+             size 1 1
+             halign right_ref
+             valign center_ref
+             hexactpos 0
+             vexactpos 0
+             hexactsize 0
+             vexactsize 0
+             scaled 1
+             style DayZDefaultPanel
+             Padding 5
+             Margin 5
+             "Size To Content H" 1
+             "Size To Content V" 1
+             content_halign right
+             content_valign center
+             Columns 2
+             Rows 1
+             {
+              MultilineTextWidgetClass TextWidget413 {
+               visible 1
+               ignorepointer 1
+               size 1 1
+               halign center_ref
+               valign center_ref
+               hexactpos 0
+               vexactpos 0
+               hexactsize 0
+               vexactsize 0
+               text "#STR_Controls_Horn #action_target_cursor_hold"
+               font "gui/fonts/sdf_MetronLight24"
+               "exact text" 1
+               "exact text size" 22
+               "size to text h" 0
+               "size to text v" 1
+               "text halign" right
+               "text valign" center
+               wrap 1
+              }
+              ImageWidgetClass ImageWidget4120 {
+               ignorepointer 1
+               position 0 0
+               size 55 55
+               halign right_ref
+               valign center_ref
+               hexactpos 0
+               vexactpos 0
+               hexactsize 1
+               vexactsize 1
+               image0 "set:playstation_buttons image:L3"
+               mode blend
+               "src alpha" 1
+               stretch 0
+              }
+             }
+            }
             GridSpacerWidgetClass PanelWidget31113 {
              visible 1
              clipchildren 1
@@ -17313,6 +17725,62 @@ PanelWidgetClass rootFrame {
                hexactsize 0
                vexactsize 0
                text "#STR_Controls_Accelerate"
+               font "gui/fonts/sdf_MetronLight24"
+               "exact text" 1
+               "exact text size" 22
+               "size to text h" 0
+               "size to text v" 1
+               "text valign" center
+               wrap 1
+              }
+             }
+            }
+            GridSpacerWidgetClass PanelWidget41119 {
+             visible 1
+             clipchildren 1
+             ignorepointer 1
+             color 0 0 0 1
+             size 1 1
+             valign center_ref
+             hexactpos 0
+             vexactpos 0
+             hexactsize 0
+             vexactsize 0
+             scaled 1
+             style DayZDefaultPanel
+             Padding 5
+             Margin 5
+             "Size To Content H" 1
+             "Size To Content V" 1
+             content_halign right
+             content_valign center
+             Columns 2
+             Rows 1
+             {
+              ImageWidgetClass ImageWidget41119 {
+               ignorepointer 1
+               size 40 32
+               valign center_ref
+               hexactpos 0
+               vexactpos 0
+               hexactsize 1
+               vexactsize 1
+               image0 "set:playstation_buttons image:R1"
+               mode blend
+               "src alpha" 1
+               stretch 0
+              }
+              MultilineTextWidgetClass TextWidget41127 {
+               visible 1
+               ignorepointer 1
+               size 1 1
+               halign center_ref
+               valign center_ref
+               hexactpos 0
+               vexactpos 0
+               hexactsize 0
+               vexactsize 0
+               text "#action_target_cursor_hold #STR_Controls_HandBrake"
                font "gui/fonts/sdf_MetronLight24"
                "exact text" 1
                "exact text size" 22
@@ -20297,7 +20765,7 @@ PanelWidgetClass rootFrame {
   }
   CanvasWidgetClass CanvasUniversal {
    ignorepointer 1
-   position 0 0
+   position 0 1.06719
    size 1 1
    hexactpos 1
    vexactpos 1

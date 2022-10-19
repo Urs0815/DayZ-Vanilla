@@ -255,14 +255,14 @@ FrameWidgetClass HudDebugFrameWidget {
    }
   }
   WindowWidgetClass wdw_CharacterLevels {
-   position 0.22501 0.0591
-   size 504 396
+   position 0.06751 0.07715
+   size 0.37755 0.23051
    halign right_ref
    valign bottom_ref
    hexactpos 0
    vexactpos 0
-   hexactsize 1
-   vexactsize 1
+   hexactsize 0
+   vexactsize 0
    style rover_sim_black_2
    {
     TextWidgetClass txt_CharLvels_Title {
@@ -278,9 +278,9 @@ FrameWidgetClass HudDebugFrameWidget {
     }
     TextListboxWidgetClass txl_CharLevels_Values {
      disabled 1
-     clipchildren 1
+     clipchildren 0
      ignorepointer 0
-     position 14.168 44.096
+     position 16.264 42
      size 0.915 0.7927
      hexactpos 1
      vexactpos 1
@@ -288,8 +288,8 @@ FrameWidgetClass HudDebugFrameWidget {
      vexactsize 0
      scaled 0
      style NoScrollBar
-     "title visible" 0
-     colums "text;55;text2;5;text3;0;"
+     "title visible" 1
+     colums "Category;45;Num.Level;20;Progression;55;"
      lines 0
      font "gui/fonts/MetronBook16"
     }

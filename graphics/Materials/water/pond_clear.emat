@@ -13,10 +13,10 @@ MatWaterPool {
  RefractScale 0.164
  ChromAberation 0.148
  WindInfl 0.2
- CausticMap "{EA764AD7A6112284}Graphics/Textures/Water/caustic.edds" 
+ CausticMap "{EA764AD7A6112284}Enfusion/Graphics/Textures/Water/caustic.edds" 
  Caustic 0.5
  WetFloor 0.962
- EnvironmentMap "{C0641DC4133AFA10}Graphics/Textures/Water/envForest_stream_co.edds" 
+ EnvironmentMap "{C0641DC4133AFA10}Enfusion/Graphics/Textures/Water/envForest_stream_co.edds" 
  ReflectionColor 0.2 0.4 0.2 0
  Fresnel 0.5
  FoamTerrainBlend 1.5

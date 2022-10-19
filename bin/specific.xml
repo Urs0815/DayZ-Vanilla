@@ -43,6 +43,7 @@
     <input name="UAVehicleSlow" />
 	<input name="UAToggleHeadlight" />
 	<input name="UAToggleNVG" />
+	<input name="UACarHorn" />
   </context>
 
   <context name="ui">
@@ -210,6 +211,7 @@
     <input name="UAReloadMagazine" />
 	<input name="UAPrevActionCategory" />
 	<input name="UANextActionCategory" />
+	<input name="UACarHorn" />
   </exclude>
   
   <!-- actions that allow for looking around, voice controls, LMB actions and RMB raise for 'cancel' reasons -->
@@ -250,6 +252,77 @@
 	<input name="UAVoiceOverNet" />
 	<input name="UAVoiceOverNetToggle" />
 	<input name="UAVoiceOverNetMute" />
+	<!--Buldozer-->
+	<input name="UABuldResetCamera" />
+	<input name="UABuldTurbo" />
+	<input name="UABuldSlow" />
+	<input name="UABuldRunScript" />
+	<input name="UABuldSelectToggle" />
+	<input name="UABuldFreeLook" />
+	<input name="UABuldSelect" />
+	<input name="UABuldSelectAddMod" />
+	<input name="UABuldSelectRemoveMod" />
+	<input name="UABuldModifySelected" />
+	<input name="UABuldCycleMod" />
+	<input name="UABuldRotationXAxisMod" />
+	<input name="UABuldRotationZAxisMod" />
+	<input name="UABuldCoordModCycle" />
+	<input name="UABuldSampleTerrainHeight" />
+	<input name="UABuldSetTerrainHeight" />
+	<input name="UABuldScaleMod" />
+	<input name="UABuldElevateMod" />
+	<input name="UABuldSmoothMod" />
+	<input name="UABuldFlattenMod" />
+	<input name="UABuldBrushRatioUp" />
+	<input name="UABuldBrushRatioDown" />
+	<input name="UABuldBrushOuterUp" />
+	<input name="UABuldBrushOuterDown" />
+	<input name="UABuldBrushStrengthUp" />
+	<input name="UABuldBrushStrengthDown" />
+	<input name="UABuldToggleNearestObjectArrow" />
+	<input name="UABuldCycleBrushMod" />
+	<input name="UABuldSelectionType" />
+	<input name="UABuldCreateLastSelectedObject" />
+	<input name="UABuldDuplicateSelection" />
+	<input name="UABuldDeleteSelection" />
+	<input name="UABuldUndo" />
+	<input name="UABuldRedo" />
+	<input name="UABuldMoveLeft" />
+	<input name="UABuldMoveRight" />
+	<input name="UABuldMoveForward" />
+	<input name="UABuldMoveBack" />
+	<input name="UABuldMoveUp" />
+	<input name="UABuldMoveDown" />
+	<input name="UABuldLeft" />
+	<input name="UABuldRight" />
+	<input name="UABuldForward" />
+	<input name="UABuldBack" />
+	<input name="UABuldLookLeft" />
+	<input name="UABuldLookRight" />
+	<input name="UABuldLookUp" />
+	<input name="UABuldLookDown" />
+	<input name="UABuldZoomIn" />
+	<input name="UABuldZoomOut" />
+	<input name="UABuldTextureInfo" />
+	<input name="UABuldViewerMoveForward" />
+	<input name="UABuldViewerMoveBack" />
+	<input name="UABuldViewerMoveLeft" />
+	<input name="UABuldViewerMoveRight" />
+	<input name="UABuldViewerMoveUp" />
+	<input name="UABuldViewerMoveDown" />
+	<input name="UABuldObjectRotateLeft" />
+	<input name="UABuldObjectRotateRight" />
+	<input name="UABuldObjectRotateForward" />
+	<input name="UABuldObjectRotateBack" />
+	<input name="UABuldPreviousAnimation" />
+	<input name="UABuldNextAnimation" />
+	<input name="UABuldRecedeAnimation" />
+	<input name="UABuldAdvanceAnimation" />
+  </exclude>
+  
+  <!-- Inputs excluded when in map -->
+  <exclude name="map">
+    <include name="menu" />
   </exclude>
 	
   <!-- Inputs excluded when in radial menu -->

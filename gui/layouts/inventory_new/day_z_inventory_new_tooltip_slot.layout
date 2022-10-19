@@ -36,7 +36,6 @@ PanelWidgetClass BackPanelWidget {
      vexactpos 1
      hexactsize 0
      vexactsize 1
-     priority 1
      style Normal
      text " "
      font "gui/fonts/sdf_MetronBook24"

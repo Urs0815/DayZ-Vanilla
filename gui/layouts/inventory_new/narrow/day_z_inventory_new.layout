@@ -156,7 +156,7 @@ FrameWidgetClass inventory_root {
           ScrollWidgetClass HandsPanel {
            visible 1
            disabled 0
-           clipchildren 0
+           clipchildren 1
            inheritalpha 0
            ignorepointer 0
            keepsafezone 0

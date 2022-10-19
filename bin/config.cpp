@@ -1,24 +1,27 @@
 ////////////////////////////////////////////////////////////////////
 //DeRap: config.bin
-//Produced from mikero's Dos Tools Dll version 8.84
+//Produced from mikero's Dos Tools Dll version 8.94
 //https://mikero.bytex.digital/Downloads
-//'now' is Tue Aug 23 21:51:04 2022 : 'file' last modified on Thu Jul 21 12:52:51 2022
+//'now' is Wed Oct 19 20:16:17 2022 : 'file' last modified on Tue Oct 18 09:24:19 2022
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
 
-//(19 Enums)
+//(22 Enums)
 enum {
 	destructengine = 2,
 	destructdefault = 6,
 	destructwreck = 7,
-	drive_662 = 4,
+	gearbox_manual = 0,
+	gearbox_automatic = 1,
 	destructtree = 3,
 	destructtent = 4,
 	drive_fwd = 0,
 	drive_awd = 2,
+	differential_locked = 1,
 	destructno = 0,
 	drive_rwd = 1,
+	differential_open = 0,
 	htnone = 0,
 	htmoveright = 3,
 	sptpercents = 1,
@@ -465,6 +468,7 @@ class CfgAmmo
 		explosive = 1.0;
 		caliber = 1.0;
 		deflecting = 0.0;
+		deflectingMultiplier = 1.0;
 		dispersion = 0.0;
 		projectilesCount = 0;
 		deflectionSlowDown = 0.8;
@@ -1999,6 +2003,7 @@ class CfgVideoOptions
 		TextureDetail = 3;
 		CloudsDetail = 2;
 		ShadowDetail = 2;
+		WaterDetail = 1;
 		TextureFiltering = 1;
 		TerrainSurface = 2;
 		FXAA = 2;
@@ -2018,6 +2023,7 @@ class CfgVideoOptions
 			TextureDetail = 0;
 			CloudsDetail = 0;
 			ShadowDetail = 0;
+			WaterDetail = 0;
 			TextureFiltering = 0;
 			TerrainSurface = 0;
 			FXAA = 0;
@@ -2035,6 +2041,7 @@ class CfgVideoOptions
 			TextureDetail = 1;
 			CloudsDetail = 1;
 			ShadowDetail = 1;
+			WaterDetail = 1;
 			TextureFiltering = 1;
 			TerrainSurface = 2;
 			FXAA = 2;
@@ -2052,6 +2059,7 @@ class CfgVideoOptions
 			TextureDetail = 3;
 			CloudsDetail = 2;
 			ShadowDetail = 2;
+			WaterDetail = 1;
 			TextureFiltering = 2;
 			TerrainSurface = 2;
 			FXAA = 2;
@@ -2069,6 +2077,7 @@ class CfgVideoOptions
 			TextureDetail = 3;
 			CloudsDetail = 3;
 			ShadowDetail = 3;
+			WaterDetail = 1;
 			TextureFiltering = 2;
 			TerrainSurface = 2;
 			FXAA = 3;
@@ -2086,6 +2095,7 @@ class CfgVideoOptions
 			TextureDetail = 4;
 			CloudsDetail = 4;
 			ShadowDetail = 4;
+			WaterDetail = 2;
 			TextureFiltering = 2;
 			TerrainSurface = 3;
 			FXAA = 4;
@@ -3735,15 +3745,15 @@ class CfgWorlds
 			class ThunderboltNorm
 			{
 				model = "\core\default\default.p3d";
-				soundSetNear[] = {"",0.31622776,1};
-				soundSetFar[] = {"",0.31622776,1};
+				soundSetNear = "";
+				soundSetFar = "";
 				timeMultiplier = 1.2;
 			};
 			class ThunderboltHeavy
 			{
 				model = "\core\default\default.p3d";
-				soundSetNear[] = {"",0.31622776,1};
-				soundSetFar[] = {"",0.31622776,1};
+				soundSetNear = "";
+				soundSetFar = "";
 				timeMultiplier = 1.5;
 			};
 		};

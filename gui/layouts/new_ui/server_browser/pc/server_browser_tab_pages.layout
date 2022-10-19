@@ -1373,6 +1373,8 @@ WindowWidgetClass server_browser_tab_root {
        }
       }
       FrameWidgetClass favorites_setting_container {
+       visible 0
+       disabled 0
        ignorepointer 0
        position 0 0
        size 1 30

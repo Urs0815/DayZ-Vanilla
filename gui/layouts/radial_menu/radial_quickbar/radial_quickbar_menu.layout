@@ -7,6 +7,7 @@ PanelWidgetClass GesturesMenu {
  vexactpos 0
  hexactsize 0
  vexactsize 0
+ priority 5
  style blank
  {
   ImageWidgetClass GesturesBackground {
@@ -163,7 +164,7 @@ PanelWidgetClass GesturesMenu {
      content_halign right
      content_valign center
      {
-      GridSpacerWidgetClass Select {
+      GridSpacerWidgetClass SelectSpacer {
        clipchildren 0
        size 120 48
        halign right_ref
@@ -181,6 +182,7 @@ PanelWidgetClass GesturesMenu {
        Rows 1
        {
         RichTextWidgetClass SelectIcon {
+         visible 1
          clipchildren 0
          inheritalpha 0
          size 48 48
@@ -199,6 +201,7 @@ PanelWidgetClass GesturesMenu {
          "text valign" center
         }
         TextWidgetClass SelectText {
+         visible 1
          clipchildren 0
          position 40 0
          size 80 348
@@ -217,7 +220,7 @@ PanelWidgetClass GesturesMenu {
         }
        }
       }
-      GridSpacerWidgetClass Combine {
+      GridSpacerWidgetClass BackSpacer {
        clipchildren 0
        size 455 48
        halign right_ref
@@ -234,7 +237,8 @@ PanelWidgetClass GesturesMenu {
        Columns 2
        Rows 1
        {
-        RichTextWidgetClass CombineIcon {
+        RichTextWidgetClass BackIcon {
+         visible 1
          clipchildren 0
          inheritalpha 0
          size 48 48
@@ -252,7 +256,8 @@ PanelWidgetClass GesturesMenu {
          "size to text v" 1
          "text valign" center
         }
-        TextWidgetClass CombineText {
+        TextWidgetClass BackText {
+         visible 1
          clipchildren 0
          position 40 0
          size 60 48
@@ -261,7 +266,7 @@ PanelWidgetClass GesturesMenu {
          vexactpos 1
          hexactsize 1
          vexactsize 1
-         text "#dayz_context_menu_combine"
+         text "#menu_back"
          font "gui/fonts/sdf_MetronLight24"
          "exact text" 1
          "exact text size" 22
