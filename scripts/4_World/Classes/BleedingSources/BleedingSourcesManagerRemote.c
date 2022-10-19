@@ -7,6 +7,28 @@ class BleedingSourcesManagerRemote extends BleedingSourcesManagerBase
 	Shape m_Point;
 	bool m_EnableHitIndication = false;
 	
+	override protected void Init()
+	{
+		super.Init();
+		
+		if (GetGame().GetMission().GetEffectWidgets()/* && m_Player.IsControlledPlayer()*/)
+		{
+			Param3<bool,int,float> par = new Param3<bool,int,float>(true,0,0);
+			GetGame().GetMission().GetEffectWidgets().RegisterGameplayEffectData(EffectWidgetsTypes.BLEEDING_LAYER,par);
+		}
+	}
+	
+	override protected void RegisterBleedingZoneEx(string name, int max_time, string bone = "", vector orientation = "0 0 0", vector offset = "0 0 0", float flow_modifier = 1, string particle_name = "BleedingSourceEffect", int inv_location = 0)
+	{
+		super.RegisterBleedingZoneEx(name,max_time,bone,orientation,offset,flow_modifier,particle_name,inv_location);
+		
+		if (GetGame().GetMission().GetEffectWidgets()/* && m_Player.IsControlledPlayer()*/)
+		{
+			Param3<bool,int,float> par = new Param3<bool,int,float>(false,m_Bit,flow_modifier);
+			GetGame().GetMission().GetEffectWidgets().RegisterGameplayEffectData(EffectWidgetsTypes.BLEEDING_LAYER,par);
+		}
+	}
+	
 	void OnVariablesSynchronized(int current_bits)
 	{
 		if (current_bits != m_BleedingBits)

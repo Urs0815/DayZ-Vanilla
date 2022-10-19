@@ -119,9 +119,9 @@ class PluginDeveloperSync extends PluginBase
 		}	
 		
 		//remove players with empty mask
-		for(int i = 0; i < m_RegisteredPlayers.Count(); i++)
+		for (int i = 0; i < m_RegisteredPlayers.Count(); i++)
 		{
-			if(m_RegisteredPlayers.GetElement(i).m_Bitmask == 0)
+			if (m_RegisteredPlayers.GetElement(i).m_Bitmask == 0)
 			{
 				m_RegisteredPlayers.RemoveElement(i);
 				i = 0;
@@ -162,7 +162,7 @@ class PluginDeveloperSync extends PluginBase
 					if ((PDS_SYSTEMS.MODS & bit_mask) != 0 )
 					{
 						SendRPCMods( player);
-						if( PDS_SYSTEMS.MODS_DETAILED & bit_mask )
+						if ( PDS_SYSTEMS.MODS_DETAILED & bit_mask )
 							SendRPCModsDetail(	player); //!!!!! Highly suspect
 					}
 					if ((PDS_SYSTEMS.LEVELS & bit_mask) != 0 )
@@ -197,7 +197,7 @@ class PluginDeveloperSync extends PluginBase
 		if ( IsPlayerRegistered(player) )
 		{
 			int current_mask = m_RegisteredPlayers.Get(player).m_Bitmask;
-			if(state)
+			if (state)
 				m_RegisteredPlayers.Get(player).m_Bitmask = current_mask | system_bit;
 			else
 				m_RegisteredPlayers.Get(player).m_Bitmask = current_mask & ~system_bit;
@@ -256,7 +256,7 @@ class PluginDeveloperSync extends PluginBase
 			return;
 		}
 		
-		switch( rpc_type )
+		switch ( rpc_type )
 		{
 			case ERPCs.DEV_STATS_UPDATE:
 			{
@@ -362,7 +362,7 @@ class PluginDeveloperSync extends PluginBase
 	//get update status from ctx data
 	bool GetRPCUpdateState( ParamsReadContext ctx )
 	{
-		ref Param1<bool> p = new Param1<bool>( 0 );
+		Param1<bool> p = new Param1<bool>( 0 );
 		if ( ctx.Read( p ) )
 		{
 			return p.param1;
@@ -374,7 +374,7 @@ class PluginDeveloperSync extends PluginBase
 	//get modifier id from ctx data
 	int GetRPCModifierID( ParamsReadContext ctx )
 	{
-		ref Param1<int> p = new Param1<int>( 0 );
+		Param1<int> p = new Param1<int>( 0 );
 		if ( ctx.Read( p ) )
 		{
 			return p.param1;
@@ -386,7 +386,7 @@ class PluginDeveloperSync extends PluginBase
 	//get modifier lock state from lock ctx data
 	void GetRPCModifierLock( ParamsReadContext ctx, out int id, out bool lock )
 	{
-		ref Param2<int, bool> p = new Param2<int, bool>( 0, false );
+		Param2<int, bool> p = new Param2<int, bool>( 0, false );
 		if ( ctx.Read( p ) )
 		{
 			id = p.param1;
@@ -431,7 +431,7 @@ class PluginDeveloperSync extends PluginBase
 		
 		Param1<int> p_count = new Param1<int>(0);
 		
-		ref Param3<string, float, float> p = new Param3<string, float, float>( "", 0, 0 );
+		Param3<string, float, float> p = new Param3<string, float, float>( "", 0, 0 );
 		
 		//get param count
 		int param_count = 0;
@@ -471,8 +471,7 @@ class PluginDeveloperSync extends PluginBase
 	
 	void OnRPCStatSet( ParamsReadContext ctx , PlayerBase player)
 	{
-		
-		ref Param2<string, float> p = new Param2<string, float>( "", 0 );
+		Param2<string, float> p = new Param2<string, float>( "", 0 );
 		if ( ctx.Read(p) )
 		{
 			for ( int i = 0; i < player.m_PlayerStats.GetPCO().Get().Count(); i++ ) 
@@ -518,7 +517,7 @@ class PluginDeveloperSync extends PluginBase
 		//clear values
 		m_PlayerLevelsSynced.Clear();
 		
-		ref Param3<string, float, float> p3 = new Param3<string, float, float>( "", 0,0 );
+		Param3<string, float, float> p3 = new Param3<string, float, float>( "", 0,0 );
 		
 		//get param count
 		int param_count = 0;
@@ -530,7 +529,7 @@ class PluginDeveloperSync extends PluginBase
 		//read values and set 
 		for ( int i = 0; i < param_count; i++ )
 		{
-			if( ctx.Read(p3) )
+			if ( ctx.Read(p3) )
 				m_PlayerLevelsSynced.Insert( new SyncedValueLevel( p3.param1, p3.param2, p3.param3 ) );
 		}
 	}
@@ -583,7 +582,7 @@ class PluginDeveloperSync extends PluginBase
 			int mod_id = m_RegisteredPlayers.Get(player).m_DetailedModifierIndex;
 			p1.param1 = mods_manager.GetModifier(mod_id).GetDebugText();
 			//send params
-			if(p1.param1 != "")
+			if (p1.param1 != "")
 				GetDayZGame().RPCSingleParam( player, ERPCs.DEV_RPC_MODS_DATA_DETAILED, p1, true, player.GetIdentity() );
 		}
 	}
@@ -607,7 +606,7 @@ class PluginDeveloperSync extends PluginBase
 		//read values and set 
 		for ( int i = 0; i < param_count; i++ )
 		{
-			if(ctx.Read(p4))
+			if (ctx.Read(p4))
 			{
 				m_PlayerModsSynced.Insert( new SyncedValueModifier( p4.param1, p4.param2, p4.param3, p4.param4 ) );
 			}
@@ -755,7 +754,7 @@ class PluginDeveloperSync extends PluginBase
 		//clear values
 		m_PlayerAgentsSynced.Clear();
 		
-		ref Param3<string, string, int> p3 = new Param3<string, string, int>( "", "" ,0 );
+		Param3<string, string, int> p3 = new Param3<string, string, int>( "", "" ,0 );
 		Param1<int> p1 = new Param1<int>(0);
 		
 		//get param count
@@ -781,8 +780,7 @@ class PluginDeveloperSync extends PluginBase
 	{
 		//write and send values
 		if ( player )
-		{
-			
+		{			
 			array<ref Param> stomach = new array<ref Param>;
 			int count = player.m_PlayerStomach.GetDebugObject( stomach );
 			stomach.InsertAt(new Param1<int>(count), 0);
@@ -804,7 +802,7 @@ class PluginDeveloperSync extends PluginBase
 			param_count = p1.param1;
 		}
 		
-		if(param_count)
+		if (param_count)
 		{
 			//invidividual stomach items
 			for ( int i = 0; i < param_count; i++ )

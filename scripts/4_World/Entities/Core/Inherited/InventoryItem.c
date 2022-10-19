@@ -52,11 +52,142 @@ class UnderSlugLauncher extends Weapon
 //-----------------------------------------------------------------------------
 class ItemGPS extends InventoryItemSuper
 {
+	bool IsTurnedOn()
+	{
+		return true;
+	}
+	
+	override void OnInventoryEnter(Man player)
+	{
+		super.OnInventoryEnter(player);
+
+		PlayerBase pb = PlayerBase.Cast(player);
+		if ( pb && IsTurnedOn() )
+		{
+			pb.MapNavigationItemInPossession(this);
+		}
+	}
+
+	override void OnInventoryExit(Man player)
+	{
+		super.OnInventoryExit(player);
+		
+		PlayerBase pb = PlayerBase.Cast(player);
+		if ( pb )
+		{
+			pb.MapNavigationItemNotInPossession(this);
+		}
+	}
+	
+	override void OnWasAttached(EntityAI parent, int slot_id)
+	{
+		super.OnWasAttached(parent, slot_id);
+		
+		PlayerBase player = PlayerBase.Cast(parent);
+		if ( parent.GetHierarchyRoot() )
+		{
+			player = PlayerBase.Cast(parent.GetHierarchyRoot());			
+		}
+
+		if ( player && IsTurnedOn() )
+		{
+			player.MapNavigationItemInPossession(this);
+		}
+	}
+	
+	override void OnWasDetached(EntityAI parent, int slot_id)
+	{
+		super.OnWasDetached(parent, slot_id);
+
+		PlayerBase player = PlayerBase.Cast(parent);
+		if ( parent.GetHierarchyRoot() )
+		{
+			player = PlayerBase.Cast(parent.GetHierarchyRoot());			
+		}
+
+		if ( player )
+		{
+			player.MapNavigationItemNotInPossession(this);
+		}
+	}
 };
 
 //-----------------------------------------------------------------------------
 class ItemCompass extends InventoryItemSuper
 {
+	override void OnInventoryEnter(Man player)
+	{
+		super.OnInventoryEnter(player);
+		
+		if ( IsRuined() )
+		{
+			return;
+		}
+
+		PlayerBase pb = PlayerBase.Cast(player);
+		if ( pb )
+		{
+			pb.MapNavigationItemInPossession(this);
+		}
+	}
+
+	override void OnInventoryExit(Man player)
+	{
+		super.OnInventoryExit(player);
+
+		if ( IsRuined() )
+		{
+			return;
+		}
+
+		PlayerBase pb = PlayerBase.Cast(player);
+		if ( pb )
+		{
+			pb.MapNavigationItemNotInPossession(this);
+		}
+	}
+	
+	override void OnWasAttached(EntityAI parent, int slot_id)
+	{
+		super.OnWasAttached(parent, slot_id);
+		
+		if ( IsRuined() )
+		{
+			return;
+		}
+		
+		PlayerBase player = PlayerBase.Cast(parent);
+		if ( parent.GetHierarchyParent() )
+		{
+			player = PlayerBase.Cast(parent.GetHierarchyParent());			
+		}
+
+		if ( player )
+		{
+			player.MapNavigationItemInPossession(this);
+		}
+	}
+	
+	override void OnWasDetached(EntityAI parent, int slot_id)
+	{
+		super.OnWasDetached(parent, slot_id);
+
+		if ( IsRuined() )
+		{
+			return;
+		}
+
+		PlayerBase player = PlayerBase.Cast(parent);
+		if ( parent.GetHierarchyParent() )
+		{
+			player = PlayerBase.Cast(parent.GetHierarchyParent());			
+		}
+
+		if ( player )
+		{
+			player.MapNavigationItemNotInPossession(this);
+		}
+	}
 };
 
 //-----------------------------------------------------------------------------
@@ -103,12 +234,12 @@ class CarWheel extends InventoryItemSuper
 	
 	override void EEHealthLevelChanged(int oldLevel, int newLevel, string zone)
 	{
-		super.EEHealthLevelChanged(oldLevel, newLevel, zone);
+		super.EEHealthLevelChanged( oldLevel, newLevel, zone );
 		
-		if (newLevel ==  GameConstants.STATE_RUINED)
+		if ( newLevel ==  GameConstants.STATE_RUINED )
 		{
 			string newWheel = "";
-			switch (GetType())
+			switch ( GetType() )
 			{
 				case "HatchbackWheel":
 					newWheel = "HatchbackWheel_Ruined";
@@ -133,9 +264,12 @@ class CarWheel extends InventoryItemSuper
 				case "Truck_01_WheelDouble":
 					newWheel = "Truck_01_WheelDouble_Ruined";
 				break;
+				case "Offroad_02_Wheel":
+					newWheel = "Offroad_02_Wheel_Ruined";
+				break;
 			}
 
-			if (newWheel != "")
+			if ( newWheel != "" )
 			{
 				//Unlock to allow creating a new item
 				if (IsLockedInSlot())
@@ -158,8 +292,13 @@ class CarWheel extends InventoryItemSuper
 	override void SetActions()
 	{
 		super.SetActions();
-		AddAction(ActionDetach);
-		AddAction(ActionAttachOnSelection);
+		//AddAction(ActionDetach);
+		//AddAction(ActionAttachOnSelection);
+	}
+	
+	override bool EEOnDamageCalculated(TotalDamageResult damageResult, int damageType, EntityAI source, int component, string dmgZone, string ammo, vector modelPos, float speedCoef)
+	{
+		return false;
 	}
 };
 
@@ -168,10 +307,10 @@ class CarWheel_Ruined : CarWheel
 	override bool CanPutAsAttachment(EntityAI parent)
 	{
 		// So that the lambda can always put it to the Transport
-		if (parent.IsInherited(Transport) && parent.IsRuined())
+		if ( parent.IsInherited(Transport) && parent.IsRuined() )
 		{
 			InventoryLocation loc = new InventoryLocation();
-			if (GetInventory().GetCurrentInventoryLocation(loc));
+			if ( GetInventory().GetCurrentInventoryLocation(loc) );
 			{
 				return loc.GetType() == InventoryLocationType.UNKNOWN;
 			}
@@ -179,7 +318,7 @@ class CarWheel_Ruined : CarWheel
 			return false;
 		}
 
-		if (!super.CanPutAsAttachment(parent))
+		if ( !super.CanPutAsAttachment(parent) )
 		{
 			return false;
 		}
@@ -208,7 +347,7 @@ class ReplaceWheelLambda : TurnItemIntoItemLambda
 	override protected void OnSuccess(EntityAI new_item)
 	{
 		super.OnSuccess( new_item );
-		if (new_item)
+		if ( new_item )
 			new_item.SetOrientation( m_oldOri );
 	}
 }
@@ -230,6 +369,9 @@ class Truck_01_Wheel_Ruined extends CarWheel_Ruined {};
 
 class Truck_01_WheelDouble extends CarWheel {};
 class Truck_01_WheelDouble_Ruined extends CarWheel_Ruined {};
+
+class Offroad_02_Wheel extends CarWheel {};
+class Offroad_02_Wheel_Ruined extends CarWheel_Ruined {};
 
 class CarDoor extends InventoryItemSuper
 {
@@ -429,6 +571,29 @@ class CivSedanDoors_BackRight_Wine extends CivSedanDoors_BackRight {};
 class CivSedanHood_Wine extends CivSedanHood {};
 class CivSedanTrunk_Wine extends CivSedanTrunk {};
 
+
+class CivSedanDoors_Driver_WhiteRust extends CivSedanDoors_Driver {};
+class CivSedanDoors_CoDriver_WhiteRust extends CivSedanDoors_CoDriver {};
+class CivSedanDoors_BackLeft_WhiteRust extends CivSedanDoors_BackLeft {};
+class CivSedanDoors_BackRight_WhiteRust extends CivSedanDoors_BackRight {};
+class CivSedanHood_WhiteRust extends CivSedanHood {};
+class CivSedanTrunk_WhiteRust extends CivSedanTrunk {};
+
+class CivSedanDoors_Driver_WineRust extends CivSedanDoors_Driver {};
+class CivSedanDoors_CoDriver_WineRust extends CivSedanDoors_CoDriver {};
+class CivSedanDoors_BackLeft_WineRust extends CivSedanDoors_BackLeft {};
+class CivSedanDoors_BackRight_WineRust extends CivSedanDoors_BackRight {};
+class CivSedanHood_WineRust extends CivSedanHood {};
+class CivSedanTrunk_WineRust extends CivSedanTrunk {};
+
+class CivSedanDoors_Driver_BlackRust extends CivSedanDoors_Driver {};
+class CivSedanDoors_CoDriver_BlackRust extends CivSedanDoors_CoDriver {};
+class CivSedanDoors_BackLeft_BlackRust extends CivSedanDoors_BackLeft {};
+class CivSedanDoors_BackRight_BlackRust extends CivSedanDoors_BackRight {};
+class CivSedanHood_BlackRust extends CivSedanHood {};
+class CivSedanTrunk_BlackRust extends CivSedanTrunk {};
+
+
 //-------------------------------------
 class Truck_01_Door_1_1 extends CarDoor {};
 class Truck_01_Door_2_1 extends CarDoor {};
@@ -442,6 +607,44 @@ class Truck_01_Door_1_1_Orange extends Truck_01_Door_1_1 {};
 class Truck_01_Door_2_1_Orange extends Truck_01_Door_2_1 {};
 class Truck_01_Door_Hood_Orange extends Truck_01_Door_Hood {};
 
+class Truck_01_Door_1_1_GreenRust extends Truck_01_Door_1_1 {};
+class Truck_01_Door_2_1_GreenRust extends Truck_01_Door_2_1 {};
+class Truck_01_Hood_GreenRust extends Truck_01_Door_Hood {};
+
+class Truck_01_Door_1_1_BlueRust extends Truck_01_Door_1_1 {};
+class Truck_01_Door_2_1_BlueRust extends Truck_01_Door_2_1 {};
+class Truck_01_Hood_BlueRust extends Truck_01_Door_Hood {};
+
+class Truck_01_Door_1_1_OrangeRust extends Truck_01_Door_1_1 {};
+class Truck_01_Door_2_1_OrangeRust extends Truck_01_Door_2_1 {};
+class Truck_01_Hood_OrangeRust extends Truck_01_Door_Hood {};
+
+
+//-------------------------------------
+class Offroad_02_Door_1_1 extends CarDoor {};
+class Offroad_02_Door_1_2 extends CarDoor {};
+class Offroad_02_Door_2_1 extends CarDoor {};
+class Offroad_02_Door_2_2 extends CarDoor {};
+class Offroad_02_Trunk extends CarDoor {};
+
+class Offroad_02_Hood extends CarDoor
+{
+	override void SetActions()
+	{
+		super.SetActions();
+		
+		RemoveAction(ActionDetach);
+		RemoveAction(ActionAttachOnSelection);
+	}
+};
+
+class Offroad_02_Door_1_1_Rust extends CarDoor {};
+class Offroad_02_Door_1_2_Rust extends CarDoor {};
+class Offroad_02_Door_2_1_Rust extends CarDoor {};
+class Offroad_02_Door_2_2_Rust extends CarDoor {};
+class Offroad_02_Trunk_Rust extends CarDoor {};
+
+//-------------------------------------
 class CarRadiator extends InventoryItemSuper
 {
 	override bool DisplayNameRuinAttach()
@@ -453,35 +656,7 @@ class CarRadiator extends InventoryItemSuper
 	{
 		return true;
 	}
-	
-/* MOVED TO CarScript.C
-	override void OnWasAttached ( EntityAI parent, int slot_id )
-	{	
-		if ( GetGame().IsServer() && parent )
-		{
-			Car car;
-		 	Class.CastTo( car, parent );
 
-			if ( car )
-				car.SetHealth( "Radiator", "Health", GetHealth() );
-		}
-	}
-
-	override void OnWasDetached ( EntityAI parent, int slot_id )
-	{
-		if ( GetGame().IsServer() && parent )
-		{
-			Car car;
-		 	Class.CastTo( car, parent );
-
-			if ( car )
-			{
-				car.Leak( CarFluid.COOLANT, car.GetFluidFraction(CarFluid.COOLANT)*car.GetFluidCapacity(CarFluid.COOLANT) );
-				car.SetHealth( "Radiator", "Health", 0);
-			}
-		}
-	}
-*/
 	override void EEKilled(Object killer)
 	{
 		if ( GetGame().IsServer() )
@@ -574,7 +749,8 @@ class GlowPlug extends ItemBase
 	{
 		super.SetActions();
 		
-		AddAction(ActionAttach);
+		AddAction(ActionAttachOnSelection);
+		AddAction(ActionDetach);
 	}
 };
 
@@ -979,4 +1155,4 @@ class MapMarker
 	{
 		return m_IconIdx;
 	}
-}
+};

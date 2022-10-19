@@ -9,6 +9,7 @@ class RightArea: Container
 	
 	protected ref SizeToChild					m_ContentResize;
 	protected bool								m_ShouldChangeSize = true;
+	protected bool								m_ProcessGridMovement;
 	
 	void RightArea(LayoutHolder parent)
 	{
@@ -20,6 +21,7 @@ class RightArea: Container
 		m_PlayerContainer.SetPlayer(PlayerBase.Cast(GetGame().GetPlayer()));
 		m_Body.Insert(m_PlayerContainer);
 		m_ActiveIndex = 0;
+		m_ProcessGridMovement = false;
 		
 		m_UpIcon		= m_RootWidget.FindAnyWidget( "Up" );
 		m_DownIcon		= m_RootWidget.FindAnyWidget( "Down" );
@@ -99,7 +101,7 @@ class RightArea: Container
 		return m_PlayerContainer.IsPlayerEquipmentActive();
 	}
 	
-	void ExpandCollapseContainer()
+	override void ExpandCollapseContainer()
 	{
 		m_PlayerContainer.ExpandCollapseContainer();
 	}
@@ -148,74 +150,57 @@ class RightArea: Container
 		super.UpdateInterval();
 		m_PlayerContainer.UpdateInterval();
 		
-		//bool changed_size;
-		//if ( m_ShouldChangeSize )
-			//m_ContentResize.ResizeParentToChild( changed_size );
-		//if ( changed_size )
-		//{
-		//	CheckScrollbarVisibility();
-			//m_ShouldChangeSize = false;
-		//}
+		CheckScrollbarVisibility();
 	}
 	
+	void MoveUpDownIcons()
+	{
+		if (m_UpIcon && m_DownIcon)
+		{
+			m_UpIcon.Show( m_IsActive );
+			m_DownIcon.Show( m_IsActive );
+			if( m_IsActive )
+			{
+				float x, y;
+				m_UpIcon.GetScreenSize( x, y );
+				
+				float top_y		= GetCurrentContainerTopY();
+				m_UpIcon.SetPos( 0, Math.Clamp( top_y, 0, 99999 ) );
+				
+				#ifndef PLATFORM_CONSOLE
+				float x2, y2;
+				m_DownIcon.GetScreenSize( x2, y2 );
+				float bottom_y	= GetCurrentContainerBottomY() - y2;
+				
+				float diff		= bottom_y - ( top_y + y );
+				if( diff < 0 )
+				{
+					top_y += diff / 2;
+					bottom_y -= diff / 2;
+				}
+				m_DownIcon.SetPos( 0, bottom_y );
+				#endif
+			}
+		}
+		/*else
+		{
+			ErrorEx("up/down icons not present!");
+		}
+		#else
+		m_ScrollWidget.Update();
+		#endif*/
 		
-	override void MoveGridCursor(int direction)
-	{
-		super.MoveGridCursor(direction);
-		UpdateSelectionIcons();	
 	}
 	
-	void ScrollToActiveContainer()
+	override ScrollWidget GetScrollWidget()
 	{
-		float x, y, y_s;
-		float f_y,f_h;
-		m_ScrollWidget.GetScreenPos( x, y );
-		m_ScrollWidget.GetScreenSize( x, y_s );
-		float amount;
-		f_y = GetFocusedContainerYScreenPos( true );
-		f_h = GetFocusedContainerHeight( true );
-		float next_pos	= f_y + f_h;
-			
-		float n = y + y_s;
-		if( next_pos > ( y + y_s ) )
-		{
-			amount	= y + f_y;
-			m_ScrollWidget.VScrollToPos( m_ScrollWidget.GetVScrollPos() + amount + 2 );
-		}
-		else if( f_y < y )
-		{
-			amount = f_y - y;
-			m_ScrollWidget.VScrollToPos( m_ScrollWidget.GetVScrollPos() + amount - 2 );
-		}
+		return m_ScrollWidget;
 	}
 	
 	override void UpdateSelectionIcons()
 	{
 		ScrollToActiveContainer();
-		m_UpIcon.Show( m_IsActive );
-		m_DownIcon.Show( m_IsActive );
-		if( m_IsActive )
-		{
-			float x, y;
-			m_UpIcon.GetScreenSize( x, y );
-			
-			float top_y		= GetCurrentContainerTopY();
-			m_UpIcon.SetPos( 0, Math.Clamp( top_y, 0, 99999 ) );
-			
-			#ifndef PLATFORM_CONSOLE
-			float x2, y2;
-			m_DownIcon.GetScreenSize( x2, y2 );
-			float bottom_y	= GetCurrentContainerBottomY() - y2;
-			
-			float diff		= bottom_y - ( top_y + y );
-			if( diff < 0 )
-			{
-				top_y += diff / 2;
-				bottom_y -= diff / 2;
-			}
-			m_DownIcon.SetPos( 0, bottom_y );
-			#endif
-		}
+		MoveUpDownIcons();
 	}
 	
 	float GetCurrentContainerTopY()
@@ -237,20 +222,5 @@ class RightArea: Container
 		float cont_screen_pos		= GetFocusedContainerYScreenPos();
 		float cont_screen_height	= GetFocusedContainerHeight();
 		return cont_screen_pos - y + cont_screen_height;
-	}
-	
-	void CheckScrollbarVisibility()
-	{
-		m_MainWidget.Update();
-		m_RootWidget.Update();
-		m_ScrollWidget.Update();
-		float x, y;
-		float x2, y2;
-		
-		m_RootWidget.GetScreenSize( x, y );
-		m_ScrollWidget.GetScreenSize( x2, y2 );
-		m_ScrollWidget.SetAlpha( ( y > y2 ) );
-		
-		UpdateSelectionIcons();
 	}
 }

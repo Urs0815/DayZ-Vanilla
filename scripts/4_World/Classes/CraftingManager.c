@@ -129,13 +129,13 @@ class CraftingManager
 	{
 		int recipeCount = m_recipesManager.GetValidRecipes(item1,item2,m_recipes, m_player);
 		
-		for( int i = 0; i < recipeCount; i++ )
+		for ( int i = 0; i < recipeCount; i++ )
 		{
-			if(recipeID == -1 || m_recipes.Get(i) == recipeID)
+			if (recipeID == -1 || m_recipes.Get(i) == recipeID)
 			{
-				if( m_recipesManager.GetIsInstaRecipe(m_recipes.Get(i)) || m_recipesManager.IsEnableDebugCrafting() )
+				if ( m_recipesManager.GetIsInstaRecipe(m_recipes.Get(i)) || m_recipesManager.IsEnableDebugCrafting() )
 				{
-					ref Param craftParam = new Param3<int, ItemBase, ItemBase>(m_recipes.Get(i), item1, item2);
+					Param craftParam = new Param3<int, ItemBase, ItemBase>(m_recipes.Get(i), item1, item2);
 					m_player.RPCSingleParam(ERPCs.RPC_CRAFTING_INVENTORY_INSTANT, craftParam, true, m_player.GetIdentity());
 					return true;
 				}
@@ -150,7 +150,7 @@ class CraftingManager
 
 					ActionManagerClient am = ActionManagerClient.Cast(m_player.GetActionManager());
 					
-					if( m_player.GetItemInHands() == item1) am.SetInventoryAction( am.GetAction(ActionWorldCraft), item2, item1);
+					if ( m_player.GetItemInHands() == item1) am.SetInventoryAction( am.GetAction(ActionWorldCraft), item2, item1);
 					else am.SetInventoryAction( am.GetAction(ActionWorldCraft), item1, item2);					
 
 					return true;

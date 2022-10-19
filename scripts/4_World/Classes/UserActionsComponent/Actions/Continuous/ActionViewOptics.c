@@ -168,6 +168,7 @@ class ActionViewOptics : ActionContinuousBase
 	void EnterOptics(ItemOptics optic, PlayerBase player)
 	{
 		player.SetHandheldOpticsInUse(true);
+		player.SetOptics(true);
 		optic.EnterOptics();
 		optic.HideSelection("hide");
 		if (optic.HasEnergyManager()) 	optic.GetCompEM().SwitchOn();
@@ -177,6 +178,7 @@ class ActionViewOptics : ActionContinuousBase
 	void ExitOptics(ItemOptics optic, PlayerBase player)
 	{
 		optic.ShowSelection("hide");
+		player.ExitSights();
 		optic.ExitOptics(); 
 		player.SetHandheldOpticsInUse(false);
 		if (optic.HasEnergyManager()) 	optic.GetCompEM().SwitchOff();

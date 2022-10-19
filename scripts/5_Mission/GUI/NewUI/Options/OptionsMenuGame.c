@@ -6,6 +6,7 @@ class OptionsMenuGame extends ScriptedWidgetEventHandler
 	protected Widget						m_DetailsRoot;
 	protected TextWidget					m_DetailsLabel;
 	protected RichTextWidget				m_DetailsText;
+	protected ButtonWidget					m_QuickbarButton;
 	
 	protected ref NumericOptionsAccess		m_FOVOption;
 	protected ref ListOptionsAccess			m_LanguageOption;
@@ -24,6 +25,7 @@ class OptionsMenuGame extends ScriptedWidgetEventHandler
 	protected ref OptionSelectorMultistate	m_ShowAdminSelector;
 	protected ref OptionSelectorMultistate	m_ShowPlayerSelector;
 	protected ref OptionSelectorMultistate 	m_ShowServerInfoSelector;
+	protected ref OptionSelectorMultistate 	m_BleedingIndication;
 	protected ref OptionSelectorMultistate	m_PauseSelector;
 	
 	protected GameOptions					m_Options;
@@ -53,11 +55,13 @@ class OptionsMenuGame extends ScriptedWidgetEventHandler
 		m_Root.FindAnyWidget( "admin_setting_option" ).SetUserID( OptionIDsScript.OPTION_ADMIN_MESSAGES );
 		m_Root.FindAnyWidget( "player_setting_option" ).SetUserID( OptionIDsScript.OPTION_PLAYER_MESSAGES );
 		m_Root.FindAnyWidget( "language_setting_option" ).SetUserID( OptionAccessType.AT_OPTIONS_LANGUAGE );
+		m_Root.FindAnyWidget( "bleeding_indication_option" ).SetUserID( OptionIDsScript.OPTION_BLEEDINGINDICATION );
+		m_Root.FindAnyWidget( "quickbar_setting_option" ).SetUserID( OptionIDsScript.OPTION_QUICKBAR );
 		
 		#ifdef PLATFORM_CONSOLE
+		m_QuickbarButton = ButtonWidget.Cast(m_Root.FindAnyWidget( "quickbar_button" ));
 		m_Root.FindAnyWidget( "brightness_setting_option" ).SetUserID( OptionAccessType.AT_OPTIONS_BRIGHT_SLIDER );
 		#else
-		m_Root.FindAnyWidget( "quickbar_setting_option" ).SetUserID( OptionIDsScript.OPTION_QUICKBAR );
 		m_Root.FindAnyWidget( "serverinfo_setting_option" ).SetUserID( OptionIDsScript.OPTION_SERVER_INFO );
 		m_Root.FindAnyWidget( "pause_setting_option" ).SetUserID( OptionAccessType.AT_OPTIONS_PAUSE );
 		#endif
@@ -75,6 +79,7 @@ class OptionsMenuGame extends ScriptedWidgetEventHandler
 		}
 		
 		array<string> opt4		= { "#options_pc_nopause_0", "#options_pc_nopause_1", "#options_pc_nopause_2" }; // Pause options menu strings
+		array<string> opt5		= { "#options_controls_disabled", "#options_controls_enabled" };
 		
 		m_LanguageSelector			= new OptionSelectorMultistate( m_Root.FindAnyWidget( "language_setting_option" ), m_LanguageOption.GetIndex(), this, false, opt3 );
 		m_FOVSelector				= new OptionSelectorSlider( m_Root.FindAnyWidget( "fov_setting_option" ), m_FOVOption.ReadValue(), this, false, m_FOVOption.GetMin(), m_FOVOption.GetMax() );
@@ -83,6 +88,8 @@ class OptionsMenuGame extends ScriptedWidgetEventHandler
 		m_ShowGameSelector			= new OptionSelectorMultistate( m_Root.FindAnyWidget( "game_setting_option" ), g_Game.GetProfileOption( EDayZProfilesOptions.GAME_MESSAGES ), this, false, opt2 );
 		m_ShowAdminSelector			= new OptionSelectorMultistate( m_Root.FindAnyWidget( "admin_setting_option" ), g_Game.GetProfileOption( EDayZProfilesOptions.ADMIN_MESSAGES ), this, false, opt2 );
 		m_ShowPlayerSelector		= new OptionSelectorMultistate( m_Root.FindAnyWidget( "player_setting_option" ), g_Game.GetProfileOption( EDayZProfilesOptions.PLAYER_MESSAGES ), this, false, opt2 );
+		m_BleedingIndication		= new OptionSelectorMultistate( m_Root.FindAnyWidget( "bleeding_indication_option" ), g_Game.GetProfileOption( EDayZProfilesOptions.BLEEDINGINDICATION ), this, false, opt5 );
+		m_ShowQuickbarSelector		= new OptionSelectorMultistate( m_Root.FindAnyWidget( "quickbar_setting_option" ), g_Game.GetProfileOption( EDayZProfilesOptions.QUICKBAR ), this, false, opt );
 		
 		m_LanguageSelector.m_OptionChanged.Insert( UpdateLanguageOption );
 		m_FOVSelector.m_OptionChanged.Insert( UpdateFOVOption );
@@ -91,17 +98,17 @@ class OptionsMenuGame extends ScriptedWidgetEventHandler
 		m_ShowGameSelector.m_OptionChanged.Insert( UpdateGameOption );
 		m_ShowAdminSelector.m_OptionChanged.Insert( UpdateAdminOption );
 		m_ShowPlayerSelector.m_OptionChanged.Insert( UpdatePlayerOption );
+		m_BleedingIndication.m_OptionChanged.Insert( UpdateBleedingIndication );
+		m_ShowQuickbarSelector.m_OptionChanged.Insert( UpdateQuickbarOption );
 		
 		#ifdef PLATFORM_CONSOLE
 			m_BrightnessOption		= NumericOptionsAccess.Cast( m_Options.GetOptionByType( OptionAccessType.AT_OPTIONS_BRIGHT_SLIDER ) );
 			m_BrightnessSelector	= new OptionSelectorSlider( m_Root.FindAnyWidget( "brightness_setting_option" ), m_BrightnessOption.ReadValue(), this, false, m_BrightnessOption.GetMin(), m_BrightnessOption.GetMax() );
 			m_BrightnessSelector.m_OptionChanged.Insert( UpdateBrightnessOption );
 		#else
-			m_ShowQuickbarSelector		= new OptionSelectorMultistate( m_Root.FindAnyWidget( "quickbar_setting_option" ), g_Game.GetProfileOption( EDayZProfilesOptions.QUICKBAR ), this, false, opt );
 			m_ShowServerInfoSelector	= new OptionSelectorMultistate( m_Root.FindAnyWidget( "serverinfo_setting_option" ), g_Game.GetProfileOption( EDayZProfilesOptions.SERVERINFO_DISPLAY ), this, false, opt );
 			m_PauseSelector				= new OptionSelectorMultistate( m_Root.FindAnyWidget( "pause_setting_option" ), m_PauseOption.GetIndex(), this, false, opt4 );
 			
-			m_ShowQuickbarSelector.m_OptionChanged.Insert( UpdateQuickbarOption );
 			m_ShowServerInfoSelector.m_OptionChanged.Insert( UpdateServerInfoOption );
 			m_PauseSelector.m_OptionChanged.Insert( UpdatePauseOption );
 		#endif
@@ -114,6 +121,8 @@ class OptionsMenuGame extends ScriptedWidgetEventHandler
 		
 		m_Root.SetHandler( this );
 		m_DetailsRoot.Show( false );
+		
+		InitDependentOptionsVisibility();
 	}
 	
 	void ~OptionsMenuGame()
@@ -146,10 +155,11 @@ class OptionsMenuGame extends ScriptedWidgetEventHandler
 		bool universal = ( m_ShowHUDSelector.GetValue() != g_Game.GetProfileOption( EDayZProfilesOptions.HUD ) || m_ShowCrosshairSelector.GetValue() != g_Game.GetProfileOption( EDayZProfilesOptions.CROSSHAIR ) );
 		universal = universal || ( m_ShowGameSelector.GetValue() != g_Game.GetProfileOption( EDayZProfilesOptions.GAME_MESSAGES ) || m_ShowAdminSelector.GetValue() != g_Game.GetProfileOption( EDayZProfilesOptions.ADMIN_MESSAGES ) );
 		universal = universal || m_ShowPlayerSelector.GetValue() != g_Game.GetProfileOption( EDayZProfilesOptions.PLAYER_MESSAGES );
+		universal = universal || m_BleedingIndication.GetValue() != g_Game.GetProfileOption( EDayZProfilesOptions.BLEEDINGINDICATION );
 		universal = universal || m_LanguageOption.IsChanged();
 		
 		#ifdef PLATFORM_CONSOLE
-		return universal;
+		return universal/* || m_ShowQuickbarSelector.GetValue() != g_Game.GetProfileOption( EDayZProfilesOptions.QUICKBAR )*/;
 		#else
 		return ( universal || m_ShowQuickbarSelector.GetValue() != g_Game.GetProfileOption( EDayZProfilesOptions.QUICKBAR ) || m_ShowServerInfoSelector.GetValue() != g_Game.GetProfileOption( EDayZProfilesOptions.SERVERINFO_DISPLAY ) );
 		#endif
@@ -159,24 +169,38 @@ class OptionsMenuGame extends ScriptedWidgetEventHandler
 	{
 		IngameHud hud = GetHud();
 		InGameMenu menu = InGameMenu.Cast(GetGame().GetUIManager().FindMenu(MENU_INGAME));
+		MissionGameplay mission = MissionGameplay.Cast(GetGame().GetMission());
 		
 		g_Game.SetProfileOption( EDayZProfilesOptions.HUD, m_ShowHUDSelector.GetValue() );
 		g_Game.SetProfileOption( EDayZProfilesOptions.CROSSHAIR, m_ShowCrosshairSelector.GetValue() );
 		g_Game.SetProfileOption( EDayZProfilesOptions.GAME_MESSAGES, m_ShowGameSelector.GetValue() );
 		g_Game.SetProfileOption( EDayZProfilesOptions.ADMIN_MESSAGES, m_ShowAdminSelector.GetValue() );
 		g_Game.SetProfileOption( EDayZProfilesOptions.PLAYER_MESSAGES, m_ShowPlayerSelector.GetValue() );
+		
 		#ifndef PLATFORM_CONSOLE
+			g_Game.SetProfileOption( EDayZProfilesOptions.QUICKBAR, m_ShowQuickbarSelector.GetValue() );
 			g_Game.SetProfileOption( EDayZProfilesOptions.SERVERINFO_DISPLAY, m_ShowServerInfoSelector.GetValue() );
 		#endif
 		
-		if ( hud )
+		if (hud)
 		{
 			#ifndef PLATFORM_CONSOLE
-				g_Game.SetProfileOption( EDayZProfilesOptions.QUICKBAR, m_ShowQuickbarSelector.GetValue() );
-				hud.ShowQuickBar( m_ShowQuickbarSelector.GetValue() );
+				hud.ShowQuickBar(m_ShowQuickbarSelector.GetValue());
+			#else
+				hud.ShowQuickBar(GetGame().GetInput().IsEnabledMouseAndKeyboardEvenOnServer());
 			#endif
-			
-			hud.ShowHud( m_ShowHUDSelector.GetValue() );
+			hud.ShowHud(m_ShowHUDSelector.GetValue());
+		}
+		
+		//BLEEDINGINDICATION changed
+		bool bleedingIndicationOld = g_Game.GetProfileOption( EDayZProfilesOptions.BLEEDINGINDICATION );
+		bool bleedingIndicationNew = m_BleedingIndication.GetValue();
+		g_Game.SetProfileOption( EDayZProfilesOptions.BLEEDINGINDICATION, bleedingIndicationNew );
+		if (mission && bleedingIndicationOld != bleedingIndicationNew)
+		{
+			//mission.ChangeBleedingIndicatorVisibility(bleedingIndicationNew);
+			Param1<bool> par = new Param1<bool>(bleedingIndicationNew);
+			GetGame().GetMission().GetEffectWidgets().UpdateWidgets(EffectWidgetsTypes.BLEEDING_LAYER,0,par);
 		}
 		
 		#ifndef PLATFORM_CONSOLE
@@ -188,9 +212,9 @@ class OptionsMenuGame extends ScriptedWidgetEventHandler
 		
 		if (m_LanguageOption.IsChanged()) //language changed
 		{
-			if (GetGame().GetMission())
+			if (mission)
 			{
-				GetGame().GetMission().ResetGUI();
+				mission.ResetGUI();
 				if ( hud )
 				{
 					//hud.ShowQuickbarUI(false);
@@ -222,6 +246,8 @@ class OptionsMenuGame extends ScriptedWidgetEventHandler
 			m_ShowAdminSelector.SetValue( g_Game.GetProfileOption( EDayZProfilesOptions.ADMIN_MESSAGES ), false );
 		if ( m_ShowPlayerSelector )
 			m_ShowPlayerSelector.SetValue( g_Game.GetProfileOption( EDayZProfilesOptions.PLAYER_MESSAGES ), false );
+		if ( m_BleedingIndication )
+			m_BleedingIndication.SetValue( g_Game.GetProfileOption( EDayZProfilesOptions.BLEEDINGINDICATION ), false );
 		
 		#ifdef PLATFORM_CONSOLE
 			if ( m_BrightnessSelector )
@@ -260,6 +286,8 @@ class OptionsMenuGame extends ScriptedWidgetEventHandler
 			m_ShowAdminSelector.SetValue( g_Game.GetProfileOptionDefault( EDayZProfilesOptions.ADMIN_MESSAGES ), false );
 		if ( m_ShowPlayerSelector )
 			m_ShowPlayerSelector.SetValue( g_Game.GetProfileOptionDefault( EDayZProfilesOptions.PLAYER_MESSAGES ), false );
+		if ( m_BleedingIndication )
+			m_BleedingIndication.SetValue( g_Game.GetProfileOptionDefault( EDayZProfilesOptions.BLEEDINGINDICATION ), false );
 		
 		#ifdef PLATFORM_CONSOLE
 			if ( m_BrightnessSelector )
@@ -307,6 +335,34 @@ class OptionsMenuGame extends ScriptedWidgetEventHandler
 		#endif
 	}
 	
+	void ToggleDependentOptions(int mode, bool state)
+	{
+		/*switch (mode)
+		{
+			#ifdef PLATFORM_CONSOLE
+			case EDependentOptions.MOUSEANDKEYBOARD_QUICKBAR:
+			{
+				m_QuickbarButton.Show(state);
+				IngameHud hud = GetHud();
+				if (hud)
+					hud.ShowQuickBar(m_ShowQuickbarSelector.GetValue() && GetGame().GetInput().IsEnabledMouseAndKeyboardEvenOnServer());
+				break;
+			}
+			#endif
+		}*/
+	}
+	
+	void InitDependentOptionsVisibility()
+	{
+		/*#ifdef PLATFORM_CONSOLE
+		bool visible = g_Game.GetGameState() != DayZGameState.IN_GAME || GetGame().GetInput().IsEnabledMouseAndKeyboardEvenOnServer();
+		m_QuickbarButton.Show(visible);
+		#endif*/
+		#ifdef PLATFORM_CONSOLE
+		m_QuickbarButton.Show(false);
+		#endif
+	}
+	
 	void UpdateLanguageOption( int new_index )
 	{
 		m_LanguageOption.SetIndex( new_index );
@@ -329,6 +385,11 @@ class OptionsMenuGame extends ScriptedWidgetEventHandler
 	}
 	
 	void UpdateHUDOption( int new_index )
+	{
+		m_Menu.OnChanged();
+	}
+	
+	void UpdateBleedingIndication( int new_index )
 	{
 		m_Menu.OnChanged();
 	}
@@ -461,11 +522,12 @@ class OptionsMenuGame extends ScriptedWidgetEventHandler
 		m_TextMap.Insert( OptionAccessType.AT_OPTIONS_FIELD_OF_VIEW, new Param2<string, string>( "#options_game_field_of_view", "#options_game_field_of_view_desc" ) );
 		m_TextMap.Insert( OptionIDsScript.OPTION_HUD, new Param2<string, string>( "#options_game_show_HUD", "#options_game_show_HUD_desc" ) );
 		m_TextMap.Insert( OptionIDsScript.OPTION_CROSSHAIR, new Param2<string, string>( "#options_game_show_crosshair", "#options_game_show_crosshair_desc" ) );
+		m_TextMap.Insert( OptionIDsScript.OPTION_QUICKBAR, new Param2<string, string>( "#options_game_show_quickbar",	"#options_game_show_quickbar_desc" ) );
 		m_TextMap.Insert( OptionIDsScript.OPTION_SERVER_INFO, new Param2<string, string>( "#options_game_show_serverinfo", "#options_game_show_serverinfo_desc" ) );
+		m_TextMap.Insert( OptionIDsScript.OPTION_BLEEDINGINDICATION, new Param2<string, string>( "#options_game_show_bleedingindication", "#options_game_show_bleedingindication_desc" ) );
 	
 		#ifdef PLATFORM_WINDOWS
 		m_TextMap.Insert( OptionAccessType.AT_OPTIONS_PAUSE, new Param2<string, string>( "#layout_options_pc_nopause_title", "#layout_options_pc_nopause_tooltip" ) );
-		m_TextMap.Insert( OptionIDsScript.OPTION_QUICKBAR, new Param2<string, string>( "#options_game_show_quickbar",	"#options_game_show_quickbar_desc" ) );
 		m_TextMap.Insert( OptionIDsScript.OPTION_GAME_MESSAGES, new Param2<string, string>( "#options_pc_game_messages",	"#options_game_show_game_msg" ) );
 		m_TextMap.Insert( OptionIDsScript.OPTION_ADMIN_MESSAGES, new Param2<string, string>( "#options_pc_admin_mes",		"#options_game_show_admin_msg" ) );
 		m_TextMap.Insert( OptionIDsScript.OPTION_PLAYER_MESSAGES, new Param2<string, string>( "#options_pc_player_messages",	"#options_game_show_player_msg" ) );

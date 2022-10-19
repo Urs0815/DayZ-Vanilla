@@ -10,7 +10,7 @@ class ActionGetInTransport: ActionBase
 	override void CreateConditionComponents()  
 	{
 		m_ConditionItem 	= new CCINone;
-		m_ConditionTarget	= new CCTCursor;
+		m_ConditionTarget	= new CCTCursorNoRuinCheck;
 	}
 
 	override typename GetInputType()

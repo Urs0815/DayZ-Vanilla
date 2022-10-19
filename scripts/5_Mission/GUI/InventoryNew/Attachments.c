@@ -8,6 +8,7 @@ class Attachments
 	protected ref array<string>					m_AttachmentSlotNames;
 	protected ref array<string>					m_AttachmentSlotDisplayable;
 	protected ref map<int, SlotsIcon>			m_AttachmentSlots;
+	protected ref array<int>					m_AttachmentIDOrdered;
 	
 	protected int m_RowIndex;
 
@@ -16,6 +17,7 @@ class Attachments
 		m_Parent					= parent;
 		m_Entity					= entity;
 		m_AttachmentSlots			= new map<int, SlotsIcon>;
+		m_AttachmentIDOrdered		= new array<int>;
 		m_AttachmentSlotNames		= GetItemSlots( entity );
 		m_AttachmentSlotDisplayable	= new array<string>;
 		m_Entity.GetOnItemAttached().Insert( AttachmentAdded );
@@ -400,7 +402,7 @@ class Attachments
 	
 	array<int> GetSlotsSorted()
 	{
-		return m_AttachmentSlots.GetKeyArray();
+		return m_AttachmentIDOrdered;
 	}
 	
 	void AttachmentAdded(EntityAI item, string slot, EntityAI parent)
@@ -452,9 +454,12 @@ class Attachments
 		m_RowIndex = att_row_index;
 
 		int number_of_rows = Math.Ceil( m_AttachmentSlotNames.Count() / ITEMS_IN_ROW );
+		string name = m_Entity.GetDisplayName();
+		name.ToUpper();
 		
 		m_AttachmentsContainer = new AttachmentsWrapper( m_Parent );
 		m_AttachmentsContainer.SetParent( this );
+		m_AttachmentsContainer.SetFalseAttachmentsHeaderText(name);
 		m_AttachmentsContainer.GetRootWidget().SetSort( att_row_index );
 		m_Parent.Insert( m_AttachmentsContainer, att_row_index );
 		
@@ -508,6 +513,7 @@ class Attachments
 				icon.GetGhostSlot().LoadImageFile( 0, StaticGUIUtils.VerifyIconImageString(StaticGUIUtils.IMAGESETGROUP_INVENTORY,icon_name) );
 			int slot_id = InventorySlots.GetSlotIdFromString( m_AttachmentSlotNames[i] );
 			m_AttachmentSlots.Insert( slot_id, icon );
+			m_AttachmentIDOrdered.Insert(slot_id);
 			
 			icon.SetSlotID(slot_id);
 			icon.SetSlotDisplayName(InventorySlots.GetSlotDisplayName(slot_id));
@@ -577,5 +583,20 @@ class Attachments
 		}
 
 		return attachments_slots;
+	}
+	
+	void ShowFalseAttachmentsHeader(bool show)
+	{
+		m_AttachmentsContainer.ShowFalseAttachmentsHeader(show);
+	}
+	
+	void SetFalseAttachmentsHeaderText(string text)
+	{
+		m_AttachmentsContainer.SetFalseAttachmentsHeaderText(text);
+	}
+	
+	TextWidget GetFalseHeaderTextWidget()
+	{
+		return m_AttachmentsContainer.GetFalseHeaderTextWidget();
 	}
 }

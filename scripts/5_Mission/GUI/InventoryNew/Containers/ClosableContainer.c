@@ -1,9 +1,7 @@
 class ClosableContainer extends Container
 {
 	protected ref ClosableHeader	m_ClosableHeader;
-	protected bool					m_Closed;
 	protected bool					m_LockCargo;
-	protected EntityAI				m_Entity;
 
 	void ClosableContainer( LayoutHolder parent, int sort = -1 )
 	{
@@ -70,8 +68,8 @@ class ClosableContainer extends Container
 	{
 		if( IsDisplayable() )
 		{
+			super.Open();
 			ItemManager.GetInstance().SetDefaultOpenState( m_Entity.GetType(), true );
-			m_Closed = false;
 			SetOpenForSlotIcon(true);
 			OnShow();
 			m_Parent.m_Parent.Refresh();
@@ -81,16 +79,12 @@ class ClosableContainer extends Container
 	override void Close()
 	{
 		ItemManager.GetInstance().SetDefaultOpenState( m_Entity.GetType(), false );
-		m_Closed = true;
+		super.Close();
 		SetOpenForSlotIcon(false);
-		this.OnHide();
+		OnHide();
+		m_Parent.m_Parent.Refresh(); //TODO: ???
 	}
-
-	override bool IsOpened()
-	{
-		return !m_Closed;
-	}
-
+	
 	override void SetLayoutName()
 	{
 		m_LayoutName = WidgetLayoutName.ClosableContainer;
@@ -181,6 +175,41 @@ class ClosableContainer extends Container
 				Inventory.MoveAttachmentDown( slot );
 				UpdateSelectionIcons();
 			}
+		}
+	}
+	
+	override void CheckHeaderDragability()
+	{
+		super.CheckHeaderDragability();
+		
+		if (m_ClosableHeader && m_Entity) //TODO: do the entity check here?
+		{
+			int flag = m_ClosableHeader.GetMainWidget().GetFlags();
+			bool old = flag & WidgetFlags.DRAGGABLE;
+			bool current = ItemBase.Cast(m_Entity) && m_Entity.IsTakeable();
+			//bool changed = false;
+			if (old && !current)
+			{
+				m_ClosableHeader.GetMainWidget().ClearFlags( WidgetFlags.DRAGGABLE );
+				Widget drag = GetDragWidget();
+				if (drag && drag == m_ClosableHeader.GetMainWidget())
+				{
+					CancelWidgetDragging();
+					m_ClosableHeader.OnDropHeader(null);
+				}
+				
+				//changed = true;
+			}
+			else if (!old && current)
+			{
+				m_ClosableHeader.GetMainWidget().SetFlags( WidgetFlags.DRAGGABLE );
+				//changed = true;
+			}
+			/*if (old != current)
+			{
+				flag &= ~WidgetFlags.DRAGGABLE;
+				m_ClosableHeader.GetMainWidget().SetFlags( flag );
+			}*/
 		}
 	}
 }

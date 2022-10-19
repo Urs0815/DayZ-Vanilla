@@ -19,7 +19,7 @@ class ActionSetKitchenTimer: ActionContinuousBase
 		m_SpecialtyWeight = 0;
 		
 		m_CallbackClass = ActionSetKitchenTimerCB;
-		m_Text = "#STR_SetAlarm0";
+		m_Text = "#STR_SetTimer0";
 	}
 	
 	override void CreateConditionComponents()  

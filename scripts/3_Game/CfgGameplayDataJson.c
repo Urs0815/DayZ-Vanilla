@@ -10,16 +10,18 @@ class CfgGameplayJson
 		WorldsData.InitServer();
 		BaseBuildingData.InitServer();
 		UIData.InitServer();
+		MapData.InitServer();
 	}
 	//-------------------------------------------------------------------------------------------------
 	
 	
 	//!!! all member variables must correspond with the cfggameplay.json file contents !!!!
-	ref ITEM_GeneralData GeneralData = new ITEM_GeneralData;
-	ref ITEM_PlayerData PlayerData = new ITEM_PlayerData;
-	ref ITEM_WorldData WorldsData = new ITEM_WorldData;
-	ref ITEM_BaseBuildingData BaseBuildingData = new ITEM_BaseBuildingData;
-	ref ITEM_UIData UIData = new ITEM_UIData;
+	ref ITEM_GeneralData GeneralData			= new ITEM_GeneralData;
+	ref ITEM_PlayerData PlayerData 				= new ITEM_PlayerData;
+	ref ITEM_WorldData WorldsData 				= new ITEM_WorldData;
+	ref ITEM_BaseBuildingData BaseBuildingData 	= new ITEM_BaseBuildingData;
+	ref ITEM_UIData UIData 						= new ITEM_UIData;
+	ref ITEM_MapData MapData 					= new ITEM_MapData;
 	
 };
 
@@ -41,8 +43,10 @@ class ITEM_GeneralData
 
 class ITEM_PlayerData
 {
-	ref ITEM_StaminaData StaminaData = new ITEM_StaminaData;
-	ref ITEM_ShockHandlingData ShockHandlingData = new ITEM_ShockHandlingData;
+	ref ITEM_StaminaData StaminaData			 	= new ITEM_StaminaData;
+	ref ITEM_ShockHandlingData ShockHandlingData 	= new ITEM_ShockHandlingData;
+	ref ITEM_MovementData MovementData 				= new ITEM_MovementData;
+	ref ITEM_DrowningData DrowningData 				= new ITEM_DrowningData;
 	
 	void InitServer()
 	{
@@ -52,7 +56,7 @@ class ITEM_PlayerData
 	//-------------------------------------------------------------------------------------------------
 	//!!! all member variables must correspond with the cfggameplay.json file contents !!!!
 	bool disablePersonalLight;
-	bool disable2dMap;//consumption of stamina during crouched sprint
+	bool disable2dMap;
 
 };
 
@@ -84,6 +88,21 @@ class ITEM_StaminaData
 	float sprintStaminaModifierErc = 1;//consumption of stamina during standing sprint
 	float sprintStaminaModifierCro = 1;//consumption of stamina during crouched sprint
 };
+
+class ITEM_MovementData
+{
+	void InitServer()
+	{
+	}
+	
+	//-------------------------------------------------------------------------------------------------
+	//!!! all member variables must correspond with the cfggameplay.json file contents !!!!
+	float timeToStrafeJog  		= 0.1;
+	float rotationSpeedJog   	= 0.15;
+	float timeToSprint			= 0.45;
+	float timeToStrafeSprint 	= 0.3;
+	float rotationSpeedSprint	= 0.15;
+}
 
 class ITEM_WorldData
 {
@@ -184,3 +203,26 @@ class ITEM_HitIndicationData
 	float hitDirectionScatter = HitDirectionConstants.SCATTER;
 	bool hitIndicationPostProcessEnabled = false;
 };
+
+class ITEM_MapData
+{
+	void InitServer()
+	{
+	}
+	
+	//-------------------------------------------------------------------------------------------------
+	//!!! all member variables must correspond with the cfggameplay.json file contents !!!!
+	bool ignoreMapOwnership 		= false;
+	bool ignoreNavItemsOwnership  	= false;
+	bool displayPlayerPosition		= false;
+	bool displayNavInfo				= true;
+}
+
+class ITEM_DrowningData
+{
+	//-------------------------------------------------------------------------------------------------
+	//!!! all member variables must correspond with the cfggameplay.json file contents !!!!
+	float staminaDepletionSpeed = 10;
+	float healthDepletionSpeed = 10;
+	float shockDepletionSpeed = 10;
+}

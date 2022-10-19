@@ -38,6 +38,7 @@ class PluginRecipesManagerBase extends PluginBase
 		RegisterRecipe(new CleanWeapon);
 		RegisterRecipe(new RepairWithTape);
 		RegisterRecipe(new RepairWithRags);
+		RegisterRecipe(new RepairEyePatch);
 		RegisterRecipe(new CraftBoneKnife);
 		//RegisterRecipe(new CraftArrow);
 		//RegisterRecipe(new CraftArrowBone);
@@ -99,6 +100,7 @@ class PluginRecipesManagerBase extends PluginBase
 		RegisterRecipe(new SawoffMosin);
 		//RegisterRecipe(new SawoffMosinPainted);
 		RegisterRecipe(new SawOffIzh18);
+		RegisterRecipe(new SawOffIzh18Shotgun);
 		RegisterRecipe(new SawoffFAMAS);
 		RegisterRecipe(new SawOffMagnum);
 		RegisterRecipe(new SawOFFB95);
@@ -134,7 +136,8 @@ class PluginRecipesManagerBase extends PluginBase
 		RegisterRecipe(new CraftCookingStand);
 		RegisterRecipe(new DeCraftCookingStand);
 		RegisterRecipe(new CraftArmbandFlag);
-		RegisterRecipe(new DeCraftDetonator);
+		RegisterRecipe(new DeCraftDetonator);		
+		RegisterRecipe(new RepairPlanks);
 		//"paint" recipes
 		/*RegisterRecipe(new PaintFirefighterAxe);
 		RegisterRecipe(new PaintGhillieHoodGreen);

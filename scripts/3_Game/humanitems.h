@@ -22,7 +22,9 @@ class HumanItemBehaviorCfg
 	int 	m_iPerItemCameraUserData;		//! per item camera user data - can be obtained in runtime by DayZPlayer.GetPerItemCameraUD()
 
 	//! movement caps
-	float 	m_fMoveHeadingFilterSpan;		//! delay of alignment when moving
+	float 	m_fMoveHeadingFilterSpan;		//! default delay of alignment when moving
+	float 	m_fMoveHeadingSprintFilterSpan;	//! delay of alignment when sprintinh
+	float	m_fMoveHeadingProneFilterSpan;	//! delay of alignment when moving in prone stance
 	float 	m_fMoveHeadingFilterSpeed;		//! max speed of alignment when moving
 
 	//! evade caps

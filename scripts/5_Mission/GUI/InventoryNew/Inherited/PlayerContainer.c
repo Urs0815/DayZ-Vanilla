@@ -15,11 +15,8 @@ class PlayerContainer: CollapsibleContainer
 			bool show_radial_icon;
 			show_radial_icon = IsHidden();
 			Widget rip = m_SlotIcon.GetRadialIconPanel();
-			Widget icon_open = m_SlotIcon.GetRadialIcon();
-			Widget icon_closed = m_SlotIcon.GetRadialIconClosed();
 			rip.Show( !m_Player.GetInventory().IsInventoryLockedForLockType( HIDE_INV_FROM_SCRIPT ) && m_Player.CanDisplayCargo());
-			icon_open.Show( show_radial_icon );
-			icon_closed.Show( !show_radial_icon );
+			SetOpenForSlotIcon(show_radial_icon);
 		}
 	}
 	
@@ -44,6 +41,7 @@ class PlayerContainer: CollapsibleContainer
 		SetHeader(null);
 		m_Body.Insert( m_PlayerAttachmentsContainer );
 		m_MainWidget = m_RootWidget.FindAnyWidget( "body" );
+		m_PlayerAttachmentsContainer.GetRootWidget().SetColor(166 << 24 | 80 << 16 | 80 << 8 | 80);
 		WidgetEventHandler.GetInstance().RegisterOnChildAdd( m_MainWidget, this, "OnChildAdd" );
 		WidgetEventHandler.GetInstance().RegisterOnChildRemove( m_MainWidget, this, "OnChildRemove" );
 
@@ -84,7 +82,6 @@ class PlayerContainer: CollapsibleContainer
 				//END - GetWidgetSlot
 				WidgetEventHandler.GetInstance().RegisterOnDropReceived( icon.GetPanelWidget(),  this, "OnDropReceivedFromGhostArea" );
 				WidgetEventHandler.GetInstance().RegisterOnDropReceived( icon.GetGhostSlot(),  this, "OnDropReceivedFromGhostArea" );
-				WidgetEventHandler.GetInstance().RegisterOnDraggingOver( icon.GetPanelWidget(),  this, "DraggingOver" );
 				WidgetEventHandler.GetInstance().RegisterOnDraggingOver( icon.GetGhostSlot(),  this, "DraggingOver" );
 				WidgetEventHandler.GetInstance().RegisterOnDraggingOver( icon.GetPanelWidget(),  this, "DraggingOver" );
 				WidgetEventHandler.GetInstance().RegisterOnMouseButtonDown( icon.GetPanelWidget(),  this, "MouseClick" );
@@ -171,15 +168,13 @@ class PlayerContainer: CollapsibleContainer
 			if( conta && conta.IsInherited( ClosableContainer ) )
 			{
 				bool show_radial_icon = ( item.GetInventory().GetCargo() || item.GetSlotsCountCorrect() > 0 ) && !GetGame().ConfigIsExisting( config );
-				Widget rip = icon.GetRadialIconPanel();				
-				Widget icon_open = icon.GetRadialIcon();
-				Widget icon_closed = icon.GetRadialIconClosed();
+				Widget rip = icon.GetRadialIconPanel();
 
 				rip.Show( show_radial_icon );
-				icon_open.Show( conta.IsOpened() );
-				icon_closed.Show( !conta.IsOpened() );
+				SetOpenForSlotIcon(conta.IsOpened(),icon);
 			}
 		}
+		UpdateSelectionIcons();
 	}
 	
 	void ItemDetached(EntityAI item, string slot_name)
@@ -434,7 +429,7 @@ class PlayerContainer: CollapsibleContainer
 				}
 			}
 			ToggleWidget( w );
-			ItemManager.GetInstance().HideTooltip();
+			HideOwnedTooltip();
 	
 			InventoryMenu menu = InventoryMenu.Cast( GetGame().GetUIManager().FindMenu( MENU_INVENTORY ) );
 			if ( menu )
@@ -444,7 +439,7 @@ class PlayerContainer: CollapsibleContainer
 		}
 	}
 	
-	void ExpandCollapseContainer()
+	override void ExpandCollapseContainer()
 	{
 		if( m_PlayerAttachmentsContainer.IsActive() )
 		{
@@ -1058,21 +1053,11 @@ class PlayerContainer: CollapsibleContainer
 		item.GetInventory().GetCurrentInventoryLocation( il );
 		SlotsIcon icon = m_InventorySlots.Get( il.GetSlot() );
 		ClosableContainer c = ClosableContainer.Cast( m_ShowedItems.Get( item ) );
-		if( c == null )
+		if (c)
 		{
-			return;
+			c.Toggle();
+			Refresh();
 		}
-
-		if( c.IsOpened() )
-		{
-			c.Close();
-		}
-		else
-		{
-			c.Open();
-		}
-		
-		Refresh();
 	}
 
 	// Mouse button UP or Call other fn
@@ -1114,6 +1099,7 @@ class PlayerContainer: CollapsibleContainer
 		super.Refresh();
 		m_MainWidget.Update();
 		m_RootWidget.Update();
+		UpdateSelectionIcons();
 	}
 	
 	override bool OnChildRemove( Widget w, Widget child )

@@ -165,7 +165,17 @@ class WeaponStableState extends WeaponStateBase
 		
 		if (failed)
 		{
-			ErrorEx("Muzzle array validation has failed. Please set up the correct muzzle states by overriding InitMuzzleArray.", ErrorExSeverity.INFO);
+			ErrorExSeverity severity = ErrorExSeverity.ERROR;
+			
+			#ifdef DEVELOPER
+			if (DayZGame.m_IsPreviewSpawn)
+			{
+				// we do not want VMEs when spawning the item in order to visualize it for preview in script console
+				severity = ErrorExSeverity.INFO;
+			}
+			#endif
+			
+			ErrorEx("Muzzle array validation has failed. Please set up the correct muzzle states by overriding InitMuzzleArray.", severity);
 		}
 	}
 };

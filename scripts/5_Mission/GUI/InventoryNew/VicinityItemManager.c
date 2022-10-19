@@ -2,8 +2,9 @@ class VicinityItemManager
 {
 	private const float UPDATE_FREQUENCY 			= 0.25;
 	private const float VICINITY_DISTANCE			= 0.5;
-	private const float VICINITY_ACTOR_DISTANCE		= 3.0;
-	private const float VICINITY_CONE_DISTANCE		= 3;
+	private const float VICINITY_ACTOR_DISTANCE		= 2.0;
+	private const float VICINITY_LARGE_ACTOR_DISTANCE = 3.0;
+	private const float VICINITY_CONE_DISTANCE		= 2.0;
 	private const float VICINITY_CONE_REACH_DISTANCE	= 2.0;
 	private const float VICINITY_CONE_ANGLE 			= 30;
 	private const float VICINITY_CONE_RADIANS 		= 0.5;
@@ -27,7 +28,6 @@ class VicinityItemManager
 	
 	void Init()
 	{
-		//Print("VicinityItemManager Init");
 	}
 	
 	array<EntityAI> GetVicinityItems()
@@ -207,6 +207,10 @@ class VicinityItemManager
 		array<Object> allFoundObjects = new array<Object>;
 		EntityAI entity_ai;
 		PlayerBase player = PlayerBase.Cast( GetGame().GetPlayer() );
+		vector playerPosition = player.GetPosition();
+		vector playerHeadPos;
+		MiscGameplayFunctions.GetHeadBonePos(player,playerHeadPos);
+		vector headingDirection = MiscGameplayFunctions.GetHeadingVector( player );
 		
 		if ( m_VicinityItems ) 
 		{
@@ -218,7 +222,7 @@ class VicinityItemManager
 
 		//1. GetAll actors in VICINITY_ACTOR_DISTANCE
 //		DebugActorsSphereDraw( VICINITY_ACTOR_DISTANCE );
-		GetGame().GetObjectsAtPosition3D( player.GetPosition(), VICINITY_ACTOR_DISTANCE, objects_in_vicinity, proxyCargos );		
+		GetGame().GetObjectsAtPosition3D( playerPosition, VICINITY_ACTOR_DISTANCE, objects_in_vicinity, proxyCargos );		
 		
 		// no filtering for cargo (initial implementation)		
 		for ( int ic = 0; ic < proxyCargos.Count(); ic++ )
@@ -234,13 +238,11 @@ class VicinityItemManager
 				allFoundObjects.Insert(actor_in_radius);
 			}
 			
-			//Print("---actor in radius: " + actor_in_radius);
 			if (ExcludeFromContainer_Phase1(actor_in_radius))
 				continue;
 				
 			if ( filtered_objects.Find( actor_in_radius ) == INDEX_NOT_FOUND )
 			{
-				//Print("+0+filtered_objects in radius inserting: " + actor_in_radius);
 				filtered_objects.Insert( actor_in_radius );
 			}
 		}
@@ -252,7 +254,7 @@ class VicinityItemManager
 		}
 		
 		//2. GetAll Objects in VICINITY_DISTANCE
-		GetGame().GetObjectsAtPosition3D( player.GetPosition(), VICINITY_DISTANCE, objects_in_vicinity, proxyCargos );		
+		GetGame().GetObjectsAtPosition3D( playerPosition, VICINITY_DISTANCE, objects_in_vicinity, proxyCargos );		
 //		DebugObjectsSphereDraw( VICINITY_DISTANCE );
 		
 		//filter unnecessary and duplicate objects beforehand
@@ -265,13 +267,11 @@ class VicinityItemManager
 				allFoundObjects.Insert(object_in_radius);
 			}
 			
-			//Print("---object in radius: " + object_in_radius);
 			if (ExcludeFromContainer_Phase2(object_in_radius))
 				continue;
-
+			
 			if ( filtered_objects.Find( object_in_radius ) == INDEX_NOT_FOUND )
 			{
-				//Print("+1+filtered_objects in radius inserting: " + object_in_radius);
 				filtered_objects.Insert( object_in_radius );
 			}
 		}
@@ -283,11 +283,12 @@ class VicinityItemManager
 		}
 		
 		//3. Add objects from GetEntitiesInCone
-		vector headingDirection = MiscGameplayFunctions.GetHeadingVector( player );
-		DayZPlayerUtils.GetEntitiesInCone( player.GetPosition(), headingDirection, VICINITY_CONE_ANGLE, VICINITY_CONE_REACH_DISTANCE, CONE_HEIGHT_MIN, CONE_HEIGHT_MAX, objects_in_vicinity);
+		DayZPlayerUtils.GetEntitiesInCone( playerPosition, headingDirection, VICINITY_CONE_ANGLE, VICINITY_CONE_REACH_DISTANCE, CONE_HEIGHT_MIN, CONE_HEIGHT_MAX, objects_in_vicinity);
 
-//		DebugConeDraw( player.GetPosition(), VICINITY_CONE_ANGLE );
+//		DebugConeDraw( playerPosition, VICINITY_CONE_ANGLE );
 
+		RaycastRVParams rayInput;
+		array<ref RaycastRVResult> raycastResults = new array<ref RaycastRVResult>;
 		//filter unnecessary and duplicate objects beforehand
 		for ( int k = 0; k < objects_in_vicinity.Count(); k++ )
 		{
@@ -303,8 +304,28 @@ class VicinityItemManager
 
 			if ( filtered_objects.Find( object_in_cone ) == INDEX_NOT_FOUND )
 			{
-				//Print("+2+filtered_objects in cone inserting: " + object_in_cone);
-				filtered_objects.Insert( object_in_cone );
+				//Test distance to closest component first
+				rayInput = new RaycastRVParams(playerHeadPos, object_in_cone.GetPosition(), player, 0.1);
+				//rayInput.flags = CollisionFlags.ALLOBJECTS;
+				DayZPhysics.RaycastRVProxy(rayInput,raycastResults);
+				int count = raycastResults.Count();
+				
+				for (int d = 0; d < count; d++)
+				{
+					if (vector.Distance(raycastResults[d].pos,playerHeadPos) > VICINITY_CONE_REACH_DISTANCE)
+					{
+						continue;
+					}
+					
+					if (raycastResults[d].hierLevel > 0 && raycastResults[d].parent == object_in_cone)
+					{
+						filtered_objects.Insert( object_in_cone );
+					}
+					else if (raycastResults[d].hierLevel == 0 && raycastResults[d].obj == object_in_cone)
+					{
+						filtered_objects.Insert( object_in_cone );
+					}
+				}
 			}
 		}
 		
@@ -312,12 +333,11 @@ class VicinityItemManager
 		
 		//4. Add large objects - particularly buildings and BaseBuildingBase
 		BoxCollidingParams params = new BoxCollidingParams();
-		vector box = {VICINITY_ACTOR_DISTANCE,VICINITY_ACTOR_DISTANCE,VICINITY_ACTOR_DISTANCE};
-		params.SetParams(player.GetPosition(), headingDirection.VectorToAngles(), box * 2, ObjIntersect.View, ObjIntersect.Fire, true);
+		vector box = {VICINITY_LARGE_ACTOR_DISTANCE,VICINITY_LARGE_ACTOR_DISTANCE,VICINITY_LARGE_ACTOR_DISTANCE};
+		params.SetParams(playerPosition, headingDirection.VectorToAngles(), box * 2, ObjIntersect.View, ObjIntersect.Fire, true);
 		array<ref BoxCollidingResult> results = new array<ref BoxCollidingResult>;
 		if ( GetGame().IsBoxCollidingGeometryProxy(params, {player}, results) )
 		{
-			//Print("IsBoxCollidingGeometryProxy results:");
 			Object obstruction;
 			foreach (BoxCollidingResult bResult : results)
 			{
@@ -328,7 +348,6 @@ class VicinityItemManager
 					obstruction = bResult.obj;
 					if ( allFoundObjects.Find( obstruction ) == INDEX_NOT_FOUND )
 					{
-						//Print("obstucting obj: " + bResult.obj);
 						allFoundObjects.Insert(obstruction);
 					}
 				}
@@ -338,20 +357,11 @@ class VicinityItemManager
 					obstruction = bResult.parent;
 					if ( allFoundObjects.Find( obstruction ) == INDEX_NOT_FOUND )
 					{
-						//Print("obstucting parent: " + bResult.parent);
 						allFoundObjects.Insert(obstruction);
 					}
 				}
 			}
-			//Print("----------");
 		}
-		
-		/*Print("allFoundObjects");
-		foreach (Object oo : allFoundObjects)
-		{
-			Print(oo);
-		}
-		Print("----------");*/
 		
 		//5. Filter filtered objects with RayCast from the player ( head bone )
 		array<Object> obstructingObjects = new array<Object>;
@@ -379,23 +389,18 @@ class VicinityItemManager
 					Class.CastTo( entity_ai, filtered_object );
 					
 					//distance check
-					if ( vector.DistanceSq( player.GetPosition(), entity_ai.GetPosition() ) > VICINITY_CONE_REACH_DISTANCE * VICINITY_CONE_REACH_DISTANCE )
+					if ( vector.DistanceSq( playerPosition, entity_ai.GetPosition() ) > VICINITY_CONE_REACH_DISTANCE * VICINITY_CONE_REACH_DISTANCE )
 					{
 					    if ( !CanIgnoreDistanceCheck( entity_ai ) )
 					    {
-					        //Print("Distance ckeck pre: " + entity_ai + " failed" );
 					        continue;
 					    }
 					}
 					
 					is_obstructed = IsObstructed(filtered_object);
-		
-					
-					//Print("is_obstructed: " + is_obstructed);
 					
 					if ( !is_obstructed )
 					{
-						//Print("AddvicinityItem: " + filtered_object);
 						AddVicinityItems( filtered_object );
 					}
 				}	

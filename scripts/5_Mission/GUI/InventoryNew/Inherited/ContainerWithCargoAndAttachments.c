@@ -77,28 +77,18 @@ class ContainerWithCargoAndAttachments extends ClosableContainer
 	void AttachmentAddedEx(EntityAI item, string slot, EntityAI parent, bool immedUpdate = true)
 	{
 		int slot_id = InventorySlots.GetSlotIdFromString( slot );
-		int att_mod = 1;
+		int sort = -1;
 		bool updateNeeded = false;
+		ref Attachments att_cont = null;
+		ref CargoContainer cont = null;
 		
-		if ( item.GetInventory().GetCargo() )
+		if ( item.GetInventory().GetAttachmentSlotsCount() > 0 && item.CanDisplayAnyAttachmentSlot() )
 		{
 			updateNeeded = true;
 			
-			ref CargoContainer cont = new CargoContainer( this, true );
-			cont.GetRootWidget().SetSort( m_AttachmentSlotsSorted.Find( slot_id ) + m_AttachmentCargos.Count() + 1 );
-			cont.SetEntity( item, false );
-			Insert( cont, m_Atts.GetAttachmentHeight() + m_AttachmentCargos.Count() + 1 );
-			
-			m_AttachmentCargos.Insert( item, cont );
-			att_mod += m_AttachmentSlotsSorted.Find( slot_id ) + m_AttachmentCargos.Count() + 1;
-		}
-		
-		if ( item.GetInventory().GetAttachmentSlotsCount() > 0  )
-		{
-			updateNeeded = true;
-			
-			ref Attachments att_cont = new Attachments( this, item );
-			att_cont.InitAttachmentGrid( m_AttachmentSlotsSorted.Find( slot_id ) + m_Atts.GetAttachmentHeight() + att_mod );
+			att_cont = new Attachments( this, item );
+			sort = (m_AttachmentSlotsSorted.Find( slot_id ) * 2) + SORT_ATTACHMENTS_NEXT_OFFSET;
+			att_cont.InitAttachmentGrid( sort );
 			
 			m_AttachmentAttachments.Insert( item, att_cont );
 			m_AttachmentAttachmentsContainers.Insert( item, att_cont.GetWrapper() );
@@ -106,8 +96,36 @@ class ContainerWithCargoAndAttachments extends ClosableContainer
 			att_cont.UpdateInterval();
 		}
 		
+		if ( item.GetInventory().GetCargo() )
+		{
+			updateNeeded = true;
+			
+			cont = new CargoContainer( this, true );
+			sort = (m_AttachmentSlotsSorted.Find( slot_id ) * 2) + SORT_CARGO_NEXT_OFFSET;
+			cont.GetRootWidget().SetSort( sort );
+			cont.SetEntity( item, false );
+			Insert( cont, m_Atts.GetAttachmentHeight() + m_AttachmentCargos.Count() + 1 );
+			
+			m_AttachmentCargos.Insert( item, cont );
+		}
+		
 		if (updateNeeded)
 		{
+			if (att_cont)
+			{
+				att_cont.ShowFalseAttachmentsHeader(true);
+				if (cont)
+				{
+					cont.ShowFalseCargoHeader(false);
+					cont.UpdateSize();
+					cont.SetAlternateFalseTextHeaderWidget(att_cont.GetFalseHeaderTextWidget());
+				}
+			}
+			else if (cont)
+			{
+				cont.SetAlternateFalseTextHeaderWidget(null); //just to be safe..
+			}
+			
 			RecomputeContainers();
 			RecomputeOpenedContainers();
 			
@@ -157,17 +175,32 @@ class ContainerWithCargoAndAttachments extends ClosableContainer
 	
 	override void UpdateInterval()
 	{
-		int i;
 		if ( m_Entity )
 		{
-			
-			if ( m_Entity.GetInventory().IsInventoryLockedForLockType( HIDE_INV_FROM_SCRIPT ) || !m_Entity.CanDisplayCargo())
+			if (m_CargoGrid)
 			{
-				HideCargo();
+				bool hideCargo = m_Entity.GetInventory().IsInventoryLockedForLockType( HIDE_INV_FROM_SCRIPT ) || !m_Entity.CanDisplayCargo() || m_ForcedHide;
+				if (m_CargoGrid.IsVisible() && hideCargo)
+				{
+					HideCargo();
+				}
+				else if (!m_CargoGrid.IsVisible() && !hideCargo)
+				{
+					ShowCargo();
+				}
+				
+				m_CargoGrid.UpdateInterval();
 			}
-			else
+			
+			if ( m_SlotIcon )
 			{
-				ShowCargo();
+				bool hide = m_LockCargo || ItemManager.GetInstance().GetDraggedItem() == m_Entity;
+				if (!hide)
+				{
+					SetOpenForSlotIcon(IsOpened());
+				}
+				m_SlotIcon.GetRadialIconPanel().Show( !hide );
+				
 			}
 			
 			super.UpdateInterval();
@@ -232,20 +265,21 @@ class ContainerWithCargoAndAttachments extends ClosableContainer
 	{
 		m_Entity = entity;
 		
-		m_Atts = new Attachments( this, entity );
-		m_Atts.InitAttachmentGrid( 1 );
+		m_Atts = new Attachments( this, m_Entity );
+		m_Atts.InitAttachmentGrid( SORT_ATTACHMENTS_OWN );
 		m_AttachmentSlotsSorted = m_Atts.GetSlotsSorted();
 		
 		m_Entity.GetOnItemAttached().Insert( AttachmentAdded );
 		m_Entity.GetOnItemDetached().Insert( AttachmentRemoved );
 		
-		m_ClosableHeader.SetItemPreview( entity );
+		m_ClosableHeader.SetItemPreview( m_Entity );
+		CheckHeaderDragability();
 		
-		if ( entity.GetInventory().GetCargo() )
+		if ( m_Entity.GetInventory().GetCargo() )
 		{
 			m_CargoGrid = new CargoContainer( this, false );
-			m_CargoGrid.GetRootWidget().SetSort( 2 );
-			m_CargoGrid.SetEntity( entity, 0, immedUpdate );
+			m_CargoGrid.GetRootWidget().SetSort( SORT_CARGO_OWN );
+			m_CargoGrid.SetEntity( m_Entity, 0, immedUpdate );
 			m_CargoGrid.UpdateHeaderText(); // TODO: refresh?
 			Insert( m_CargoGrid );
 		}
@@ -271,15 +305,23 @@ class ContainerWithCargoAndAttachments extends ClosableContainer
 		
 		RecomputeContainers();
 		
-		if ( m_Entity.GetInventory().IsInventoryLockedForLockType( HIDE_INV_FROM_SCRIPT ) || !m_Entity.CanDisplayCargo() )
-			HideCargo();
-		else
-			ShowCargo();
+		if (m_CargoGrid)
+		{
+			bool hideCargo = m_Entity.GetInventory().IsInventoryLockedForLockType( HIDE_INV_FROM_SCRIPT ) || !m_Entity.CanDisplayCargo() || m_ForcedHide;
+			if (m_CargoGrid.IsVisible() && hideCargo)
+			{
+				HideCargo();
+			}
+			else if (!m_CargoGrid.IsVisible() && !hideCargo)
+			{
+				ShowCargo();
+			}
+		}
 		
 		if( IsDisplayable() )
-			SetOpenState( ItemManager.GetInstance().GetDefaultOpenState( m_Entity.GetType() ) );
+			SetOpenState( true );
 		else
-			SetOpenState(false);
+			SetOpenState( false );
 		
 		if (immedUpdate)
 			m_Parent.m_Parent.Refresh();
@@ -287,7 +329,7 @@ class ContainerWithCargoAndAttachments extends ClosableContainer
 		RecomputeOpenedContainers();
 	}
 	
-	void HideCargo( )
+	void HideCargo()
 	{
 		if( m_CargoGrid )
 		{
@@ -297,7 +339,6 @@ class ContainerWithCargoAndAttachments extends ClosableContainer
 				RecomputeOpenedContainers();
 			}
 		}
-			
 	}
 	
 	void ShowCargo()
@@ -695,7 +736,7 @@ class ContainerWithCargoAndAttachments extends ClosableContainer
 				}
 			}
 	
-			ItemManager.GetInstance().HideTooltip();
+			HideOwnedTooltip();
 	
 			name = w.GetName();
 			name.Replace( "PanelWidget", "Temperature" );

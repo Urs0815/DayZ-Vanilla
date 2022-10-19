@@ -139,6 +139,10 @@ class PortableGasStove extends ItemBase
 		
 		//sound (client only)
 		SoundTurnOff();
+		if (m_CookingProcess && GetCookingEquipment())
+		{
+			m_CookingProcess.TerminateCookingSounds(GetCookingEquipment());
+		}
 	}
 	
 	override void OnWorkStart()

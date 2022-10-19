@@ -1,5 +1,3 @@
-
-
 class TransferValues extends Managed
 {
 

@@ -8,6 +8,7 @@ class LayoutHolder extends ScriptedWidgetEventHandler
 	
 	protected bool					m_IsActive;
 	protected bool					m_ImmedUpdate;
+	protected bool					m_TooltipOwner;
 	
 	protected EntityAI				m_am_entity1, m_am_entity2;
 
@@ -30,7 +31,7 @@ class LayoutHolder extends ScriptedWidgetEventHandler
 	void ShowActionMenu(InventoryItem item)
 	{
 		PlayerBase m_player = PlayerBase.Cast( GetGame().GetPlayer() );
-		ItemManager.GetInstance().HideTooltip();
+		HideOwnedTooltip();
 		m_am_entity1 = item;
 		m_am_entity2 = null;
 		ContextMenu cmenu = GetGame().GetUIManager().GetMenu().GetContextMenu();
@@ -38,10 +39,10 @@ class LayoutHolder extends ScriptedWidgetEventHandler
 		cmenu.Hide();
 		cmenu.Clear();
 
-		if(m_am_entity1 == null)
+		if (m_am_entity1 == null)
 			return;
 
-		ref TSelectableActionInfoArray customActions = new TSelectableActionInfoArray;
+		TSelectableActionInfoArray customActions = new TSelectableActionInfoArray;
 		ItemBase itemBase = ItemBase.Cast( item );
 		
 		///itemBase.GetRecipesActions(m_player, customActions);
@@ -51,7 +52,7 @@ class LayoutHolder extends ScriptedWidgetEventHandler
 		{
 			
 		}*/
-		if( ItemBase.GetDebugActionsMask() & DebugActionType.PLAYER_AGENTS )
+		if ( ItemBase.GetDebugActionsMask() & DebugActionType.PLAYER_AGENTS )
 		{
 			m_player.GetDebugActions(customActions);
 		}
@@ -60,7 +61,7 @@ class LayoutHolder extends ScriptedWidgetEventHandler
 		for ( int i = 0; i < customActions.Count(); i++ )
 		{
 			TSelectableActionInfo actionInfo = customActions.Get(i);
-			if( actionInfo )
+			if ( actionInfo )
 			{
 				int actionId = actionInfo.param2;
 				string actionText = actionInfo.param3;
@@ -84,6 +85,8 @@ class LayoutHolder extends ScriptedWidgetEventHandler
 		SetLayoutName();
 		SetParentWidget();
 		SetImmedUpdate();
+		
+		m_TooltipOwner = false;
 		
 		if ( m_LayoutName != "" )
 		{
@@ -111,6 +114,7 @@ class LayoutHolder extends ScriptedWidgetEventHandler
 	
 	void ~LayoutHolder()
 	{
+		HideOwnedTooltip();
 		delete m_RootWidget;
 	}	
 		
@@ -206,4 +210,35 @@ class LayoutHolder extends ScriptedWidgetEventHandler
 	
 	void UpdateSelectionIcons()
 	{}
+	
+	void PrepareOwnedTooltip(EntityAI item/*, Widget w*/, int x = 0, int y = 0)
+	{
+		ItemManager.GetInstance().PrepareTooltip(item,x,y);
+		m_TooltipOwner = true;
+	}
+	
+	void PrepareOwnedSlotsTooltip(Widget w, string name, string desc, int x = 0, int y = 0)
+	{
+		ItemManager.GetInstance().SetTooltipWidget(w);
+		ItemManager.GetInstance().PrepareSlotsTooltip(name,desc,x,y);
+		m_TooltipOwner = true;
+	}
+	
+	void HideOwnedTooltip()
+	{
+		if (m_TooltipOwner)
+		{
+			ItemManager.GetInstance().HideTooltip();
+			m_TooltipOwner = false;
+		}
+	}
+	
+	void HideOwnedSlotsTooltip()
+	{
+		if (m_TooltipOwner)
+		{
+			ItemManager.GetInstance().HideTooltipSlot();
+			m_TooltipOwner = false;
+		}
+	}
 }

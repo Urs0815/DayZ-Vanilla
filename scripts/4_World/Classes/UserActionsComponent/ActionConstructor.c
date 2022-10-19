@@ -109,6 +109,7 @@ class ActionConstructor
 		actions.Insert(ActionCraftImprovisedFaceCover);
 		actions.Insert(ActionCraftImprovisedTorsoCover);
 		actions.Insert(ActionCraftImprovisedLegsCover);
+		actions.Insert(ActionCraftImprovisedEyePatch);
 		actions.Insert(ActionCraftRopeBelt);
 		actions.Insert(ActionDeCraftRopeBelt);
 		actions.Insert(ActionCraftBoneKnife);
@@ -176,6 +177,7 @@ class ActionConstructor
 		actions.Insert(ActionTuneRadioStation);
 		actions.Insert(ActionIgniteFireplaceByAir);
 		actions.Insert(ActionLightItemOnFire);
+		actions.Insert(ActionLightItemOnFireWithBlowtorch);
 		actions.Insert(ActionExtinguishFireplaceByLiquid);
 		actions.Insert(ActionExtinguishFireplaceByExtinguisher);
 		actions.Insert(ActionBurnSewSelf);
@@ -256,15 +258,21 @@ class ActionConstructor
 		actions.Insert(ActionRepairTentPart);
 		actions.Insert(ActionRepairPart);
 		actions.Insert(ActionRepairCarPart);
+		actions.Insert(ActionRepairCarPartWithBlowtorch);
 		actions.Insert(ActionRepairCarChassis);
+		actions.Insert(ActionRepairCarChassisWithBlowtorch);
 		actions.Insert(ActionRepairCarEngine);
+		actions.Insert(ActionRepairCarEngineWithBlowtorch);
 		actions.Insert(ActionRepairShelter);
+		actions.Insert(ActionRepairItemWithBlowtorch);
 		actions.Insert(ActionLockAttachment);
 		actions.Insert(ActionUnpackGift);
 		actions.Insert(ActionPackGift);
 		//actions.Insert(ActionEmptyBarrel);
 		actions.Insert(ActionAttachExplosivesTrigger);
 		actions.Insert(ActionArmExplosive);
+		actions.Insert(ActionTurnValve);
+		actions.Insert(ActionTurnValveUndergroundReservoir);
 		
 		// Interact actions
 		actions.Insert(ActionPullOutPlug);
@@ -313,9 +321,9 @@ class ActionConstructor
 		actions.Insert(ActionWashHandsWellOne);
 		actions.Insert(ActionWashHandsWaterOne);
 		actions.Insert(ActionGetOutTransport);
-		actions.Insert(ActionAnimateSeats); //<- action doesn't work well, add it later
-		actions.Insert(ActionAnimateCarSelection); //<- action doesn't work well, add it later
-		actions.Insert(ActionSidePlateInteract); //Same as previous but specific to v3s to play sounds
+		actions.Insert(ActionAnimateSeats);
+		actions.Insert(ActionAnimateCarSelection);
+		actions.Insert(ActionSidePlateInteract);
 		actions.Insert(ActionDetach);
 		actions.Insert(ActionOpenFence);
 		actions.Insert(ActionCloseFence);
@@ -341,6 +349,8 @@ class ActionConstructor
 		
 		//vehicle actions
 		actions.Insert(ActionSwitchLights);
+		actions.Insert(ActionCarHornShort);
+		actions.Insert(ActionCarHornLong);
 		
 		//Instant action - debug
 		actions.Insert(ActionDebug);
@@ -373,5 +383,8 @@ class ActionConstructor
 		
 		actions.Insert(ActionSetKitchenTimer);
 		actions.Insert(ActionResetKitchenTimer);
+		actions.Insert(ActionUseUndergroundPanel);
+		actions.Insert(ActionUseUndergroundLever);
+		actions.Insert(ActionUnrestrainTargetHands);
 	}
 };

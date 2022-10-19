@@ -296,6 +296,11 @@ class ParticleList
 	
 	static const int CLAYMORE_EXPLOSION				= RegisterParticle("explosion_claymore_01");
 	static const int PLASTIC_EXPLOSION				= RegisterParticle("explosion_plastic_01");
+	
+	// Water jet/spilling
+	static const int WATER_JET						= RegisterParticle("water_jet");
+	static const int WATER_JET_WEAK					= RegisterParticle("water_jet_weak");
+	static const int WATER_SPILLING					= RegisterParticle("water_spilling");
 
 	
 	static int RegisterParticle(string file_name)

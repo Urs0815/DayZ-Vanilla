@@ -117,7 +117,7 @@ class AttachmentsOutOfReach
 				
 				if ( model_path.Length() > 5 )
 				{										
-					LOD lod = entity.GetLODByName("geometryView");
+					LOD lod = entity.GetLODByName(LOD.NAME_VIEW);
 					
 					if ( lod )
 					{

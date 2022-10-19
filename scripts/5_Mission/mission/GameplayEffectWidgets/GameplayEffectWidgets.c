@@ -49,6 +49,7 @@ class GameplayEffectWidgets extends GameplayEffectWidgets_base
 		PairIDToTypes();
 		
 		RegisterLayouts("gui/layouts/gameplay/CameraEffects.layout",CompileEffectListing());
+		RegisterLayouts("gui/layouts/gameplay/BleedingEffects.layout",{EffectWidgetsTypes.BLEEDING_LAYER});
 		
 		InitWidgetSet(EffectWidgetsTypes.MASK_BREATH,true,WIDGETSET_BREATH);
 		InitWidgetSet(EffectWidgetsTypes.HELMET_BREATH,true,WIDGETSET_BREATH);
@@ -59,8 +60,11 @@ class GameplayEffectWidgets extends GameplayEffectWidgets_base
 		InitWidgetSet(EffectWidgetsTypes.MOTO_OCCLUDER);
 		InitWidgetSet(EffectWidgetsTypes.NVG_OCCLUDER,false,EffectWidgetsTypes.NVG_OCCLUDER);
 		InitWidgetSet(EffectWidgetsTypes.PUMPKIN_OCCLUDER,false,EffectWidgetsTypes.NVG_OCCLUDER);
+		InitWidgetSet(EffectWidgetsTypes.EYEPATCH_OCCLUDER);
 		
 		InitWidgetSet(EffectWidgetsTypes.COVER_FLASHBANG);
+		
+		InitWidgetSet(EffectWidgetsTypes.BLEEDING_LAYER,true);
 		
 		UpdateVisibility();
 	}
@@ -91,6 +95,7 @@ class GameplayEffectWidgets extends GameplayEffectWidgets_base
 	
 	protected void PairIDToTypes()
 	{
+		m_IDToTypeMap.Insert(EffectWidgetsTypes.BLEEDING_LAYER,GameplayEffectsDataBleeding);
 	}
 	
 	protected typename TranslateIDToType(int typeID)
@@ -198,6 +203,7 @@ class GameplayEffectWidgets extends GameplayEffectWidgets_base
 		ret.Insert(EffectWidgetsTypes.COVER_FLASHBANG);
 		ret.Insert(EffectWidgetsTypes.NVG_OCCLUDER);
 		ret.Insert(EffectWidgetsTypes.PUMPKIN_OCCLUDER);
+		ret.Insert(EffectWidgetsTypes.EYEPATCH_OCCLUDER);
 		
 		return ret;
 	}
@@ -450,6 +456,7 @@ class GameplayEffectWidgets extends GameplayEffectWidgets_base
 			break;
 			
 			case EffectWidgetsTypes.MOTO_OCCLUDER:
+			case EffectWidgetsTypes.EYEPATCH_OCCLUDER:
 			case EffectWidgetsTypes.HELMET_OCCLUDER:
 			case EffectWidgetsTypes.MASK_OCCLUDER:
 			{
@@ -484,6 +491,7 @@ class GameplayEffectWidgets extends GameplayEffectWidgets_base
 			break;
 			
 			case EffectWidgetsTypes.MOTO_OCCLUDER:
+			case EffectWidgetsTypes.EYEPATCH_OCCLUDER:
 			case EffectWidgetsTypes.HELMET_OCCLUDER:
 			case EffectWidgetsTypes.MASK_OCCLUDER:
 			{

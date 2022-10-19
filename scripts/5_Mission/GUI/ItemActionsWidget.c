@@ -45,6 +45,7 @@ class ItemActionsWidget extends ScriptedWidgetEventHandler
 		
 		GetGame().GetUpdateQueue(CALL_CATEGORY_GUI).Insert(Update);
 		GetGame().GetMission().GetOnInputPresetChanged().Insert(OnInputPresetChanged);
+		GetGame().GetMission().GetOnInputDeviceChanged().Insert(OnInputDeviceChanged);
 	}
 	
 	void ~ItemActionsWidget()
@@ -105,6 +106,31 @@ class ItemActionsWidget extends ScriptedWidgetEventHandler
 		SetControllerIcon("ia_single", "UADefaultAction");
 		SetControllerIcon("ia_continuous", "UADefaultAction");
 		#endif
+	}
+
+	protected void OnInputDeviceChanged(EInputDeviceType pInputDeviceType)
+	{
+		switch (pInputDeviceType)
+		{
+		case EInputDeviceType.CONTROLLER:
+			ShowXboxHidePCIcons("ia_interact", true);
+			ShowXboxHidePCIcons("ia_continuous_interact", true);
+			ShowXboxHidePCIcons("ia_continuous", true);
+			ShowXboxHidePCIcons("ia_single", true);
+		break;
+
+		default:
+			bool isMouseEnabled = true;
+			#ifdef PLATFORM_CONSOLE
+			isMouseEnabled = GetGame().GetInput().IsEnabledMouseAndKeyboardEvenOnServer();
+			#endif
+
+			ShowXboxHidePCIcons("ia_interact", !isMouseEnabled);
+			ShowXboxHidePCIcons("ia_continuous_interact", !isMouseEnabled);
+			ShowXboxHidePCIcons("ia_continuous", !isMouseEnabled);
+			ShowXboxHidePCIcons("ia_single", !isMouseEnabled);
+		break;
+		}
 	}
 
 	protected void BuildCursor()
@@ -631,15 +657,7 @@ class ItemActionsWidget extends ScriptedWidgetEventHandler
 	
 	protected void SetActionWidget(ActionBase action, string descText, string actionWidget, string descWidget)
 	{
-		Widget widget;
-		
-		widget = m_Root.FindAnyWidget(actionWidget);
-
-		#ifdef PLATFORM_CONSOLE
-		ShowXboxHidePCIcons(actionWidget, !GetGame().GetInput().IsEnabledMouseAndKeyboardEvenOnServer());
-		#else
-		ShowXboxHidePCIcons(actionWidget, false);
-		#endif
+		Widget widget = m_Root.FindAnyWidget(actionWidget);
 
 		if (action && (!action.HasTarget() || m_Player.GetCommand_Vehicle()))
 		{

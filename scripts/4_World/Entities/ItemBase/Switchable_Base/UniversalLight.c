@@ -17,6 +17,11 @@ class UniversalLight extends Switchable_Base
 		InitAttachmentsSlotsToCheck(m_AttachmentSlotsCheck);
 	}
 	
+	override ScriptedLightBase GetLight()
+	{
+		return m_Light;
+	}
+	
 	override bool CanPutAsAttachment( EntityAI parent )
 	{
 		if ( !super.CanPutAsAttachment(parent) ) {return false;}
@@ -37,28 +42,6 @@ class UniversalLight extends Switchable_Base
 			}
 		}
 		return !req_attachment || (req_attachment && rail_attachment_found);
-	}
-	
-	override void OnWasAttached( EntityAI parent, int slot_id )
-	{
-		super.OnWasAttached( parent, slot_id );
-		
-		ItemBase parent_item;
-		if ( Class.CastTo(parent_item,parent) )
-		{
-			parent_item.AddLightSourceItem(this);
-		}
-	}
-	
-	override void OnWasDetached( EntityAI parent, int slot_id )
-	{
-		super.OnWasDetached( parent, slot_id );
-		
-		ItemBase parent_item;
-		if ( Class.CastTo(parent_item,parent) )
-		{
-			parent_item.RemoveLightSourceItem();
-		}
 	}
 	
 	override void OnWorkStart()

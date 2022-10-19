@@ -17,6 +17,9 @@ class OffroadHatchback extends CarScript
 		m_CarDoorOpenSound 		= "offroad_door_open_SoundSet";
 		m_CarDoorCloseSound 	= "offroad_door_close_SoundSet";
 		
+		m_CarHornShortSoundName = "Offroad_Horn_Short_SoundSet";
+		m_CarHornLongSoundName	= "Offroad_Horn_SoundSet";
+		
 		SetEnginePos("0 0.7 1.2");
 	}
 	
@@ -111,41 +114,6 @@ class OffroadHatchback extends CarScript
 		return CarLightBase.Cast( ScriptedLightBase.CreateLight(OffroadHatchbackFrontLight) );
 	}
 
-/*
-	override void EEItemAttached ( EntityAI item, string slot_name ) 
-	{
-		//not working properly 
-		if ( item.GetType() == "HatchbackWheel_Ruined" )
-		{
-			dBodyActive( this, ActiveState.ACTIVE);
-			dBodyApplyImpulseAt( this, vector.Up * 2, item.GetPosition() );
-		}
-
-		if ( GetGame().IsServer() )
-		{
-			if ( slot_name == "CarRadiator" )
-			{
-				m_RadiatorHealth = 1;
-				//Leak( CarFluid.COOLANT, GetFluidFraction(CarFluid.COOLANT)*GetFluidCapacity(CarFluid.COOLANT) );
-			}
-		}
-	}
-
-		override void EEItemDetached(EntityAI item, string slot_name)
-	{
-		if ( GetGame().IsServer() )
-		{
-			//int slot_id = InventorySlots.GetSlotIdFromString(slot_name);
-			
-			if ( slot_name == "CarBattery")
-			{
-				if ( IsScriptedLightsOn() )
-					SwitchLights();
-			}
-		}
-	}
-*/
-
 	override bool CanReleaseAttachment(EntityAI attachment)
 	{
 		if (!super.CanReleaseAttachment(attachment))
@@ -164,6 +132,11 @@ class OffroadHatchback extends CarScript
 
 		return true;
 	}
+	
+	override protected bool CanManipulateSpareWheel(string slotSelectionName)
+	{
+		return GetCarDoorsState("NivaHood") != CarDoorState.DOORS_CLOSED;
+	}
 
 	override bool CanDisplayAttachmentCategory( string category_name )
 	{
@@ -172,9 +145,7 @@ class OffroadHatchback extends CarScript
 			return false;
 		}
 	
-		category_name.ToLower();
-		PlayerBase player = PlayerBase.Cast( GetGame().GetPlayer() );
-		
+		category_name.ToLower();		
 		if (category_name.Contains("engine"))
 		{
 			if (GetCarDoorsState("NivaHood") == CarDoorState.DOORS_CLOSED)
@@ -511,7 +482,9 @@ class OffroadHatchback extends CarScript
 	override void OnDebugSpawn()
 	{
 		EntityAI entity;
-		
+		EntityAI ent;
+		ItemBase container;
+
 		if ( Class.CastTo(entity, this) )
 		{
 			entity.GetInventory().CreateInInventory( "HatchbackWheel" );
@@ -523,14 +496,36 @@ class OffroadHatchback extends CarScript
 			entity.GetInventory().CreateInInventory( "SparkPlug" );
 			entity.GetInventory().CreateInInventory( "CarRadiator" );
 
-			entity.GetInventory().CreateInInventory( "HatchbackDoors_Driver" );
+			//entity.GetInventory().CreateInInventory( "HatchbackDoors_Driver" );
 			entity.GetInventory().CreateInInventory( "HatchbackDoors_CoDriver" );
 			entity.GetInventory().CreateInInventory( "HatchbackHood" );
 			entity.GetInventory().CreateInInventory( "HatchbackTrunk" );
 
 			entity.GetInventory().CreateInInventory( "HeadlightH7" );
 			entity.GetInventory().CreateInInventory( "HeadlightH7" );
-		};
+
+			//-----IN CAR CARGO
+			entity.GetInventory().CreateInInventory( "HatchbackWheel" );
+			entity.GetInventory().CreateInInventory( "CarBattery" );
+			entity.GetInventory().CreateInInventory( "SparkPlug" );
+			entity.GetInventory().CreateInInventory( "HeadlightH7" );
+			entity.GetInventory().CreateInInventory( "CarRadiator" );
+			//--
+			ent = entity.GetInventory().CreateInInventory( "Blowtorch" );
+			entity = ent.GetInventory().CreateInInventory( "LargeGasCanister" );
+			//--
+			entity.GetInventory().CreateInInventory( "CanisterGasoline" );
+			ent = entity.GetInventory().CreateInInventory( "CanisterGasoline" );
+			if ( Class.CastTo(container, ent) )
+			{
+				container.SetLiquidType(LIQUID_WATER, true);
+			}
+			ent = entity.GetInventory().CreateInInventory( "Blowtorch" );
+			if ( ent )
+			{
+				entity = ent.GetInventory().CreateInInventory( "LargeGasCanister" );
+			}
+		}
 
 		Fill( CarFluid.FUEL, 50 );
 		Fill( CarFluid.COOLANT, 6.0 );
@@ -551,7 +546,9 @@ class OffroadHatchback_White extends OffroadHatchback
 	override void OnDebugSpawn()
 	{
 		EntityAI entity;
-		
+		EntityAI ent;
+		ItemBase container;
+
 		if ( Class.CastTo(entity, this) )
 		{
 			entity.GetInventory().CreateInInventory( "HatchbackWheel" );
@@ -563,14 +560,36 @@ class OffroadHatchback_White extends OffroadHatchback
 			entity.GetInventory().CreateInInventory( "SparkPlug" );
 			entity.GetInventory().CreateInInventory( "CarRadiator" );
 
-			entity.GetInventory().CreateInInventory( "HatchbackDoors_Driver_White" );
+			//entity.GetInventory().CreateInInventory( "HatchbackDoors_Driver_White" );
 			entity.GetInventory().CreateInInventory( "HatchbackDoors_CoDriver_White" );
 			entity.GetInventory().CreateInInventory( "HatchbackHood_White" );
 			entity.GetInventory().CreateInInventory( "HatchbackTrunk_White" );
 
 			entity.GetInventory().CreateInInventory( "HeadlightH7" );
 			entity.GetInventory().CreateInInventory( "HeadlightH7" );
-		};
+
+			//-----IN CAR CARGO
+			entity.GetInventory().CreateInInventory( "HatchbackWheel" );
+			entity.GetInventory().CreateInInventory( "CarBattery" );
+			entity.GetInventory().CreateInInventory( "SparkPlug" );
+			entity.GetInventory().CreateInInventory( "HeadlightH7" );
+			entity.GetInventory().CreateInInventory( "CarRadiator" );
+			//--
+			ent = entity.GetInventory().CreateInInventory( "Blowtorch" );
+			entity = ent.GetInventory().CreateInInventory( "LargeGasCanister" );
+			//--
+			entity.GetInventory().CreateInInventory( "CanisterGasoline" );
+			ent = entity.GetInventory().CreateInInventory( "CanisterGasoline" );
+			if ( Class.CastTo(container, ent) )
+			{
+				container.SetLiquidType(LIQUID_WATER, true);
+			}
+			ent = entity.GetInventory().CreateInInventory( "Blowtorch" );
+			if ( ent )
+			{
+				entity = ent.GetInventory().CreateInInventory( "LargeGasCanister" );
+			}
+		}
 
 		Fill( CarFluid.FUEL, 50 );
 		Fill( CarFluid.COOLANT, 6.0 );
@@ -583,7 +602,9 @@ class OffroadHatchback_Blue extends OffroadHatchback
 	override void OnDebugSpawn()
 	{
 		EntityAI entity;
-		
+		EntityAI ent;
+		ItemBase container;
+
 		if ( Class.CastTo(entity, this) )
 		{
 			entity.GetInventory().CreateInInventory( "HatchbackWheel" );
@@ -595,14 +616,36 @@ class OffroadHatchback_Blue extends OffroadHatchback
 			entity.GetInventory().CreateInInventory( "SparkPlug" );
 			entity.GetInventory().CreateInInventory( "CarRadiator" );
 
-			entity.GetInventory().CreateInInventory( "HatchbackDoors_Driver_Blue" );
+			//entity.GetInventory().CreateInInventory( "HatchbackDoors_Driver_Blue" );
 			entity.GetInventory().CreateInInventory( "HatchbackDoors_CoDriver_Blue" );
 			entity.GetInventory().CreateInInventory( "HatchbackHood_Blue" );
 			entity.GetInventory().CreateInInventory( "HatchbackTrunk_Blue" );
 
 			entity.GetInventory().CreateInInventory( "HeadlightH7" );
 			entity.GetInventory().CreateInInventory( "HeadlightH7" );
-		};
+
+			//-----IN CAR CARGO
+			entity.GetInventory().CreateInInventory( "HatchbackWheel" );
+			entity.GetInventory().CreateInInventory( "CarBattery" );
+			entity.GetInventory().CreateInInventory( "SparkPlug" );
+			entity.GetInventory().CreateInInventory( "HeadlightH7" );
+			entity.GetInventory().CreateInInventory( "CarRadiator" );
+			//--
+			ent = entity.GetInventory().CreateInInventory( "Blowtorch" );
+			entity = ent.GetInventory().CreateInInventory( "LargeGasCanister" );
+			//--
+			entity.GetInventory().CreateInInventory( "CanisterGasoline" );
+			ent = entity.GetInventory().CreateInInventory( "CanisterGasoline" );
+			if ( Class.CastTo(container, ent) )
+			{
+				container.SetLiquidType(LIQUID_WATER, true);
+			}
+			ent = entity.GetInventory().CreateInInventory( "Blowtorch" );
+			if ( ent )
+			{
+				entity = ent.GetInventory().CreateInInventory( "LargeGasCanister" );
+			}
+		}
 
 		Fill( CarFluid.FUEL, 50 );
 		Fill( CarFluid.COOLANT, 6.0 );

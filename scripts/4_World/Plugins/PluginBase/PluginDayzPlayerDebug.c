@@ -665,6 +665,7 @@ class PluginDayzPlayerDebug extends PluginBase
 			m_ActionsSelector.AddItem("FB L DRINK WELL", new PluginDayzPlayerDebugUserData(DayZPlayerConstants.CMD_ACTIONFB_DRINKWELL, true, DayZPlayerConstants.STANCEMASK_CROUCH), 0);
 			m_ActionsSelector.AddItem("FB L FILL BOTTLE WELL", new PluginDayzPlayerDebugUserData(DayZPlayerConstants.CMD_ACTIONFB_FILLBOTTLEWELL, true, DayZPlayerConstants.STANCEMASK_CROUCH), 0);
 			m_ActionsSelector.AddItem("FB L FIRE ESTINGUISHER", new PluginDayzPlayerDebugUserData(DayZPlayerConstants.CMD_ACTIONFB_FIREESTINGUISHER, true, DayZPlayerConstants.STANCEMASK_ERECT), 0);
+			m_ActionsSelector.AddItem("FB L FLAME REPAIR", new PluginDayzPlayerDebugUserData(DayZPlayerConstants.CMD_ACTIONFB_FLAME_REPAIR, true, DayZPlayerConstants.STANCEMASK_CROUCH | DayZPlayerConstants.STANCEMASK_ERECT), 0);
 			m_ActionsSelector.AddItem("FB L WRING CLOTH", new PluginDayzPlayerDebugUserData(DayZPlayerConstants.CMD_ACTIONFB_WRING, true, DayZPlayerConstants.STANCEMASK_CROUCH), 0);
 			m_ActionsSelector.AddItem("FB L FISHING", new PluginDayzPlayerDebugUserData(DayZPlayerConstants.CMD_ACTIONFB_FISHING, true, DayZPlayerConstants.STANCEMASK_CROUCH), 0);
 			m_ActionsSelector.AddItem("FB L CPR", new PluginDayzPlayerDebugUserData(DayZPlayerConstants.CMD_ACTIONFB_CPR, true, DayZPlayerConstants.STANCEMASK_CROUCH), 0);

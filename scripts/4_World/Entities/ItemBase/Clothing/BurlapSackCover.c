@@ -9,6 +9,19 @@ class BurlapSackCover extends ClothingBase
 			OnRemovedFromHead(m_Player);
 		}
 	}
+	
+	override void EEItemLocationChanged(notnull InventoryLocation oldLoc, notnull InventoryLocation newLoc)
+	{
+		super.EEItemLocationChanged(oldLoc,newLoc);
+		
+		if (GetGame().IsDedicatedServer() && newLoc.GetType() == InventoryLocationType.GROUND)
+		{
+			if (m_Player)
+			{
+				MiscGameplayFunctions.TurnItemIntoItem(this, "BurlapSack", m_Player);
+			}
+		}
+	}
 
 	override void OnWasAttached(EntityAI parent, int slot_id)
 	{
@@ -26,7 +39,7 @@ class BurlapSackCover extends ClothingBase
 			
 			if ( GetGame().GetUIManager().IsMenuOpen(MENU_INVENTORY) )
 			{
-				GetGame().GetUIManager().FindMenu(MENU_INVENTORY).Close();
+				GetGame().GetMission().HideInventory();
 			}
 		}
 		SetInvisibleRecursive(true,m_Player,{InventorySlots.MASK,InventorySlots.EYEWEAR});

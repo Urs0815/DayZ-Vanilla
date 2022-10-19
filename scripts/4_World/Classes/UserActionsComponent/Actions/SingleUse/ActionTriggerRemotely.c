@@ -34,7 +34,7 @@ class ActionTriggerRemotely : ActionSingleUseBase
 		if (rdt && rdt.IsConnected())
 		{
 			ExplosivesBase controlledDevice = ExplosivesBase.Cast(rdt.GetControlledDevice());
-			if (controlledDevice.GetPairDevice() != item)
+			if (controlledDevice && controlledDevice.GetPairDevice() != item)
 			{
 				rdt.UpdateLED(ERemoteDetonatorLEDState.OFF);
 

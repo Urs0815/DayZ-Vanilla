@@ -38,10 +38,27 @@ class HandsArea: Container
 		else
 			return false;
 	}
+	
+	override ScrollWidget GetScrollWidget()
+	{
+		return m_Scroller;
+	}
+	
+	override void UpdateSelectionIcons()
+	{
+		ScrollToActiveContainer();
+	}
 
 	override void UpdateInterval()
 	{
-		m_Scroller.VScrollToPos01( m_Scroller.GetVScrollPos01() );
+		if (!m_Scroller.IsScrollbarVisible())
+		{
+			m_Scroller.VScrollToPos01(0.0);
+		}
+		else if (m_Scroller.GetVScrollPos01() > 1.0)
+		{
+			m_Scroller.VScrollToPos01(1.0);
+		}
 		m_HandsContainer.UpdateInterval();
 		
 		float x, y;

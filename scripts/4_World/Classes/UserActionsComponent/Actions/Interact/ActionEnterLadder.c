@@ -1,8 +1,8 @@
 
 class ActionEnterLadder: ActionInteractBase
 {
-	private const string GEOM_LOD_NAME = "geometry";
-	private	const string MEM_LOD_NAME = "memory";	
+	private const string GEOM_LOD_NAME 	= LOD.NAME_GEOMETRY;
+	private	const string MEM_LOD_NAME 	= LOD.NAME_MEMORY;	
 
 	void ActionEnterLadder()
 	{

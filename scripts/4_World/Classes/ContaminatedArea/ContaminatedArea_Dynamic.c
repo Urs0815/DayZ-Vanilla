@@ -239,9 +239,9 @@ class ContaminatedArea_Dynamic : EffectArea
 			//Print("----------------------------------");
 			for (int i = 0; i < SPAWN_ITEM_COUNT[j]; i++)
 			{
-				vector randomDir2d = Vector(Math.RandomFloatInclusive(-1,1),0,Math.RandomFloatInclusive(-1,1)).Normalized();
-				randomDir2d = Math.RandomFloatInclusive(SPAWN_ITEM_RAD_MIN[j],SPAWN_ITEM_RAD_MAX[j]) * randomDir2d;
-				vector spawnPos = m_Position + randomDir2d;
+				vector randomDir2d = vector.RandomDir2D();
+				float randomDist = Math.RandomFloatInclusive(SPAWN_ITEM_RAD_MIN[j],SPAWN_ITEM_RAD_MAX[j]);
+				vector spawnPos = m_Position + (randomDir2d * randomDist);
 				InventoryLocation il = new InventoryLocation;
 				vector mat[4];
 				Math3D.MatrixIdentity4(mat);

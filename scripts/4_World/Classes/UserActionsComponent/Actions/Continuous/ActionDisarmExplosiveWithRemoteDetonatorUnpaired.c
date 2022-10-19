@@ -52,19 +52,19 @@ class ActionDisarmExplosiveWithRemoteDetonatorUnpaired : ActionDisarmExplosiveWi
 		{
 			return false;
 		}
-
+		
 		//! RD trigger
 		RemoteDetonatorTrigger rdt = RemoteDetonatorTrigger.Cast(item);
 		if (rdt && target.GetObject() != rdt.GetControlledDevice())
 		{
-			return IsInReach(player, target, UAMaxDistances.DEFAULT);
+			return true;
 		}
 		
 		//! RD kit
 		RemoteDetonator rd = RemoteDetonator.Cast(item);
 		if (rd && rd.IsKit())
 		{
-			return IsInReach(player, target, UAMaxDistances.DEFAULT);
+			return true;
 		}
 		
 		return false;

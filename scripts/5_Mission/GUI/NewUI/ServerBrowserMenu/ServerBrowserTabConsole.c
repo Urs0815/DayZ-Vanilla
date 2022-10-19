@@ -80,7 +80,6 @@ class ServerBrowserTabConsole extends ServerBrowserTab
 		{
 			m_TotalPages = result_list.m_Pages;
 			m_TotalServers = result_list.m_NumServers;
-			//m_LoadingText.SetText( "#server_browser_tab_loaded" + " " + m_EntryWidgets.Count() + "/" + m_TotalServers + " " +  "#server_browser_servers_desc" );
 					
 			if ( m_Menu.GetServersLoadingTab() != m_TabType || !result_list || ( !result_list.m_Results || result_list.m_Results.Count() == 0 ) )
 			{
@@ -138,11 +137,12 @@ class ServerBrowserTabConsole extends ServerBrowserTab
 				if( PassFilter( result ) )
 				{
 					ref ServerBrowserEntry entry = new ServerBrowserEntry( m_ServerList, index, this );
-					string server_id = result.m_HostIp + ":" + result.m_HostPort;
+					string ipPort = result.GetIpPort();
 					entry.FillInfo( result );
-					entry.SetFavorite( m_Menu.IsFavorited( server_id ) );
+					entry.SetFavorite( m_Menu.IsFavorited(ipPort));
+					entry.UpdateEntry();
 					
-					m_EntryWidgets.Insert( server_id, entry );
+					m_EntryWidgets.Insert(ipPort, entry);
 					index++;					
 					m_EntriesSorted[m_SortType].Insert( result );
 					
@@ -338,8 +338,7 @@ class ServerBrowserTabConsole extends ServerBrowserTab
 		array<ref GetServersResultRow> entries = m_EntriesSorted[m_SortType];
 		if( entries.Count() > 0 )
 		{
-			string server_id = entries.Get( 0 ).m_HostIp + ":" + entries.Get( 0 ).m_HostPort;
-			m_EntryWidgets.Get( server_id ).Focus();
+			m_EntryWidgets.Get(entries.Get(0).GetIpPort()).Focus();
 			m_IsFilterFocused = false;
 		}
 		else

@@ -53,7 +53,6 @@ class PrepareRabbit extends RecipeBase
 		InsertIngredient(1,"Sword");
 		InsertIngredient(1,"AK_Bayonet");
 		InsertIngredient(1,"M9A1_Bayonet");
-		InsertIngredient(1,"Mosin_Bayonet");
 		InsertIngredient(1,"SKS_Bayonet");
 		InsertIngredient(1,"BoneKnife");
 		InsertIngredient(1,"Screwdriver");

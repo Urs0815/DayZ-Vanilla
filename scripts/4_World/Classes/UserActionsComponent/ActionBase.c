@@ -155,14 +155,17 @@ class ActionBase : ActionBase_Basic
 		{
 			HandleReciveData(action_recive_data,action_data);
 			
-			if( UseMainItem() && MainItemAlwaysInHands() )
+			if ( UseMainItem() && MainItemAlwaysInHands() )
 			{
-				if( player.GetItemInHands() != action_data.m_MainItem )
+				if ( player.GetItemInHands() != action_data.m_MainItem )
 				{
 					return false;
 				}
 			}
 		}
+		
+		if ( !Post_SetupAction( action_data ) )
+			return false;
 		
 		if ( (!GetGame().IsDedicatedServer()) && !IsInstant() )
 		{
@@ -172,15 +175,20 @@ class ActionBase : ActionBase_Basic
 				return false;
 			}
 			
-			if( LogManager.IsActionLogEnable() )
+			if ( LogManager.IsActionLogEnable() )
 			{
-				for( int i = 0; i < action_data.m_ReservedInventoryLocations.Count(); i++)
+				for ( int i = 0; i < action_data.m_ReservedInventoryLocations.Count(); i++)
 				{
 					Debug.ActionLog( InventoryLocation.DumpToStringNullSafe( action_data.m_ReservedInventoryLocations[i] ), action_data.m_Action.ToString() , "n/a", "LockInventoryList", action_data.m_Player.ToString() );
 				}
 			}
 		}
 		
+		return true;
+	}
+	
+	bool Post_SetupAction( ActionData action_data )
+	{
 		return true;
 	}
 	
@@ -565,7 +573,7 @@ class ActionBase : ActionBase_Basic
 	{
 		action_data.m_State = UA_START;
 		
-		if( LogManager.IsActionLogEnable() )
+		if ( LogManager.IsActionLogEnable() )
 		{
 			Debug.ActionLog("Time stamp: " + action_data.m_Player.GetSimulationTimeStamp(), this.ToString() , "n/a", "OnStart", action_data.m_Player.ToString() );
 		}
@@ -679,13 +687,6 @@ class ActionBase : ActionBase_Basic
 		if ( ( (condition_mask & m_ConditionMask) != condition_mask ) || ( !IsFullBody(player) && !player.IsPlayerInStance(GetStanceMask(player)) ) || player.IsRolling() )
 			return false;
 		
-		if ( IsFullBody(player) )
-		{
-			int stanceIdx = DayZPlayerUtils.ConvertStanceMaskToStanceIdx(GetStanceMask(player));
-			if (stanceIdx != -1 && !DayZPlayerUtils.PlayerCanChangeStance(player, stanceIdx ))
-				return false;
-		}
-		
 		if ( HasTarget() )
 		{
 			if(!FirearmActionBase.Cast(this))
@@ -706,7 +707,17 @@ class ActionBase : ActionBase_Basic
 		if ( m_ConditionItem && !m_ConditionItem.Can(player, item))
 			return false;
 		
-		return ActionCondition(player, target, item);
+		if ( !ActionCondition(player, target, item) )
+			return false;
+		
+		if ( IsFullBody(player) )
+		{
+			int stanceIdx = DayZPlayerUtils.ConvertStanceMaskToStanceIdx(GetStanceMask(player));
+			if (stanceIdx != -1 && !DayZPlayerUtils.PlayerCanChangeStance(player, stanceIdx ))
+				return false;
+		}
+		
+		return true;
 	}
 	
 	bool Can( PlayerBase player, ActionTarget target, ItemBase item )
@@ -808,6 +819,10 @@ class ActionBase : ActionBase_Basic
 		}
 		else
 		{
+			if (HasTarget())
+			{
+				action_data.m_Player.GetInventory().ClearInventoryReservation(targetItem, targetInventoryLocation);
+			}
 			action_data.m_Player.GetInventory().AddInventoryReservationEx( action_data.m_Player.GetItemInHands(), handInventoryLocation, GameInventory.c_InventoryReservationTimeoutMS);
 		}
 		

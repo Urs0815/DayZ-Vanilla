@@ -30,20 +30,28 @@ enum EItemManipulationContext
 	DETACHING,
 }
 
+//! icon visibility, meant to be used in a bitmask
+enum EInventoryIconVisibility
+{
+	ALWAYS = 0,
+	HIDE_VICINITY = 1,
+	//further values yet unused, but nice to have anyway
+	HIDE_PLAYER_CONTAINER = 2,
+	HIDE_HANDS_SLOT = 4
+}
+
 class EntityAI extends Entity
 {
 	bool 								m_DeathSyncSent;
 	bool 								m_KilledByHeadshot;
 	bool 								m_PreparedToDelete = false;
 	bool 								m_RefresherViable = false;
-	bool 								m_FinisherInProgress; //is this object being backstabbed?
 	ref DestructionEffectBase			m_DestructionBehaviourObj;
 	
 	
 	
 	ref KillerData 						m_KillerData;
 	private ref HiddenSelectionsData	m_HiddenSelectionsData;
-	ref Timer 							m_FinisherTimer;
 	
 	const int DEAD_REPLACE_DELAY		= 2000;
 	const int DELETE_CHECK_DELAY		= 100;
@@ -119,7 +127,6 @@ class EntityAI extends Entity
 		//m_OldLocation 					= new InventoryLocation;
 		m_LastUpdatedTime = 0.0;
 		m_ElapsedSinceLastUpdate = 0.0;
-		m_FinisherInProgress = false;
 		
 		m_CanDisplayWeight = ConfigGetBool("displayWeight");
 		
@@ -127,7 +134,6 @@ class EntityAI extends Entity
 		InitDamageZoneDisplayNameMapping();
 		
 		m_HiddenSelectionsData = new HiddenSelectionsData( GetType() );
-		m_FinisherTimer = new Timer();
 		
 		GetGame().GetCallQueue(CALL_CATEGORY_SYSTEM).CallLater(DeferredInit,34);
 	}
@@ -145,6 +151,12 @@ class EntityAI extends Entity
 	bool IsInitialized()
 	{
 		return m_Initialized;
+	}
+	
+	//! should the item's icon be hidden in any part of the inventory?
+	int GetHideIconMask()
+	{
+		return EInventoryIconVisibility.ALWAYS;
 	}
 
 	private ref ComponentsBank m_ComponentsBank;
@@ -218,6 +230,15 @@ class EntityAI extends Entity
 		}
 		return m_RefresherViable;
 	}
+	
+	#ifdef DEVELOPER
+	override void SetDebugItem()
+	{
+		super.SetDebugItem();
+		_item = this;
+	}
+	#endif
+	
 	
 	//! Initializes script-side map of damage zones and their components (named selections in models)
 	void InitDamageZoneMapping()
@@ -542,7 +563,7 @@ class EntityAI extends Entity
 	
 	bool CanBeTargetedByAI(EntityAI ai)
 	{
-		if (ai.IsBeingBackstabbed())
+		if (ai && ai.IsBeingBackstabbed())
 		{
 			return false;
 		}
@@ -557,28 +578,6 @@ class EntityAI extends Entity
 		return false;
 	}
 	
-	//! returns true if backstab is in progress; used for suspending of AI targeting and other useful things besides
-	override bool IsBeingBackstabbed()
-	{
-		return m_FinisherInProgress;
-	}
-	
-	override void SetBeingBackstabbed()
-	{
-		m_FinisherInProgress = true;
-		
-		if (m_FinisherTimer.IsRunning())
-			m_FinisherTimer.Stop();
-		m_FinisherTimer.Run(PlayerConstants.AI_BACKSTAB_HIT_TIME,this,"ResetBackstabbedState");
-		//Print("DbgZombies | DumbZombie on: " + GetGame().GetTime());
-	}
-	
-	protected void ResetBackstabbedState()
-	{
-		m_FinisherInProgress = false;
-		//Print("DbgZombies | DumbZombie off: " + GetGame().GetTime());
-	}
-
 	/**@brief Delete this object in next frame
 	 * @return \p void
 	 *
@@ -1438,6 +1437,25 @@ class EntityAI extends Entity
 	{
 		return InventorySlots.GetShowForSlotId(slot_id);
 	}
+	
+	/**@fn		CanDisplayAnyAttachmentSlot
+	 * @return	true if any attachment slot can be shown
+	 **/	
+	bool CanDisplayAnyAttachmentSlot()
+	{
+		int count = GetInventory().GetAttachmentSlotsCount();
+		int slotID;
+		for (int i = 0; i < count; i++)
+		{
+			slotID = GetInventory().GetAttachmentSlotId(i);
+			if (CanDisplayAttachmentSlot(slotID))
+			{
+				return true;
+			}
+		}
+		
+		return false;
+	}
 
 	/**@fn		CanDisplayAttachmentCategory
 	 * @param	category_name->name of the attachment category that will or won't be displayed
@@ -1922,6 +1940,14 @@ class EntityAI extends Entity
 	 **/	
 	proto native void RegisterNetSyncVariableBool(string variableName);
 	
+	/**
+	 * @fn		RegisterNetSyncVariableBoolSignal
+	 * @brief	when bool variable is true, it's sent to clients and become false again
+	 *
+	 * @param[in]	variableName	\p		which variable should be synchronized
+	 **/	
+	proto native void RegisterNetSyncVariableBoolSignal(string variableName);
+
 	/**
 	 * @fn		RegisterNetSyncVariableInt
 	 * @brief	registers int variable synchronized over network
@@ -2593,6 +2619,12 @@ class EntityAI extends Entity
 			AddHealth("","Health",-MELEE_ITEM_DAMAGE);
 		return this;
 	}
+
+	//! Returns liquid throughput coeficient
+	float GetLiquidThroughputCoef()
+	{
+		return LIQUID_THROUGHPUT_DEFAULT;
+	}
 	
 	string GetInvulnerabilityTypeString()
 	{
@@ -2696,7 +2728,7 @@ class EntityAI extends Entity
 	
 	void RegisterTransportHit(Transport transport)
 	{
-		if ( !m_TransportHitRegistered )
+		if (!m_TransportHitRegistered)
 		{	
 			m_TransportHitRegistered = true; 
 			m_TransportHitVelocity = GetVelocity(transport);
@@ -2705,20 +2737,20 @@ class EntityAI extends Entity
 			vector impulse;
 			
 			// a different attempt to solve hits from "standing" car to the players
-			if ( car.CastTo(car, transport) )
+			if (Car.CastTo(car, transport))
 			{
-				if ( car.GetSpeedometer() > 2 )
+				if (car.GetSpeedometerAbsolute() > 2 )
 				{
 					damage = m_TransportHitVelocity.Length();
-					ProcessDirectDamage( DT_CUSTOM, transport, "", "TransportHit", "0 0 0", damage );
+					ProcessDirectDamage(DT_CUSTOM, transport, "", "TransportHit", "0 0 0", damage);
 				}
 				else
 				{
-					m_TransportHitRegistered = false; // EEHitBy is not called if no damage
+					m_TransportHitRegistered = false;
 				}
 
 				// compute impulse and apply only if the body dies
-				if ( IsDamageDestroyed() && car.GetSpeedometer() > 3 )
+				if (IsDamageDestroyed() && car.GetSpeedometerAbsolute() > 3)
 				{
 					impulse = 40 * m_TransportHitVelocity;
 					impulse[1] = 40 * 1.5;
@@ -2728,19 +2760,18 @@ class EntityAI extends Entity
 			else //old solution just in case if somebody use it
 			{
 				// avoid damage because of small movements
-				if ( m_TransportHitVelocity.Length() > 0.1 )
+				if (m_TransportHitVelocity.Length() > 0.1)
 				{
 					damage = m_TransportHitVelocity.Length();
-					//Print("Transport damage: " + damage.ToString() + " velocity: " +  m_TransportHitVelocity.Length().ToString());
-					ProcessDirectDamage( DT_CUSTOM, transport, "", "TransportHit", "0 0 0", damage );
+					ProcessDirectDamage(DT_CUSTOM, transport, "", "TransportHit", "0 0 0", damage);
 				}
 				else
 				{
-					m_TransportHitRegistered = false; // EEHitBy is not called if no damage
+					m_TransportHitRegistered = false;
 				}
 				
 				// compute impulse and apply only if the body dies
-				if ( IsDamageDestroyed() && m_TransportHitVelocity.Length() > 0.3 )
+				if (IsDamageDestroyed() && m_TransportHitVelocity.Length() > 0.3)
 				{
 					impulse = 40 * m_TransportHitVelocity;
 					impulse[1] = 40 * 1.5;
@@ -2786,6 +2817,12 @@ class EntityAI extends Entity
 	void PairRemote(notnull EntityAI trigger);
 	void UnpairRemote();
 	EntityAI GetPairDevice();
+
+	//! Turnable Valve behaviour
+	bool HasTurnableValveBehavior();
+	bool IsValveTurnable(int pValveIndex);
+	int GetTurnableValveIndex(int pComponentIndex);
+	void ExecuteActionsConnectedToValve(int pValveIndex);
 	
 	//Returns a type of finisher attack based on internal logic (in childern's overrides)
 	/*int DetermineFinisherHitType(EntityAI source,int component)
@@ -2795,9 +2832,11 @@ class EntityAI extends Entity
 };
 
 #ifdef DEVELOPER
-void SetDebugDeveloper_item(Object entity)//without a setter,the place where the setting happens is near impossible to find as way too many hits for "_item" exist, global function name picked to minimize chance of conflict with mods
+void SetDebugDeveloper_item(Object entity)//without a setter,the place where the setting happens is near impossible to find as way too many hits for "_item" exist
 {
-	_item = entity;
+	if (entity)
+		entity.SetDebugItem();
+
 }
 Object _item;//watched item goes here(LCTRL+RMB->Watch)
 #endif

@@ -200,7 +200,7 @@ class PluginItemDiagnostic extends PluginDeveloper
 
 			if (item && player) 
 			{
-				GeneratePropertiesObject(ItemBase.Cast(item));
+				GeneratePropertiesObject(EntityAI.Cast(item));
 				SendRPC(item, player);
 			}
 			else
@@ -218,7 +218,7 @@ class PluginItemDiagnostic extends PluginDeveloper
 	}
 
 
-	void GeneratePropertiesObject(ItemBase item)
+	void GeneratePropertiesObject(EntityAI item)
 	{
 		ClearProperties();
 		GetLocalProperties(item, m_Properties);

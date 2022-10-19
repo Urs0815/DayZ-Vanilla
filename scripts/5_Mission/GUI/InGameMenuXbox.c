@@ -31,6 +31,7 @@ class InGameMenuXbox extends UIScriptedMenu
 	void InGameMenuXbox()
 	{
 		GetGame().GetMission().GetOnInputPresetChanged().Insert(OnInputPresetChanged);
+		GetGame().GetMission().GetOnInputDeviceChanged().Insert(OnInputDeviceChanged);
 	}
 
 	void ~InGameMenuXbox()
@@ -44,7 +45,8 @@ class InGameMenuXbox extends UIScriptedMenu
 			IngameHud hud = IngameHud.Cast( mission.GetHud() );
 			if ( hud )
 			{
-				hud.ShowHudUI( true );
+				hud.ShowHudUI(true);
+				hud.ShowQuickbarUI(true);
 			}
 		}
 		PPERequesterBank.GetRequester(PPERequester_MenuEffects).Stop();
@@ -55,6 +57,24 @@ class InGameMenuXbox extends UIScriptedMenu
 		#ifdef PLATFORM_CONSOLE
 		UpdateControlsElements();
 		#endif
+	}
+	
+	protected void OnInputDeviceChanged(EInputDeviceType pInputDeviceType)
+	{
+		switch (pInputDeviceType)
+		{
+		case EInputDeviceType.CONTROLLER:
+			UpdateControlsElements();
+			layoutRoot.FindAnyWidget("toolbar_bg").Show(true);
+		break;
+
+		default:
+			if (GetGame().GetInput().IsEnabledMouseAndKeyboardEvenOnServer())
+			{
+				layoutRoot.FindAnyWidget("toolbar_bg").Show(false);
+			}
+		break;
+		}
 	}
 	
 	override Widget Init()
@@ -171,7 +191,8 @@ class InGameMenuXbox extends UIScriptedMenu
 			IngameHud hud = IngameHud.Cast( mission.GetHud() );
 			if ( hud )
 			{
-				hud.ShowHudUI( false );
+				hud.ShowHudUI(false);
+				hud.ShowQuickbarUI(false);
 			}
 		}
 		
@@ -195,6 +216,8 @@ class InGameMenuXbox extends UIScriptedMenu
 		#endif*/
 		LoadTextStrings();
 		LoadFooterButtonTexts();
+		
+		OnInputDeviceChanged(GetGame().GetInput().GetCurrentInputDevice());
 		
 		return layoutRoot;
 	}
@@ -523,7 +546,6 @@ class InGameMenuXbox extends UIScriptedMenu
 			}
 		
 			warning.Show( mk );
-			layoutRoot.FindAnyWidget( "toolbar_bg" ).Show( !mk_server );
 		#endif
 	}
 	

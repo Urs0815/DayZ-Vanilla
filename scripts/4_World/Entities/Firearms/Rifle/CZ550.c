@@ -13,8 +13,7 @@ class CZ550_Base : BoltActionRifle_ExternalMagazine_Base
 		EntityAI entity;
 		if ( Class.CastTo(entity, this) )
 		{
-			entity.GetInventory().CreateInInventory( "HuntingOptic" );	
-			entity.SpawnEntityOnGroundPos("Mag_CZ550_10rnd", entity.GetPosition());
+			GetInventory().CreateAttachment("HuntingOptic");
 		}
 	}
 };

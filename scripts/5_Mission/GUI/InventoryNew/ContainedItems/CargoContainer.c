@@ -1,8 +1,8 @@
+//cargo grid wrapper
 class CargoContainer extends Container
 {
 	protected const int ROWS_NUMBER_XBOX = 5;
 	
-	protected EntityAI												m_Entity;
 	protected CargoBase												m_Cargo;
 	protected int													m_CargoIndex = -1;
 	
@@ -16,6 +16,8 @@ class CargoContainer extends Container
 	protected float													m_SpaceSize;
 	
 	protected bool													m_IsAttachment;
+	protected TextWidget											m_FalseHeaderTextWidget;
+	protected TextWidget											m_AlternateFalseHeaderTextWidget; //to be set and updated along with the main one
 	protected Widget												m_CargoHeader;
 	protected Widget												m_CargoContainer;
 	protected Widget												m_ItemsContainer;
@@ -39,6 +41,7 @@ class CargoContainer extends Container
 		
 		m_RootWidget.FindAnyWidget( "grid_container" ).GetScript( m_Resizer2 );
 		m_CargoHeader.Show( is_attachment );
+		m_FalseHeaderTextWidget = TextWidget.Cast(m_CargoHeader.FindAnyWidget( "TextWidget0" ));
 		
 		m_MainWidget			= m_CargoContainer;
 		m_FocusedItemPosition	= -1;
@@ -290,18 +293,23 @@ class CargoContainer extends Container
 			name = name + " (" + GetCargoCapacity().ToString() + "/" + GetMaxCargoCapacity() + ")";
 			if ( m_IsAttachment && m_CargoHeader )
 			{
-				TextWidget.Cast( m_CargoHeader.FindAnyWidget( "TextWidget0" ) ).SetText( name );
+				m_FalseHeaderTextWidget.SetText(name);
 				float x, y;
-				m_CargoHeader.FindAnyWidget( "TextWidget0" ).Update();
-				m_CargoHeader.FindAnyWidget( "TextWidget0" ).GetScreenSize( x, y );
+				m_FalseHeaderTextWidget.Update();
+				m_FalseHeaderTextWidget.GetScreenSize( x, y );
 				m_CargoHeader.FindAnyWidget( "grid_container_header" ).SetSize( 1, y + InventoryMenu.GetHeightMultiplied( 10 ) );
 				m_CargoHeader.Update();
+				
+				if (m_AlternateFalseHeaderTextWidget)
+				{
+					m_AlternateFalseHeaderTextWidget.SetText(name);
+				}
 				return;
 			}
 		}
 		
 		if ( Container.Cast( GetParent() ) && Container.Cast( GetParent() ).GetHeader() )
-			Container.Cast( GetParent() ).GetHeader().SetName( name );
+			Container.Cast( GetParent() ).GetHeader().SetName(name);
 	}
 	
 	void InitGridHeight()
@@ -343,6 +351,11 @@ class CargoContainer extends Container
 		#endif
 		
 		m_Resizer2.ResizeParentToChild();
+		m_Resizer1.ResizeParentToChild();
+	}
+	
+	void UpdateSize()
+	{
 		m_Resizer1.ResizeParentToChild();
 	}
 	
@@ -937,5 +950,20 @@ class CargoContainer extends Container
 			}
 		}
 		return false;
+	}
+	
+	void ShowFalseCargoHeader(bool show)
+	{
+		m_CargoHeader.Show(show);
+	}
+	
+	void SetAlternateFalseTextHeaderWidget(TextWidget w)
+	{
+		bool update = !m_AlternateFalseHeaderTextWidget;
+		m_AlternateFalseHeaderTextWidget = w;
+		if (update)
+		{
+			UpdateHeaderText();
+		}
 	}
 }

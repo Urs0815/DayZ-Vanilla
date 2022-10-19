@@ -1,8 +1,8 @@
 ////////////////////////////////////////////////////////////////////
 //DeRap: config.bin
-//Produced from mikero's Dos Tools Dll version 8.84
+//Produced from mikero's Dos Tools Dll version 8.94
 //https://mikero.bytex.digital/Downloads
-//'now' is Tue Aug 23 21:51:26 2022 : 'file' last modified on Thu Jul 21 10:40:56 2022
+//'now' is Wed Oct 19 20:16:38 2022 : 'file' last modified on Tue Oct 18 07:19:16 2022
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -841,7 +841,7 @@ class CfgSlots
 	class Slot_GlowPlug
 	{
 		name = "GlowPlug";
-		displayName = "";
+		displayName = "#STR_GlowPlug0";
 		ghostIcon = "set:dayz_inventory image:glowplug";
 	};
 	class Slot_SparkPlug
@@ -1101,6 +1101,13 @@ class CfgSlots
 		name = "CivSedanWheel_2_2";
 		displayName = "#STR_CfgWheel0";
 		selection = "wheel_2_2";
+		ghostIcon = "set:dayz_inventory image:wheel";
+	};
+	class Slot_CivSedanWheel_Spare_1
+	{
+		name = "CivSedanWheel_Spare_1";
+		displayName = "#STR_CfgWheel0";
+		selection = "wheel_spare_1";
 		ghostIcon = "set:dayz_inventory image:wheel";
 	};
 	class Slot_CivSedanHood
@@ -1670,6 +1677,13 @@ class CfgSlots
 		selection = "wheel_2_2";
 		ghostIcon = "set:dayz_inventory image:wheel";
 	};
+	class Slot_Hatchback_02_Wheel_Spare_1
+	{
+		name = "Hatchback_02_Wheel_Spare_1";
+		displayName = "#STR_CfgWheel0";
+		selection = "wheel_spare_1";
+		ghostIcon = "set:dayz_inventory image:wheel";
+	};
 	class Slot_Hatchback_02_Door_1_1
 	{
 		name = "Hatchback_02_Door_1_1";
@@ -1734,6 +1748,13 @@ class CfgSlots
 		selection = "wheel_2_2";
 		ghostIcon = "set:dayz_inventory image:wheel";
 	};
+	class Slot_Sedan_02_Wheel_Spare_1
+	{
+		name = "Sedan_02_Wheel_Spare_1";
+		displayName = "#STR_CfgWheel0";
+		selection = "wheel_spare_1";
+		ghostIcon = "set:dayz_inventory image:wheel";
+	};
 	class Slot_Sedan_02_Hood
 	{
 		name = "Sedan_02_Hood";
@@ -1767,6 +1788,77 @@ class CfgSlots
 	class Slot_Sedan_02_Door_2_2
 	{
 		name = "Sedan_02_Door_2_2";
+		displayName = "#STR_CfgDoor0";
+		ghostIcon = "set:dayz_inventory image:doorrear";
+	};
+	class Slot_Offroad_02_Wheel_1_1
+	{
+		name = "Offroad_02_Wheel_1_1";
+		displayName = "#STR_CfgWheel0";
+		selection = "wheel_1_1";
+		ghostIcon = "set:dayz_inventory image:wheel";
+	};
+	class Slot_Offroad_02_Wheel_1_2
+	{
+		name = "Offroad_02_Wheel_1_2";
+		displayName = "#STR_CfgWheel0";
+		selection = "wheel_1_2";
+		ghostIcon = "set:dayz_inventory image:wheel";
+	};
+	class Slot_Offroad_02_Wheel_2_1
+	{
+		name = "Offroad_02_Wheel_2_1";
+		displayName = "#STR_CfgWheel0";
+		selection = "wheel_2_1";
+		ghostIcon = "set:dayz_inventory image:wheel";
+	};
+	class Slot_Offroad_02_Wheel_2_2
+	{
+		name = "Offroad_02_Wheel_2_2";
+		displayName = "#STR_CfgWheel0";
+		selection = "wheel_2_2";
+		ghostIcon = "set:dayz_inventory image:wheel";
+	};
+	class Slot_Offroad_02_Wheel_Spare_1
+	{
+		name = "Offroad_02_Wheel_Spare_1";
+		displayName = "#STR_CfgWheel0";
+		selection = "wheel_spare_1";
+		ghostIcon = "set:dayz_inventory image:wheel";
+	};
+	class Slot_Offroad_02_Hood
+	{
+		name = "Offroad_02_Hood";
+		displayName = "#STR_CfgHood0";
+		ghostIcon = "set:dayz_inventory image:hood";
+	};
+	class Slot_Offroad_02_Trunk
+	{
+		name = "Offroad_02_Trunk";
+		displayName = "#STR_CfgTrunk0";
+		ghostIcon = "set:dayz_inventory image:trunk";
+	};
+	class Slot_Offroad_02_Door_1_1
+	{
+		name = "Offroad_02_Door_1_1";
+		displayName = "#STR_CfgDoor0";
+		ghostIcon = "set:dayz_inventory image:doorfront";
+	};
+	class Slot_Offroad_02_Door_2_1
+	{
+		name = "Offroad_02_Door_2_1";
+		displayName = "#STR_CfgDoor0";
+		ghostIcon = "set:dayz_inventory image:doorfront";
+	};
+	class Slot_Offroad_02_Door_1_2
+	{
+		name = "Offroad_02_Door_1_2";
+		displayName = "#STR_CfgDoor0";
+		ghostIcon = "set:dayz_inventory image:doorrear";
+	};
+	class Slot_Offroad_02_Door_2_2
+	{
+		name = "Offroad_02_Door_2_2";
 		displayName = "#STR_CfgDoor0";
 		ghostIcon = "set:dayz_inventory image:doorrear";
 	};

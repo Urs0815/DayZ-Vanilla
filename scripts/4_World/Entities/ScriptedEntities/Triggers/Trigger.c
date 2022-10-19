@@ -44,6 +44,7 @@ class Trigger : TriggerEvents
 	ref array<ref TriggerInsider> m_insiders;
 	
 	#ifdef DEVELOPER
+	bool m_Local;//is this trigger spawning on client only ?
 	string 						m_DebugAreaType;
 	ref array<ref TriggerInsider> m_dbgInsiders;
 	#endif
@@ -64,7 +65,7 @@ class Trigger : TriggerEvents
 		CleanupDebugShapes(dbgTargets);
 		#endif
 	}
-	
+
 	/** \name IEntity events
  		Usage of IEntity events
 	*/
@@ -389,8 +390,9 @@ class Trigger : TriggerEvents
 		data.param7 = m_insiders;
 		
 		if ( GetGame().IsMultiplayer() && GetGame().IsServer() )
-			GetGame().RPCSingleParam(this, ERPCs.RPC_AREADAMAGE_DEBUGAREA, data, true);
-		else if (!GetGame().IsMultiplayer())
+			PluginDiagMenu.SendDataToSubscribersServer(this, ESubscriberSystems.TRIGGERS, ERPCs.RPC_AREADAMAGE_DEBUGAREA,data,false);
+			//GetGame().RPCSingleParam(this, ERPCs.RPC_AREADAMAGE_DEBUGAREA, data, true);
+		else if (!GetGame().IsMultiplayer() || m_Local)
 			DebugDmgTrigger( data.param1, data.param2, data.param3, data.param4, data.param5, data.param6, data.param7 );
 	}
 	

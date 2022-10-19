@@ -156,7 +156,7 @@ class TrapBase extends ItemBase
 		
 		if ( b_is_active )
 		{
-			SetActiveEx(false);
+			SetActive();
 		}
 		
 		if (b_is_in_progress &&  !b_is_active)
@@ -460,7 +460,7 @@ class TrapBase extends ItemBase
 		}
 	}
 	
-	void SetActiveEx(bool sync = true)
+	void SetActive()
 	{
 		m_WasActivatedOrDeactivated = true;
 		
@@ -476,17 +476,10 @@ class TrapBase extends ItemBase
 		{
 			CreateTrigger();
 			RefreshState();
-			if (sync)
-				Synch(null);
+			Synch(null);
 		}
 		
 		OnActivate();
-	}
-	
-	//! Deprecated
-	void SetActive()
-	{
-		SetActiveEx();
 	}
 
 	void OnActivate();

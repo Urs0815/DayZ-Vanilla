@@ -445,6 +445,18 @@ class DayZAnimal extends DayZCreatureAI
 		return false;
 	}
 	
+	override int GetHideIconMask()
+	{
+		return EInventoryIconVisibility.HIDE_VICINITY;
+		/*
+		if (IsAlive())
+		{
+			return EInventoryIconVisibility.HIDE_VICINITY;
+		}
+		return super.GetHideIconMask();
+		*/
+	}
+	
 	void CommandHandler(float dt, int currentCommandID, bool currentCommandFinished)
 	{
 		DayZAnimalInputController inputController = GetInputController();

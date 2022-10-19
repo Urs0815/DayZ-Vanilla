@@ -105,6 +105,16 @@ class OnlineServices
 			DebugPrint.LogErrorAndTrace( "BiosClientServices Error: Service reference does not exist." );
 		}
 	}
+
+	static void GetFavoriteServers(TStringArray favServers)
+	{
+		m_ClientServices.GetLobbyService().GetFavoriteServers(favServers);
+	}
+	
+	static void GetCachedFavServerInfo(array<ref CachedServerInfo> favServersInfoCache)
+	{
+		m_ClientServices.GetLobbyService().GetCachedFavoriteServerInfo(favServersInfoCache);
+	}
 	
 	static void SetServerFavorited(string ipAddress, int port, int steamQueryPort, bool is_favorited )
 	{

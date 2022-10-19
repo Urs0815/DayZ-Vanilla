@@ -110,4 +110,9 @@ class Rangefinder extends PoweredOptic_Base
 		RemoveAction(ActionViewOptics);
 		AddAction(ActionViewBinoculars);
 	}
+	
+	override void OnDebugSpawn()
+	{
+		GetInventory().CreateInInventory( "Battery9V" );
+	}
 }

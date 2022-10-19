@@ -29,7 +29,8 @@ enum DayZInfectedDeathAnims
 {
 	ANIM_DEATH_DEFAULT = 0,
 	ANIM_DEATH_IMPULSE = 1,
-	ANIM_DEATH_BACKSTAB = 2
+	ANIM_DEATH_BACKSTAB = 2,
+	ANIM_DEATH_NECKSTAB = 3
 }
 
 class DayZInfectedCommandMove extends AnimCommandBase
@@ -238,6 +239,11 @@ class DayZInfected extends DayZCreatureAI
 		{
 			m_HeavyHitOverride = true;
 		}
+	}
+	
+	override int GetHideIconMask()
+	{
+		return EInventoryIconVisibility.HIDE_VICINITY;
 	}
 	
 	//void SetCrawlTransition(string zone) {}

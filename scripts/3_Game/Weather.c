@@ -182,6 +182,9 @@ class Weather
 		\param  timeOut   A minimal time in seconds between lightning during thunderstorm.
 	*/
 	proto native void SetStorm( float density, float threshold, float timeOut );
+	
+	//! enables/disables thunderbolt simulation on client (together with sounds)
+	proto native void SuppressLightningSimulation(bool state);
 
 	//! Returns wind vector (direction and speed as length of the vector).
 	proto native vector GetWind();

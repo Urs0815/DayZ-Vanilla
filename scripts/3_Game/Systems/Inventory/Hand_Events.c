@@ -667,6 +667,7 @@ HandEventBase HandAnimEventFactory (WeaponEvents type, Man p = null, InventoryLo
 	switch (type)
 	{
 		case WeaponEvents.CHANGE_HIDE: return new HandAnimEventChanged(p, src);
+		case WeaponEvents.CHANGE_SHOW: return new HandAnimEventChanged(p, src);
 	}
 	return null;
 }

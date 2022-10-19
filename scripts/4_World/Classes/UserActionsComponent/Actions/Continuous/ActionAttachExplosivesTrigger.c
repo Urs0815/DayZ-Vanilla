@@ -30,7 +30,7 @@ class ActionAttachExplosivesTrigger : ActionContinuousBase
 	
 	override bool CanBeSetFromInventory()
 	{
-		return false;
+		return true;
 	}
 	
 	override bool ActionCondition(PlayerBase player, ActionTarget target, ItemBase item)

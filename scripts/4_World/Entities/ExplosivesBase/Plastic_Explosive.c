@@ -3,6 +3,8 @@ class Plastic_Explosive : ExplosivesBase
 	protected const string SLOT_TRIGGER 					= "TriggerRemoteDetonator_Receiver";
 	protected const string ANIM_PHASE_TRIGGER_REMOTE 		= "TriggerRemote";
 	
+	protected bool m_UsedAsCharge;
+	
 	protected ref RemotelyActivatedItemBehaviour m_RAIB;
 
 	void Plastic_Explosive()
@@ -54,6 +56,16 @@ class Plastic_Explosive : ExplosivesBase
 		
 		int slotId = InventorySlots.GetSlotIdFromString(SLOT_TRIGGER);
 		UpdateVisuals(GetInventory().FindAttachment(slotId));
+	}
+	
+	override void EEItemLocationChanged(notnull InventoryLocation oldLoc, notnull InventoryLocation newLoc)
+	{
+		super.EEItemLocationChanged(oldLoc, newLoc);
+
+		if (m_RAIB)
+		{
+			m_RAIB.Pair();
+		}
 	}
 	
 	override bool CanPutInCargo( EntityAI parent )
@@ -131,12 +143,34 @@ class Plastic_Explosive : ExplosivesBase
 		AddAction(ActionDeployObject);
 	}
 	
+	override void OnWasAttached(EntityAI parent, int slot_id)
+	{
+		super.OnWasAttached(parent, slot_id);
+		
+		m_UsedAsCharge = false;
+
+		if (parent && parent.IsInherited(ExplosivesBase))
+		{
+			m_UsedAsCharge = true;
+		}
+	}
+	
+	override void OnWasDetached(EntityAI parent, int slot_id)
+	{
+		super.OnWasDetached(parent, slot_id);
+
+		if (parent && !parent.IsInherited(ExplosivesBase))
+		{
+			m_UsedAsCharge = false;
+		}
+	}
+	
 	override bool EEOnDamageCalculated(TotalDamageResult damageResult, int damageType, EntityAI source, int component, string dmgZone, string ammo, vector modelPos, float speedCoef)
 	{
-		//! ignores explosion damage from other Plastic_Explosive (otherwise will not work when 2 PE are fired in IED)
+		//! ignores explosion damage from other Plastic_Explosive that are used as charge(like 2 PE fired via IED)
 		if (damageType == DamageType.EXPLOSION)
 		{
-			return !(source && source.IsInherited(Plastic_Explosive));
+			return !m_UsedAsCharge;
 		}
 		
 		return true;
@@ -166,6 +200,11 @@ class Plastic_Explosive : ExplosivesBase
 		}
 	}
 	
+	override RemotelyActivatedItemBehaviour GetRemotelyActivatedItemBehaviour()
+	{
+		return m_RAIB;
+	}
+	
 	override void PairRemote(notnull EntityAI trigger)
 	{
 		m_RAIB.Pair(trigger);
@@ -173,6 +212,11 @@ class Plastic_Explosive : ExplosivesBase
 	
 	override void UnpairRemote()
 	{
+		if (GetPairDevice())
+		{
+			GetPairDevice().UnpairRemote();
+		}
+
 		m_RAIB.Unpair();
 	}
 	
@@ -284,7 +328,7 @@ class Plastic_Explosive : ExplosivesBase
 		RemoteDetonatorReceiver receiver = RemoteDetonatorReceiver.Cast(FindAttachmentBySlotName(SLOT_TRIGGER));
 		if (receiver)
 		{
-			receiver.UpdateLED(pState);
+			receiver.UpdateLED(pState, true);
 		}
 	}
 

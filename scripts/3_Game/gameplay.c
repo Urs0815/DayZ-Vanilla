@@ -198,6 +198,13 @@ class Selection
 //! LOD class
 class LOD
 {
+	// standard(BI) LOD names in p3d
+	static const string NAME_GEOMETRY 		= "geometry";
+	static const string NAME_VIEW		 	= "view";
+	static const string NAME_FIRE	 		= "fire";
+	static const string NAME_MEMORY 		= "memory";
+	static const string NAME_ROADWAY 		= "roadway";
+
 	private void LOD() {}
 	private void ~LOD() {}
 	
@@ -316,43 +323,54 @@ class MapWidget: Widget
 	proto native void SetMapPos(vector worldPos);
 	proto native float GetScale();
 	proto native void SetScale(float scale);
+	proto native float GetContourInterval();
+	proto native float GetCellSize(float pLegendWidth);
 	proto native vector MapToScreen(vector worldPos);
 	proto native vector ScreenToMap(vector screenPos);
 };
 
 //-----------------------------------------------------------------------------
-//! Player description
-class PlayerIdentity: Managed
+//! Player description (base engine class)
+class PlayerIdentityBase : Managed
 {
 	//! ping range estimation
-	proto native int GetPingMin();
+	proto int GetPingMin();
 	//! ping range estimation
-	proto native int GetPingMax();
+	proto int GetPingMax();
 	//! ping range estimation
-	proto native int GetPingAvg();
+	proto int GetPingAvg();
 
 	//! bandwidth estimation (in kbps)
-	proto native int GetBandwidthMin();
+	proto int GetBandwidthMin();
 	//! bandwidth estimation (in kbps)
-	proto native int GetBandwidthMax();
+	proto int GetBandwidthMax();
 	//! bandwidth estimation (in kbps)
-	proto native int GetBandwidthAvg();
+	proto int GetBandwidthAvg();
 	
 	//! nick (short) name of player
-	proto native owned string GetName();
+	proto string GetName();
 	//! full name of player
-	proto native owned string GetFullName();
+	proto string GetFullName();
 	//! unique id of player (hashed steamID, database Xbox id...) can be used in database or logs
-	proto native owned string GetId();
+	proto string GetId();
 	//! plaintext unique id of player (cannot be used in database or logs)
-	proto native owned string GetPlainId();
-	//!  id of player in one session (is reused after player disconnects)
-	proto native owned int GetPlayerId();
+	proto string GetPlainId();
+	//! id of player in one session (is reused after player disconnects)
+	proto int GetPlayerId();
+	
+	//! get player
+	proto Man GetPlayer();
 
-	private void ~PlayerIdentity()
-	{
-	}
+	//! This is a C++ managed class, so script has no business managing the lifetime
+	private void PlayerIdentityBase();
+	private void ~PlayerIdentityBase();
 };
+
+//! The class that will be instanced (moddable)
+class PlayerIdentity : PlayerIdentityBase
+{
+
+}
 
 //-----------------------------------------------------------------------------
 const int PROGRESS_START = 0;
@@ -371,10 +389,15 @@ typedef Param1<string> ScriptLogEventParams;
 typedef Param4<int, string, string, string> ChatMessageEventParams;
 typedef Param1<int> ChatChannelEventParams;
 typedef Param1<int> SQFConsoleEventParams;
+
+//! Name, uid
+typedef Param2<string, string> ClientConnectedEventParams;
 //! PlayerIdentity, useDB, pos, yaw, preloadTimeout (= additional time in seconds to how long server waits for loginData)
 typedef Param5<PlayerIdentity, bool, vector, float, int> ClientPrepareEventParams;
 //! PlayerIdentity, PlayerPos, Top, Bottom, Shoe, Skin
 typedef Param3<PlayerIdentity, vector, Serializer> ClientNewEventParams; 
+//! PlayerIdentity, Man
+typedef Param2<PlayerIdentity, Man> ClientNewReadyEventParams; 
 //! PlayerIdentity, Man
 typedef Param2<PlayerIdentity, Man> ClientRespawnEventParams; 
 //! PlayerIdentity, Man
@@ -383,11 +406,12 @@ typedef Param2<PlayerIdentity, Man> ClientReadyEventParams;
 typedef Param2<PlayerIdentity, Man> ClientReconnectEventParams; 
 //! PlayerIdentity, Man, LogoutTime, AuthFailed
 typedef Param4<PlayerIdentity, Man, int, bool> ClientDisconnectedEventParams; 
+
 //! LoginTime
 typedef Param1<int> LoginTimeEventParams; 
 //! RespawnTime
 typedef Param1<int> RespawnEventParams; 
-
+//! Position
 typedef Param1<vector> PreloadEventParams; 
 //! Player
 typedef Param1<Man> LogoutCancelEventParams; 
@@ -408,7 +432,11 @@ typedef Param1<string> DLCOwnerShipFailedParams;
 //! Camera
 typedef Param1<FreeDebugCamera> SetFreeCameraEventParams;
 //! Duration
-typedef Param1<int>MPConnectionLostEventParams;
+typedef Param1<int> MPConnectionLostEventParams;
+//! EClientKicked, AdditionalInfo
+typedef Param2<int, string> MPConnectionCloseEventParams;
+//! Player, "Killer" (Beware: Not necessarily actually the killer, Client doesn't have this info)
+typedef Param2<DayZPlayer, Object> PlayerDeathEventParams;
 
 
 //-----------------------------------------------------------------------------
@@ -433,6 +461,10 @@ enum EventType
 	MPSessionFailEventTypeID,
 	//! no params
 	MPSessionPlayerReadyEventTypeID,
+	//! params: \ref MPConnectionLostEventParams
+	MPConnectionLostEventTypeID,
+	//! params: \ref MPConnectionCloseEventParams
+	MPConnectionCloseEventTypeID,
 
 	//-----------------------------------------------------------------------------
 	//! params: \ref ProgressEventParams
@@ -443,14 +475,22 @@ enum EventType
 	NetworkManagerServerEventTypeID,
 	//! no params
 	DialogQueuedEventTypeID,
+	
+	//-----------------------------------------------------------------------------
 	//! params: \ref ChatMessageEventParams
 	ChatMessageEventTypeID,
 	//! params: \ref ChatChannelEventParams
 	ChatChannelEventTypeID,
+	
+	//-----------------------------------------------------------------------------	
+	//! params: \ref ClientConnectedEventParams
+	ClientConnectedEventTypeID,
 	//! params: \ref ClientPrepareEventParams
 	ClientPrepareEventTypeID,
 	//! params: \ref ClientNewEventParams
 	ClientNewEventTypeID,	
+	//! params: \ref ClientNewReadyEventParams
+	ClientNewReadyEventTypeID,	
 	//! params: \ref ClientRespawnEventParams
 	ClientRespawnEventTypeID,
 	//! params: \ref ClientReconnectEventParams
@@ -459,6 +499,10 @@ enum EventType
 	ClientReadyEventTypeID,
 	//! params: \ref ClientDisconnectedEventParams
 	ClientDisconnectedEventTypeID,
+	//! no params
+	ClientRemovedEventTypeID,
+	
+	//-----------------------------------------------------------------------------
 	//! params: \ref LogoutCancelEventParams
 	LogoutCancelEventTypeID,
 	//! params: \ref LoginTimeEventParams
@@ -471,10 +515,14 @@ enum EventType
 	LogoutEventTypeID,	
 	//! params: \ref LoginStatusEventParams
 	LoginStatusEventTypeID,	
+	
+	//-----------------------------------------------------------------------------
 	//! no params
 	SelectedUserChangedEventTypeID,
 	//! params: \ref ScriptLogEventParams
 	ScriptLogEventTypeID,
+	
+	//-----------------------------------------------------------------------------
 	//! params: \ref VONStateEventParams
 	VONStateEventTypeID,
 	//! params: \ref VONStartSpeakingEventParams
@@ -486,15 +534,17 @@ enum EventType
 	//! no params
 	VONUserStoppedTransmittingAudioEventTypeID,
 	//! no params
+	
+	//-----------------------------------------------------------------------------
 	PartyChatStatusChangedEventTypeID,
 	//! params: \ref DLCOwnerShipFailedParams
 	DLCOwnerShipFailedEventTypeID,
 	//! params: \ref SetFreeCameraEventParams
 	SetFreeCameraEventTypeID,
-	//! params: \ref MPConnectionLostEventParams
-	MPConnectionLostEventTypeID,
 	//! no params
 	ConnectingAbortEventTypeID
+	//! params: \ref PlayerDeathEventParams
+	PlayerDeathEventTypeID
 	
 	//possible in engine events not accessable from script
 	//ReloadShadersEvent
@@ -562,7 +612,7 @@ const int DMT_EXCLAMATION = 4;
 
 proto native CGame GetGame();
 
-class Hud: Managed
+class Hud : Managed
 {
 	ref Timer m_Timer;
 	void Init( Widget hud_panel_widget ) {}
@@ -586,7 +636,6 @@ class Hud: Managed
 	void SetTemperature( string temp );
 	void SetStaminaBarVisibility( bool show );
 	void Update( float timeslice ){}
-	bool IsXboxDebugCursorEnabled();
 	void ShowVehicleInfo();
 	void HideVehicleInfo();
 	void ToggleHeatBufferPlusSign( bool show );
@@ -905,7 +954,7 @@ class MenuDefaultCharacterData
 	{
 		if (!player)
 		{
-			Print("WARNING - trying to equip non-existent object! | MenuDefaultCharacterData::EquipDefaultCharacter");
+			ErrorEx("WARNING - trying to equip non-existent object! | MenuDefaultCharacterData::EquipDefaultCharacter");
 			return;
 		}
 		
@@ -1161,7 +1210,8 @@ enum OptionIDsScript
 	OPTION_ADMIN_MESSAGES,
 	OPTION_PLAYER_MESSAGES,
 	OPTION_QUICKBAR,
-	OPTION_SERVER_INFO
+	OPTION_SERVER_INFO,
+	OPTION_BLEEDINGINDICATION
 };
 
 // -------------------------------------------------------------------------

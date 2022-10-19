@@ -8,10 +8,8 @@ class CZ527_Base : BoltActionRifle_ExternalMagazine_Base
 	//Debug menu Spawn Ground Special
 	override void OnDebugSpawn()
 	{
-		GameInventory inventory = GetInventory();
+		super.OnDebugSpawn();
 
-		inventory.CreateInInventory( "HuntingOptic" );
-		
-		SpawnAttachedMagazine("Mag_CZ527_5rnd");
+		GetInventory().CreateAttachment("HuntingOptic");
 	}
 };

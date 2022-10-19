@@ -301,7 +301,7 @@ class ActionManagerBase
 	
 	void OnActionEnd( )
 	{
-		if( LogManager.IsActionLogEnable() )
+		if ( LogManager.IsActionLogEnable() )
 		{
 			if (m_CurrentActionData)
 				Debug.ActionLog("n/a", m_CurrentActionData.m_Action.ToString() , "n/a", "OnActionEnd", m_CurrentActionData.m_Player.ToString() );

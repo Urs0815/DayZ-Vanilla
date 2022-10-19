@@ -534,7 +534,7 @@ class Object extends IEntity
 	{
 		return false;
 	}
-	
+
 	//! Returns if this entity can be constucted,deconstructed (e.g. fence,watchtower)
 	bool CanUseConstruction()
 	{
@@ -558,7 +558,7 @@ class Object extends IEntity
 		return false;
 	}
 	
-	void SetBeingBackstabbed(){}
+	void SetBeingBackstabbed(int backstabType){}
 	
 	//! Returns if this entity if a food item
 	bool IsFood()
@@ -906,6 +906,19 @@ class Object extends IEntity
 	{
 		SetHealth("", "", health);
 	}
+	//! Sets specific health level. It will use the cutoff value as returned by 'GetHealthLevelValue' as the health value for the given health level, which means it will always be set to the max health as allowed by the given health level.
+	void SetHealthLevel(int healthLevel, string zone = "")
+	{
+		SetHealth01(zone,"", GetHealthLevelValue(healthLevel, zone));
+	}
+	//! Similar to 'SetHealthLevel', but allows to jump up/down 'healthLevelDelta' amount of health levels from the current one. Positive values cause health level increase, therefore damage the item, and vice-versa.
+	void AddHealthLevel(int healthLevelDelta, string zone = "")
+	{
+		int maxHealthLevel = GetNumberOfHealthLevels(zone) - 1;
+		int newHealthLevel = Math.Clamp(GetHealthLevel(zone) + healthLevelDelta,0,maxHealthLevel);
+		SetHealthLevel(newHealthLevel,zone);
+	}
+	
 	//! Sets health relative to its maximum
 	void SetHealth01(string zoneName, string healthType, float coef)
 	{
@@ -943,7 +956,7 @@ class Object extends IEntity
 	@param ammoName ammoType, which defines how much damage should be applied
 	@param directHitModelPos local position of hit
 	@param damageCoef multiplier of applied damage
-	@param flags enables/disables special behaviour depending on the flags used
+	@param flags enables/disables special behaviour depending on the flags used (ProcessDirectDamageFlags type)
 	*/
 	proto native void ProcessDirectDamage(int damageType, EntityAI source, string componentName, string ammoName, vector modelPos, float damageCoef = 1.0, int flags = 0);
 	
@@ -1085,6 +1098,41 @@ class Object extends IEntity
 		return PlaySoundSet( sound, sound_set, fade_in, fade_out, true );
 	}
 	
+	//! Same as PlaySoundSetAtMemoryPointLooped, only requests stoppage of the currently playing EffectSound if it already exists and playing, before playing the new sound
+	bool PlaySoundSetAtMemoryPointLoopedSafe(out EffectSound sound, string soundSet, string memoryPoint,float play_fade_in = 0, float stop_fade_out = 0)
+	{
+		if (sound && sound.IsPlaying())
+		{
+			sound.SoundStop();
+		}
+		return PlaySoundSetAtMemoryPointLooped(sound, soundSet, memoryPoint, play_fade_in, stop_fade_out);
+	}
+	
+	bool PlaySoundSetAtMemoryPointLooped(out EffectSound sound, string soundSet, string memoryPoint, float play_fade_in = 0, float stop_fade_out = 0)
+	{
+		return PlaySoundSetAtMemoryPoint(sound, soundSet, memoryPoint, true, play_fade_in, stop_fade_out);
+	}
+
+	
+	bool PlaySoundSetAtMemoryPoint(out EffectSound sound, string soundSet, string memoryPoint, bool looped = false, float play_fade_in = 0, float stop_fade_out = 0)
+	{
+		vector pos;
+		
+		if (MemoryPointExists(memoryPoint))
+		{
+			pos = GetMemoryPointPos(memoryPoint);
+			pos = ModelToWorld(pos);
+		}
+		else
+		{
+			ErrorEx(string.Format("Memory point %1 not found when playing soundset %2 at memory point location", memoryPoint, soundSet));
+			return false;
+		}
+		
+		sound = SEffectManager.PlaySoundEnviroment(soundSet, pos, play_fade_in, stop_fade_out, looped);
+		return true;
+	}
+	
 	//! EffectSound - stops soundset and returns state of the sound (true - stopped, false - not playing)
 	bool StopSoundSet( out EffectSound sound )
 	{
@@ -1144,6 +1192,11 @@ class Object extends IEntity
 			return GetPosition() + Vector(0, 0.2, 0);
 		}
 	}
+	
+	#ifdef DEVELOPER
+	void SetDebugItem();
+	#endif
+	
 	
 	//Debug
 	//----------------------------------------------

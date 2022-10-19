@@ -28,6 +28,7 @@ class PluginConfigDebugProfile extends PluginConfigHandler
 	protected const string ITEM_PREVIEW						= "show_item_preview";
 	protected const string BATCH_RECT						= "batch_spawn_rect";
 	protected const string BATCH_QUANT						= "batch_spawn_quantity";
+	protected const string SOUNDFILTER						= "soundset_editbox";
 	
 	protected ref map<string, ref CfgParam>				m_DefaultValues;
 	protected ref TStringArray 							m_PresetList;	
@@ -303,6 +304,7 @@ class PluginConfigDebugProfile extends PluginConfigHandler
 		m_DefaultValues.Insert(ITEM_PREVIEW,			GetNewCfgParamBool(true) );
 		m_DefaultValues.Insert(BATCH_RECT,				GetNewCfgParamArray(GetDefaultBatchRectParams()) );
 		m_DefaultValues.Insert(BATCH_QUANT,				GetNewCfgParamInt(10) );
+		m_DefaultValues.Insert(SOUNDFILTER,				GetNewCfgParamString("") );
 	}
 	
 	array<ref CfgParam> GetDefaultBatchRectParams()
@@ -614,6 +616,19 @@ class PluginConfigDebugProfile extends PluginConfigHandler
 	void SetMergeType( bool is_visible )
 	{
 		SetBool( MERGE_TYPE, is_visible );
+	}	
+	
+	//========================================
+	// Soundset Filter
+	//========================================	
+	string GetSoundsetFilter()
+	{
+		return GetString( SOUNDFILTER );
+	}
+
+	void SetSoundsetFilter( string content )
+	{
+		SetString( SOUNDFILTER, content );
 	}
 	
 	//========================================

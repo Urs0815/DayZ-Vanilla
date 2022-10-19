@@ -31,31 +31,6 @@ class LeftArea: Container
 		RecomputeOpenedContainers();
 	}
 	
-	override void MoveGridCursor( int direction )
-	{
-		super.MoveGridCursor( direction );
-		//Container active_container = GetFocusedContainer();
-		
-		float x, y, y_s, amount;
-		m_ScrollWidget.GetScreenPos( x, y );
-		m_ScrollWidget.GetScreenSize( x, y_s );
-		
-		float next_pos	= GetFocusedContainerYScreenPos( true ) + GetFocusedContainerHeight( true );
-		
-		if( next_pos > ( y + y_s ) )
-		{
-			amount	= y + GetFocusedContainerYScreenPos( true );
-			m_ScrollWidget.VScrollToPos( m_ScrollWidget.GetVScrollPos() + GetFocusedContainerHeight( true ) + 2 );
-		}
-		else if( GetFocusedContainerYScreenPos( true ) < y )
-		{
-			amount = GetFocusedContainerYScreenPos( true ) - y;
-			m_ScrollWidget.VScrollToPos( m_ScrollWidget.GetVScrollPos() + amount - 2 );
-		}
-		
-		UpdateSelectionIcons();
-	}
-	
 	override void UnfocusGrid()
 	{
 		Container active_container;
@@ -83,8 +58,14 @@ class LeftArea: Container
 		UpdateSelectionIcons();
 	}
 	
+	override ScrollWidget GetScrollWidget()
+	{
+		return m_ScrollWidget;
+	}
+	
 	override void UpdateSelectionIcons()
 	{
+		ScrollToActiveContainer();
 		m_UpIcon.Show( m_IsActive );
 		m_DownIcon.Show( m_IsActive );
 		if( m_IsActive )
@@ -135,22 +116,12 @@ class LeftArea: Container
 		return cont_screen_pos - y + cont_screen_height;
 	}
 	
-	void ExpandCollapseContainer()
+	override void ExpandCollapseContainer()
 	{
-		if ( m_VicinityContainer == GetFocusedContainer() )
-			m_VicinityContainer.ExpandCollapseContainer();
-		else
+		Container c = GetFocusedContainer();		
+		if (c)
 		{
-			AttachmentCategoriesContainer acc = AttachmentCategoriesContainer.Cast( GetFocusedContainer() );
-			PlayerContainer pc = PlayerContainer.Cast( GetFocusedContainer() );
-			ZombieContainer zc = ZombieContainer.Cast( GetFocusedContainer() );
-			
-			if ( acc )
-				acc.ExpandCollapseContainer();
-			else if ( pc )
-				pc.ExpandCollapseContainer();
-			else if ( zc )
-				zc.ExpandCollapseContainer();
+			c.ExpandCollapseContainer();
 		}
 		
 		Refresh();
@@ -224,7 +195,6 @@ class LeftArea: Container
 		m_ScrollWidget.Update();
 		
 		UpdateSelectionIcons();
-		CheckScrollbarVisibility();
 		m_ShouldChangeSize = true;
 	}
 	
@@ -241,31 +211,18 @@ class LeftArea: Container
 		if ( y2 != y )
 			m_ShouldChangeSize = true;
 		bool changed_size;
-		if ( m_ShouldChangeSize )
+		//if ( m_ShouldChangeSize )
 			m_ContentResize.ResizeParentToChild( changed_size );
 		if ( changed_size || m_ShouldChangeSize )
 		{
-			CheckScrollbarVisibility();
+			m_MainWidget.Update();
+			m_RootWidget.Update();
+			m_ScrollWidget.Update();
 			m_ShouldChangeSize = false;
 		}
+		CheckScrollbarVisibility();
 	}
-	
-	void CheckScrollbarVisibility()
-	{
-		float x, y;
-		float x2, y2;
-		
-		m_MainWidget.Update();
-		m_RootWidget.Update();
-		m_ScrollWidget.Update();
-		
-		m_MainWidget.GetScreenSize( x, y );
-		m_ScrollWidget.GetScreenSize( x2, y2 );
-		m_ScrollWidget.SetAlpha( ( y > y2 ) );
-		
-		m_ScrollWidget.VScrollToPos01( m_ScrollWidget.GetVScrollPos01() );
-	}
-	
+
 	override bool OnChildRemove( Widget w, Widget child )
 	{
 		if (!m_IsProcessing)

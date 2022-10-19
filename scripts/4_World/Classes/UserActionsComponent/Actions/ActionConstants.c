@@ -102,6 +102,7 @@ class UAMaxDistances
 {
 	const float SMALL = 1.3;
 	const float DEFAULT = 2.0;
+	const float REPAIR = 3.0;
 	const float LARGE = 8.0;
 	const float LADDERS = 1.3;
 	const float BASEBUILDING = 20;

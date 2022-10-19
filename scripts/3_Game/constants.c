@@ -54,7 +54,10 @@ enum EffectWidgetsTypes
 	
 	COVER_FLASHBANG = 50,
 	NVG_OCCLUDER = 51,
-	PUMPKIN_OCCLUDER = 52
+	PUMPKIN_OCCLUDER = 52,
+	EYEPATCH_OCCLUDER = 53,
+	
+	BLEEDING_LAYER = 60,
 }
 
 enum EffectWidgetHandles
@@ -492,6 +495,22 @@ const int LIQUID_SOLUTION = 65536;
 const int GROUP_LIQUID_BLOOD = 255;
 const int GROUP_LIQUID_ALL = -1;//-1 = all bits to 1
 /** @}*/
+
+/**
+ * \defgroup LiquidThroughputs
+ * \desc Constants for liquid transfer speeds
+ * @{
+ */
+const float LIQUID_THROUGHPUT_TINY = 0.1;
+const float LIQUID_THROUGHPUT_DEFAULT = 1.0;
+const float LIQUID_THROUGHPUT_GASOLINECANISTER = 10.0;
+const float LIQUID_THROUGHPUT_CAR_DEFAULT = 10.0;
+const float LIQUID_THROUGHPUT_GENERATOR = 10.0;
+const float LIQUID_THROUGHPUT_FUELSTATION = 20.0;
+const float LIQUID_THROUGHPUT_WELL = 15.0;
+const float LIQUID_THROUGHPUT_BARREL = 100.0;
+
+/** @}*/
 	
 /**
  * \defgroup ChatMessagesVisibility
@@ -515,6 +534,7 @@ const string PLAYER_CHAT_MSG 	= "player_chat_msg";
  */
 const string SHOW_QUICKBAR 		= "show_quickbar";
 const string SHOW_HUD 			= "show_hud";
+const string ENABLE_BLEEDINGINDICATION	= "enable_bleedingindication";
 //const string SHOW_HUD_AUTOHIDE 	= "hud_autohide";
 const string SHOW_CROSSHAIR 	= "show_crosshair";
 const string SHOW_SERVERINFO 	= "show_serverinfo";
@@ -800,6 +820,9 @@ class GameConstants
 	const float PROJECTILE_CONVERSION_PLAYERS 	= 0.1;
 	
 	const float ROOF_CHECK_RAYCAST_DIST = 20.0;
+	
+	//! misc
+	const float ITEM_TEMPERATURE_TO_EXPLODE_MIN = 100;
 	
 	/**
 	 * \defgroup LifetimeRefresherConstants Lifetime Refresher functionality constants

@@ -739,7 +739,7 @@ class SymptomManager
 
 	bool OnStoreLoad( ParamsReadContext ctx, int version )
 	{
-		ref array<int> m_SaveQueue;
+		array<int> m_SaveQueue;
 		
 		if(ctx.Read(m_SaveQueue))
 		{

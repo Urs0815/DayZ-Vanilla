@@ -6,7 +6,8 @@ enum EPlayerSoundEventType
 	DAMAGE 		= 0x00000008,
 	DUMMY 		= 0x00000010,
 	INJURY 		= 0x00000020,
-	//HEAT_COMFORT	= 0x00000040,
+	DROWNING 	= 0x00000040,
+	//HEAT_COMFORT	= 0x00000080,
 }
 
 enum EPlayerSoundEventParam
@@ -42,10 +43,16 @@ class PlayerSoundEventBase extends SoundEventBase
 	{
 		return m_IsDummyType;
 	}
-	
+		
 	EPlayerSoundEventType GetPriorityOverTypes()
 	{
 		return m_HasPriorityOverTypes;
+	}
+	
+	// !can this event play during hold breath
+	bool HasHoldBreathException()
+	{
+		return false;
 	}
 	
 	void PlayerSoundEventBase()
@@ -108,10 +115,15 @@ class PlayerSoundEventBase extends SoundEventBase
 	bool CanPlay(PlayerBase player)
 	{
 		player.GetMovementState(m_Hms);
-		if( player.IsHoldingBreath() || (player.IsSwimming() && m_Hms.m_iMovement != 0) ) 
+		
+		if (player.IsHoldingBreath() && !HasHoldBreathException())
 		{
 			return false;
 		}
+		if (player.m_IsDrowning || (player.IsSwimming() && m_Hms.m_iMovement != 0))
+		{
+			return false;
+		} 
 		return true;
 	}
 	

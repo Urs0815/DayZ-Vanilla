@@ -65,6 +65,7 @@ class Barrel_ColorBase : DeployableContainer_Base
 		m_Openable.Open();
 		m_RainProcurement.InitRainProcurement();
 		SoundSynchRemote();
+		SetTakeable(false);
 
 		//SetSynchDirty(); //! called also in SoundSynchRemote - TODO
 
@@ -76,6 +77,7 @@ class Barrel_ColorBase : DeployableContainer_Base
 		m_Openable.Open();
 		m_RainProcurement.InitRainProcurement();
 		SetSynchDirty();
+		SetTakeable(false);
 		
 		UpdateVisualState();
 	}
@@ -86,6 +88,7 @@ class Barrel_ColorBase : DeployableContainer_Base
 		if (m_RainProcurement.IsRunning())
 			m_RainProcurement.StopRainProcurement();
 		SoundSynchRemote();
+		SetTakeable(true);
 
 		//SetSynchDirty(); //! called also in SoundSynchRemote - TODO
 
@@ -98,6 +101,7 @@ class Barrel_ColorBase : DeployableContainer_Base
 		if (m_RainProcurement.IsRunning())
 			m_RainProcurement.StopRainProcurement();
 		SetSynchDirty();
+		SetTakeable(true);
 		
 		UpdateVisualState();
 	}
@@ -105,6 +109,20 @@ class Barrel_ColorBase : DeployableContainer_Base
 	override bool IsOpen()
 	{
 		return m_Openable.IsOpened();
+	}
+	
+	override void OnWasAttached( EntityAI parent, int slot_id)
+	{
+		super.OnWasAttached(parent, slot_id);
+		
+		Open();
+	}
+	
+	override void OnWasDetached(EntityAI parent, int slot_id)
+	{
+		super.OnWasDetached(parent, slot_id);
+		
+		Close();
 	}
 
 	protected void UpdateVisualState()
@@ -496,7 +514,7 @@ class Barrel_ColorBase : DeployableContainer_Base
 		if ( !super.CanPutIntoHands( parent ))
 			return false;
 
-		if ( GetNumberOfItems() == 0 && !IsOpen() )
+		if ( GetNumberOfItems() == 0 && (GetInventory().IsAttachment() || !IsOpen()) )
 			return true;
 
 		return false;
@@ -515,10 +533,16 @@ class Barrel_ColorBase : DeployableContainer_Base
 		return IsOpen();
 	}
 	
+	override bool CanDetachAttachment( EntityAI parent )
+	{
+		if ( GetNumberOfItems() == 0)
+			return true;
+		return false;
+	}
+	
 	//================================================================
 	// ADVANCED PLACEMENT
 	//================================================================
-	
 	override void OnPlacementComplete( Man player, vector position = "0 0 0", vector orientation = "0 0 0" )
 	{
 		super.OnPlacementComplete( player, position, orientation );
@@ -529,6 +553,12 @@ class Barrel_ColorBase : DeployableContainer_Base
 	override string GetPlaceSoundset()
 	{
 		return "placeBarrel_SoundSet";
+	}
+	//================================================================
+	
+	override float GetLiquidThroughputCoef()
+	{
+		return LIQUID_THROUGHPUT_BARREL;
 	}
 	
 	override void SetActions()

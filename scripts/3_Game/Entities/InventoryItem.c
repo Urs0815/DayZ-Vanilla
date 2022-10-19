@@ -85,14 +85,35 @@ class InventoryItem extends EntityAI
 	}
 	
 	// -------------------------------------------------------------------------------
+	void PlayImpactSound(float weight, float velocity, int surfaceHash)
+	{
+		if (!m_SoundImpactTable)
+			return;
+
+		SoundObjectBuilder soundBuilder = m_SoundImpactTable.GetSoundBuilder(surfaceHash);
+		if (soundBuilder != NULL)
+		{
+			soundBuilder.SetVariable("weight", weight);
+			soundBuilder.SetVariable("speed", velocity);
+			soundBuilder.UpdateEnvSoundControllers(GetPosition());
+				
+			SoundObject soundObject = soundBuilder.BuildSoundObject();
+			if (soundObject != NULL)
+			{
+				soundObject.SetKind(WaveKind.WAVEEFFECTEX);
+				PlaySound(soundObject, soundBuilder);
+			}
+		}
+	}
+	
 	// -------------------------------------------------------------------------------
 	protected void InitImpactSoundData()
 	{
-		if( GetGame().IsDedicatedServer() )
+		if ( GetGame().IsDedicatedServer() )
 			return;
 
 		string soundImpactType = "default";
-		if( ConfigIsExisting("soundImpactType") )
+		if ( ConfigIsExisting("soundImpactType") )
 			soundImpactType = ConfigGetString("soundImpactType");
 		
 		m_SoundImpactTable = AnimSoundLookupTableBank.GetInstance().GetImpactTable(soundImpactType + "_Impact_LookupTable");
@@ -112,6 +133,7 @@ class InventoryItem extends EntityAI
 		return wave;
 	}
 	
+	// -------------------------------------------------------------------------------
 	string GetImpactSurfaceType(IEntity other, Contact impact)
 	{
 		string surface;
@@ -136,68 +158,41 @@ class InventoryItem extends EntityAI
 	}
 
 	// -------------------------------------------------------------------------------
-	void ProcessImpactSound(IEntity other, Contact extra)
+	float ProcessImpactSound(IEntity other, Contact extra, float weight, out int surfaceHash)
 	{
-		if( !m_SoundImpactTable )
-			return;
-		
 		float impactVelocity = extra.RelativeVelocityBefore.Length();
-		if( impactVelocity < 0.3 )
-            return;
+		if ( impactVelocity < 0.3 )
+			return 0.0;
 		
 		float tickTime = GetGame().GetTickTime();
-		if( m_SoundContactTickTime + SOUND_CONTACT_SKIP > tickTime )
-			return;
+		if ( m_SoundContactTickTime + SOUND_CONTACT_SKIP > tickTime )
+			return 0.0;
 		
 		string surfaceName = GetImpactSurfaceType(other, extra);
-		if( surfaceName == "" )
-			return;
+		if ( surfaceName == "" )
+			return 0.0;
 
-		SoundObjectBuilder soundBuilder = m_SoundImpactTable.GetSoundBuilder(surfaceName.Hash());
-		if (soundBuilder != NULL)
-		{
-			float weight = ConfigGetFloat("weight");
-			
-			if( impactVelocity > 1.0 )
-	            impactVelocity = 1;
-			else if( impactVelocity < 0.5 )
-				impactVelocity = 0.5;
-
-			soundBuilder.SetVariable("weight", weight);
-			soundBuilder.SetVariable("speed", impactVelocity);
-			soundBuilder.UpdateEnvSoundControllers(GetPosition());
-				
-			SoundObject soundObject = soundBuilder.BuildSoundObject();
-			if (soundObject != NULL)
-			{
-				soundObject.SetKind(WaveKind.WAVEEFFECTEX);
-				PlaySound(soundObject, soundBuilder);
-				
-				m_SoundContactTickTime = tickTime;
-				
 #ifdef DEVELOPER
-				string infoText = "Surface: " + surfaceName + ", Weight: " + weight + ", Speed: " + impactVelocity;
-				
-				if( s_ImpactSoundsInfo.Count() == 10 )
-					s_ImpactSoundsInfo.Remove(9);
-				
-				s_ImpactSoundsInfo.InsertAt(infoText, 0);
+		string infoText = "Surface: " + surfaceName + ", Weight: " + weight + ", Speed: " + impactVelocity;
+		
+		if ( s_ImpactSoundsInfo.Count() == 10 )
+			s_ImpactSoundsInfo.Remove(9);
+		
+		s_ImpactSoundsInfo.InsertAt(infoText, 0);
 #endif
-			}
-		}
+
+		m_SoundContactTickTime = tickTime;
+
+		surfaceHash = surfaceName.Hash();
+		return impactVelocity;		
 	}
 	
-	override void EOnContact(IEntity other, Contact extra)
-	{
-		//ProcessImpactSound(other, extra);
-	}
-
 #ifdef DEVELOPER
 	static void DrawImpacts()
 	{
 		DbgUI.Begin("Item impact sounds", 10, 200);
 		
-		for( int i = 0; i < s_ImpactSoundsInfo.Count(); ++i )
+		for ( int i = 0; i < s_ImpactSoundsInfo.Count(); ++i )
 		{
 			string line = (i + 1).ToString() + ". " + s_ImpactSoundsInfo.Get(i);
 			DbgUI.Text(line);

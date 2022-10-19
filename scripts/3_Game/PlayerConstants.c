@@ -232,9 +232,13 @@ class PlayerConstants
 	static const float AI_VISIBILITY_STANDING	= 1.5;				//Multiplier for the visibility of the player while standing
 	static const float AI_VISIBILITY_CROUCH		= 0.6;				//Multiplier for the visibility of the player while crouched
 	static const float AI_VISIBILITY_PRONE 		= 0.15;				//Multiplier for the visibility of the player while prone
+	//----------------------------------------------------------
+	//						DROWNING
+	//----------------------------------------------------------
 	
-	//----------------------------------------------------------
-	//						MISC AI CONSTANTS
-	//----------------------------------------------------------
-	static const float AI_BACKSTAB_HIT_TIME 	= 1.5; 				//How long will the AI be considered time in seconds 
+																	//(positive values mean the distance under water surface, ie 0.1 --> 10cm under water, -0.1 --> 10cm above water)
+	static const float DROWNING_DEFAULT_THRESHOLD 			= 0.25;	//what water level value does it take for the player to be considered drowning while swimming - values <0.35 observed as the highest during swimming
+	static const float DROWNING_SWIMMING_THRESHOLD 			= 0.4;	//what water level value does it take for the player to be considered drowning while swimming - values <0.35 observed as the highest during swimming
+	static const float DROWNING_UNCONSCIOUS_THRESHOLD 		= 0.1;	//what water level value does it take for the player to be considered drowning while unconscious -  0.10 seemed a reasonable value based on visual observation and matching it to water depth values(can be adjust more precisely though)
+	
 }

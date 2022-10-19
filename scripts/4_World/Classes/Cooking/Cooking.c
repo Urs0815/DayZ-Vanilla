@@ -85,6 +85,11 @@ class Cooking
 			return 0;
 		}
 		
+		if (cooking_equipment.IsRuined())
+		{
+			return 0;
+		}
+		
 		//manage items in cooking equipment
 		Param2<bool, bool> stateFlags = new Param2<bool, bool>(false, false); // 1st - done; 2nd - burned
 		Param2<CookingMethodType, float> cookingMethodWithTime = GetCookingMethodWithTimeOverride(cooking_equipment);

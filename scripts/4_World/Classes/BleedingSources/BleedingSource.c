@@ -40,6 +40,8 @@ class BleedingSource
 		if (!GetGame().IsDedicatedServer())
 		{	
 			CreateParticle();
+			StartSourceBleedingIndication();
+
 		}
 	}
 
@@ -57,6 +59,8 @@ class BleedingSource
 		{
 			Debug.RemoveShape(m_DebugShape1);
 		}
+		
+		StopSourceBleedingIndication(!m_Player || !m_Player.IsAlive());
 	}
 	
 	void SetType(eBleedingSourceType type)
@@ -143,6 +147,32 @@ class BleedingSource
 				}
 			}
 			m_Player.AddHealth("GlobalHealth","Blood", (PlayerConstants.BLEEDING_SOURCE_BLOODLOSS_PER_SEC * blood_scale * deltatime * flow) );
+		}
+	}
+	
+	void StartSourceBleedingIndication()
+	{
+		if (m_Player.IsControlledPlayer())
+		{
+			#ifdef DEVELOPER
+			if (DbgBleedingIndicationStaticInfo.m_DbgEnableBleedingIndication)
+			{
+			#endif
+				Param4<bool,int,vector,bool> par = new Param4<bool,int,vector,bool>(true,m_Bit,"0 0 0",false);
+				GetGame().GetMission().GetEffectWidgets().AddActiveEffects({EffectWidgetsTypes.BLEEDING_LAYER});
+				GetGame().GetMission().GetEffectWidgets().UpdateWidgets(EffectWidgetsTypes.BLEEDING_LAYER,0,par);
+			#ifdef DEVELOPER
+			}
+			#endif
+		}
+	}
+	
+	void StopSourceBleedingIndication(bool instant = false)
+	{
+		if ( m_Player && m_Player.IsControlledPlayer() && GetGame() && (!GetGame().IsDedicatedServer()) )
+		{
+			Param4<bool,int,vector,bool> par = new Param4<bool,int,vector,bool>(false,m_Bit,"0 0 0",instant);
+			GetGame().GetMission().GetEffectWidgets().UpdateWidgets(EffectWidgetsTypes.BLEEDING_LAYER,0,par);
 		}
 	}
 	

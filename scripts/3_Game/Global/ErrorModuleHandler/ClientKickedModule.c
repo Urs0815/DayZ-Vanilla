@@ -25,6 +25,8 @@ enum EClientKicked
 	
 	INPUT_HACK,			// Player is sending more Inputs than possible
 	
+	QUIT,				// Player closed the game
+	
 	// LoginMachine kicks (0x0030)
 	LOGIN_MACHINE_ERROR = 48,	// Generic LoginMachine error (fallback)
 	PLAYER_STATE_TIMEOUT,		// Player spent too much time in one state of the LoginMachine
@@ -208,6 +210,8 @@ class ClientKickedModule : ErrorHandlerModuleScript
 		InsertDialogueErrorProperties(EClientKicked.INVALID_ID,							"#STR_invalid_ID");
 		
 		InsertDialogueErrorProperties(EClientKicked.INPUT_HACK,							"#STR_INPUT_HACK");
+		
+		InsertErrorProperties(EClientKicked.QUIT); // No handling, just register it exists
 
 		// LoginMachine kicks			
 		InsertExtendedPrefixDialogueErrorProperties(EClientKicked.LOGIN_MACHINE_ERROR,				"#server_browser_error_unknown", LOGIN_PREFIX);

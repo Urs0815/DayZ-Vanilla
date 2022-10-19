@@ -1,8 +1,9 @@
 class BearTrap extends TrapBase
 {
+	static const int RAYCAST_SOURCES_COUNT = 5;
 	// Raycasts start positions:
 	// Positions are local to model. Vertical offset prevents ground collision.
-	static const vector m_RaycastSources[5] = {
+	static const vector m_RaycastSources[RAYCAST_SOURCES_COUNT] = {
 		"0.0 0.1 0.0",	// center
 		"0.2 0.1 0.2",	// north east
 		"-.2 0.1 0.2",	// north west
@@ -71,7 +72,8 @@ class BearTrap extends TrapBase
 			{
 				return;
 			}
-
+			
+			ZombieBase zombie;
 			if (victim.IsInherited(CarScript))
 			{
 				//! CarScript specific reaction on BearTrap
@@ -82,7 +84,7 @@ class BearTrap extends TrapBase
 			}
 			else
 			{
-				for (int i = 0; i < 5; ++i)
+				for (int i = 0; i < RAYCAST_SOURCES_COUNT; ++i)
 				{
 					vector raycast_start_pos 			= ModelToWorld(m_RaycastSources[i]);
 					vector raycast_end_pos 				= "0 0.5 0" + raycast_start_pos;
@@ -99,25 +101,15 @@ class BearTrap extends TrapBase
 						for (int j = 0; j < results.Count(); j++)
 						{
 							Object contact_obj = results[j].obj;
-							if (contact_obj)
+							if (contact_obj && !contact_obj.IsInherited(ItemBase) && contact_obj.IsAlive())
 							{
 								OnServerSteppedOn(contact_obj, contact_obj.GetDamageZoneNameByComponentIndex(results[j].component));
 								break;
 							}
 						}
-						
-						return;
 					}
 				}
-					
-				// Damage random leg since we don't know what part of player's body was caught in the trap.
-				string damageZoneRand = "LeftLeg";
-				if (Math.RandomIntInclusive(0, 1) == 1)
-				{
-					damageZoneRand = "RightLeg";
-				}
-	
-				OnServerSteppedOn(victim, damageZoneRand);
+				OnServerSteppedOn(victim, "zone_leg_random");
 			}
 		}
 		else if (!GetGame().IsDedicatedServer()) //! this is also called on client (OnRPC->SnapOn->OnSteppedOn chain)
@@ -149,7 +141,7 @@ class BearTrap extends TrapBase
 	{
 		if (obj.IsInherited(CarWheel))
 		{
-			obj.ProcessDirectDamage(DT_CLOSE_COMBAT, this, damageZone, "BearTrapHit_CarWheel", "0 0 0", 1);
+			obj.ProcessDirectDamage(DamageType.CLOSE_COMBAT, this, damageZone, "BearTrapHit_CarWheel", "0 0 0", 1);
 			if (m_UpdateTimer.IsRunning())
 			{
 				m_UpdateTimer.Stop();
@@ -157,27 +149,29 @@ class BearTrap extends TrapBase
 			
 			SetInactive(false);
 			Synch(EntityAI.Cast(obj));
-
+			
 			return;
 		}
-
-		//! PlayerBase specific handling
-		if (obj.IsInherited(PlayerBase))
-		{
-			CauseVictimToStartLimping(obj, damageZone);
-		}
 		
-		//! DayZInfected specific handling
-		if (obj.IsInherited(DayZInfected))
+		ZombieBase zombie;
+		string zoneUsed = damageZone;
+		
+		if (damageZone == "zone_leg_random")
 		{
-			DayZInfected victim = DayZInfected.Cast(obj);
-			if (victim &&  Math.RandomIntInclusive(0, 1) == 1)
+			zoneUsed = "LeftLeg";
+			if (Math.RandomIntInclusive(0, 1) == 1)
 			{
-				victim.StartCommand_Crawl(0); // switch to crawl anim
+				zoneUsed = "RightLeg";
 			}
 		}
 		
-		obj.ProcessDirectDamage(DT_CLOSE_COMBAT, this, damageZone, "BearTrapHit", "0 0 0", 1);
+		//! Generic limp handling
+		if (obj.IsInherited(PlayerBase) || (Class.CastTo(zombie,obj) && !zombie.IsCrawling() && Math.RandomIntInclusive(0, 1) == 1))
+		{
+			CauseVictimToStartLimping(obj, "");
+		}
+		
+		obj.ProcessDirectDamage(DamageType.CLOSE_COMBAT, this, zoneUsed, "BearTrapHit", "0 0 0", 1);
 		
 		SetInactive(false);
 		Synch(EntityAI.Cast(obj));
@@ -186,13 +180,19 @@ class BearTrap extends TrapBase
 	// Causes the player to start limping. This is temporary and should at some point be replaced by broken legs
 	void CauseVictimToStartLimping(Object obj, string damagedZone)
 	{
-		PlayerBase victim = PlayerBase.Cast(obj);
-		if (victim)
+		PlayerBase player;
+		ZombieBase zombie;
+		if (Class.CastTo(player,obj))
 		{
-			victim.DamageAllLegs(victim.GetMaxHealth()); //deal 100% damage to break legs
+			player.DamageAllLegs(player.GetMaxHealth() * 2); //reduce legs health (not regular DamageSystem damage, does not transfer!)
+		}
+		else if (Class.CastTo(zombie,obj))
+		{
+			zombie.SetHealth("LeftLeg","Health",0.0);
+			zombie.SetHealth("RightLeg","Health",0.0);
 		}
 	}
-		
+	
 	void PlaySoundBiteLeg()
 	{
 		EffectSound sound = SEffectManager.PlaySound("beartrapCloseDamage_SoundSet", GetPosition(), 0, 0, false);

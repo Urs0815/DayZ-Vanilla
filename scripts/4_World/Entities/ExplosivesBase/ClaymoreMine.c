@@ -81,6 +81,16 @@ class ClaymoreMine : ExplosivesBase
 		UpdateVisuals();
 	}
 	
+	override void EEItemLocationChanged(notnull InventoryLocation oldLoc, notnull InventoryLocation newLoc)
+	{
+		super.EEItemLocationChanged(oldLoc, newLoc);
+		
+		if (m_RAIB)
+		{
+			m_RAIB.Pair();
+		}
+	}
+	
 	override bool CanPutInCargo(EntityAI parent)
 	{
 		if (!super.CanPutInCargo(parent))
@@ -106,6 +116,11 @@ class ClaymoreMine : ExplosivesBase
 		return IsTakeable();
 	}
 	
+	override RemotelyActivatedItemBehaviour GetRemotelyActivatedItemBehaviour()
+	{
+		return m_RAIB;
+	}
+	
 	override void PairRemote(notnull EntityAI trigger)
 	{
 		m_RAIB.Pair(trigger);
@@ -113,6 +128,11 @@ class ClaymoreMine : ExplosivesBase
 	
 	override void UnpairRemote()
 	{
+		if (GetPairDevice())
+		{
+			GetPairDevice().UnpairRemote();
+		}
+
 		m_RAIB.Unpair();
 	}
 	
@@ -197,11 +217,19 @@ class ClaymoreMine : ExplosivesBase
 		{
 			ShowSelection(ANIM_PHASE_DEPLOYED);
 			HideSelection(ANIM_PHASE_PACKED);
+			if (GetOnViewIndexChanged())
+			{
+				GetOnViewIndexChanged().Invoke();
+			}
 		}
 		else
 		{
 			HideSelection(ANIM_PHASE_DEPLOYED);
 			ShowSelection(ANIM_PHASE_PACKED);
+			if (GetOnViewIndexChanged())
+			{
+				GetOnViewIndexChanged().Invoke();
+			}
 		}
 	}
 	
@@ -218,6 +246,7 @@ class ClaymoreMine : ExplosivesBase
 			break;
 			default:
 				SetObjectTexture(selectionIdx, RemoteDetonator.COLOR_LED_OFF);
+				break;
 			}
 
 			m_LastLEDState = pState;
@@ -246,12 +275,11 @@ class ClaymoreMine : ExplosivesBase
 	override int GetViewIndex()
 	{
 		if (MemoryPointExists("invView2"))
-		{		
+		{
 			if (GetArmed())
 			{
 				return 1;
 			}
-
 		}
 		
 		return 0;

@@ -1,4 +1,4 @@
-class ContainerWithCargo: ClosableContainer
+class ContainerWithCargo extends ClosableContainer
 {
 	protected ref CargoContainer	m_CargoGrid;
 	protected int m_CargoIndex = -1;
@@ -19,7 +19,9 @@ class ContainerWithCargo: ClosableContainer
 
 	override bool IsDisplayable()
 	{
-		return m_Entity.CanDisplayCargo();
+		if (m_Entity)
+			return m_Entity.CanDisplayCargo();
+		return false;
 	}
 	
 	override bool IsEmpty()
@@ -75,13 +77,14 @@ class ContainerWithCargo: ClosableContainer
 		{
 			ItemManager.GetInstance().SetDefaultOpenState( m_Entity.GetType(), true );
 			m_Closed = false;
-			if ( m_SlotIcon )
-			{
-				m_SlotIcon.GetRadialIconClosed().Show( false );
-				m_SlotIcon.GetRadialIcon().Show( true );
-			}
+			SetOpenForSlotIcon(true);
 			OnShow();
 			m_Parent.m_Parent.Refresh();
+		}
+		
+		if ( m_SlotIcon )
+		{
+			m_SlotIcon.GetRadialIconPanel().Show( !m_LockCargo );
 		}
 	}
 	
@@ -91,12 +94,14 @@ class ContainerWithCargo: ClosableContainer
 		{
 			ItemManager.GetInstance().SetDefaultOpenState( m_Entity.GetType(), false );
 			m_Closed = true;
-			if ( m_SlotIcon )
-			{
-				m_SlotIcon.GetRadialIconClosed().Show( true );
-				m_SlotIcon.GetRadialIcon().Show( false );
-			}
+			SetOpenForSlotIcon(false);
 			OnHide();
+			m_Parent.m_Parent.Refresh();
+		}
+		
+		if ( m_SlotIcon )
+		{
+			m_SlotIcon.GetRadialIconPanel().Show( !m_LockCargo );
 		}
 	}
 	
@@ -114,10 +119,8 @@ class ContainerWithCargo: ClosableContainer
 				LockCargo(true);
 				if ( m_CargoGrid.IsVisible() )
 				{
-					
 					RecomputeOpenedContainers();
 				}
-				
 			}
 			else
 			{
@@ -128,7 +131,19 @@ class ContainerWithCargo: ClosableContainer
 				}
 			}
 		
+			super.UpdateInterval();
 			m_CargoGrid.UpdateInterval();
+			
+			bool hide = m_LockCargo || ItemManager.GetInstance().GetDraggedItem() == m_Entity;
+			if (!hide)
+			{
+				SetOpenForSlotIcon(IsOpened());
+			}
+			
+			if ( m_SlotIcon )
+			{
+				m_SlotIcon.GetRadialIconPanel().Show( !hide );
+			}
 		}
 	}
 	
@@ -182,12 +197,12 @@ class ContainerWithCargo: ClosableContainer
 		m_Entity = entity;
 		m_CargoIndex = cargo_index;
 
-		SetOpenState( ItemManager.GetInstance().GetDefaultOpenState( m_Entity.GetType() ) );
+		SetOpenState( true );
 
 		m_CargoGrid.SetEntity( entity, immedUpdate );
 		m_CargoGrid.UpdateHeaderText();
 		m_ClosableHeader.SetItemPreview( entity );
-		
+		CheckHeaderDragability();
 		( Container.Cast( m_Parent ) ).Insert( this, -1, false );
 		
 		if ( m_Entity.GetInventory().IsInventoryLockedForLockType( HIDE_INV_FROM_SCRIPT ) || !m_Entity.CanDisplayCargo() )

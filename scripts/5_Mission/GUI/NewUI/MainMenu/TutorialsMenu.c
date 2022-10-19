@@ -56,12 +56,13 @@ class TutorialsMenu extends UIScriptedMenu
 		
 		PPERequesterBank.GetRequester(PPERequester_TutorialMenu).Start(new Param1<float>(0.6));
 		DrawConnectingLines(0);
-		return layoutRoot;
-	}
-	
-	void TutorialsMenu()
-	{
+		
 		GetGame().GetMission().GetOnInputPresetChanged().Insert(OnInputPresetChanged);
+		GetGame().GetMission().GetOnInputDeviceChanged().Insert(OnInputDeviceChanged);
+		
+		OnInputDeviceChanged(GetGame().GetInput().GetCurrentInputDevice());
+		
+		return layoutRoot;
 	}
 	
 	void ~TutorialsMenu()
@@ -75,6 +76,30 @@ class TutorialsMenu extends UIScriptedMenu
 		#ifdef PLATFORM_CONSOLE
 		UpdateControlsElements();
 		#endif
+	}
+	
+	protected void OnInputDeviceChanged(EInputDeviceType pInputDeviceType)
+	{
+		switch (pInputDeviceType)
+		{
+		case EInputDeviceType.CONTROLLER:
+			#ifdef PLATFORM_CONSOLE
+			UpdateControlsElements();
+			layoutRoot.FindAnyWidget("toolbar_bg").Show(true);
+			layoutRoot.FindAnyWidget("play_panel_root").Show(false);
+			#endif
+		break;
+
+		default:
+			#ifdef PLATFORM_CONSOLE
+			if (GetGame().GetInput().IsEnabledMouseAndKeyboardEvenOnServer())
+			{
+				layoutRoot.FindAnyWidget("toolbar_bg").Show(false);
+				layoutRoot.FindAnyWidget("play_panel_root").Show(true);
+			}
+			#endif
+		break;
+		}
 	}
 	
 	void Back()
@@ -342,15 +367,6 @@ class TutorialsMenu extends UIScriptedMenu
 		}
 		
 		return control_mapping_info;
-	}
-	
-	override void OnShow()
-	{
-		super.OnShow();
-		#ifdef PLATFORM_CONSOLE
-			layoutRoot.FindAnyWidget( "play_panel_root" ).Show( GetGame().GetInput().IsEnabledMouseAndKeyboardEvenOnServer() );
-			layoutRoot.FindAnyWidget( "toolbar_bg" ).Show( !GetGame().GetInput().IsEnabledMouseAndKeyboardEvenOnServer() );
-		#endif
 	}
 	
 	override void Update( float timeslice )

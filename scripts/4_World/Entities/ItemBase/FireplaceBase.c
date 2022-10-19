@@ -197,6 +197,7 @@ class FireplaceBase extends ItemBase
 	typename ATTACHMENT_BARK_BIRCH 		= Bark_Birch;
 	typename ATTACHMENT_PAPER 			= Paper;
 	typename ATTACHMENT_GIFTWRAP		= GiftWrapPaper;
+	typename ATTACHMENT_PUNCHEDCARD		= PunchedCard;
 	//Other
 	typename ATTACHMENT_TRIPOD 			= Tripod;
 	typename ATTACHMENT_COOKINGSTAND	= CookingStand;
@@ -230,20 +231,21 @@ class FireplaceBase extends ItemBase
 	protected void FireplaceBase()
 	{
 		//STATIC: define kindling types
-		if ( !m_FireConsumableTypes )
+		if (!m_FireConsumableTypes)
 		{
-			m_FireConsumableTypes = new ref map<typename, ref FireConsumableType>;
-			m_FireConsumableTypes.Insert( ATTACHMENT_RAGS, 			new FireConsumableType( ATTACHMENT_RAGS, 		14, 	true,	"Rags" ) );
-			m_FireConsumableTypes.Insert( ATTACHMENT_BANDAGE, 		new FireConsumableType( ATTACHMENT_BANDAGE, 	14, 	true,	"MedicalBandage" ) );
-			m_FireConsumableTypes.Insert( ATTACHMENT_BOOK, 			new FireConsumableType( ATTACHMENT_BOOK, 		36, 	true,	"Book" ) );
-			m_FireConsumableTypes.Insert( ATTACHMENT_BARK_OAK, 		new FireConsumableType( ATTACHMENT_BARK_OAK, 	20, 	true,	"OakBark" ) );
-			m_FireConsumableTypes.Insert( ATTACHMENT_BARK_BIRCH, 	new FireConsumableType( ATTACHMENT_BARK_BIRCH, 	14, 	true,	"BirchBark" ) );
-			m_FireConsumableTypes.Insert( ATTACHMENT_PAPER, 		new FireConsumableType( ATTACHMENT_PAPER, 		10, 	true,	"Paper" ) );
-			m_FireConsumableTypes.Insert( ATTACHMENT_GIFTWRAP, 		new FireConsumableType( ATTACHMENT_GIFTWRAP, 	10, 	true,	"GiftWrapPaper" ) );
+			m_FireConsumableTypes = new ref map<typename, ref FireConsumableType>();
+			m_FireConsumableTypes.Insert(ATTACHMENT_RAGS, 			new FireConsumableType(ATTACHMENT_RAGS, 		14, 	true,	"Rags"));
+			m_FireConsumableTypes.Insert(ATTACHMENT_BANDAGE, 		new FireConsumableType(ATTACHMENT_BANDAGE, 		14, 	true,	"MedicalBandage"));
+			m_FireConsumableTypes.Insert(ATTACHMENT_BOOK, 			new FireConsumableType(ATTACHMENT_BOOK, 		36, 	true,	"Book"));
+			m_FireConsumableTypes.Insert(ATTACHMENT_BARK_OAK, 		new FireConsumableType(ATTACHMENT_BARK_OAK, 	20, 	true,	"OakBark"));
+			m_FireConsumableTypes.Insert(ATTACHMENT_BARK_BIRCH, 	new FireConsumableType(ATTACHMENT_BARK_BIRCH, 	14, 	true,	"BirchBark"));
+			m_FireConsumableTypes.Insert(ATTACHMENT_PAPER, 			new FireConsumableType(ATTACHMENT_PAPER, 		10, 	true,	"Paper"));
+			m_FireConsumableTypes.Insert(ATTACHMENT_GIFTWRAP, 		new FireConsumableType(ATTACHMENT_GIFTWRAP, 	10, 	true,	"GiftWrapPaper"));
+			m_FireConsumableTypes.Insert(ATTACHMENT_PUNCHEDCARD,	new FireConsumableType(ATTACHMENT_PUNCHEDCARD, 	10, 	true,	"PunchedCard"));
 			
 			//define fuel types
-			m_FireConsumableTypes.Insert( ATTACHMENT_STICKS, 		new FireConsumableType( ATTACHMENT_STICKS, 		40, 	false,	"WoodenStick" ) );
-			m_FireConsumableTypes.Insert( ATTACHMENT_FIREWOOD, 		new FireConsumableType( ATTACHMENT_FIREWOOD, 	100, 	false,	"Firewood" ) );
+			m_FireConsumableTypes.Insert( ATTACHMENT_STICKS, 		new FireConsumableType( ATTACHMENT_STICKS, 		40, 	false,	"WoodenStick"));
+			m_FireConsumableTypes.Insert( ATTACHMENT_FIREWOOD, 		new FireConsumableType( ATTACHMENT_FIREWOOD, 	100, 	false,	"Firewood"));
 		}
 
 		//calculate total energy
@@ -2295,9 +2297,20 @@ class FireplaceBase extends ItemBase
 			return;
 		}
 
+		//! fireplace cargo only
 		if (!pAttachment)
 		{
-			item.DecreaseHealth(PARAM_BURN_DAMAGE_COEF, false);
+			//! cargo item attachments
+			GameInventory itemInventory = item.GetInventory();
+			if (itemInventory)
+			{
+				for (int i = 0; i < itemInventory.AttachmentCount(); ++i)
+				{
+					itemInventory.GetAttachmentFromIndex(i).AddHealth("", "", -PARAM_BURN_DAMAGE_COEF);
+				}
+			}
+
+			item.AddHealth("", "", -PARAM_BURN_DAMAGE_COEF);
 		}
 		else
 		{
@@ -2574,7 +2587,7 @@ class FireplaceBase extends ItemBase
 	
 	override bool CanSwapEntities(EntityAI otherItem, InventoryLocation otherDestination, InventoryLocation destination)
 	{
-		if (otherDestination.GetParent() == this)
+		if (!otherDestination || otherDestination.GetParent() == this)
 		{
 			return false;
 		}
@@ -2837,7 +2850,6 @@ class FireplaceBase extends ItemBase
 	}
 	
 	
-#ifdef DEVELOPER	
 	//================================================================
 	// DEBUG
 	//================================================================
@@ -2877,5 +2889,4 @@ class FireplaceBase extends ItemBase
 				break;
 		}
 	}
-#endif
 }

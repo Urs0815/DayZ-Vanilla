@@ -192,7 +192,7 @@ class AttachmentCategoriesContainer: CollapsibleContainer
 		return super.CanDisplayAnyCategory();
 	}
 	
-	/*override void UpdateRadialIcon()
+	override void UpdateRadialIcon()
 	{
 		if ( m_SlotIcon )
 		{
@@ -206,7 +206,7 @@ class AttachmentCategoriesContainer: CollapsibleContainer
 				m_SlotIcon.GetRadialIconPanel().Show( false );
 			}
 		}
-	}*/
+	}
 	
 	string GetAttachmentCategory( string config_path_attachment_categories, int i )
 	{
@@ -245,39 +245,30 @@ class AttachmentCategoriesContainer: CollapsibleContainer
 			{
 				c.Open();
 			}
-			
 		}
 	}
 	
-	void ExpandCollapseContainer()
+	override void ExpandCollapseContainer()
 	{
-		if( m_OpenedContainers.Count() > m_ActiveIndex )
+		if (m_OpenedContainers.Count() > m_ActiveIndex)
 		{
-			AttachmentCategoriesSlotsContainer acsc = AttachmentCategoriesSlotsContainer.Cast( m_OpenedContainers.Get( m_ActiveIndex ) );
-			if( acsc )
+			//c - container where selected icon is part of
+			Container c = Container.Cast(m_OpenedContainers.Get( m_ActiveIndex ));
+			//cc - container connected to selected icon (this container will be close/open)
+			ClosableContainer cc;
+			//icon - selected icon
+			SlotsIcon icon = c.GetFocusedSlotsIcon();
+			
+			if (icon)
 			{
-				int index = acsc.GetParentID() * ITEMS_IN_ROW + acsc.GetFocusedID() + m_SlotsCount;
+				cc = ClosableContainer.Cast(icon.GetContainer());
+			}
+			
+			if (cc)
+			{
 				
-				ClosableContainer c = ClosableContainer.Cast( m_Body.Get( index ) );
-				
-				if( c )
-				{
-					string icon_name_open = "RadialIcon" + ( acsc.GetFocusedID() );
-					string icon_name_closed = "RadialIconClosed" + ( acsc.GetFocusedID() );
-					if( c.IsOpened() )
-					{
-						c.Close();
-						acsc.GetRootWidget().FindAnyWidget( icon_name_open ).Show( false );
-						acsc.GetRootWidget().FindAnyWidget( icon_name_closed ).Show( true );
-					}
-					else
-					{
-						c.Open();
-						acsc.GetRootWidget().FindAnyWidget( icon_name_closed ).Show( false );
-						acsc.GetRootWidget().FindAnyWidget( icon_name_open ).Show( true );
-					}
-					RecomputeOpenedContainers();
-				}
+				cc.Toggle();
+				RecomputeOpenedContainers();
 			}
 		}
 	}
@@ -357,12 +348,14 @@ class AttachmentCategoriesContainer: CollapsibleContainer
 				ar = new AttachmentCategoriesRow( this, -1 );
 				ar.Init(attachments_categories_count, i, attachment_category, config_path_attachment_categories, m_Entity, m_Body.Count() );
 
-				Insert(ar);
+				//Insert(ar);
 				ar.SetSlotIcon(icon);
-				icon.SetContainer(ar);
+				//icon.SetContainer(ar);
 				
 				icon.GetRadialIconPanel().Show( true );
-				ar.Open();
+				ar.Open();		
+				icon.SetContainer(ar);
+				Insert(ar);
 			}
 		}
 		
@@ -384,19 +377,7 @@ class AttachmentCategoriesContainer: CollapsibleContainer
 				iwc.Get( 0 ).GetRootWidget().ClearFlags( WidgetFlags.DRAGGABLE );
 				iwc.SetEntity( m_Entity, 0, false );
 				iwc.SetSlotIcon( icon );
-				
-				if ( ItemManager.GetInstance().GetDefaultOpenState( m_Entity.GetType()) )
-				{
-					icon.GetRadialIconClosed().Show( false );
-					icon.GetRadialIcon().Show( true );
-					iwc.Open();
-				}
-				else
-				{
-					iwc.Close();
-					icon.GetRadialIconClosed().Show( true );
-					icon.GetRadialIcon().Show( false );
-				}
+				iwc.Open();
 				
 				icon.SetContainer(iwc);
 				m_CargoSlotsIcon = icon;
@@ -458,9 +439,112 @@ class AttachmentCategoriesContainer: CollapsibleContainer
 		ColorManager.GetInstance().SetColor( w, ColorManager.RED_COLOR );
 	}
 	
-	override void CollapseButtonOnMouseButtonDown(Widget w)
+	/*override void CollapseButtonOnMouseButtonDown(Widget w)
 	{
 		super.CollapseButtonOnMouseButtonDown(w);
 		RecomputeOpenedContainers();
+	}*/
+	override void CollapseButtonOnMouseButtonDown( Widget w )
+	{
+		if( !m_Hidden )
+		{
+			for (int i = 1; i < m_Body.Count(); i++)
+			{
+				m_Body.Get( i ).OnHide();
+				Container c = Container.Cast(m_Body.Get(i));
+				if (c)
+				{
+					c.Close();
+				}
+			}
+
+			//m_Hidden = true;
+			OnHide();
+		}
+		else
+		{
+			//m_Hidden = false;
+			OnShow();
+		}
+		m_Closed = m_Hidden;
+		
+		SetCollapsibleHeaderArrowState(m_Hidden);
+		if (m_CollapsibleHeader)
+		{
+			m_CollapsibleHeader.SetHeaderVisible(true);
+		}
+
+		UpdateCollapseButtons();
+		RecomputeOpenedContainers();
 	}
+	
+	override void Open()
+	{
+		if( IsDisplayable() )
+		{
+			super.Open();
+			//ItemManager.GetInstance().SetDefaultOpenState( m_Entity.GetType(), true );
+			SetOpenForSlotIcon(true);
+			OnShow();
+			//m_Parent.m_Parent.Refresh();
+		}
+	}
+
+	override void Close()
+	{
+		//ItemManager.GetInstance().SetDefaultOpenState( m_Entity.GetType(), false );
+		super.Close();
+		
+		SlotsIcon icon = null;
+		if (m_CargoSlotsIcon && m_CargoSlotsIcon.GetObject())
+		{
+			icon = m_CargoSlotsIcon;
+		}
+		else if (m_SlotIcon && m_SlotIcon.GetObject())
+		{
+			icon = m_SlotIcon;
+		}
+		/*else
+		{
+			Print("Dbg | no object in icon here!");
+		}
+		*/
+		
+		SetOpenForSlotIcon(false,icon);
+		OnHide();
+	}
+	
+	override void OnHide()
+	{
+		if (m_CollapsibleHeader)
+		{
+			bool b1 = !m_SlotIcon && !m_CargoSlotsIcon;
+			bool b2 = (!m_SlotIcon || !m_SlotIcon.IsVisible()) && m_CargoSlotsIcon && m_CargoSlotsIcon.IsVisible();
+			m_CollapsibleHeader.SetHeaderVisible(b1 || b2);
+		}
+		super.OnHide();
+	}
+	
+	/*override void Refresh()
+	{
+		super.Refresh();
+		
+		if (m_CollapsibleHeader)
+		{
+			bool show = false;
+			Container cont;
+			int count = m_Body.Count();
+			for ( int i = 0; i < count; i++ )
+			{
+				cont = Container.Cast(m_Body.Get( i ));
+				if (cont && cont.IsOpened())
+				{
+					show = true;
+					break;
+				}
+			}
+			
+			m_CollapsibleHeader.SetArrowButtonOpened(!show);
+		}
+	}*/
 }

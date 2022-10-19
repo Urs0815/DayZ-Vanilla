@@ -31,7 +31,7 @@ class ItemBase extends InventoryItem
 	int		m_VarQuantityMax;
 	int		m_Count;
 	float	m_VarStackMax;
-	float	m_StoreLoadedQuantity = -1;
+	float	m_StoreLoadedQuantity = float.LOWEST;
 	// Temperature
 	float 	m_VarTemperature;
 	float 	m_VarTemperatureInit;
@@ -43,10 +43,14 @@ class ItemBase extends InventoryItem
 	float 	m_VarWetMin;
 	float 	m_VarWetMax;
 	// Cleanness
-	int	m_Cleanness;
-	int m_CleannessInit;
-	int m_CleannessMin;
-	int m_CleannessMax;
+	int		m_Cleanness;
+	int		m_CleannessInit;
+	int		m_CleannessMin;
+	int		m_CleannessMax;
+	// impact sounds
+	bool	m_WantPlayImpactSound;
+	float	m_ImpactSpeed;
+	int		m_ImpactSoundSurfaceHash;
 	//
 	float	m_HeatIsolation;
 	float 	m_ItemModelLength;
@@ -201,6 +205,8 @@ class ItemBase extends InventoryItem
 		m_CleannessMin = ConfigGetInt("varCleannessMin");
 		m_CleannessMax = ConfigGetInt("varCleannessMax");
 		
+		m_WantPlayImpactSound = false;
+		m_ImpactSpeed = 0.0;
 		
 		m_VarWetInit = ConfigGetFloat("varWetInit");
 		m_VarWet = m_VarWetInit;
@@ -238,6 +244,10 @@ class ItemBase extends InventoryItem
 		RegisterNetSyncVariableFloat("m_VarWet", GetWetMin(), GetWetMax(), 2 );
 		RegisterNetSyncVariableInt("m_VarLiquidType");
 		RegisterNetSyncVariableInt("m_Cleanness",0,1);
+		
+		RegisterNetSyncVariableBoolSignal("m_WantPlayImpactSound");
+		RegisterNetSyncVariableFloat("m_ImpactSpeed");
+		RegisterNetSyncVariableInt("m_ImpactSoundSurfaceHash");
 		
 		RegisterNetSyncVariableInt("m_ColorComponentR", 0, 255);
 		RegisterNetSyncVariableInt("m_ColorComponentG", 0, 255);
@@ -318,7 +328,15 @@ class ItemBase extends InventoryItem
 		{
 			Debug.ActionLog(action.ToString() + " -> " + ai, this.ToString() , "n/a", "Add action" );
 		}
-		action_array.Insert(action);
+		
+		if (action_array.Find(action) != -1)
+		{
+			Debug.Log("Action " + action.Type() + " already added to " + this + ", skipping!");
+		}
+		else
+		{
+			action_array.Insert(action);
+		}
 	}
 	
 	void RemoveAction(typename actionName)
@@ -333,6 +351,10 @@ class ItemBase extends InventoryItem
 			action_array.RemoveItem(action);
 		}
 	}
+	
+	void OnItemInHandsPlayerSwimStart(PlayerBase player);
+	
+	ScriptedLightBase GetLight();
 	
 	// Loads muzzle flash particle configuration from config and saves it to a map for faster access
 	void LoadParticleConfigOnFire(int id)
@@ -723,16 +745,16 @@ class ItemBase extends InventoryItem
 	
 	void SetCEBasedQuantity()
 	{
-		if( GetEconomyProfile() )
+		if ( GetEconomyProfile() )
 		{
 			float q_min = GetEconomyProfile().GetQuantityMin();
 			float q_max = GetEconomyProfile().GetQuantityMax();
-			if( q_max > 0 )
+			if ( q_max > 0 )
 			{
 				float quantity_randomized = Math.RandomFloatInclusive(q_min, q_max);
 				//PrintString("<==> Normalized quantity for item: "+ GetType()+", qmin:"+q_min.ToString()+"; qmax:"+q_max.ToString()+";quantity:" +quantity_randomized.ToString());
 					SetQuantityNormalized(quantity_randomized, false);
-				}
+			}
 		}
 	}
 	
@@ -786,10 +808,7 @@ class ItemBase extends InventoryItem
 				
 				if ( IsCombineAll(item2, use_stack_max) )
 				{
-					InventoryLocation il = new InventoryLocation;
-					item2.GetInventory().GetCurrentInventoryLocation(il);
-					GetGame().GetPlayer().GetInventory().AddInventoryReservationEx(item2,il,GameInventory.c_InventoryReservationTimeoutShortMS);
-					//entity2.GetInventory().GetCurrentInventoryLocation
+					GetGame().GetPlayer().GetInventory().AddInventoryReservationEx(item2,null,GameInventory.c_InventoryReservationTimeoutShortMS);
 				}
 			}
 		}
@@ -1068,6 +1087,21 @@ class ItemBase extends InventoryItem
 	{
 		super.EOnContact(other, extra);
 		
+		float impactSpeed = ProcessImpactSound(other, extra, m_ConfigWeight, m_ImpactSoundSurfaceHash);
+		if (impactSpeed > 0.0)
+		{
+			m_ImpactSpeed  = impactSpeed;
+			if (GetGame().IsClient() || !GetGame().IsMultiplayer())
+			{
+				PlayImpactSound(m_ConfigWeight, m_ImpactSpeed, m_ImpactSoundSurfaceHash);
+			}
+			else
+			{
+				m_WantPlayImpactSound = true;
+				SetSynchDirty();
+			}
+		}
+				
 /*		if (m_ItemBeingDroppedPhys)
 		{
 			Print("ItemBase | EOnContact");
@@ -1216,35 +1250,28 @@ class ItemBase extends InventoryItem
 				
 				player.RemoveQuickBarEntityShortcut(this);
 			}
-			
 		}
 	}
 	// -------------------------------------------------------------------------------
-	override void EEKilled( Object killer)
+	override void EEKilled(Object killer)
 	{
-		super.EEKilled( killer );
-		
-		//if item is able to explode in fire
-		if ( CanExplodeInFire() )
+		super.EEKilled(killer);
+
+		//! item is able to explode in fire
+		if (killer && killer.IsFireplace() && CanExplodeInFire())
 		{
-			float min_temp_to_explode	= 100;		//min temperature for item to explode
-			
-			if ( GetTemperature() >= min_temp_to_explode )		//TODO ? add check for parent -> fireplace
+			if (GetTemperature() >= GameConstants.ITEM_TEMPERATURE_TO_EXPLODE_MIN)
 			{
-				if ( IsMagazine() )
+				if (IsMagazine())
 				{
-					Magazine magazine = Magazine.Cast( this );					
-					
-					//explode ammo
-					if ( magazine.GetAmmoCount() > 0 )
+					if (Magazine.Cast(this).GetAmmoCount() > 0)
 					{
 						ExplodeAmmo();
 					}
 				}
 				else
 				{
-					//explode item
-					Explode(DT_EXPLOSION);
+					Explode(DamageType.EXPLOSION);
 				}
 			}
 		}
@@ -1819,14 +1846,30 @@ class ItemBase extends InventoryItem
 	{
 		OnAttachmentQuantityChanged(item);
 	}
-	
-	
+
 	override void EEHealthLevelChanged(int oldLevel, int newLevel, string zone)
 	{
 		super.EEHealthLevelChanged(oldLevel,newLevel,zone);
 		
 		if (GetGame().IsServer())
 		{
+			if (newLevel == GameConstants.STATE_RUINED)
+			{
+				//! drops content of container when ruined in fireplace
+				EntityAI parent = GetHierarchyParent();
+				if (parent && parent.IsFireplace())
+				{
+					CargoBase cargo = GetInventory().GetCargo();
+					if (cargo)
+					{
+						for (int i = 0; i < cargo.GetItemCount(); ++i)
+						{
+							parent.GetInventory().TakeEntityToInventory(InventoryMode.SERVER, FindInventoryLocationType.CARGO, cargo.GetItem(i));
+						}
+					}
+				}
+			}
+			
 			if (IsResultOfSplit())
 			{
 				// reset the splitting result flag, return to normal item behavior
@@ -1958,6 +2001,11 @@ class ItemBase extends InventoryItem
 
 		if ( reservation_check && (GetInventory().HasInventoryReservation( this, null ) || other_item.GetInventory().HasInventoryReservation( other_item, null )))
 			return false;
+		
+		int slotID;
+		string slotName;
+		if (GetInventory().GetCurrentAttachmentSlotInfo(slotID,slotName) && GetHierarchyParent().GetInventory().GetSlotLock(slotID))
+			return false;
 
 		return true;
 	}
@@ -2069,7 +2117,7 @@ class ItemBase extends InventoryItem
 		//health
 		outputList.Insert(new TSelectableActionInfo(SAT_DEBUG_ACTION, EActions.ADD_HEALTH, "Health +20%"));
 		outputList.Insert(new TSelectableActionInfo(SAT_DEBUG_ACTION, EActions.REMOVE_HEALTH, "Health -20%"));
-
+		outputList.Insert(new TSelectableActionInfo(SAT_DEBUG_ACTION, EActions.DESTROY_HEALTH, "Health 0"));
 		//temperature
 		outputList.Insert(new TSelectableActionInfo(SAT_DEBUG_ACTION, EActions.ADD_TEMPERATURE, "Temperature +20"));
 		outputList.Insert(new TSelectableActionInfo(SAT_DEBUG_ACTION, EActions.REMOVE_TEMPERATURE, "Temperature -20"));
@@ -2243,24 +2291,17 @@ class ItemBase extends InventoryItem
 				Print(GetWeight());
 			}
 	
-			/*
-			if( action_id == EActions.INJECT_STRING_TIGER ) 
-			{
-				SetItemVariableString("varNote", "The tiger (Panthera tigris) is the largest cat species, most recognisable for their pattern of dark vertical stripes on reddish-orange fur with a lighter underside. The largest tigers have reached a total body length of up to 3.38 m (11.1 ft) over curves and have weighed up to 388.7 kg (857 lb) in the wild. The species is classified in the genus Panthera with the lion, leopard, jaguar and snow leopard. Tigers are apex predators, primarily preying on ungulates such as deer and bovids. They are territorial and generally solitary but social animals, often requiring large contiguous areas of habitat that support their prey requirements. This, coupled with the fact that they are indigenous to some of the more densely populated places on Earth, has caused significant conflicts with humans.");
-			}
-			if( action_id == EActions.INJECT_STRING_RABBIT ) 
-			{
-				SetItemVariableString("varNote", "Rabbits are small mammals in the family Leporidae of the order Lagomorpha, found in several parts of the world. There are eight different genera in the family classified as rabbits, including the European rabbit (Oryctolagus cuniculus), cottontail rabbits (genus Sylvilagus; 13 species), and the Amami rabbit (Pentalagus furnessi, an endangered species on Amami ?shima, Japan). There are many other species of rabbit, and these, along with pikas and hares, make up the order Lagomorpha. The male is called a buck and the female is a doe; a young rabbit is a kitten or kit.");
-			}
-			*/
-	
 			else if ( action_id == EActions.ADD_HEALTH ) 
 			{
-				this.AddHealth("","",GetMaxHealth("","Health")/5);
+				AddHealth("","",GetMaxHealth("","Health")/5);
 			}
 			else if ( action_id == EActions.REMOVE_HEALTH ) 
 			{
-				this.AddHealth("","",-GetMaxHealth("","Health")/5);
+				AddHealth("","",-GetMaxHealth("","Health")/5);
+			}
+			else if ( action_id == EActions.DESTROY_HEALTH ) 
+			{
+				SetHealth01("","",0);
 			}
 			
 			else if ( action_id == EActions.SPIN ) //SetMaxQuantity
@@ -3115,8 +3156,12 @@ class ItemBase extends InventoryItem
 			PerformDamageSystemReinit();
 		}
 
-		if ( m_StoreLoadedQuantity != -1 )
+		if ( m_StoreLoadedQuantity != float.LOWEST )
+		{
 			SetQuantity(m_StoreLoadedQuantity);
+			m_StoreLoadedQuantity = float.LOWEST;//IMPORTANT to do this !! we use 'm_StoreLoadedQuantity' inside SetQuantity to distinguish between initial quantity setting and the consequent(normal gameplay) calls
+		}
+		UpdateWeight();
 	}
 	
 	override void EEOnAfterLoad()
@@ -3167,6 +3212,12 @@ class ItemBase extends InventoryItem
 			#endif
 		}
 		
+		if (!dBodyIsDynamic(this) && m_WantPlayImpactSound)
+		{
+			PlayImpactSound(m_ConfigWeight, m_ImpactSpeed, m_ImpactSoundSurfaceHash);
+			m_WantPlayImpactSound = false;
+		}
+		
 		super.OnVariablesSynchronized();
 	}
 	
@@ -3177,7 +3228,6 @@ class ItemBase extends InventoryItem
 	//! Set item quantity[related to varQuantity... config entry], destroy_config = true > if the quantity reaches varQuantityMin or lower and the item config contains the varQuantityDestroyOnMin = true entry, the item gets destroyed. destroy_forced = true means item gets destroyed when quantity reaches varQuantityMin or lower regardless of config setting, returns true if the item gets deleted
 	bool SetQuantity(float value, bool destroy_config = true, bool destroy_forced = false, bool allow_client = false, bool clamp_to_stack_max = true)
 	{
-		float delta = 0;
 		if ( !IsServerCheck(allow_client) )
 			return false;
 		
@@ -3217,31 +3267,21 @@ class ItemBase extends InventoryItem
 			RemoveAllAgents();//we remove all agents when we got to the min value, but the item is not getting deleted
 		}
 		
-
-		/*
-		if(QUANTITY_DEBUG_REMOVE_ME)
-		{
-			PrintString("======================== SERVER ========================");
-			int low, high;
-			GetNetworkID(low, high);
-			PrintString("entity:"+low.ToString()+"| high:"+high.ToString());
-			PrintString("setting quantity, current:"+m_VarQuantity.ToString());
-			PrintString("setting quantity, new:"+value.ToString());
-		}*/
+		float delta = m_VarQuantity;
+		m_VarQuantity = Math.Clamp(value, min, max);
 		
-		delta = m_VarQuantity;
-		//if(clamp_to_stack_max)
-		//{
-			m_VarQuantity = Math.Clamp(value, min, max);
-		//}
-		//else
-		//{
-		//	m_VarQuantity = value;
-		//}
-		delta = m_VarQuantity - delta;
+		if ( m_StoreLoadedQuantity == float.LOWEST )//any other value means we are setting quantity from storage
+		{
+			delta = m_VarQuantity - delta;
+			
+			if (delta)
+			{
+				OnQuantityChanged(delta);
+			}
+		}
+		
 		SetVariableMask(VARIABLE_QUANTITY);
-		if(delta != 0)
-			OnQuantityChanged(delta);
+		
 		return false;
 	}
 
@@ -4687,6 +4727,17 @@ class ItemBase extends InventoryItem
 	{
 		return false;
 	}
+	
+	//! Remotely controlled devices helpers
+	RemotelyActivatedItemBehaviour GetRemotelyActivatedItemBehaviour();
+	
+	#ifdef DEVELOPER
+	override void SetDebugItem()
+	{
+		super.SetDebugItem();
+		_itemBase = this;
+	}
+	#endif
 }
 
 EntityAI SpawnItemOnLocation (string object_name, notnull InventoryLocation loc, bool full_quantity)
@@ -4728,3 +4779,7 @@ void SetupSpawnedItem (ItemBase item, float health, float quantity)
 		}
 	}
 }
+
+#ifdef DEVELOPER
+ItemBase _itemBase;//watched item goes here(LCTRL+RMB->Watch)
+#endif

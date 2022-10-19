@@ -656,6 +656,29 @@ class Math
 	*/
 
 	proto static float SmoothCD(float val, float target, inout float velocity[], float smoothTime, float maxVelocity, float dt);
+	
+	//! occurences values above '12' will cause Factorial to overflow int.
+	static float Poisson(float mean, int occurences)
+	{
+		return Pow(mean, occurences) * Pow(EULER,-mean) / Factorial(occurences);
+	}
+	
+	//! values above '12' will cause int overflow
+	static int Factorial(int val)
+	{
+		if (val > 12)
+		{
+			ErrorEx("Values above '12' cause int overflow! Returning '1'");
+			return 1;
+		}
+		
+		int res = 1;
+		while (val > 1)
+		{
+			res *= val--;
+		}
+		return res;
+	}
 };
 
 //@}

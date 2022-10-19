@@ -121,6 +121,8 @@ class FireworksLauncherClientEvent : FireworksLauncherClientEventBase
 		m_ParticleShot.SetYawPitchRoll(Vector(Math.RandomFloatInclusive(0,360),GetShotDispersionAngle(),0));
 		
 		m_ParticleAfterBurnEnd = ParticleManager.GetInstance().PlayInWorld(ParticleList.FIREWORKS_AFTERBURN_END, GetShotPos());
+		if (m_ParticleAfterBurnEnd)
+			m_ParticleAfterBurnEnd.SetOwner(this);
 		m_ShotDir = m_ParticleShot.GetDirectionUp();
 		
 		#ifdef DEVELOPER
@@ -502,6 +504,8 @@ class FireworksLauncher: FireworksBase
 	protected void OnFuseIgnitedClient()
 	{
 		m_ParticleFuse = ParticleManager.GetInstance().PlayInWorld(ParticleList.FIREWORKS_FUSE, GetPosition() + "0 0.15 0");
+		if (m_ParticleFuse)
+			m_ParticleFuse.SetOwner(this);
 		PlaySoundSet( m_FuseSoundStart, "FireworksLauncher_Ignition_Start_SoundSet", 0, 0 );
 		vector fuseStart;
 		vector fuseEnd;
@@ -522,8 +526,7 @@ class FireworksLauncher: FireworksBase
 		vector ori = fuseDir.VectorToAngles();
 		m_ParticleFuse.SetOrientation(ori);
 		m_ParticleFuse.SetPosition(fuseStart);
-		
-		
+
 		PlaySoundSetLoop( m_FuseSound, GetFuseSoundSet(), 0, 0 );
 	}
 	

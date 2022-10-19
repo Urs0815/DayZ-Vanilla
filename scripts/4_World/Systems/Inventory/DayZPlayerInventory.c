@@ -146,6 +146,7 @@ class DayZPlayerInventory : HumanInventoryWithFSM
 	protected ref HandAnimatedMovingToAtt m_MovingTo;
 	protected ref HandAnimatedSwapping m_Swapping;
 	protected ref HandAnimatedForceSwapping m_FSwapping;
+	protected ref HandAnimatedForceSwapping_Inst m_FSwappingInst;
 
 	void DayZPlayerInventory () 
 	{
@@ -163,6 +164,7 @@ class DayZPlayerInventory : HumanInventoryWithFSM
 		m_MovingTo = new HandAnimatedMovingToAtt(GetManOwner(), null);
 		m_Swapping = new HandAnimatedSwapping(GetManOwner(), null);
 		m_FSwapping = new HandAnimatedForceSwapping(GetManOwner(), null);
+		m_FSwappingInst = new HandAnimatedForceSwapping_Inst(GetManOwner(), null);
 
 		// events
 		HandEventBase _fin_ = new HandEventHumanCommandActionFinished;
@@ -175,7 +177,8 @@ class DayZPlayerInventory : HumanInventoryWithFSM
 		HandEventBase __F__ = new HandEventForceSwap;
 
 		// setup transitions
-		m_FSM.AddTransition(new HandTransition( m_Empty   , __T__,    m_Taking, NULL, new HandSelectAnimationOfTakeToHandsEvent(GetManOwner())));
+		m_FSM.AddTransition(new HandTransition( m_Empty   , __T__,  m_Taking, NULL, new HandSelectAnimationOfTakeToHandsEvent(GetManOwner())));
+		m_FSM.AddTransition(new HandTransition( m_Taking  , _fin_,  m_Empty, null, new HandGuardNot(new HandGuardHasItemInHands(GetManOwner()))));
 		m_FSM.AddTransition(new HandTransition( m_Taking  , _fin_,  m_Equipped, null, null));
 		m_FSM.AddTransition(new HandTransition( m_Taking  , __Xd_,  m_Empty, new HandActionDestroyed, new HandGuardHasDestroyedItemInHands(GetManOwner())));
 			m_Taking.AddTransition(new HandTransition(  m_Taking.m_Hide, _abt_,   m_Empty));
@@ -183,20 +186,31 @@ class DayZPlayerInventory : HumanInventoryWithFSM
 
 		m_FSM.AddTransition(new HandTransition( m_Equipped, __M__,  m_MovingTo, NULL, new HandSelectAnimationOfMoveFromHandsEvent(GetManOwner())));
 		m_FSM.AddTransition(new HandTransition( m_MovingTo, __Xd_,  m_Empty, new HandActionDestroyed, new HandGuardHasDestroyedItemInHands(GetManOwner())));
+		m_FSM.AddTransition(new HandTransition( m_MovingTo, _fin_,  m_Equipped, null, new HandGuardHasItemInHands(GetManOwner())));
 		m_FSM.AddTransition(new HandTransition( m_MovingTo, _fin_,  m_Empty   , null, null));
 			m_MovingTo.AddTransition(new HandTransition(  m_MovingTo.m_Hide, _abt_,   m_Equipped));
 			m_MovingTo.AddTransition(new HandTransition(  m_MovingTo.m_Show, _abt_,   m_Empty));
 
 		m_FSM.AddTransition(new HandTransition( m_Equipped, __W__,  m_Swapping, NULL, new HandSelectAnimationOfSwapInHandsEvent(GetManOwner())));
 		m_FSM.AddTransition(new HandTransition( m_Swapping, __Xd_,  m_Empty, new HandActionDestroyed, new HandGuardHasDestroyedItemInHands(GetManOwner())));
+		m_FSM.AddTransition(new HandTransition( m_Swapping, _fin_,  m_Empty, null, new HandGuardNot(new HandGuardHasItemInHands(GetManOwner()))));
 		m_FSM.AddTransition(new HandTransition( m_Swapping, _fin_,  m_Equipped, null, null));
 		m_FSM.AddTransition(new HandTransition( m_Swapping, _abt_,  m_Equipped, null, null));
+		
+		m_FSM.AddTransition(new HandTransition( m_Equipped, __F__, m_FSwappingInst, NULL, new HandGuardAnd( new HandSelectAnimationOfForceSwapInHandsEvent(GetManOwner()), new HandGuardInstantForceSwap(GetManOwner()) ) ));
+		m_FSM.AddTransition(new HandTransition(m_FSwappingInst, _fin_,  m_Equipped, null, new HandGuardHasItemInHands(GetManOwner())));
+		m_FSM.AddTransition(new HandTransition(m_FSwappingInst, _fin_,  m_Empty, null, null));
+		m_FSM.AddTransition(new HandTransition(m_FSwappingInst, __Xd_,  m_Empty, new HandActionDestroyed, new HandGuardHasDestroyedItemInHands(GetManOwner())));
+		m_FSM.AddTransition(new HandTransition( m_FSwappingInst, _abt_,  m_Equipped, null, null));
 
 		m_FSM.AddTransition(new HandTransition( m_Equipped, __F__, m_FSwapping, NULL, new HandSelectAnimationOfForceSwapInHandsEvent(GetManOwner())));
-		m_FSM.AddTransition(new HandTransition(m_FSwapping, _fin_,  m_Equipped, null, null));
-		m_FSM.AddTransition(new HandTransition(m_FSwapping, _abt_,  m_Equipped, null, null));
+		m_FSM.AddTransition(new HandTransition(m_FSwapping, _fin_,  m_Equipped, null, new HandGuardHasItemInHands(GetManOwner())));
+		m_FSM.AddTransition(new HandTransition(m_FSwapping, _fin_,  m_Empty, null, null));
 		m_FSM.AddTransition(new HandTransition(m_FSwapping, __Xd_,  m_Empty, new HandActionDestroyed, new HandGuardHasDestroyedItemInHands(GetManOwner())));
-
+			m_FSwapping.AddTransition(new HandTransition(  m_FSwapping.m_Start, _abt_,   m_Equipped));
+			m_FSwapping.AddTransition(new HandTransition(  m_FSwapping.m_Hide, _abt_,   m_Empty));
+			m_FSwapping.AddTransition(new HandTransition(  m_FSwapping.m_Show, _abt_,   m_Equipped));
+		
 		super.Init(); // initialize ordinary human fsm (no anims)
 	}
 	
@@ -672,7 +686,7 @@ class DayZPlayerInventory : HumanInventoryWithFSM
 				}
 				#endif
 				
-				if (!GameInventory.LocationCanMoveEntity(src, dst))
+				if (!GameInventory.LocationCanMoveEntitySyncCheck(src, dst))
 				{
 					#ifdef DEVELOPER
 					DumpInventoryDebug();
@@ -1276,9 +1290,20 @@ class DayZPlayerInventory : HumanInventoryWithFSM
 					}
 					#endif
 				
-				
-					InventoryInputUserData.SendInputUserDataMove(InventoryCommandType.SYNC_MOVE, deferred_take_to_dst.m_src, deferred_take_to_dst.m_dst);
-					LocationSyncMoveEntity(deferred_take_to_dst.m_src, deferred_take_to_dst.m_dst);
+					if (LocationCanMoveEntity(deferred_take_to_dst.m_src,deferred_take_to_dst.m_dst))
+					{
+						InventoryInputUserData.SendInputUserDataMove(InventoryCommandType.SYNC_MOVE, deferred_take_to_dst.m_src, deferred_take_to_dst.m_dst);
+						LocationSyncMoveEntity(deferred_take_to_dst.m_src, deferred_take_to_dst.m_dst);
+					}
+					else
+					{
+						#ifdef DEVELOPER
+						if ( LogManager.IsInventoryMoveLogEnable() )
+						{
+							Debug.InventoryMoveLog("Can not move entity (PREDICTIVE) STS = " + GetDayZPlayerOwner().GetSimulationTimeStamp() + " item = " + deferred_take_to_dst.m_dst.GetItem() + " dst=" + InventoryLocation.DumpToStringNullSafe(deferred_take_to_dst.m_dst), "n/a" , "n/a", "HandleTakeToDst", GetDayZPlayerOwner().ToString() );	
+						}
+						#endif
+					}
 					break;
 				case InventoryMode.JUNCTURE:
 					#ifdef DEVELOPER
@@ -1287,10 +1312,23 @@ class DayZPlayerInventory : HumanInventoryWithFSM
 						Debug.InventoryHFSMLog("JUNCTURE ", "n/a" , "n/a", "HandleTakeToDst", GetDayZPlayerOwner().ToString() );
 					}
 					#endif
-					DayZPlayer player = GetGame().GetPlayer();
-					player.GetHumanInventory().AddInventoryReservationEx(deferred_take_to_dst.m_dst.GetItem(), deferred_take_to_dst.m_dst, GameInventory.c_InventoryReservationTimeoutShortMS);
-					EnableMovableOverride(deferred_take_to_dst.m_dst.GetItem());	
-					InventoryInputUserData.SendInputUserDataMove(InventoryCommandType.SYNC_MOVE, deferred_take_to_dst.m_src, deferred_take_to_dst.m_dst);
+				
+					if (LocationCanMoveEntity(deferred_take_to_dst.m_src,deferred_take_to_dst.m_dst))
+					{
+						DayZPlayer player = GetGame().GetPlayer();
+						player.GetHumanInventory().AddInventoryReservationEx(deferred_take_to_dst.m_dst.GetItem(), deferred_take_to_dst.m_dst, GameInventory.c_InventoryReservationTimeoutShortMS);
+						EnableMovableOverride(deferred_take_to_dst.m_dst.GetItem());	
+						InventoryInputUserData.SendInputUserDataMove(InventoryCommandType.SYNC_MOVE, deferred_take_to_dst.m_src, deferred_take_to_dst.m_dst);
+					}
+					else
+					{
+						#ifdef DEVELOPER
+						if ( LogManager.IsInventoryMoveLogEnable() )
+						{
+							Debug.InventoryMoveLog("Can not move entity (JUNCTURE) STS = " + GetDayZPlayerOwner().GetSimulationTimeStamp() + " item = " + deferred_take_to_dst.m_dst.GetItem() + " dst=" + InventoryLocation.DumpToStringNullSafe(deferred_take_to_dst.m_dst), "n/a" , "n/a", "HandleTakeToDst", GetDayZPlayerOwner().ToString() );	
+						}
+						#endif
+					}
 					break;
 				case InventoryMode.LOCAL:
 					#ifdef DEVELOPER
@@ -1366,17 +1404,41 @@ class DayZPlayerInventory : HumanInventoryWithFSM
 				switch (deferred_swap_entities.m_mode)
 				{
 					case InventoryMode.PREDICTIVE:
-						InventoryInputUserData.SendInputUserDataSwap(src1, src2, deferred_swap_entities.m_dst1, deferred_swap_entities.m_dst2);
-						LocationSwap(src1, src2, deferred_swap_entities.m_dst1, deferred_swap_entities.m_dst2);
+						if (CanSwapEntitiesEx(deferred_swap_entities.m_dst1.GetItem(),deferred_swap_entities.m_dst2.GetItem()) )
+						{
+							InventoryInputUserData.SendInputUserDataSwap(src1, src2, deferred_swap_entities.m_dst1, deferred_swap_entities.m_dst2);
+							LocationSwap(src1, src2, deferred_swap_entities.m_dst1, deferred_swap_entities.m_dst2);
+						}
+						else
+						{
+							#ifdef DEVELOPER
+							if ( LogManager.IsInventoryMoveLogEnable() )
+							{
+								Debug.InventoryMoveLog("Can not swap (PREDICTIVE) STS = " + GetDayZPlayerOwner().GetSimulationTimeStamp() + " item1 = " + deferred_swap_entities.m_dst1.GetItem() + " item2 = " + deferred_swap_entities.m_dst2.GetItem() + " dst=" + InventoryLocation.DumpToStringNullSafe(deferred_swap_entities.m_dst2), "n/a" , "n/a", "ForceSwapEntities", GetDayZPlayerOwner().ToString() );	
+							}
+							#endif
+						}
 						break;
 			
 					case InventoryMode.JUNCTURE:
-						DayZPlayer player = GetGame().GetPlayer();
-						player.GetHumanInventory().AddInventoryReservationEx(deferred_swap_entities.m_dst1.GetItem(), deferred_swap_entities.m_dst1, GameInventory.c_InventoryReservationTimeoutShortMS);
-						player.GetHumanInventory().AddInventoryReservationEx(deferred_swap_entities.m_dst2.GetItem(), deferred_swap_entities.m_dst2, GameInventory.c_InventoryReservationTimeoutShortMS);
-						EnableMovableOverride(deferred_swap_entities.m_dst1.GetItem());
-						EnableMovableOverride(deferred_swap_entities.m_dst2.GetItem());
-						InventoryInputUserData.SendInputUserDataSwap(src1, src2, deferred_swap_entities.m_dst1, deferred_swap_entities.m_dst2);
+						if (CanSwapEntitiesEx(deferred_swap_entities.m_dst1.GetItem(),deferred_swap_entities.m_dst2.GetItem()) )
+						{
+							DayZPlayer player = GetGame().GetPlayer();
+							player.GetHumanInventory().AddInventoryReservationEx(deferred_swap_entities.m_dst1.GetItem(), deferred_swap_entities.m_dst1, GameInventory.c_InventoryReservationTimeoutShortMS);
+							player.GetHumanInventory().AddInventoryReservationEx(deferred_swap_entities.m_dst2.GetItem(), deferred_swap_entities.m_dst2, GameInventory.c_InventoryReservationTimeoutShortMS);
+							EnableMovableOverride(deferred_swap_entities.m_dst1.GetItem());
+							EnableMovableOverride(deferred_swap_entities.m_dst2.GetItem());
+							InventoryInputUserData.SendInputUserDataSwap(src1, src2, deferred_swap_entities.m_dst1, deferred_swap_entities.m_dst2);
+						}
+						else
+						{
+							#ifdef DEVELOPER
+							if ( LogManager.IsInventoryMoveLogEnable() )
+							{
+								Debug.InventoryMoveLog("Can not swap (JUNCTURE) STS = " + GetDayZPlayerOwner().GetSimulationTimeStamp() + " item1 = " + deferred_swap_entities.m_dst1.GetItem() + " item2 = " + deferred_swap_entities.m_dst2.GetItem() + " dst=" + InventoryLocation.DumpToStringNullSafe(deferred_swap_entities.m_dst2), "n/a" , "n/a", "ForceSwapEntities", GetDayZPlayerOwner().ToString() );	
+							}
+							#endif
+						}
 						break;
 
 					case InventoryMode.LOCAL:
@@ -1449,16 +1511,39 @@ class DayZPlayerInventory : HumanInventoryWithFSM
 			switch (deferred_force_swap_entities.m_mode)
 			{
 				case InventoryMode.PREDICTIVE:
-					InventoryInputUserData.SendInputUserDataSwap(src1, src2, deferred_force_swap_entities.m_dst1, deferred_force_swap_entities.m_dst2);
-					LocationSwap(src1, src2, deferred_force_swap_entities.m_dst1, deferred_force_swap_entities.m_dst2);
+					if (CanForceSwapEntitiesEx(deferred_force_swap_entities.m_dst1.GetItem(),deferred_force_swap_entities.m_dst1,deferred_force_swap_entities.m_dst2.GetItem(), deferred_force_swap_entities.m_dst2))
+					{
+						InventoryInputUserData.SendInputUserDataSwap(src1, src2, deferred_force_swap_entities.m_dst1, deferred_force_swap_entities.m_dst2);
+						LocationSwap(src1, src2, deferred_force_swap_entities.m_dst1, deferred_force_swap_entities.m_dst2);
+					}
+					else
+					{
+						#ifdef DEVELOPER
+						if ( LogManager.IsInventoryMoveLogEnable() )
+						{
+							Debug.InventoryMoveLog("Can not force swap (PREDICTIVE) STS = " + GetDayZPlayerOwner().GetSimulationTimeStamp() + " item1 = " + deferred_force_swap_entities.m_dst1.GetItem() + " item2 = " + deferred_force_swap_entities.m_dst2.GetItem() + " dst=" + InventoryLocation.DumpToStringNullSafe(deferred_force_swap_entities.m_dst2), "n/a" , "n/a", "ForceSwapEntities", GetDayZPlayerOwner().ToString() );	
+						}
+						#endif						
+					}
 					break;
 
 				case InventoryMode.JUNCTURE:
-						
-					player.GetHumanInventory().AddInventoryReservationEx(deferred_force_swap_entities.m_item1, deferred_force_swap_entities.m_dst1, GameInventory.c_InventoryReservationTimeoutShortMS);
-					player.GetHumanInventory().AddInventoryReservationEx(deferred_force_swap_entities.m_item2, deferred_force_swap_entities.m_dst2, GameInventory.c_InventoryReservationTimeoutShortMS);
+					if (CanForceSwapEntitiesEx(deferred_force_swap_entities.m_dst1.GetItem(),deferred_force_swap_entities.m_dst1,deferred_force_swap_entities.m_dst2.GetItem(), deferred_force_swap_entities.m_dst2))
+					{	
+						player.GetHumanInventory().AddInventoryReservationEx(deferred_force_swap_entities.m_item1, deferred_force_swap_entities.m_dst1, GameInventory.c_InventoryReservationTimeoutShortMS);
+						player.GetHumanInventory().AddInventoryReservationEx(deferred_force_swap_entities.m_item2, deferred_force_swap_entities.m_dst2, GameInventory.c_InventoryReservationTimeoutShortMS);
 				
-					InventoryInputUserData.SendInputUserDataSwap(src1, src2, deferred_force_swap_entities.m_dst1, deferred_force_swap_entities.m_dst2);
+						InventoryInputUserData.SendInputUserDataSwap(src1, src2, deferred_force_swap_entities.m_dst1, deferred_force_swap_entities.m_dst2);
+					}
+					else
+					{
+						#ifdef DEVELOPER
+						if ( LogManager.IsInventoryMoveLogEnable() )
+						{
+							Debug.InventoryMoveLog("Can not force swap (JUNCTURE) STS = " + GetDayZPlayerOwner().GetSimulationTimeStamp() + " item1 = " + deferred_force_swap_entities.m_dst1.GetItem() + " item2 = " + deferred_force_swap_entities.m_dst2.GetItem() + " dst=" + InventoryLocation.DumpToStringNullSafe(deferred_force_swap_entities.m_dst2), "n/a" , "n/a", "ForceSwapEntities", GetDayZPlayerOwner().ToString() );	
+						}
+						#endif
+					}
 					break;
 
 				case InventoryMode.LOCAL:
@@ -1692,8 +1777,11 @@ class DayZPlayerInventory : HumanInventoryWithFSM
 					}
 					#endif
 					deferred_hand_event.ClearInventoryReservation(this);
-					InventoryInputUserData.SendInputUserDataHandEvent(deferred_hand_event.m_event);
-					ProcessHandEvent(deferred_hand_event.m_event);
+					if ( deferred_hand_event.m_event.CanPerformEvent() )
+					{
+						InventoryInputUserData.SendInputUserDataHandEvent(deferred_hand_event.m_event);
+						ProcessHandEvent(deferred_hand_event.m_event);
+					}
 					break;
 
 				case InventoryMode.JUNCTURE:
@@ -1703,16 +1791,22 @@ class DayZPlayerInventory : HumanInventoryWithFSM
 						Debug.InventoryHFSMLog("JUNCTURE", "n/a" , "n/a", "HandleHandEvent", GetDayZPlayerOwner().ToString() );
 					}
 					#endif
-					InventoryInputUserData.SendInputUserDataHandEvent(deferred_hand_event.m_event);
-					//Functionality to prevent desync when two players perform interfering action at the same time
-					EntityAI itemSrc = deferred_hand_event.m_event.GetSrcEntity();
-					EntityAI itemDst = null;
-					if (deferred_hand_event.m_event.GetDst())
-						itemDst = deferred_hand_event.m_event.GetDst().GetItem();
-					if (itemSrc)
-						EnableMovableOverride(itemSrc);
-					if (itemDst)
-						EnableMovableOverride(itemDst);
+					deferred_hand_event.ClearInventoryReservation(this);
+					if ( deferred_hand_event.m_event.CanPerformEvent() )
+					{
+						deferred_hand_event.ReserveInventory(this);
+						InventoryInputUserData.SendInputUserDataHandEvent(deferred_hand_event.m_event);
+					
+						//Functionality to prevent desync when two players perform interfering action at the same time
+						EntityAI itemSrc = deferred_hand_event.m_event.GetSrcEntity();
+						EntityAI itemDst = null;
+						if (deferred_hand_event.m_event.GetDst())
+							itemDst = deferred_hand_event.m_event.GetDst().GetItem();
+						if (itemSrc)
+							EnableMovableOverride(itemSrc);
+						if (itemDst)
+							EnableMovableOverride(itemDst);
+					}
 					break;
 
 				case InventoryMode.LOCAL:

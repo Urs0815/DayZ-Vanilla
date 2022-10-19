@@ -205,7 +205,7 @@ class PluginUniversalTemperatureSourceClient extends PluginBase
 		{
 			m_UTemperatureSourceDebugs.Clear();
 			m_Player = null;
-			
+			EnableWidgets(false);
 			return;
 		}
 

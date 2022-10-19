@@ -54,11 +54,6 @@ class ControlsXboxNew extends UIScriptedMenu
 	//============================================
 	// ControlsXboxNew
 	//============================================
-	void ControlsXboxNew()
-	{
-		GetGame().GetMission().GetOnInputPresetChanged().Insert(OnInputPresetChanged);
-	}
-
 	void ~ControlsXboxNew()
 	{
 		PPERequesterBank.GetRequester(PPERequesterBank.REQ_MENUEFFECTS).Stop();
@@ -69,6 +64,24 @@ class ControlsXboxNew extends UIScriptedMenu
 		#ifdef PLATFORM_CONSOLE
 		UpdateControlsElements();
 		#endif
+	}
+	
+	protected void OnInputDeviceChanged(EInputDeviceType pInputDeviceType)
+	{
+		switch (pInputDeviceType)
+		{
+		case EInputDeviceType.CONTROLLER:
+			UpdateControlsElements();
+			layoutRoot.FindAnyWidget("toolbar_bg").Show(true);
+		break;
+
+		default:
+			if (GetGame().GetInput().IsEnabledMouseAndKeyboardEvenOnServer())
+			{
+				layoutRoot.FindAnyWidget("toolbar_bg").Show(false);
+			}
+		break;
+		}
 	}
 	
 	void Back()
@@ -393,7 +406,7 @@ class ControlsXboxNew extends UIScriptedMenu
 		m_CategoryStructure = new map<int,Widget>;
 		m_ImageMarkerStructure = new map<int,Widget>;
 		
-		layoutRoot = GetGame().GetWorkspace().CreateWidgets("gui/layouts/xbox/Contros_Screen.layout");
+		layoutRoot = GetGame().GetWorkspace().CreateWidgets("gui/layouts/xbox/Controls_Screen.layout");
 		#ifdef PLATFORM_XBOX
 			m_ControlsImage = layoutRoot.FindAnyWidget("XboxControlsImage");
 		#else
@@ -417,14 +430,18 @@ class ControlsXboxNew extends UIScriptedMenu
 		ComposeData();
 		UpdateTabContent(0);
 		
+		GetGame().GetMission().GetOnInputPresetChanged().Insert(OnInputPresetChanged);
+		GetGame().GetMission().GetOnInputDeviceChanged().Insert(OnInputDeviceChanged);
+		
+		OnInputDeviceChanged(GetGame().GetInput().GetCurrentInputDevice());
+
+		
 		return layoutRoot;
 	}
 	
 	override void OnShow()
 	{
 		super.OnShow();
-		
-		layoutRoot.FindAnyWidget("toolbar_bg").Show(true);
 		
 		UpdateToolbarText();
 	}

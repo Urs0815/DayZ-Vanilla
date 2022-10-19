@@ -20,7 +20,12 @@ class ActionDisarmExplosiveWithRemoteDetonator : ActionDisarmExplosive
 	override void CreateConditionComponents()
 	{
 		m_ConditionItem 	= new CCINonRuined();
-		m_ConditionTarget 	= new CCTCursor();
+		m_ConditionTarget 	= new CCTNonRuined();
+	}
+	
+	override bool CanBeSetFromInventory()
+	{
+		return true;
 	}
 
 	override bool ActionCondition(PlayerBase player, ActionTarget target, ItemBase item)
@@ -50,7 +55,7 @@ class ActionDisarmExplosiveWithRemoteDetonator : ActionDisarmExplosive
 		if (rdt && rdt.IsConnected())
 		{
 
-			if (target.GetObject() != rdt.GetControlledDevice())
+			if (explosive != rdt.GetControlledDevice())
 			{
 				return false;
 			}
@@ -58,7 +63,7 @@ class ActionDisarmExplosiveWithRemoteDetonator : ActionDisarmExplosive
 			ExplosivesBase controlledDevice = ExplosivesBase.Cast(rdt.GetControlledDevice());
 			if (controlledDevice && !controlledDevice.IsRuined() && controlledDevice.GetArmed())
 			{
-				return IsInReach(player, target, UAMaxDistances.DEFAULT);
+				return true;
 			}
 		}
 		

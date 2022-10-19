@@ -98,6 +98,9 @@ class ActionAttachOnSelection: ActionSingleUseBase
 	{
 		if (GetGame().IsMultiplayer() && GetGame().IsServer() ) return true;
 		
+		//if (BaseBuildingBase.Cast(target.GetObject())) return false;
+		if (target.GetObject() && target.GetObject().CanUseConstruction()) return false;
+		
 		return FindSlotIdToAttachOrCombine(player, target, item) != InventorySlots.INVALID;
 	}
 

@@ -40,6 +40,13 @@ class CfgGameplayHandler
 	}
 	
 	//---------------------------------------------------------------------------------------
+	static void SyncDataSendEx(notnull PlayerIdentity identity)
+	{
+		//Debug.Log("SyncDataSendEx");
+		GetGame().RPCSingleParam(null, ERPCs.RPC_CFG_GAMEPLAY_SYNC, new Param1<CfgGameplayJson>(m_Data), true, identity);
+	}
+	
+	//---------------------------------------------------------------------------------------
 	
 	static void OnRPC(Man player, ParamsReadContext ctx)
 	{
@@ -51,10 +58,8 @@ class CfgGameplayHandler
 		}
 		else
 		{
-			ErrorEx("datasynced - failed to read");
+			ErrorEx("CfgGameplayHandler - client failed to read incoming data");
 		}
-		
-		player.OnGameplayDataHandlerSync();
 	}
 
 	
@@ -145,6 +150,31 @@ class CfgGameplayHandler
 		return m_Data.PlayerData.StaminaData.staminaMinCap;
 	}
 	//----------------------------------------------------------------------------------	
+	static float GetMovementTimeToStrafeJog()
+	{
+		return m_Data.PlayerData.MovementData.timeToStrafeJog;
+	}
+	//----------------------------------------------------------------------------------
+	static float GetMovementTimeToSprint()
+	{
+		return m_Data.PlayerData.MovementData.timeToSprint;
+	}
+	//----------------------------------------------------------------------------------
+	static float GetMovementTimeToStrafeSprint()
+	{
+		return m_Data.PlayerData.MovementData.timeToStrafeSprint;
+	}
+	//----------------------------------------------------------------------------------
+	static float GetMovementRotationSpeedJog()
+	{
+		return m_Data.PlayerData.MovementData.rotationSpeedJog;
+	}
+	//----------------------------------------------------------------------------------
+	static float GetMovementRotationSpeedSprint()
+	{
+		return m_Data.PlayerData.MovementData.rotationSpeedSprint;
+	}
+	//----------------------------------------------------------------------------------
 	static bool GetDisable2dMap()
 	{
 		return m_Data.PlayerData.disable2dMap;
@@ -274,5 +304,41 @@ class CfgGameplayHandler
 	{
 		return m_Data.PlayerData.ShockHandlingData.allowRefillSpeedModifier;
 	}
-	//----------------------------------------------------------------------------------};
+
+	//--- MapData ----------------------------------------------------------------------
+	static bool GetMapIgnoreMapOwnership()
+	{
+		return m_Data.MapData.ignoreMapOwnership;
+	}
+	//----------------------------------------------------------------------------------
+	static bool GetMapIgnoreNavItemsOwnership()
+	{
+		return m_Data.MapData.ignoreNavItemsOwnership;
+	}
+	//----------------------------------------------------------------------------------
+	static bool GetMapDisplayPlayerPosition()
+	{
+		return m_Data.MapData.displayPlayerPosition;
+	}
+	//----------------------------------------------------------------------------------
+	static bool GetMapDisplayNavigationInfo()
+	{
+		return m_Data.MapData.displayNavInfo;
+	}
+	//----------------------------------------------------------------------------------
+	static float GetStaminaDepletionSpeed()
+	{
+		return m_Data.PlayerData.DrowningData.staminaDepletionSpeed;
+	}
+	//----------------------------------------------------------------------------------
+	static float GetHealthDepletionSpeed()
+	{
+		return m_Data.PlayerData.DrowningData.healthDepletionSpeed;
+	}
+	//----------------------------------------------------------------------------------
+	static float GetShockDepletionSpeed()
+	{
+		return m_Data.PlayerData.DrowningData.shockDepletionSpeed;
+	}
+	//----------------------------------------------------------------------------------
 }

@@ -80,7 +80,12 @@ class DestructionEffectBase
 			if (oldLevel != -1 || entity.m_Initialized)//one time
 			{
 				m_POneTime = PlayParticle(m_ParticleOneTime);
-				m_PPersistent = PlayParticle(m_ParticlePersistent, true);
+				
+				if (m_POneTime)
+				{
+					m_POneTime.SetOwner(this);
+				}
+								
 				OnEntityDestroyedOneTimeClient(entity, oldLevel, zone);
 				
 				m_Entity.PlaySoundSet(m_SOneTime, m_SoundSetOneTime, 0, 0 );
@@ -88,9 +93,15 @@ class DestructionEffectBase
 			}
 			else//Persistent
 			{
-				m_PPersistent = PlayParticle(m_ParticlePersistent, true);
 				OnEntityDestroyedPersistentClient(entity, zone);
 				m_Entity.PlaySoundSetLoop(m_SPersistent, m_SoundSetPersistent, 0, 0 );
+			}
+			
+			m_PPersistent = PlayParticle(m_ParticlePersistent, true);
+			
+			if (m_PPersistent)
+			{
+				m_PPersistent.SetOwner(this);
 			}
 		}
 		#endif
@@ -119,7 +130,7 @@ class DestructionEffectBase
 			ParticleSource p = ParticleManager.GetInstance().PlayInWorld(particleType, m_Entity.GetPosition());
 			if (attach && p)
 			{
-				p.AddAsChild(m_Entity);
+				p.AddAsChild(m_Entity);//Note: it's also possible to directly play on object: Particle.PlayOnObject
 			}
 			return p;
 		}

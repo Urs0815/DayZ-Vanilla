@@ -43,8 +43,6 @@ class CharacterCreationMenu extends UIScriptedMenu
 		#endif
 		
 		m_Scene.ResetIntroCamera();
-		
-		GetGame().GetMission().GetOnInputPresetChanged().Insert(OnInputPresetChanged);
 	}
 	
 	PlayerBase GetPlayerObj()
@@ -57,6 +55,28 @@ class CharacterCreationMenu extends UIScriptedMenu
 		#ifdef PLATFORM_CONSOLE
 		UpdateControlsElements();
 		#endif
+	}
+	
+	protected void OnInputDeviceChanged(EInputDeviceType pInputDeviceType)
+	{
+		switch (pInputDeviceType)
+		{
+		case EInputDeviceType.CONTROLLER:
+			#ifdef PLATFORM_CONSOLE
+			UpdateControlsElements();
+			layoutRoot.FindAnyWidget("toolbar_bg").Show(true);
+			#endif
+		break;
+
+		default:
+			#ifdef PLATFORM_CONSOLE
+			if (GetGame().GetInput().IsEnabledMouseAndKeyboardEvenOnServer())
+			{
+				layoutRoot.FindAnyWidget("toolbar_bg").Show(false);
+			}
+			#endif
+		break;
+		}
 	}
 	
 	override Widget Init()
@@ -147,6 +167,12 @@ class CharacterCreationMenu extends UIScriptedMenu
 		Refresh();
 		SetCharacter();
 		CheckNewOptions();
+		
+		GetGame().GetMission().GetOnInputPresetChanged().Insert(OnInputPresetChanged);
+		GetGame().GetMission().GetOnInputDeviceChanged().Insert(OnInputDeviceChanged);
+		
+		OnInputDeviceChanged(GetGame().GetInput().GetCurrentInputDevice());
+
 		return layoutRoot;
 	}
 	
@@ -634,7 +660,7 @@ class CharacterCreationMenu extends UIScriptedMenu
 		if( w.IsInherited( ButtonWidget ) )
 		{
 			ButtonWidget button = ButtonWidget.Cast( w );
-			button.SetTextColor( ARGB( 255, 255, 255, 255 ) );
+			button.SetTextColor( ColorManager.COLOR_NORMAL_TEXT );
 		}
 		
 		TextWidget text1	= TextWidget.Cast(w.FindAnyWidget( w.GetName() + "_text" ) );
@@ -646,23 +672,23 @@ class CharacterCreationMenu extends UIScriptedMenu
 		
 		if( text1 )
 		{
-			text1.SetColor( ARGB( 255, 255, 255, 255 ) );
+			text1.SetColor( ColorManager.COLOR_NORMAL_TEXT );
 		}
 		
 		if( text2 )
 		{
-			text2.SetColor( ARGB( 255, 255, 255, 255 ) );
+			text2.SetColor( ColorManager.COLOR_NORMAL_TEXT );
 		}
 		
 		if( text3 )
 		{
-			text3.SetColor( ARGB( 255, 255, 255, 255 ) );
+			text3.SetColor( ColorManager.COLOR_NORMAL_TEXT );
 			w.SetAlpha(0);
 		}
 		
 		if( image )
 		{
-			image.SetColor( ARGB( 255, 255, 255, 255 ) );
+			image.SetColor( ColorManager.COLOR_NORMAL_TEXT );
 		}
 		
 		if ( option )
@@ -673,7 +699,7 @@ class CharacterCreationMenu extends UIScriptedMenu
 		#ifndef PLATFORM_CONSOLE
 		if ( option_label )
 		{
-			option_label.SetColor( ARGB( 255, 255, 255, 255 ) );
+			option_label.SetColor( ColorManager.COLOR_NORMAL_TEXT );
 		}
 		#endif
 	}
@@ -692,6 +718,46 @@ class CharacterCreationMenu extends UIScriptedMenu
 				button.SetTextColor( ColorManager.COLOR_DISABLED_TEXT );
 			}
 		}
+		
+		TextWidget text1	= TextWidget.Cast(w.FindAnyWidget( w.GetName() + "_text" ) );
+		TextWidget text2	= TextWidget.Cast(w.FindAnyWidget( w.GetName() + "_label" ) );
+		TextWidget text3	= TextWidget.Cast(w.FindAnyWidget( w.GetName() + "_text_1" ) );
+		ImageWidget image	= ImageWidget.Cast( w.FindAnyWidget( w.GetName() + "_image" ) );
+		Widget option		= Widget.Cast( w.FindAnyWidget( w.GetName() + "_option_wrapper" ) );
+		Widget option_label = w.FindAnyWidget( "option_label" );
+		
+		if( text1 )
+		{
+			text1.SetColor( ColorManager.COLOR_DISABLED_TEXT );
+		}
+		
+		if( text2 )
+		{
+			text2.SetColor( ColorManager.COLOR_DISABLED_TEXT );
+		}
+		
+		if( text3 )
+		{
+			text3.SetColor( ColorManager.COLOR_DISABLED_TEXT );
+			w.SetAlpha(1);
+		}
+		
+		if( image )
+		{
+			image.SetColor( ColorManager.COLOR_DISABLED_TEXT );
+		}
+		
+		if ( option )
+		{
+			option.SetColor( ColorManager.COLOR_DISABLED_TEXT );
+		}
+		
+		#ifndef PLATFORM_CONSOLE
+		if ( option_label )
+		{
+			option_label.SetColor( ColorManager.COLOR_DISABLED_TEXT );
+		}
+		#endif
 	}
 	
 	void SetCharacterSaved(bool state)

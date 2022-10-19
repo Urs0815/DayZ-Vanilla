@@ -61,7 +61,7 @@ class ActionInput : ActionInput_Basic
 	{
 		m_Player = player;
 		
-		if( LogManager.IsActionLogEnable())
+		if ( LogManager.IsActionLogEnable())
 		{
 			Debug.ActionLog("n/a",this.ToString(), "n/a","Init()", player.ToString());
 		}
@@ -77,9 +77,9 @@ class ActionInput : ActionInput_Basic
 	{
 		m_input = GetUApi().GetInputByName(input_name).GetPersistentWrapper();
 		
-		if( LogManager.IsActionLogEnable())
+		if ( LogManager.IsActionLogEnable())
 		{
-			if(m_input && m_input.InputP())
+			if (m_input && m_input.InputP())
 				Debug.ActionLog("(+) input set to " + input_name ,this.ToString(), "n/a","SetInput()", "n/a");
 			else
 				Debug.ActionLog("(-) input is not set to " + input_name ,this.ToString(), "n/a","SetInput()","n/a");
@@ -655,6 +655,93 @@ class DropActionInput : NoIndicationActionInputBase
 		m_InputType = ActionInputType.AIT_HOLDSINGLE;
 	}
 };
+
+class CarHornShortActionInput : ContinuousDefaultActionInput
+{
+	ref ActionTarget targetNew;
+
+	void CarHornShortActionInput(PlayerBase player)
+	{
+		SetInput("UACarHorn");
+		m_InputType 		= ActionInputType.AIT_SINGLE;
+		m_Priority 			= 100;
+		m_DetectFromItem 	= false;
+		m_DetectFromTarget	= false;
+		m_DetectFromPlayer	= false;
+	}
+	
+	override void UpdatePossibleActions(PlayerBase player, ActionTarget target, ItemBase item, int action_condition_mask)
+	{
+		if (ForceActionCheck(player))
+		{
+			m_SelectAction = m_ForcedActionData.m_Action;
+			return;
+		}
+		
+		m_SelectAction = null;
+		array<ActionBase_Basic> possibleActions;
+		ActionBase action;
+		int i;
+
+		m_MainItem = null;
+		if (player && player.IsInVehicle())
+		{
+			HumanCommandVehicle vehCommand = player.GetCommand_Vehicle();
+			if (vehCommand)
+			{
+				Transport trans = vehCommand.GetTransport();
+				if (trans)
+				{
+					targetNew = new ActionTarget(trans, null, -1, vector.Zero, -1);
+					ForceActionTarget(targetNew);
+				}
+			}
+			
+			if (!targetNew)
+			{
+				ClearForcedTarget();
+			}
+		}
+		
+		target = m_ForcedTarget;
+		m_Target = m_ForcedTarget;
+		
+		if (target && target.GetObject())
+		{
+			target.GetObject().GetActions(this.Type(), possibleActions);
+			if (possibleActions)
+			{
+				for (i = 0; i < possibleActions.Count(); i++)
+				{
+					action = ActionBase.Cast(possibleActions.Get(i));
+					if (action.Can(player, target, m_MainItem, action_condition_mask))
+					{
+						m_SelectAction = action;
+						return;
+					}
+				}
+			}
+		}
+	}
+	
+	override ActionBase GetAction()
+	{
+		return m_SelectAction;
+	}
+}
+
+class CarHornLongActionInput : CarHornShortActionInput
+{
+	void CarHornLongActionInput(PlayerBase player)
+	{
+		SetInput("UACarHorn");
+		m_InputType 		= ActionInputType.AIT_CONTINUOUS;
+		m_Priority 			= 101;
+		m_DetectFromItem 	= false;
+		m_DetectFromTarget	= false;
+		m_DetectFromPlayer	= false;
+	}
+}
 
 class ToggleLightsActionInput : DefaultActionInput
 {

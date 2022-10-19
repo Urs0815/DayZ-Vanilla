@@ -707,10 +707,10 @@ class EmoteVomit extends EmoteBase
 	{
 		if ( m_Player.GetInstanceType() == DayZPlayerInstanceType.INSTANCETYPE_SERVER || !GetGame().IsMultiplayer() )
 		{
-			ref SymptomBase symptom = m_Player.GetSymptomManager().QueueUpPrimarySymptom(SymptomIDs.SYMPTOM_VOMIT);
+			SymptomBase symptom = m_Player.GetSymptomManager().QueueUpPrimarySymptom(SymptomIDs.SYMPTOM_VOMIT);
 			
 			if ( symptom )
-			{ 
+			{
 			    symptom.SetDuration(Math.RandomIntInclusive(4,8));
 			}
 		}

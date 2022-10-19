@@ -39,7 +39,8 @@ class VicinitySlotsContainer: Container
 	bool IsItemWithContainerActive()
 	{
 		EntityAI ent = GetFocusedItem();
-		return ent && ( ent.GetInventory().GetCargo() || ent.GetSlotsCountCorrect() > 0 );
+		return ent && ( ent.GetInventory().GetCargo() || (ent.GetSlotsCountCorrect() > 0 && ent.CanDisplayAnyAttachmentSlot()) );
+		//TODO: also check for cargo visibility maybe?
 	}
 	
 	override bool IsItemWithQuantityActive()
@@ -65,6 +66,12 @@ class VicinitySlotsContainer: Container
 	{
 		return true;
 	} 
+	
+	bool IsTakeable()
+	{
+		EntityAI ent = GetFocusedItem();
+		return ent.IsTakeable();
+	}
 	
 	override bool CanCombine()
 	{
@@ -249,17 +256,11 @@ class VicinitySlotsContainer: Container
 		return GetFocusedContainer().GetColumnCount();
 	}
 	
+	//! Decides on the icon visibility
 	bool ExcludeFromContainer (EntityAI item)
 	{
-		if ( item.IsInherited(DayZAnimal) && item.IsAlive() )
-		{
-			return true;
-		}
-		else if ( item.IsInherited( DayZInfected ) || item.IsInherited( SurvivorBase ) || item.IsInherited( Car ) || item.IsInherited( GardenBase ) || item.IsInherited(DayZAnimal) || item.IsInherited( BaseBuildingBase ) )
-		{
-			return true;
-		}	
-		return false;
+		int mask = item.GetHideIconMask();
+		return mask & EInventoryIconVisibility.HIDE_VICINITY;
 	}
 	
 	void ShowItemsInContainers( array<EntityAI> items )
@@ -287,7 +288,7 @@ class VicinitySlotsContainer: Container
 		for ( x = 0; x < visible_items_count; ++x )
 		{
 			item			= visible_items.Get( x );
-			int row			= Math.Floor( x / ITEMS_IN_ROW );
+			int row			= (int)Math.Floor( x / ITEMS_IN_ROW );
 			int column		= x % ITEMS_IN_ROW;
 			icon			= SlotsContainer.Cast( m_Container.Get( row ) ).GetSlotIcon( column );
 			
@@ -303,15 +304,7 @@ class VicinitySlotsContainer: Container
 				ItemManager.GetInstance().SetTemperature( item, icon.GetRender() );
 			}
 			
-			bool draggable = false;
-			if ( ItemBase.Cast( item ) )
-			{
-				PlayerBase player = PlayerBase.Cast(GetGame().GetPlayer());
-				draggable = !player.GetInventory().HasInventoryReservation( item, null ) && !player.IsItemsToDelete();
-				draggable = draggable && item.CanPutIntoHands( GetGame().GetPlayer() );
-				draggable = draggable && item.GetInventory().CanRemoveEntity();
-			}
-			
+			bool draggable = ItemManager.GetInstance().EvaluateContainerDragabilityDefault(item);
 			if ( !draggable && GetDragWidget() == icon.GetPanelWidget() )
 				CancelWidgetDragging();
 			ItemManager.GetInstance().SetWidgetDraggable( icon.GetPanelWidget(), draggable );
@@ -414,7 +407,7 @@ class VicinitySlotsContainer: Container
 				}
 			}
 			
-			ItemManager.GetInstance().HideTooltip();
+			HideOwnedTooltip();
 			InventoryMenu menu = InventoryMenu.Cast( GetGame().GetUIManager().FindMenu( MENU_INVENTORY ) );
 			if( menu )
 			{
@@ -513,23 +506,18 @@ class VicinitySlotsContainer: Container
 	// Mouse button DOWN
 	void MouseButtonDown( Widget w, int x, int y, int button)
 	{
-
 		string name = w.GetName();
 		name.Replace( "PanelWidget", "Render" );
 		ItemPreviewWidget item_preview = ItemPreviewWidget.Cast( w.FindAnyWidget( name ) );
 		ItemBase item = ItemBase.Cast( item_preview.GetItem() );
-		bool draggable = false;
+		bool draggable = ItemManager.GetInstance().EvaluateContainerDragabilityDefault(item);
+		#ifdef DEVELOPER
 		if( item )
 		{
-			PlayerBase player = PlayerBase.Cast(GetGame().GetPlayer());
-			draggable = !player.GetInventory().HasInventoryReservation( item, null ) && !player.IsItemsToDelete();
-			draggable = draggable && item.CanPutIntoHands( GetGame().GetPlayer() );
-			draggable = draggable && item.GetInventory().CanRemoveEntity();
-			#ifdef DEVELOPER
 			if( GetDayZGame().IsLeftCtrlDown() )
 				ShowActionMenu( item );
-			#endif
 		}
+		#endif
 		
 		ItemManager.GetInstance().SetWidgetDraggable( w, draggable );
 	}

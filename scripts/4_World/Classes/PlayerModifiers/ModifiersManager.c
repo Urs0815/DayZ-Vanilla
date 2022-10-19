@@ -2,12 +2,12 @@
 enum eModifierSyncIDs 
 {
 
-	MODIFIER_SYNC_WOUND_INFECT_1 = 			0x00000001,
-	MODIFIER_SYNC_WOUND_INFECT_2 = 			0x00000002,
-	MODIFIER_SYNC_CONTAMINATION =			0x00000004,//stage1 
-	MODIFIER_SYNC_CONTAMINATION2 = 			0x00000008,//stage2 and stage3 share the same sync id
-	MODIFIER_SYNC_ZONE_EXPOSURE = 			0x00000010,
-	//0x00000020,
+	MODIFIER_SYNC_WOUND_INFECT_1 	= 0x00000001,
+	MODIFIER_SYNC_WOUND_INFECT_2 	= 0x00000002,
+	MODIFIER_SYNC_CONTAMINATION 	= 0x00000004,//stage1 
+	MODIFIER_SYNC_CONTAMINATION2 	= 0x00000008,//stage2 and stage3 share the same sync id
+	MODIFIER_SYNC_ZONE_EXPOSURE 	= 0x00000010,
+	MODIFIER_SYNC_DROWNING 			= 0x00000020,
 	//0x00000040,
 	//0x00000080,
 	//0x00000100,
@@ -142,13 +142,18 @@ class ModifiersManager
 		AddModifier(new AreaExposureMdfr);
 		AddModifier(new MaskMdfr);
 		AddModifier(new FliesMdfr);
+		AddModifier(new DrowningMdfr);
 	}
 
 	void SetModifiers(bool enable)
 	{
-		
 		m_AllowModifierTick = enable;
-		if( enable == false )
+		
+		#ifdef DEVELOPER
+		DiagMenu.SetValue(DiagMenuIDs.DM_CHEATS_MODIFIERS_ENABLE, enable);
+		#endif
+		
+		if ( !enable )
 		{
 			for(int i = 0; i < m_ModifierList.Count(); i++)
 			{

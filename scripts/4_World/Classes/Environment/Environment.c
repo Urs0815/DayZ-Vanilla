@@ -380,7 +380,7 @@ class Environment
 				wetDelta = 0.33;
 			}
 		}
-		else if (IsRaining() && !IsInsideBuilding() && !IsUnderRoof())
+		else if (IsRaining() && !IsInsideBuilding() && !IsUnderRoof() && !IsInsideVehicle())
 		{
 			//! player is getting wet from rain
 			wetDelta = GameConstants.ENVIRO_WET_INCREMENT * GameConstants.ENVIRO_TICKS_TO_WETNESS_CALCULATION * (m_Rain) * (1 + (GameConstants.ENVIRO_WIND_EFFECT * m_Wind));
@@ -969,7 +969,8 @@ class Environment
 			//DbgUI.Text("Temperature: " + m_PlayerTemperature.ToString());
 			DbgUI.Text("Heat comfort: " + m_HeatComfort.ToString());
 			DbgUI.Text("Inside: " + IsInsideBuilding().ToString() + " ("+m_Player.GetSurfaceType()+")");
-			DbgUI.Text("Under roof: " + m_IsUnderRoof.ToString());
+			int nextCheckCountdown = (GameConstants.ENVIRO_TICK_ROOF_RC_CHECK - m_RoofCheckTimer) + 1;
+			DbgUI.Text("Under roof: " + m_IsUnderRoof.ToString() + " (" + nextCheckCountdown + ")");
 			if( IsWaterContact() && m_WaterLevel > WATER_LEVEL_NONE )
 			{
 				DbgUI.Text("Water Level: " + m_WaterLevel);
@@ -1001,7 +1002,7 @@ class Environment
 		message += "Player stats";
 		message += "\nHeat comfort: " + m_HeatComfort.ToString();
 		message += "\nInside: " + IsInsideBuilding().ToString() + " ("+m_Player.GetSurfaceType()+")";
-		message += "\nUnder roof: " + m_IsUnderRoof.ToString();
+		message += "\nUnder roof: " + m_IsUnderRoof.ToString() + " (" + (GameConstants.ENVIRO_TICK_ROOF_RC_CHECK - m_RoofCheckTimer) + ")";
 		if (IsWaterContact() && m_WaterLevel > WATER_LEVEL_NONE)
 		{
 			message += "\nWater Level: " + m_WaterLevel;

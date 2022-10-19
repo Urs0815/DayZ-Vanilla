@@ -2,8 +2,6 @@ class CollapsibleContainer: Container
 {
 	protected ref CollapsibleHeader		m_CollapsibleHeader;
 	protected bool						m_Hidden;
-	//protected bool 						m_Closed;
-	protected EntityAI					m_Entity;
 	
 	void CollapsibleContainer( LayoutHolder parent, int sort = -1 )
 	{
@@ -41,16 +39,28 @@ class CollapsibleContainer: Container
 		m_Hidden = false;
 		for (int i = 0; i < m_Body.Count(); i++)
 		{
-			if( !m_Hidden )
+			m_Body.Get( i ).OnShow();
+			Container c = Container.Cast(m_Body.Get(i));
+			if (c)
 			{
-				m_Body.Get( i ).OnShow();
-				Container c = Container.Cast(m_Body.Get(i));
-				if (c)
-				{
-					c.SetOpenForSlotIcon(true);
-				}
+				c.Open();
 			}
 		}
+		SetCollapsibleHeaderArrowState(m_Hidden);
+	}
+	
+	override void OnHide()
+	{
+		m_Hidden = true;
+		if (m_CollapsibleHeader)
+		{
+			SetCollapsibleHeaderArrowState(m_Hidden);
+		}
+		else
+		{
+			super.OnHide();
+		}
+		
 	}
 	
 	override void Insert( LayoutHolder container, int pos = -1, bool immedUpdate = true )
@@ -63,8 +73,7 @@ class CollapsibleContainer: Container
 			UpdateCollapseButtons();
 		//}
 		
-		m_CollapsibleHeader.GetRootWidget().FindAnyWidget("opened").Show(m_Hidden);
-		m_CollapsibleHeader.GetRootWidget().FindAnyWidget("closed").Show(!m_Hidden);
+		SetCollapsibleHeaderArrowState(m_Hidden);
 	}
 	
 	override void Remove( LayoutHolder container )
@@ -73,31 +82,6 @@ class CollapsibleContainer: Container
 		RecomputeOpenedContainers();
 		UpdateCollapseButtons();
 	}
-	
-	/*override void Open()
-	{
-		if( IsDisplayable() )
-		{
-			ItemManager.GetInstance().SetDefaultOpenState( m_Entity.GetType(), true );
-			m_Closed = false;
-			//SetOpenForSlotIcon(true);
-			OnShow();
-			m_Parent.m_Parent.Refresh();
-		}
-	}
-
-	override void Close()
-	{
-		ItemManager.GetInstance().SetDefaultOpenState( m_Entity.GetType(), false );
-		m_Closed = true;
-		//SetOpenForSlotIcon(false);
-		OnHide();
-	}
-
-	override bool IsOpened()
-	{
-		return !m_Closed;
-	}*/
 	
 	bool CanDisplayAnyCategory()
 	{
@@ -111,14 +95,14 @@ class CollapsibleContainer: Container
 		{
 			if (m_CollapsibleHeader)
 			{
-				m_CollapsibleHeader.GetMainWidget().FindAnyWidget("collapse_button").Show(false);
+				m_CollapsibleHeader.ShowCollapseButton(false);
 			}
 		}
 		else
 		{
 			if (m_CollapsibleHeader)
 			{
-				m_CollapsibleHeader.GetMainWidget().FindAnyWidget("collapse_button").Show(true);
+				m_CollapsibleHeader.ShowCollapseButton(true);
 			}
 		}
 		#endif
@@ -146,7 +130,12 @@ class CollapsibleContainer: Container
 	
 	void CollapseButtonOnMouseButtonDown( Widget w )
 	{
-		if( !m_Hidden )
+		Toggle();
+	}
+	
+	override void Toggle()
+	{
+		if (!m_Hidden)
 		{
 			for (int i = 1; i < m_Body.Count(); i++)
 			{
@@ -154,20 +143,18 @@ class CollapsibleContainer: Container
 				Container c = Container.Cast(m_Body.Get(i));
 				if (c)
 				{
-					c.SetOpenForSlotIcon(false);
+					c.Close();
 				}
 			}
-
-			m_Hidden = true;
+			OnHide();
 		}
 		else
 		{
-			m_Hidden = false;
 			OnShow();
 		}
+		m_Closed = m_Hidden;
 		
-		m_CollapsibleHeader.GetRootWidget().FindAnyWidget("opened").Show(m_Hidden);
-		m_CollapsibleHeader.GetRootWidget().FindAnyWidget("closed").Show(!m_Hidden);
+		SetCollapsibleHeaderArrowState(m_Hidden);
 
 		UpdateCollapseButtons();
 	}
@@ -194,5 +181,13 @@ class CollapsibleContainer: Container
 	override void SetHeader(Header header)
 	{
 		m_CollapsibleHeader = CollapsibleHeader.Cast(header);
+	}
+	
+	void SetCollapsibleHeaderArrowState(bool open)
+	{
+		if (m_CollapsibleHeader)
+		{
+			m_CollapsibleHeader.SetArrowButtonOpened(open);
+		}
 	}
 }

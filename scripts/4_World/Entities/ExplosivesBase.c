@@ -83,6 +83,23 @@ class ExplosivesBase : ItemBase
 	 	InitiateExplosion();
 	}
 	
+	override void OnCEUpdate()
+	{
+		super.OnCEUpdate();
+		
+		if (!IsRuined() && GetArmed() && GetPairDevice())
+		{
+			if (vector.DistanceSq(GetPosition(), GetPairDevice().GetPosition()) <= Math.SqrFloat(UAMaxDistances.EXPLOSIVE_REMOTE_ACTIVATION))
+			{
+				UpdateLED(ERemoteDetonatorLEDState.LIT);
+				
+				return;
+			}
+		}
+		
+		UpdateLED(ERemoteDetonatorLEDState.OFF);
+	}
+	
 	protected void CreateLight()
 	{
 		m_Light = ExplosiveLight.Cast(ScriptedLightBase.CreateLight(ExplosiveLight, GetPosition()));

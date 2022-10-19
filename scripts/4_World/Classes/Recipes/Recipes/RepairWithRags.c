@@ -9,7 +9,7 @@ class RepairWithRags extends RecipeBase
 		
 		
 		//conditions
-		m_MinDamageIngredient[0] = -1;//-1 = disable check
+		m_MinDamageIngredient[0] = 1;//-1 = disable check
 		m_MaxDamageIngredient[0] = 3;//-1 = disable check
 		
 		m_MinQuantityIngredient[0] = -1;//-1 = disable check
@@ -65,12 +65,7 @@ class RepairWithRags extends RecipeBase
 
 	override bool CanDo(ItemBase ingredients[], PlayerBase player)//final check for recipe's validity
 	{
-		if(ingredients[0].GetHealthLevel("") > 1)
-		{
-			return true;
-		}
-		
-		return false;
+		return true;
 	}
 
 	override void Do(ItemBase ingredients[], PlayerBase player,array<ItemBase> results, float specialty_weight)//gets called upon recipe's completion
@@ -79,6 +74,5 @@ class RepairWithRags extends RecipeBase
 		float mHealth = item_ingredient.GetMaxHealth();
 		float percent = mHealth*0.2; //20% of the item's health
 		item_ingredient.AddHealth(percent);
-		
 	}
 };

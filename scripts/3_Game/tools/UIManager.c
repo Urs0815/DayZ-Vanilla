@@ -154,12 +154,7 @@ class UIManager
 	//! Returns true if menu with specific ID is opened (see \ref MenuID)
 	bool IsMenuOpen(int id)
 	{
-		if (FindMenu(id) != NULL)
-		{
-			return true;
-		}
-
-		return false;
+		return FindMenu(id) != null;
 	}
 
 	//! Returns menu with specific ID if it is open (see \ref MenuID)

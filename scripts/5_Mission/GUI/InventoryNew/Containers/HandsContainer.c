@@ -1,7 +1,6 @@
 class HandsContainer: Container
 {
 	protected bool											m_Hidden;
-	protected EntityAI										m_Entity;
 	protected ref HandsHeader								m_CollapsibleHeader;
 	protected ref HandsPreview								m_HandsPreview;
 	
@@ -324,7 +323,7 @@ class HandsContainer: Container
 			{
 				float x, y;
 				GetMainWidget().GetScreenPos( x, y );
-				ItemManager.GetInstance().PrepareTooltip( item_in_hands, x, y );
+				PrepareOwnedTooltip( item_in_hands, -1, y );
 			}
 		}
 		else
@@ -353,7 +352,7 @@ class HandsContainer: Container
 			
 				float x, y;
 				GetMainWidget().GetScreenPos( x, y );
-				ItemManager.GetInstance().PrepareTooltip( item_in_hands, x, y );
+				PrepareOwnedTooltip( item_in_hands, x, y );
 			}
 		}
 		else
@@ -732,7 +731,7 @@ class HandsContainer: Container
 					return;
 				}
 			}
-			if( !m_player.PredictiveSwapEntities( m_am_entity1, m_am_entity2 ) && m_player.GetHumanInventory().CanAddEntityInHands( m_am_entity1 ) )
+			if ( !m_player.PredictiveSwapEntities( m_am_entity1, m_am_entity2 ) && m_player.GetHumanInventory().CanAddEntityInHands( m_am_entity1 ) )
 			{
 				m_player.PredictiveTakeEntityToHands( m_am_entity1 );
 			}
@@ -740,13 +739,13 @@ class HandsContainer: Container
 
 		if ( combinationFlags & InventoryCombinationFlags.TAKE_TO_HANDS )
 		{
-			if( m_Atts )
+			if ( m_Atts )
 			{
 				m_Body.RemoveItem( m_Atts.GetWrapper() );
 				delete m_Atts;
 			}
 
-			if( m_am_entity2.GetSlotsCountCorrect() > 0 )
+			if ( m_am_entity2.GetSlotsCountCorrect() > 0 )
 			{
 				m_Atts = new Attachments( this, m_am_entity2 );
 				m_Atts.InitAttachmentGrid( 1 );
@@ -755,7 +754,7 @@ class HandsContainer: Container
 			Refresh();
 			m_Parent.Refresh();
 			
-			if( m_player.GetHumanInventory().CanAddEntityInHands( m_am_entity2 ) )
+			if ( m_player.GetHumanInventory().CanAddEntityInHands( m_am_entity2 ) )
 			{
 				m_player.PredictiveTakeEntityToHands( m_am_entity2 );
 			}
@@ -1293,13 +1292,17 @@ class HandsContainer: Container
 			}
 		}
 
-		if( entity.GetInventory().IsInventoryLockedForLockType( HIDE_INV_FROM_SCRIPT ) || !entity.CanDisplayCargo() )
+		if (m_CargoGrid)
 		{
-			HideCargo();
-		}
-		else
-		{
-			ShowCargo();
+			bool hideCargo = m_Entity.GetInventory().IsInventoryLockedForLockType( HIDE_INV_FROM_SCRIPT ) || !m_Entity.CanDisplayCargo() || m_ForcedHide;
+			if (m_CargoGrid.IsVisible() && hideCargo)
+			{
+				HideCargo();
+			}
+			else if (!m_CargoGrid.IsVisible() && !hideCargo)
+			{
+				ShowCargo();
+			}
 		}
 		
 		m_CollapsibleHeader.ShowCollapseButtons( m_Atts || m_CargoGrid, m_Atts || m_CargoGrid );
@@ -1321,11 +1324,15 @@ class HandsContainer: Container
 	void AttachmentAdded(EntityAI item, string slot, EntityAI parent)
 	{
 		int slot_id = InventorySlots.GetSlotIdFromString( slot );
+		int sort = -1;
+		Attachments att_cont = null;
+		CargoContainer cont = null;
 		
 		if( item.GetInventory().GetAttachmentSlotsCount() > 0  )
 		{
-			Attachments att_cont = new Attachments( this, item );
-			att_cont.InitAttachmentGrid( m_AttachmentSlotsSorted.Find( slot_id ) + m_StaticAttCount + m_StaticCargoCount + 1 );
+			att_cont = new Attachments( this, item );
+			sort = (m_AttachmentSlotsSorted.Find( slot_id ) * 2) + SORT_ATTACHMENTS_NEXT_OFFSET;
+			att_cont.InitAttachmentGrid( sort );
 			
 			m_AttachmentAttachments.Insert( item, att_cont );
 			m_AttachmentAttachmentsContainers.Insert( item, att_cont.GetWrapper() );
@@ -1338,8 +1345,9 @@ class HandsContainer: Container
 		
 		if( item.GetInventory().GetCargo() )
 		{
-			CargoContainer cont = new CargoContainer( this, true );
-			cont.GetRootWidget().SetSort( m_AttachmentSlotsSorted.Find( slot_id ) + 50 );
+			cont = new CargoContainer( this, true );
+			sort = (m_AttachmentSlotsSorted.Find( slot_id ) * 2) + SORT_CARGO_NEXT_OFFSET; //m_AttachmentSlotsSorted.Find( slot_id ) + 50
+			cont.GetRootWidget().SetSort( sort );
 			cont.SetEntity( item );
 			
 			Insert(cont, -1);
@@ -1348,6 +1356,21 @@ class HandsContainer: Container
 			if( m_Parent )
 				m_Parent.Refresh();
 			Inventory.GetInstance().UpdateConsoleToolbar();
+		}
+		
+		if (att_cont)
+		{
+			att_cont.ShowFalseAttachmentsHeader(true);
+			if (cont)
+			{
+				cont.ShowFalseCargoHeader(false);
+				cont.UpdateSize();
+				cont.SetAlternateFalseTextHeaderWidget(att_cont.GetFalseHeaderTextWidget());
+			}
+		}
+		else if (cont)
+		{
+			cont.SetAlternateFalseTextHeaderWidget(null); //just to be safe..
 		}
 		
 		RecomputeOpenedContainers();
@@ -1386,27 +1409,29 @@ class HandsContainer: Container
 	{
 		super.UpdateInterval();
 		
-		if( m_Entity )
+		if ( m_Entity )
 		{
-			if( m_Entity.GetInventory().IsInventoryLockedForLockType( HIDE_INV_FROM_SCRIPT ) || m_Hidden || !m_Entity.CanDisplayCargo())
+			if (m_CargoGrid)
 			{
-				HideCargo();
+				bool hideCargo = m_Entity.GetInventory().IsInventoryLockedForLockType( HIDE_INV_FROM_SCRIPT ) || !m_Entity.CanDisplayCargo() || m_ForcedHide;
+				if (m_CargoGrid.IsVisible() && hideCargo)
+				{
+					HideCargo();
+				}
+				else if (!m_CargoGrid.IsVisible() && !hideCargo)
+				{
+					ShowCargo();
+				}
+				
+				m_CargoGrid.UpdateInterval();
 			}
-			else
-			{
-				ShowCargo();
-			}
-			if( m_Atts )
+			
+			if ( m_Atts )
 			{
 				m_Atts.UpdateInterval();
 			}
-				
-			if( m_CargoGrid )
-			{
-				m_CargoGrid.UpdateInterval();
-			}
-				
-			for( int i = 0; i < m_AttachmentCargos.Count(); i++ )
+			
+			for ( int i = 0; i < m_AttachmentCargos.Count(); i++ )
 			{
 				m_AttachmentCargos.GetElement( i ).UpdateInterval();
 			}
@@ -1488,7 +1513,7 @@ class HandsContainer: Container
 				}
 			}
 	
-			ItemManager.GetInstance().HideTooltip();
+			HideOwnedTooltip();
 	
 			name = w.GetName();
 			name.Replace( "PanelWidget", "Temperature" );
@@ -1545,7 +1570,7 @@ class HandsContainer: Container
 		m_Parent.Refresh();
 	}
 	
-	void HideCargo( )
+	void HideCargo()
 	{
 		if( m_CargoGrid )
 		{

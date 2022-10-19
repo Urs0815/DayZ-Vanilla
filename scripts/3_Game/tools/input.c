@@ -52,6 +52,7 @@ class Input
 		
 	/**  
 	\brief Returns true just in frame, when action was invoked (button was pressed)
+	\note if the input is limited (click, hold, doubleclick), 'Press' event is limited as well, and reacts to the limiter only! Otherwise it registeres the first event, usually 'press' (change of value from 0)
 	@param action id of action, defined in \ref 4_World/Classes/UserActionsComponent/_constants.c
 	@param check_focus if true and game is unfocused, returns 0; otherwise returns actual value
 	@return true if action was invoked in that frame, false otherwise

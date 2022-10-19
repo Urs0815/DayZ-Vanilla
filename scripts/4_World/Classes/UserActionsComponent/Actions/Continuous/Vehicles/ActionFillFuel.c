@@ -25,7 +25,7 @@ class ActionFillFuel: ActionContinuousBase
 
 	override void CreateConditionComponents()  
 	{
-		m_ConditionItem = new CCINonRuined;
+		m_ConditionItem = new CCINonRuined;//CCINotRuinedAndEmpty?
 		m_ConditionTarget = new CCTNone;
 	}
 
@@ -43,6 +43,11 @@ class ActionFillFuel: ActionContinuousBase
 		Car car = Car.Cast( target.GetObject() );
 		if ( !car )
 			return false;
+		
+		if (car.IsDamageDestroyed())
+		{
+			return false;
+		}
 		
 		if ( car.GetFluidFraction( CarFluid.FUEL ) >= 0.98 )
 			return false;

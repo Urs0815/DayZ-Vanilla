@@ -17,7 +17,6 @@ class FireworksBase: Inventory_Base
 
 	void FireworksBase()
 	{
-		
 		Init();
 	}
 	

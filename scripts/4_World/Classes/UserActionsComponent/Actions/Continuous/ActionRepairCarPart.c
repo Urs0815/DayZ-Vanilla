@@ -17,15 +17,14 @@ class ActionRepairCarPartCB : ActionContinuousBaseCB
 };
 
 class ActionRepairCarPart: ActionContinuousBase
-{
+{	
 	typename m_LastValidType;
 	string m_CurrentDamageZone = "";
 	int m_LastValidComponentIndex = -1;
-	const float MAX_ACTION_DIST = 3;
 	
 	void ActionRepairCarPart()
 	{
-		m_CallbackClass = ActionRepairTentPartCB;
+		m_CallbackClass = ActionRepairCarPartCB;
 		m_SpecialtyWeight = UASoftSkillsWeight.PRECISE_LOW;
 		
 		//m_CommandUID = DayZPlayerConstants.CMD_ACTIONFB_ASSEMBLE;
@@ -38,8 +37,8 @@ class ActionRepairCarPart: ActionContinuousBase
 
 	override void CreateConditionComponents()  
 	{
-		m_ConditionItem = new CCINonRuined; //To change?
-		m_ConditionTarget = new CCTCursor(UAMaxDistances.SMALL); //CCTNonRuined( UAMaxDistances.BASEBUILDING ); ??
+		m_ConditionItem = new CCINonRuined();
+		m_ConditionTarget 	= new CCTCursor(UAMaxDistances.REPAIR);
 	}
 
 	override bool ActionCondition( PlayerBase player, ActionTarget target, ItemBase item )
@@ -76,8 +75,8 @@ class ActionRepairCarPart: ActionContinuousBase
 			}
 			
 			//Check health level of door
-			int zoneHP = carDoor.GetHealthLevel( "" );
-			if ( zoneHP < GameConstants.STATE_RUINED && zoneHP > GameConstants.STATE_PRISTINE )
+			int zoneHP = carDoor.GetHealthLevel("");
+			if (zoneHP > GameConstants.STATE_WORN && zoneHP < GameConstants.STATE_RUINED)
 				return true;
 			
 			return false;

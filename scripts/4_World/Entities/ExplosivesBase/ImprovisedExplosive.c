@@ -90,6 +90,21 @@ class ImprovisedExplosive : ExplosivesBase
 		}
 	}
 	
+	override void EEItemLocationChanged(notnull InventoryLocation oldLoc, notnull InventoryLocation newLoc)
+	{
+		super.EEItemLocationChanged(oldLoc, newLoc);
+
+		if (m_RAIB)
+		{
+			m_RAIB.Pair();
+		}
+	}
+	
+	override RemotelyActivatedItemBehaviour GetRemotelyActivatedItemBehaviour()
+	{
+		return m_RAIB;
+	}
+	
 	override void PairRemote(notnull EntityAI trigger)
 	{
 		m_RAIB.Pair(trigger);
@@ -97,6 +112,11 @@ class ImprovisedExplosive : ExplosivesBase
 	
 	override void UnpairRemote()
 	{
+		if (GetPairDevice())
+		{
+			GetPairDevice().UnpairRemote();
+		}
+
 		m_RAIB.Unpair();
 	}
 
@@ -384,7 +404,7 @@ class ImprovisedExplosive : ExplosivesBase
 		RemoteDetonatorReceiver receiver = RemoteDetonatorReceiver.Cast(FindAttachmentBySlotName(SLOT_TRIGGER_REMOTE));
 		if (receiver)
 		{
-			receiver.UpdateLED(pState);
+			receiver.UpdateLED(pState, true);
 		}
 	}
 	

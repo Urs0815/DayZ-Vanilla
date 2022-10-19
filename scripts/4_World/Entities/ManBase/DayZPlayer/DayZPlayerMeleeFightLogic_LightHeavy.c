@@ -140,7 +140,7 @@ class DayZPlayerMeleeFightLogic_LightHeavy
 		}
 		
 		//! Actually pressing a button to start a melee attack
-		if ((pInputs.IsUseButtonDown() && !isFireWeapon) || (pInputs.IsMeleeWeaponAttack() && isFireWeapon) || (pContinueAttack && isFireWeapon))
+		if ((pInputs.IsAttackButtonDown() && !isFireWeapon) || (pInputs.IsMeleeWeaponAttack() && isFireWeapon) || (pContinueAttack && isFireWeapon))
 		{
 			//Debug.MeleeLog(m_DZPlayer, "HandleFightLogic:: Button clicked");
 			
@@ -236,7 +236,8 @@ class DayZPlayerMeleeFightLogic_LightHeavy
 			//! stand up when crouching and raised pressed
 			if (pInputs.IsWeaponRaised() && pMovementState.m_iStanceIdx == DayZPlayerConstants.STANCEIDX_CROUCH)
 			{
-				hcm.ForceStance(DayZPlayerConstants.STANCEIDX_RAISEDERECT);
+				if ( DayZPlayerUtils.PlayerCanChangeStance(player, DayZPlayerConstants.STANCEIDX_ERECT) )
+					hcm.ForceStance(DayZPlayerConstants.STANCEIDX_RAISEDERECT);
 			}
 
 			//! blocks in raised erc/pro stance
@@ -348,7 +349,7 @@ class DayZPlayerMeleeFightLogic_LightHeavy
 			if (finisher_type != -1)
 			{
 				m_HitType = finisher_type;
-				target.SetBeingBackstabbed();
+				target.SetBeingBackstabbed(finisher_type);
 			}
 			m_DZPlayer.DepleteStamina(EStaminaModifiers.MELEE_HEAVY);
 			DisableControls();
@@ -391,7 +392,6 @@ class DayZPlayerMeleeFightLogic_LightHeavy
 		int finisher_type = GetFinisherType(itemInHands,target);
 		if (finisher_type != -1)
 		{
-			target.SetBeingBackstabbed();
 			int animation_type = DetermineFinisherAnimation(finisher_type);
 			
 			if ( animation_type > -1 )
@@ -404,6 +404,7 @@ class DayZPlayerMeleeFightLogic_LightHeavy
 			}
 			
 			m_HitType = finisher_type;
+			target.SetBeingBackstabbed(finisher_type);
 		}
 		else
 		{
@@ -1002,7 +1003,7 @@ class DayZPlayerMeleeFightLogic_LightHeavy
 			{
 				return EMeleeHitType.FINISHER_GENERIC;
 			}
-			else
+			else //specific hit depending on the component hit (gotten from the target)
 			{
 				return DetermineSpecificFinisherType(ItemBase.Cast(weapon),m_MeleeCombat.GetHitZoneIdx());
 			}
@@ -1026,6 +1027,10 @@ class DayZPlayerMeleeFightLogic_LightHeavy
 			case EMeleeHitType.FINISHER_LIVERSTAB:
 				animation = HumanCommandMelee2.HIT_TYPE_FINISHER;
 			break;
+			
+			case EMeleeHitType.FINISHER_NECKSTAB:
+				animation = HumanCommandMelee2.HIT_TYPE_FINISHER_NECK;
+			break;
 		}
 		
 		return animation;
@@ -1038,6 +1043,10 @@ class DayZPlayerMeleeFightLogic_LightHeavy
 		
 		switch (finisher_type)
 		{
+			case EMeleeHitType.FINISHER_NECKSTAB:
+				ret = "FinisherHitNeck";
+			break;
+			
 			default:
 				ret = "FinisherHit";
 			break;
@@ -1049,7 +1058,8 @@ class DayZPlayerMeleeFightLogic_LightHeavy
 	{
 		if (m_DbgForcedFinisherType > -1)
 		{
-			return EMeleeHitType.FINISHER_LIVERSTAB;
+			array<int> finishers = {EMeleeHitType.FINISHER_LIVERSTAB,EMeleeHitType.FINISHER_NECKSTAB};
+			return finishers[m_DbgForcedFinisherType];
 		}
 		
 		if (!weapon || !weapon.GetValidFinishers() || weapon.GetValidFinishers().Count() == 0)

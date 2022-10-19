@@ -76,6 +76,7 @@ class MissionServer extends MissionBase
 		//Print("OnInit()");
 		super.OnInit();
 		CfgGameplayHandler.LoadData();
+		UndergroundAreaLoader.SpawnAllTriggerCarriers();
 		//Either pass consts in Init.c or insert all desired coords ( or do both ;) )
 		m_FiringPos = new array<vector>;
 	}
@@ -124,7 +125,7 @@ class MissionServer extends MissionBase
 				
 				// Variables to be used in this scope
 				int randPos; // Select random position
-				ref Param1<vector> pos; // The value to be sent through RPC
+				Param1<vector> pos; // The value to be sent through RPC
 				array<ref Param> params; // The RPC params
 				
 				if ( m_MaxSimultaneousStrikes == 1 )
@@ -189,7 +190,7 @@ class MissionServer extends MissionBase
 	{
 		PluginLifespan module_lifespan;
 		Class.CastTo(module_lifespan, GetPlugin( PluginLifespan ));
-		ref array<Man> players = new array<Man>;
+		array<Man> players = new array<Man>;
 		GetGame().GetPlayers( players );
 			
 		for ( int i = 0; i < players.Count(); i++ )
@@ -229,14 +230,17 @@ class MissionServer extends MissionBase
 				if (player)
 				{
 					identity = player.GetIdentity();
+					m_LogoutPlayers.Remove(player);
+				}
+				else
+				{
+					m_LogoutPlayers.RemoveElement(i);
 				}
 				
 				// disable reconnecting to old char
 				// GetGame().RemoveFromReconnectCache(info.param2);
 	
-				PlayerDisconnected(player, identity, info.param2);
-				
-				m_LogoutPlayers.Remove(player);
+				PlayerDisconnected(player, identity, info.param2);						
 			}
 			else
 			{
@@ -256,7 +260,8 @@ class MissionServer extends MissionBase
 		case ClientPrepareEventTypeID:
 			ClientPrepareEventParams clientPrepareParams;
 			Class.CastTo(clientPrepareParams, params);
-			
+			CfgGameplayHandler.SyncDataSendEx(clientPrepareParams.param1);
+			UndergroundAreaLoader.SyncDataSend(clientPrepareParams.param1);
 			OnClientPrepareEvent(clientPrepareParams.param1, clientPrepareParams.param2, clientPrepareParams.param3, clientPrepareParams.param4, clientPrepareParams.param5);
 			break;
 
@@ -272,7 +277,7 @@ class MissionServer extends MissionBase
 			identity = newParams.param1;
 			InvokeOnConnect(player,identity );
 			SyncEvents.SendPlayerList();
-			CfgGameplayHandler.SyncDataSend(player);
+			
 			ControlPersonalLight(player);
 			SyncGlobalLighting(player);
 			
@@ -508,7 +513,6 @@ class MissionServer extends MissionBase
 	void OnClientReadyEvent(PlayerIdentity identity, PlayerBase player)
 	{
 		GetGame().SelectPlayer(identity, player);
-		CfgGameplayHandler.SyncDataSend(player);
 	}	
 	
 	void OnClientRespawnEvent(PlayerIdentity identity, PlayerBase player)

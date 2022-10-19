@@ -32,7 +32,7 @@ class ActionDisarmExplosive : ActionContinuousBase
 		}
 		
 		ExplosivesBase explosive;
-		if (Class.CastTo(explosive, target.GetObject()) && item && IsInReach(player, target, UAMaxDistances.DEFAULT))
+		if (Class.CastTo(explosive, target.GetObject()) && item)
 		{		
 			return explosive.GetArmed() && explosive.CanBeDisarmed();
 		}

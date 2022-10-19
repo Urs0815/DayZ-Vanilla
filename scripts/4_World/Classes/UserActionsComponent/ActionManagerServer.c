@@ -258,13 +258,13 @@ class ActionManagerServer: ActionManagerBase
 			}
 			else
 			{
-				ref ActionTarget target = new ActionTarget(NULL, NULL, -1, vector.Zero, 0); 
+				ActionTarget target = new ActionTarget(NULL, NULL, -1, vector.Zero, 0); 
 				bool success = true;
 
 				m_ActionWantEndRequest = false;
 				m_ActionInputWantEnd = false;
 					
-				if( LogManager.IsActionLogEnable() )
+				if ( LogManager.IsActionLogEnable() )
 				{	
 					Debug.ActionLog("n/a", m_PendingAction.ToString() , "n/a", "HandlePendingAction", m_Player.ToString() );
 				}
@@ -326,7 +326,10 @@ class ActionManagerServer: ActionManagerBase
 			
 				case UA_AM_ACCEPTED:
 					// check pCurrentCommandID before start or reject 
-					if ( ActionPossibilityCheck(pCurrentCommandID) )
+				
+					int condition_mask = ActionBase.ComputeConditionMask( m_Player, m_CurrentActionData.m_Target, m_CurrentActionData.m_MainItem );
+					bool can_be_action_done = m_CurrentActionData.m_Action.Can(m_Player,m_CurrentActionData.m_Target,m_CurrentActionData.m_MainItem);
+					if ( can_be_action_done && ActionPossibilityCheck(pCurrentCommandID) )
 					{
 						m_CurrentActionData.m_State = UA_START;
 						m_CurrentActionData.m_Action.Start(m_CurrentActionData);

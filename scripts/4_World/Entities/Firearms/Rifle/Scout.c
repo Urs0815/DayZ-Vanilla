@@ -8,10 +8,8 @@ class Scout_Base : BoltActionRifle_ExternalMagazine_Base
 	//Debug menu Spawn Ground Special
 	override void OnDebugSpawn()
 	{
-		GameInventory inventory = GetInventory();
-
-		inventory.CreateInInventory( "ACOGOptic" );
+		super.OnDebugSpawn();
 		
-		SpawnAttachedMagazine("Mag_Scout_5Rnd");
+		GetInventory().CreateAttachment("ACOGOptic");
 	}
 };

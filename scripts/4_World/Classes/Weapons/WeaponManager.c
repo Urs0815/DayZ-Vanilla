@@ -110,7 +110,7 @@ class WeaponManager
 			return false;
 		
 		InventoryLocation invLoc;
-		invLoc = new InventoryLocation;
+		invLoc = new InventoryLocation();
 		
 		mag.GetInventory().GetCurrentInventoryLocation(invLoc);
 		Weapon_Base wnp2;
@@ -152,7 +152,7 @@ class WeaponManager
 		
 
 		InventoryLocation invLoc;
-		invLoc = new InventoryLocation;
+		invLoc = new InventoryLocation();
 		
 		mag.GetInventory().GetCurrentInventoryLocation(invLoc);
 		Weapon_Base wnp2;
@@ -170,7 +170,7 @@ class WeaponManager
 		if( GameInventory.CanSwapEntitiesEx( mag, mag2 ) )
 			return true;
 		
-		InventoryLocation il = new InventoryLocation;
+		InventoryLocation il = new InventoryLocation();
 		
 		if( GameInventory.CanForceSwapEntitiesEx( mag, null, mag2, il ) )
 			return true;
@@ -285,7 +285,7 @@ class WeaponManager
 	bool InventoryReservation( Magazine mag, InventoryLocation invLoc)
 	{
 		Weapon_Base weapon;
-		InventoryLocation ilWeapon = new InventoryLocation;
+		InventoryLocation ilWeapon = new InventoryLocation();
 		if (Weapon_Base.CastTo(weapon, m_player.GetItemInHands()) )
 		{
 			weapon.GetInventory().GetCurrentInventoryLocation(ilWeapon);
@@ -314,8 +314,8 @@ class WeaponManager
 		
 		if( mag )
 		{
-			m_TargetInventoryLocation = new InventoryLocation;
-			mag.GetInventory().GetCurrentInventoryLocation(m_TargetInventoryLocation);
+			m_TargetInventoryLocation = new InventoryLocation();
+			m_TargetInventoryLocation.SetAttachment( m_WeaponInHand, mag, InventorySlots.MAGAZINE);
 			
 			if ( m_player.GetInventory().HasInventoryReservation(mag, m_TargetInventoryLocation) )
 			//if ( !m_player.GetInventory().AddInventoryReservationEx( mag, m_TargetInventoryLocation, GameInventory.c_InventoryReservationTimeoutMS) )
@@ -353,7 +353,17 @@ class WeaponManager
 	
 	bool SwapMagazine( Magazine mag, ActionBase control_action = NULL )
 	{
-		return StartAction(AT_WPN_SWAP_MAGAZINE, mag, NULL, control_action);
+		InventoryLocation il = new InventoryLocation();
+		if (PrepareInventoryLocationForMagazineSwap(m_WeaponInHand, mag, il) )
+		{
+			return StartAction(AT_WPN_SWAP_MAGAZINE, mag, il, control_action);
+		}
+		return false;
+	}
+	
+	bool SwapMagazineEx( Magazine mag, InventoryLocation invLoc, ActionBase control_action = NULL )
+	{
+		return StartAction(AT_WPN_SWAP_MAGAZINE, mag, invLoc, control_action);
 	}
 	
 	bool LoadBullet( Magazine mag, ActionBase control_action = NULL )
@@ -474,6 +484,7 @@ class WeaponManager
 				case AT_WPN_SWAP_MAGAZINE:
 				{
 					ctx.Write(m_PendingTargetMagazine);
+					m_PendingInventoryLocation.WriteToContext(ctx);
 					break;
 				}
 				case AT_WPN_DETACH_MAGAZINE:
@@ -532,7 +543,7 @@ class WeaponManager
 					{
 						if(!(GetGame().IsServer() && GetGame().IsMultiplayer()))
 						{
-							InventoryLocation ilWeapon = new InventoryLocation;
+							InventoryLocation ilWeapon = new InventoryLocation();
 							ItemBase weapon = m_player.GetItemInHands();
 							weapon.GetInventory().GetCurrentInventoryLocation(ilWeapon);
 							m_player.GetInventory().ClearInventoryReservationEx(m_player.GetItemInHands(),ilWeapon);
@@ -599,7 +610,7 @@ class WeaponManager
 						break;
 
 					slotID = wpn.GetSlotFromMuzzleIndex(mi);
-					il = new InventoryLocation;
+					il = new InventoryLocation();
 					il.SetAttachment(wpn,mag,slotID);
 					if( GetGame().AddInventoryJunctureEx(m_player, mag, il, false, 10000) )
 						accepted = true;
@@ -612,6 +623,10 @@ class WeaponManager
 					if ( !ctx.Read(mag) )
 						break;
 					
+					il = new InventoryLocation();
+					if (!il.ReadFromContext(ctx))
+						break;
+					
 					if ( !mag || !wpn )
 						break;
 
@@ -620,13 +635,14 @@ class WeaponManager
 					
 					if ( GetGame().AddActionJuncture(m_player,mag,10000) )
 						accepted = true;
+					m_PendingInventoryLocation = il;
 					m_PendingTargetMagazine = mag;
 					
 					break;
 				}
 				case AT_WPN_DETACH_MAGAZINE:
 				{
-					il = new InventoryLocation;
+					il = new InventoryLocation();
 					if ( !il.ReadFromContext(ctx) )
 						break;
 					
@@ -751,7 +767,7 @@ class WeaponManager
 			}
 			case AT_WPN_SWAP_MAGAZINE:
 			{
-				m_player.GetDayZPlayerInventory().PostWeaponEvent( new WeaponEventSwapMagazine(m_player, m_PendingTargetMagazine) );
+				m_player.GetDayZPlayerInventory().PostWeaponEvent( new WeaponEventSwapMagazine(m_player, m_PendingTargetMagazine, m_PendingInventoryLocation) );
 				break;
 			}
 			case AT_WPN_DETACH_MAGAZINE:
@@ -897,7 +913,6 @@ class WeaponManager
 					{
 						m_player.GetInputController().ResetADS();
 						m_player.ExitSights();
-						//Print("exitsights");
 					}
 				
 					m_justStart = false;
@@ -941,7 +956,7 @@ class WeaponManager
 			}
 			else
 			{
-				InventoryLocation il = new InventoryLocation;
+				InventoryLocation il = new InventoryLocation();
 				il.SetHands(m_player,m_player.GetItemInHands());
 				m_player.GetInventory().ClearInventoryReservationEx(m_player.GetItemInHands(),il);
 						
@@ -1271,5 +1286,32 @@ class WeaponManager
 			return m_WeaponInHand.GetCurrentModeName(mi);
 		}
 		return "";
+	}
+	
+	bool PrepareInventoryLocationForMagazineSwap( notnull Weapon_Base wpn, notnull Magazine new_mag, out InventoryLocation new_il )
+	{
+		int muzzleIndex = wpn.GetCurrentMuzzle();
+		Magazine old_mag = Magazine.Cast(wpn.GetMagazine(muzzleIndex));
+		InventoryLocation temp = new InventoryLocation();
+		
+		if (old_mag)
+		{
+			bool result = GameInventory.CanSwapEntitiesEx(new_mag, old_mag);
+			if ( result )
+			{
+				new_mag.GetInventory().GetCurrentInventoryLocation(new_il);
+				new_il.SetItem(old_mag);
+			}
+			else
+			{
+				result = GameInventory.CanForceSwapEntitiesEx(new_mag, null, old_mag, new_il);
+				float dir[4];
+				if ( !result )
+				{
+					new_il.SetGroundEx( old_mag,  m_player.GetPosition(), dir);
+				}
+			}
+		}
+		return true;
 	}
 }

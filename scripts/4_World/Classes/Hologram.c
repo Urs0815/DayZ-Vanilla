@@ -115,7 +115,13 @@ class Hologram
 		else
 		{
 			projection_entity = EntityAI.Cast(GetGame().CreateObjectEx(ProjectionBasedOnParent(), pos, ECE_TRACE|ECE_LOCAL));
-			SetProjectionEntity( projection_entity );
+			if (projection_entity == null)
+			{
+				ErrorEx(string.Format("Cannot create hologram entity from config class %1", ProjectionBasedOnParent()), ErrorExSeverity.WARNING);
+				return;
+			}
+
+			SetProjectionEntity(projection_entity);
 			SetAnimations();
 			CreateTrigger();
 			RefreshTrigger();
@@ -236,6 +242,7 @@ class Hologram
 		return item.GetType();
 	}
 	
+	//! DEPRECATED
 	static bool DoesHaveProjection(ItemBase item)
 	{
 		return item && (item.IsDeployable() || item.CanMakeGardenplot() || item.IsInherited(DeployableContainer_Base));
@@ -262,6 +269,12 @@ class Hologram
 		{
 			return;
 		} 
+
+		
+		#ifdef DEVELOPER
+		DebugConfigValues();	
+		DestroyDebugCollisionBox();
+		#endif
 
 		// update hologram position	
 		SetProjectionPosition( GetProjectionEntityPosition( m_Player ) );
@@ -361,9 +374,11 @@ class Hologram
 	{
 		Class.CastTo(m_ProjectionTrigger, g_Game.CreateObjectEx("ProjectionTrigger", GetProjectionPosition(), SPAWN_FLAGS));
 
-		m_ProjectionTrigger.SetOrientation( GetProjectionOrientation() );
-		m_ProjectionTrigger.SetParentObject( this );
-		m_ProjectionTrigger.SetParentOwner( m_Player );
+		m_ProjectionTrigger.SetOrientation(GetProjectionOrientation());
+		m_ProjectionTrigger.SetParentObject(this);
+		m_ProjectionTrigger.SetParentOwner(m_Player);
+		
+		RefreshVisual();
 	}
 
 	void RefreshTrigger()
@@ -371,8 +386,8 @@ class Hologram
 		vector min_max[2];
 		GetProjectionCollisionBox( min_max );
 
-		m_ProjectionTrigger.SetPosition( GetProjectionPosition() );
-		m_ProjectionTrigger.SetOrientation( GetProjectionOrientation() );
+		m_ProjectionTrigger.SetPosition(GetProjectionPosition());
+		m_ProjectionTrigger.SetOrientation(GetProjectionOrientation());
 		m_ProjectionTrigger.SetExtents(min_max[0], min_max[1]);
 	}
 	
@@ -414,11 +429,7 @@ class Hologram
 
 	void EvaluateCollision(ItemBase action_item = null)
 	{
-		#ifdef DEVELOPER
-		DebugConfigValues();
-		#endif
-		
-		if ( IsHidden() || IsCollidingBBox(action_item) || IsCollidingPlayer() || IsClippingRoof() || !IsBaseViable() || IsCollidingGPlot() || IsCollidingZeroPos() || IsCollidingAngle() || !IsPlacementPermitted() || !HeightPlacementCheck() || IsUnderwater() || IsInTerrain() )
+		if ( IsFloating() || IsHidden() || IsCollidingBBox(action_item) || IsCollidingPlayer() || IsClippingRoof() || !IsBaseViable() || IsCollidingGPlot() || IsCollidingZeroPos() || IsCollidingAngle() || !IsPlacementPermitted() || !HeightPlacementCheck() || IsUnderwater() || IsInTerrain() )
 		{
 			SetIsColliding( true );
 		}
@@ -505,7 +516,6 @@ class Hologram
 	protected Shape m_CollisionBox;
 	protected void DrawDebugCollisionBox( vector min_max[2], int color )
 	{
-		DestroyDebugCollisionBox();
 		vector mat[4];
 		m_Projection.GetTransform( mat );
 		m_CollisionBox = Debug.DrawBox( min_max[0], min_max[1], color );
@@ -532,8 +542,8 @@ class Hologram
 		vector orientation = GetProjectionOrientation();
 		vector edge_length;
 		vector min_max[2];
-		ref array<Object> excluded_objects = new array<Object>;
-		ref array<Object> collided_objects = new array<Object>;
+		array<Object> excluded_objects = new array<Object>;
+		array<Object> collided_objects = new array<Object>;
 		
 		GetProjectionCollisionBox( min_max );
 		relative_ofset[1] = ( min_max[1][1] - min_max[0][1] ) / 2;
@@ -1312,7 +1322,7 @@ class Hologram
 		float projection_radius = GetProjectionRadius();
 		float camera_to_player_distance = vector.Distance( GetGame().GetCurrentCameraPosition(), player.GetPosition() );
 
-		if( projection_radius < SMALL_PROJECTION_RADIUS )	// objects with radius smaller than 1m
+		if (projection_radius < SMALL_PROJECTION_RADIUS) // objects with radius smaller than 1m
 		{
 			min_projection_dist = SMALL_PROJECTION_RADIUS;
 			max_projection_dist = SMALL_PROJECTION_RADIUS * 2;
@@ -1321,7 +1331,7 @@ class Hologram
 		{
 			min_projection_dist = projection_radius;
 			max_projection_dist = projection_radius * 2;
-			max_projection_dist = Math.Clamp( max_projection_dist, SMALL_PROJECTION_RADIUS, LARGE_PROJECTION_DISTANCE_LIMIT );
+			max_projection_dist = Math.Clamp(max_projection_dist, SMALL_PROJECTION_RADIUS, LARGE_PROJECTION_DISTANCE_LIMIT);
 		}
 		
 		vector from = GetGame().GetCurrentCameraPosition();
@@ -1338,7 +1348,13 @@ class Hologram
 		vector contact_pos;
 		set<Object> hit_object = new set<Object>;
 
-		DayZPhysics.RaycastRV( from, to, contact_pos, m_ContactDir, m_ContactComponent, hit_object, player, m_Projection, false, false, ObjIntersectFire );
+		DayZPhysics.RaycastRV(from, to, contact_pos, m_ContactDir, m_ContactComponent, hit_object, player, m_Projection, false, false, ObjIntersectFire);
+		
+		//! will not push hologram up when there is direct hit of an item
+		if (hit_object.Count() > 0 && hit_object[0].IsInherited(InventoryItem))
+		{
+			contact_pos = hit_object[0].GetPosition();
+		}
 
 		static const float raycastOriginOffsetOnFail = 0.25;
 		static const float minDistFromStart = 0.01;
@@ -1358,13 +1374,13 @@ class Hologram
 		//hologram is at min distance from player
 		if ( player_to_projection_distance <= min_projection_dist )
 		{
-			player_to_projection_vector = contact_pos - player.GetPosition();		  
+			player_to_projection_vector = contact_pos - player.GetPosition();
 			player_to_projection_vector.Normalize();
 			//prevents the hologram to go underground/floor while hologram exceeds min_projection_dist
 			player_to_projection_vector[1] = player_to_projection_vector[1] + PROJECTION_TRANSITION_MIN;
 			
 			contact_pos = player.GetPosition() + (player_to_projection_vector * min_projection_dist);
-			SetIsFloating( true );
+			SetIsFloating(true);
 		}
 		//hologram is at max distance from player
 		else if ( player_to_projection_distance >= max_projection_dist )
@@ -1375,19 +1391,21 @@ class Hologram
 			player_to_projection_vector[1] = player_to_projection_vector[1] + PROJECTION_TRANSITION_MAX;
 			
 			contact_pos = player.GetPosition() + (player_to_projection_vector * max_projection_dist);
-			SetIsFloating( true );
+			SetIsFloating(true);
 		}
 		//hologram is between min and max distance from player
 		else
 		{
-			SetIsFloating( false );
+			SetIsFloating(false);
 		}
 		m_FromAdjusted = from;
 		
 		#ifdef DEVELOPER
 		DrawDebugArrow(min_projection_dist, max_projection_dist);
-		if ( DiagMenu.GetBool(DiagMenuIDs.DM_HOLOGRAM) )
+		if (DiagMenu.GetBool(DiagMenuIDs.DM_HOLOGRAM))
+		{
 			Debug.DrawSphere(GetProjectionPosition(), 0.1, 0x99FF0000, ShapeFlags.ONCE|ShapeFlags.TRANSP|ShapeFlags.NOOUTLINE);
+		}
 		#endif
 		
 		return contact_pos;
@@ -1512,6 +1530,9 @@ class Hologram
 
 	bool IsFloating()
 	{
+		#ifdef DEVELOPER
+		DebugText("IsFloating: ", false, m_IsFloating);
+		#endif
 		return m_IsFloating;
 	}
 
@@ -1538,19 +1559,19 @@ class Hologram
 		return m_IsCollidingPlayer;
 	}
 
-	void SetProjectionPosition( vector position )
+	void SetProjectionPosition(vector position)
 	{
 		m_Projection.SetPosition( position );
 		
-		if ( IsFloating() )
+		if (IsFloating())
 		{
-			m_Projection.SetPosition( SetOnGround( position ) );
+			m_Projection.SetPosition(SetOnGround(position));
 		}
 	}
 
-	void SetProjectionOrientation( vector orientation )
+	void SetProjectionOrientation(vector orientation)
 	{	
-		m_Projection.SetOrientation( orientation );
+		m_Projection.SetOrientation(orientation);
 	}
 	
 	vector GetProjectionRotation()
@@ -1575,24 +1596,22 @@ class Hologram
 		vector player_to_projection_vector;
 		float projection_diameter = GetProjectionDiameter();
 			
-		ground = Vector(0, - Math.Min( projection_diameter, SMALL_PROJECTION_GROUND ), 0);
+		ground = Vector(0, -Math.Max(projection_diameter, SMALL_PROJECTION_GROUND), 0);
 		
 		vector to = from + ground;
-		vector contact_pos = "0 0 0";
-		
-		//DayZPhysics.RaycastRV( from, to, contact_pos, m_ContactDir, m_ContactComponent, null, null, m_Projection, false, false, ObjIntersectFire );
+		vector contact_pos = to;
 		
 		RaycastRVParams rayInput = new RaycastRVParams(from, to, m_Projection);
 		rayInput.flags = CollisionFlags.ALLOBJECTS;
 		array<ref RaycastRVResult> results = new array<ref RaycastRVResult>;
 		
-		if ( DayZPhysics.RaycastRVProxy(rayInput, results) )
+		if (DayZPhysics.RaycastRVProxy(rayInput, results))
 		{
 			RaycastRVResult res;
 			for (int i = 0; i < results.Count(); i++)
 			{
 				res = results.Get(i);
-				if ( res.entry || (!res.obj && !res.parent) )
+				if (res.entry || (!res.obj && !res.parent))
 				{
 					contact_pos = res.pos;
 					break;
@@ -1609,28 +1628,19 @@ class Hologram
 			set<Object> hit_object = new set<Object>;
 			to = contact_pos;
 			to[1] = to[1] + 0.1;
-			
-			/*if ( DayZPlayerCamera3rdPerson.Cast(m_Player.GetCurrentCamera()) )
-			{
-				from = GetGame().GetCurrentCameraPosition();
-			}
-			else
-			{
-				from = m_FromAdjusted;
-			}*/
 			from = m_FromAdjusted;
 			
-			if (DayZPhysics.RaycastRV( from, to, check_pos, check_dir, check_component, hit_object, null, m_Player, false, false, ObjIntersectFire ))
+			if (DayZPhysics.RaycastRV(from, to, check_pos, check_dir, check_component, hit_object, null, m_Player, false, false, ObjIntersectFire))
 			{
-				if ( (hit_object.Count() > 0) && (!hit_object[0].IsInherited(Watchtower) || (hit_object[0].IsInherited(Watchtower) && (m_WatchtowerIgnoreComponentNames.Find(hit_object[0].GetActionComponentName( check_component, "view" )) == -1))) )
+				if ((hit_object.Count() > 0)&& (!hit_object[0].IsInherited(Watchtower) || (hit_object[0].IsInherited(Watchtower) && (m_WatchtowerIgnoreComponentNames.Find(hit_object[0].GetActionComponentName( check_component, "view" )) == -1))))
 				{
 					contact_pos = "0 0 0";
 				}
 			}
 		}
 		
-		HideWhenClose( contact_pos );
-		
+		HideWhenClose(contact_pos);
+
 		return contact_pos;
 	}
 
@@ -1721,7 +1731,7 @@ class Hologram
 	// Returns correct string to append to material path name
 	string CorrectMaterialPathName()
 	{
-		if (IsColliding())
+		if (IsColliding() || IsFloating())
 		{
 			return SUFFIX_MATERIAL_UNDEPLOYABLE;
 		}

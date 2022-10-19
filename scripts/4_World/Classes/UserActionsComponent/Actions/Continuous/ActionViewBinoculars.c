@@ -28,6 +28,7 @@ class ActionViewBinoculars : ActionViewOptics
 	override void EnterOptics(ItemOptics optic, PlayerBase player)
 	{
 		player.SetHandheldOpticsInUse(true);
+		player.SetOptics(true);
 		optic.EnterOptics();
 		optic.HideSelection("hide");
 		if ( NVGoggles.Cast(optic) && optic.ConfigIsExisting("simpleHiddenSelections") ) //HACK
@@ -56,6 +57,7 @@ class ActionViewBinoculars : ActionViewOptics
 		}
 		optic.ExitOptics();
 		player.SetHandheldOpticsInUse(false);
+		player.ExitSights();
 		if ( optic.HasEnergyManager() )
 		{
 			PoweredOptic_Base rf = PoweredOptic_Base.Cast(optic);

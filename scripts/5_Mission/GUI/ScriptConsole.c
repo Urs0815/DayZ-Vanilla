@@ -21,8 +21,7 @@ class ScriptConsole extends UIScriptedMenu
 	static float DRAW_DISTANCE = 1000;
 	static ref array<Shape> m_DebugShapes = new array<Shape>;
 	static EntityAI m_PreviewEntity;
-	
-	
+
 	ref array<Object> m_VicinityItems = new array<Object>;
 	Widget m_WgtClassesConfig;
 	int m_RunColor;
@@ -43,10 +42,24 @@ class ScriptConsole extends UIScriptedMenu
 	{
 		m_ModuleLocalEnscriptHistory 	= PluginLocalEnscriptHistory.Cast( GetPlugin(PluginLocalEnscriptHistory) );
 		m_ModuleLocalEnscriptHistoryServer 	= PluginLocalEnscriptHistoryServer.Cast( GetPlugin(PluginLocalEnscriptHistoryServer) );
+		#ifndef SERVER
+		if (GetGame() && GetGame().GetMission() && GetGame().GetMission().GetHud())
+		{
+			GetGame().GetMission().GetHud().ShowHudPlayer(false);
+			GetGame().GetMission().GetHud().ShowQuickbarPlayer(false);
+		}
+		#endif
 	}
 
 	void ~ScriptConsole()
 	{
+		#ifndef SERVER
+		if (GetGame() && GetGame().GetMission() && GetGame().GetMission().GetHud())
+		{
+			GetGame().GetMission().GetHud().ShowHudPlayer(true);
+			GetGame().GetMission().GetHud().ShowQuickbarPlayer(true);
+		}
+		#endif
 		SEffectManager.DestroyEffect(m_SoundSet);
 		if (m_PreviewEntity)
 		{
@@ -88,6 +101,7 @@ class ScriptConsole extends UIScriptedMenu
 #endif
 	
 	override Widget Init()
+
 	{
 		
 		Debug.GetBaseConfigClasses( m_BaseConfigClasses );
@@ -107,6 +121,7 @@ class ScriptConsole extends UIScriptedMenu
 		m_Tabs[TABS_GENERAL] = layoutRoot.FindAnyWidget("GeneralPanel");
 		m_Tabs[TABS_OUTPUT] = layoutRoot.FindAnyWidget("OutputPanel");
 		m_Tabs[TABS_VICINITY] = layoutRoot.FindAnyWidget("VicinityPanel");
+		m_Tabs[TABS_SOUNDS] = layoutRoot.FindAnyWidget("SoundsPanel");
 
 
 		m_Tab_buttons[TAB_ITEMS] = ButtonWidget.Cast( layoutRoot.FindAnyWidget("ItemsButtonWidget") );
@@ -116,6 +131,7 @@ class ScriptConsole extends UIScriptedMenu
 		m_Tab_buttons[TABS_GENERAL] = ButtonWidget.Cast( layoutRoot.FindAnyWidget("GeneralButtonWidget") );
 		m_Tab_buttons[TABS_OUTPUT] = ButtonWidget.Cast( layoutRoot.FindAnyWidget("OutputButtonWidget") );
 		m_Tab_buttons[TABS_VICINITY] = ButtonWidget.Cast( layoutRoot.FindAnyWidget("VicinityWidget") );
+		m_Tab_buttons[TABS_SOUNDS] = ButtonWidget.Cast( layoutRoot.FindAnyWidget("SoundsWidget") );
 
 		m_ClientLogListbox = TextListboxWidget.Cast( layoutRoot.FindAnyWidget("TextListbox") );
 		m_ClientLogClearButton = ButtonWidget.Cast( layoutRoot.FindAnyWidget("ButtonClear") );
@@ -132,6 +148,10 @@ class ScriptConsole extends UIScriptedMenu
 		m_PositionsListbox	= TextListboxWidget.Cast( layoutRoot.FindAnyWidget("PositionsList") );
 		m_TeleportButton	= ButtonWidget.Cast( layoutRoot.FindAnyWidget("ButtonTeleport") );
 		m_ButtonCopyPos		= ButtonWidget.Cast( layoutRoot.FindAnyWidget("Button_CopyPos") );
+		m_CopySoundset		= ButtonWidget.Cast( layoutRoot.FindAnyWidget("SoundsetCopy") );
+		m_PlaySoundset		= ButtonWidget.Cast( layoutRoot.FindAnyWidget("PlaySoundset") );
+		m_PlaySoundsetLooped = ButtonWidget.Cast( layoutRoot.FindAnyWidget("PlaySoundsetLooped") );
+		m_StopSoundset 		= ButtonWidget.Cast( layoutRoot.FindAnyWidget("StopSoundset") );
 		m_TeleportX			= EditBoxWidget.Cast( layoutRoot.FindAnyWidget("TeleportX") );
 		m_TeleportY			= EditBoxWidget.Cast( layoutRoot.FindAnyWidget("TeleportY") );
 		m_TeleportXYZ		= EditBoxWidget.Cast( layoutRoot.FindAnyWidget("TeleportXYZ") );
@@ -187,6 +207,10 @@ class ScriptConsole extends UIScriptedMenu
 		m_ItemMoveUpButton = ButtonWidget.Cast( layoutRoot.FindAnyWidget("ItemMoveUpButton") );
 		m_ItemMoveDownButton = ButtonWidget.Cast( layoutRoot.FindAnyWidget("ItemMoveDownButton") );
 		m_ItemPreviewWidget = ItemPreviewWidget.Cast( layoutRoot.FindAnyWidget("ItemPreviewWidget") );
+		
+		m_SoundFilter = EditBoxWidget.Cast( layoutRoot.FindAnyWidget("SoundsFilter") );
+		m_SoundsTextListbox = TextListboxWidget.Cast( layoutRoot.FindAnyWidget("SoundsList") );
+
 
 		m_QuantityEditBox = EditBoxWidget.Cast( layoutRoot.FindAnyWidget("QuantityValue") );
 		m_DamageEditBox = EditBoxWidget.Cast( layoutRoot.FindAnyWidget("DamageValue") );
@@ -258,10 +282,11 @@ class ScriptConsole extends UIScriptedMenu
 		{
 			m_DiagDrawmodeTextListbox.AddItem(diag_names.Get(i), NULL, 0);
 		}
-
+		string test1 = m_ConfigDebugProfile.GetItemSearch();
 		m_ObjectFilter.SetText( m_ConfigDebugProfile.GetItemSearch() );
 		m_SpawnDistanceEditBox.SetText( m_ConfigDebugProfile.GetSpawnDistance().ToString() );
-		ChangeFilter();
+		
+		ChangeFilterItems();
 
 		m_Rows = 0;
 		m_ServerRows = 0;
@@ -580,13 +605,16 @@ class ScriptConsole extends UIScriptedMenu
 		
 	void RunEnscript()
 	{
+		#ifdef DEVELOPER
 		string code;
 		m_EnfScriptEdit.GetText(code);
+		_player = PlayerBase.Cast(GetGame().GetPlayer());
 		bool success = GetGame().ExecuteEnforceScript("void scConsMain() \n{\n" + code + "\n}\n", "scConsMain");
 		ColorRunButton(success);
 		
 		m_EnscriptConsoleHistory.Insert( code );
 		m_ModuleLocalEnscriptHistory.AddNewLine( code );
+		#endif
 	}
 	
 	void ColorRunButton(bool success)
@@ -617,13 +645,23 @@ class ScriptConsole extends UIScriptedMenu
 		GetGame().RPCSingleParam( GetGame().GetPlayer(), ERPCs.DEV_RPC_SERVER_SCRIPT, CachedObjectsParams.PARAM1_STRING, true, GetGame().GetPlayer().GetIdentity() );
 	}
 
-	void ChangeFilter()
+	TStringArray GetItemsClasses()
+	{
+		return {CFG_VEHICLESPATH, CFG_WEAPONSPATH, CFG_MAGAZINESPATH, CFG_AMMO};
+	}
+	
+	TStringArray GetSoundClasses()
+	{
+		return {CFG_SOUND_SETS};
+	}
+
+	void ChangeFilter(TStringArray classes, TextListboxWidget widget, EditBoxWidget filterWidget, int categoryMask = -1, bool ignoreScope = false)
 	{
 		//! get text
-		m_ConfigDebugProfile.SetItemSearch( m_ObjectFilter.GetText() );
-		m_ObjectsTextListbox.ClearItems();
+		//m_ConfigDebugProfile.SetItemSearch( filterWidget.GetText() );
+		widget.ClearItems();
 
-		string filter_lower = m_ObjectFilter.GetText().Trim();
+		string filter_lower = filterWidget.GetText().Trim();
 		filter_lower.ToLower(  );
 
 		
@@ -632,12 +670,9 @@ class ScriptConsole extends UIScriptedMenu
 		TStringArray filters = new TStringArray;
 		filter_lower.Split( " ", filters );
 
-		TStringArray searching_in = new TStringArray;
-		Debug.GetBaseConfigClasses( searching_in );
-
-		for ( int i = 0; i < searching_in.Count(); i++ )
+		for ( int i = 0; i < classes.Count(); i++ )
 		{
-			string config_path = searching_in.Get(i);
+			string config_path = classes.Get(i);
 
 			int objects_count = GetGame().ConfigGetChildrenCount( config_path );
 			for ( int j = 0; j < objects_count; j++ )
@@ -647,17 +682,17 @@ class ScriptConsole extends UIScriptedMenu
 
 				int scope = GetGame().ConfigGetInt( config_path + " " + child_name + " scope" );
 				
-				if ( scope >= m_ObjectsScope)
+				if ( scope >= m_ObjectsScope || ignoreScope)
 				{
 					int category_bit = GetGame().ConfigGetInt( config_path + " " + child_name + " debug_ItemCategory" ) - 1;
 					category_bit = (1 << category_bit);
 					
 					bool display = false;
-					if (category_bit & m_CategoryMask )
+					if (category_bit & categoryMask )
 					{
 						display = true;
 					}
-					else if ( (!m_ConfigDebugProfile.GetMergeType() || m_CategoryMask == 0) && filters.Count() > 0 )
+					else if ( (!m_ConfigDebugProfile.GetMergeType() || categoryMask == 0) && filters.Count() > 0 )
 					{
 						string child_name_lower = child_name;
 						child_name_lower.ToLower( );
@@ -671,7 +706,7 @@ class ScriptConsole extends UIScriptedMenu
 							}
 						}
 					}
-					else if(m_CategoryMask == 0 )
+					else if(categoryMask == 0 )
 					{
 						display = true;
 					}
@@ -687,7 +722,7 @@ class ScriptConsole extends UIScriptedMenu
 		items.Sort();
 		foreach (string s: items)
 		{
-			m_ObjectsTextListbox.AddItem( s, NULL, 0 );
+			widget.AddItem( s, NULL, 0 );
 			
 		}
 			
@@ -768,17 +803,17 @@ class ScriptConsole extends UIScriptedMenu
 	{
 		super.Update( timeslice );
 		PlayerBase player = PlayerBase.Cast(GetGame().GetPlayer());
-		if( GetGame() && GetGame().GetInput() && GetGame().GetInput().LocalPress("UAUIBack", false) )
+		if ( GetGame() && GetGame().GetInput() && GetGame().GetInput().LocalPress("UAUIBack", false) )
 		{
 			GetGame().GetUIManager().Back();
 		}
 		m_DebugMapWidget.ClearUserMarks();
 		
-		if(m_UpdateMap)
+		if (m_UpdateMap)
 		{
-			foreach(RemotePlayerStatDebug rpd: m_PlayerDebugStats)
+			foreach (RemotePlayerStatDebug rpd: m_PlayerDebugStats)
 			{
-				if(rpd.m_Player != player)
+				if (rpd.m_Player != player)
 				{
 					vector dir = rpd.m_Pos - player.GetWorldPosition();
 					dir[1] = 0;
@@ -790,10 +825,10 @@ class ScriptConsole extends UIScriptedMenu
 		}
 		vector player_pos = player.GetWorldPosition();
 		m_DebugMapWidget.AddUserMark(player_pos,"You", COLOR_RED,"\\dz\\gear\\navigation\\data\\map_tree_ca.paa");
-		if(player_pos != GetMapPos())
+		if (player_pos != GetMapPos())
 			m_DebugMapWidget.AddUserMark(GetMapPos(),"Pos", COLOR_BLUE,"\\dz\\gear\\navigation\\data\\map_tree_ca.paa");
 		UpdateMousePos();
-		if(!m_PlayerPosRefreshBlocked)
+		if (!m_PlayerPosRefreshBlocked)
 			RefreshPlayerPosEditBoxes();
 	}
 
@@ -819,7 +854,7 @@ class ScriptConsole extends UIScriptedMenu
 			m_PlayerMouseDiff.SetText("Distance: " + MiscGameplayFunctions.TruncateToS(dst));
 		}
 	}
-		
+	/*
 	override bool OnController(Widget w, int control, int value)
 	{
 		super.OnController(w, control, value);
@@ -836,7 +871,7 @@ class ScriptConsole extends UIScriptedMenu
 	
 		return true;
 	}
-	
+	*/
 	void SelectObject(bool hide_presets = true)
 	{
 		if(hide_presets)
@@ -904,7 +939,7 @@ class ScriptConsole extends UIScriptedMenu
 		
 		if ( w == m_ClientLogClearButton )
 		{
-			this.Clear();
+			Clear();
 			return true;
 		}
 		else if ( w == m_ConfigHierarchyTextListbox )
@@ -944,7 +979,7 @@ class ScriptConsole extends UIScriptedMenu
 			float pos_y = GetGame().SurfaceY(pos_x, pos_z);
 			vector v = Vector(pos_x, pos_y, pos_z);
 			string txt = m_TeleportXYZ.GetText();
-			if(m_TeleportXYZ.GetText() != "" && m_TeleportXYZ.GetText() != DEFAULT_POS_XYZ)
+			if (m_TeleportXYZ.GetText() != "" && m_TeleportXYZ.GetText() != DEFAULT_POS_XYZ)
 			{
 				string pos = m_TeleportXYZ.GetText();
 				pos.Replace("<", "");
@@ -958,6 +993,12 @@ class ScriptConsole extends UIScriptedMenu
 		else if ( w == m_ButtonCopyPos )
 		{
 			GetGame().CopyToClipboard( GetMapPos().ToString() );
+			return true;
+		}
+		else if ( w == m_CopySoundset )
+		{
+			AddItemToClipboard(m_SoundsTextListbox);
+			return true;
 		}
 		else if ( w == m_LogsEnabled )
 		{
@@ -1024,7 +1065,7 @@ class ScriptConsole extends UIScriptedMenu
 			{
 				m_ConfigDebugProfile.SetMergeType(m_CategoryMergeType.IsChecked());
 			}
-			ChangeFilter();
+			ChangeFilterItems();
 			// Refresh UI by new settings
 			m_MissionGameplay.GetHudDebug().RefreshByLocalProfile();
 
@@ -1139,7 +1180,16 @@ class ScriptConsole extends UIScriptedMenu
 		}
 		else if ( w == m_ObjectFilter )
 		{
-			ChangeFilter();
+			ChangeFilterItems();
+			return true;
+		}
+		else if ( w == m_SoundFilter )
+		{
+			ChangeFilterSound();
+			return true;
+		}else if ( w == m_SoundFilter )
+		{
+			ChangeFilterSound();
 			return true;
 		}
 		else if ( w == m_SpawnInInvButton || w == m_SpawnGroundButton || w == m_SpawnAsAttachment || w == m_SpawnSpecial )
@@ -1384,6 +1434,31 @@ class ScriptConsole extends UIScriptedMenu
 			GetGame().GetPlayer().PlaySoundSet( m_SoundSet, m_ConfigData.param2, 0, 0 );
 			return true;
 		}
+		else if (w == m_PlaySoundset || w == m_PlaySoundsetLooped)
+		{
+			int selected_row_index = m_SoundsTextListbox.GetSelectedRow();
+			string soundSetName;
+			if ( selected_row_index != -1 )
+			{
+				m_SoundsTextListbox.GetItemText( selected_row_index, 0, soundSetName );
+				
+				if (w == m_PlaySoundsetLooped)
+				{
+					m_SoundSet = SEffectManager.PlaySoundEnviroment(soundSetName, GetGame().GetPlayer().GetPosition(), 0, 0, true);
+				}
+				else
+				{
+					m_SoundSet = SEffectManager.PlaySoundEnviroment(soundSetName, GetGame().GetPlayer().GetPosition());
+				}
+			}
+			return true;
+		}
+		else if (w == m_StopSoundset)
+		{
+			if (m_SoundSet)
+				m_SoundSet.Stop();
+			return true;
+		}
 		
 		else
 		{
@@ -1516,7 +1591,9 @@ class ScriptConsole extends UIScriptedMenu
 		if ( w ==  m_DebugMapWidget )
 		{
 			vector screen_to_map = m_DebugMapWidget.ScreenToMap(Vector(x,y, 0));
-			float pos_y = GetGame().SurfaceY(screen_to_map[0], screen_to_map[2]);
+			float pos_y_a = GetGame().SurfaceY(screen_to_map[0], screen_to_map[2]);
+			float pos_y_b = GetGame().SurfaceRoadY(screen_to_map[0], screen_to_map[2]);
+			float pos_y = Math.Max(pos_y_a, pos_y_b);
 			screen_to_map[1] = pos_y;
 			m_Developer.Teleport(player, screen_to_map);
 			return true;
@@ -1558,7 +1635,12 @@ class ScriptConsole extends UIScriptedMenu
 		
 		if (w == m_ObjectFilter)
 		{
-			m_RefreshFilterTimer.Run(0.85, this, "ChangeFilter", NULL, false);
+			m_RefreshFilterTimer.Run(0.85, this, "ChangeFilterItems", null, false);
+			return true;
+		}
+		else if ( w == m_SoundFilter )
+		{
+			m_RefreshFilterTimer.Run(0.85, this, "ChangeFilterSound", null, false);
 			return true;
 		}
 		else if (w == m_QuantityEditBox && ( GetCurrentItemIndex() >= 0 || GetCurrentPresetName() != "") )
@@ -1615,7 +1697,7 @@ class ScriptConsole extends UIScriptedMenu
 			{
 				m_ObjectsScope = 2;
 			}
-			ChangeFilter();
+			ChangeFilterItems();
 			return true;
 		}
 		else if ( w == m_ShowOthers )
@@ -1657,7 +1739,7 @@ class ScriptConsole extends UIScriptedMenu
 				cbw.SetTextColor(ARGB( 255, 255, 255,255 ));
 			}
 
-			ChangeFilter();
+			ChangeFilterItems();
 			return true;
 		}
 		else if ( w == m_TimeSlider || w == m_DateDay || w == m_DateYear || w == m_DateMonth || w == m_DateHour || w == m_DateMinute )
@@ -1722,6 +1804,18 @@ class ScriptConsole extends UIScriptedMenu
 		return false;
 	}
 
+	void ChangeFilterItems()
+	{
+		m_ConfigDebugProfile.SetItemSearch(m_ObjectFilter.GetText());
+		ChangeFilter(GetItemsClasses(), m_ObjectsTextListbox,m_ObjectFilter, m_CategoryMask);
+	}	
+	
+	void ChangeFilterSound()
+	{
+		m_ConfigDebugProfile.SetSoundsetFilter(m_SoundFilter.GetText());
+		ChangeFilter(GetSoundClasses(), m_SoundsTextListbox, m_SoundFilter, 0,true);
+	}
+	
 	void SelectPreset()
 	{
 		m_ObjectsTextListbox.SelectRow(-1);
@@ -1963,6 +2057,7 @@ class ScriptConsole extends UIScriptedMenu
 	
 	void SetPreviewObject(string object)
 	{
+		#ifdef DEVELOPER
 		if (m_PreviewEntity)
 		{
 			m_PreviewEntity.Delete();
@@ -1970,13 +2065,15 @@ class ScriptConsole extends UIScriptedMenu
 		
 		if (!GetGame().IsKindOf(object, "DZ_LightAI") && !GetGame().IsKindOf(object, "Man"))
 		{
+			DayZGame.m_IsPreviewSpawn = true;
 			m_PreviewEntity = EntityAI.Cast( GetGame().CreateObjectEx(object, "0 0 0", ECE_LOCAL));
-					
+			DayZGame.m_IsPreviewSpawn = false;		
 			if (m_PreviewEntity)
 			{
 				m_ItemPreviewWidget.SetItem(m_PreviewEntity);
 			}
 		}
+		#endif
 	}
 	
 	void AddItemToPreset()
@@ -2480,6 +2577,7 @@ class ScriptConsole extends UIScriptedMenu
 
 	// Page General
 	ButtonWidget 		m_TeleportButton;
+	
 	ButtonWidget 		m_ButtonCopyPos;
 	EditBoxWidget 		m_TeleportX;
 	EditBoxWidget 		m_TeleportY;
@@ -2490,6 +2588,10 @@ class ScriptConsole extends UIScriptedMenu
 	EditBoxWidget 		m_DateHour;
 	EditBoxWidget 		m_DateMinute;
 	
+	ButtonWidget 		m_CopySoundset;
+	ButtonWidget 		m_PlaySoundset;
+	ButtonWidget 		m_PlaySoundsetLooped;
+	ButtonWidget 		m_StopSoundset;
 	
 	TextWidget	 		m_PlayerCurPos;
 	TextWidget	 		m_MouseCurPos;
@@ -2519,7 +2621,10 @@ class ScriptConsole extends UIScriptedMenu
 	static string m_LastSelectedObject;
 	static int m_SelectedObjectIsPreset = -1;
 	TextListboxWidget m_ObjectsTextListbox;
-
+	
+	EditBoxWidget m_SoundFilter;
+	TextListboxWidget m_SoundsTextListbox;
+	
 	TextListboxWidget m_PresetsTextListbox;
 	TextListboxWidget m_PresetItemsTextListbox;
 	ButtonWidget m_PresetNewButton;
@@ -2573,8 +2678,9 @@ class ScriptConsole extends UIScriptedMenu
 	static const int TAB_ENSCRIPT_SERVER = 4;
 	static const int TABS_OUTPUT = 5;
 	static const int TABS_VICINITY = 6;
+	static const int TABS_SOUNDS = 7;
 	// -----------------------
-	static const int TABS_COUNT = 7;
+	static const int TABS_COUNT = 8;
 
 	Widget m_Tabs[TABS_COUNT];
 	MapWidget m_DebugMapWidget;
@@ -2655,7 +2761,7 @@ class ScriptConsole extends UIScriptedMenu
 			}
 			
 		}
-		else if( tab_id == TAB_ENSCRIPT_SERVER)
+		else if ( tab_id == TAB_ENSCRIPT_SERVER)
 		{
 			m_ScriptServer = true;
 			index = m_EnscriptConsoleHistoryServer.Count() - m_EnscriptHistoryRowServer - 1;
@@ -2701,6 +2807,11 @@ class ScriptConsole extends UIScriptedMenu
 					m_VicinityListbox.AddItem(o.GetType(),null,0);
 				}
 			}
+		}
+		else if (tabID == TABS_SOUNDS)
+		{
+			m_SoundFilter.SetText(m_ConfigDebugProfile.GetSoundsetFilter());
+			ChangeFilterSound();
 		}
 	}
 		

@@ -117,6 +117,7 @@ class EmoteManager
 	bool 					m_IsSurrendered;
 	bool 					m_ItemToBeCreated;
 	bool 					m_CancelEmote;
+	bool 					m_InstantCancelEmote;
 	bool 					m_GestureInterruptInput;
 	protected bool			m_ItemToHands; //deprecated
 	protected bool			m_ItemIsOn;
@@ -133,6 +134,7 @@ class EmoteManager
 	protected const int 	CALLBACK_CMD_INVALID = -1;
 	protected const int 	CALLBACK_CMD_END = -2;
 	protected const int 	CALLBACK_CMD_GESTURE_INTERRUPT = -3;
+	protected const int 	CALLBACK_CMD_INSTACANCEL = -4;
 	PluginAdminLog 			m_AdminLog;
 	protected ref Timer 				m_ReservationTimer;
 	protected ref map<int, ref EmoteBase>		m_NameEmoteMap; //<emote_ID,EmoteBase>
@@ -279,7 +281,21 @@ class EmoteManager
 		int gestureSlot = DetermineGestureIndex();
 		
 		//deferred emote cancel
-		if (m_CancelEmote)
+		if (m_InstantCancelEmote) //'hard' cancel
+		{
+			if (m_Callback)
+			{
+				m_Callback.Cancel();
+			}
+			
+			if (m_MenuEmote)
+			{
+				m_MenuEmote = null;
+			}
+			m_DeferredEmoteExecution = CALLBACK_CMD_INVALID;
+			m_InstantCancelEmote = false;
+		}
+		else if (m_CancelEmote) //'soft' cancel
 		{
 			if (m_IsSurrendered)
 			{
@@ -308,6 +324,11 @@ class EmoteManager
 				{
 					SendEmoteRequestSync(CALLBACK_CMD_END);
 				}
+				
+				if (InterruptWaterCheck())
+				{
+					SendEmoteRequestSync(CALLBACK_CMD_INSTACANCEL);
+				}
 			}
 			
 			if (gestureSlot > 0 || m_GestureInterruptInput || (m_HIC.IsSingleUse() && !uiGesture) || (m_HIC.IsContinuousUseStart() && !uiGesture) || (m_Callback.m_IsFullbody && !uiGesture && m_HIC.IsWeaponRaised())) 
@@ -327,7 +348,7 @@ class EmoteManager
 				{
 					m_Callback.InternalCommand(DayZPlayerConstants.CMD_ACTIONINT_ACTION);
 				}
-				else if ( m_CurrentGestureID == EmoteConstants.ID_EMOTE_RPS || m_CurrentGestureID == EmoteConstants.ID_EMOTE_RPS_R || m_CurrentGestureID == EmoteConstants.ID_EMOTE_RPS_P || m_CurrentGestureID == EmoteConstants.ID_EMOTE_RPS_S )
+				else if ( m_HIC.IsSingleUse() && (m_CurrentGestureID == EmoteConstants.ID_EMOTE_RPS || m_CurrentGestureID == EmoteConstants.ID_EMOTE_RPS_R || m_CurrentGestureID == EmoteConstants.ID_EMOTE_RPS_P || m_CurrentGestureID == EmoteConstants.ID_EMOTE_RPS_S) )
 				{
 					if ( m_RPSOutcome != -1 )
 					{
@@ -493,6 +514,11 @@ class EmoteManager
 			if ( (m_Callback || m_IsSurrendered) && (forced == EmoteLauncher.FORCE_ALL || (forced == EmoteLauncher.FORCE_DIFFERENT && m_CurrentGestureID != gesture_id)) )
 			{
 				m_CancelEmote = true;
+			}
+			
+			if (gesture_id == CALLBACK_CMD_INSTACANCEL)
+			{
+				m_InstantCancelEmote = true;
 			}
 			
 			m_DeferredEmoteExecution = gesture_id;
@@ -816,7 +842,7 @@ class EmoteManager
 	bool CanPlayEmote(int id)
 	{
 		//special cases
-		if ( id == CALLBACK_CMD_END || id == CALLBACK_CMD_GESTURE_INTERRUPT)
+		if ( id == CALLBACK_CMD_END || id == CALLBACK_CMD_GESTURE_INTERRUPT || id == CALLBACK_CMD_INSTACANCEL )
 		{
 			return true;
 		}
@@ -1018,6 +1044,23 @@ class EmoteManager
 			}
 		}
 		return false;
+	}
+	
+	bool InterruptWaterCheck()
+	{
+		vector wl;
+		int level = DayZPlayerUtils.CheckWaterLevel(m_Player,wl);
+		
+		if (m_Player.IsPlayerInStance(DayZPlayerConstants.STANCEMASK_PRONE | DayZPlayerConstants.STANCEMASK_PRONE) && level > EWaterLevels.LEVEL_LOW)
+		{
+			return true;
+		}
+		else if (m_Player.IsPlayerInStance(DayZPlayerConstants.STANCEMASK_CROUCH | DayZPlayerConstants.STANCEIDX_RAISEDCROUCH) && level > EWaterLevels.LEVEL_CROUCH)
+		{
+			return true;
+		}
+		
+		return m_Player.GetModifiersManager() && m_Player.GetModifiersManager().IsModifierActive(eModifiers.MDF_DROWNING);
 	}
 	
 	bool IsEmotePlaying()

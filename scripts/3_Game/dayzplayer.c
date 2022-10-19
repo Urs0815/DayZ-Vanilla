@@ -816,6 +816,8 @@ enum DayZPlayerConstants
 	CMD_ACTIONFB_RESTRAINSELF			= 112,		// erc,cro 			[end]
 	CMD_ACTIONFB_ASSEMBLE				= 113,		// erc,cro			[end, end2]
 	CMD_ACTIONFB_DISASSEMBLE			= 114,		// erc,cro			[end, end2]
+	CMD_ACTIONFB_FLAME_REPAIR			= 115,		// erc, cro	
+	CMD_ACTIONFB_TURN_VALVE				= 116,		// erc
 	CMD_ACTIONFB_SET_ALARM				= 250,		// erc,cro			??not sure
 	
 	// onetime 
@@ -1137,6 +1139,8 @@ class DayZPlayer extends Human
 	bool									IsHoldingBreath();
 	//! return true if player is currently performing FB gesture, otherwise false
 	bool									IsPerformingFBGesture();
+	//! return true if player is currently in 3pp, otherwise false
+	bool									IsInThirdPerson();
 
 	//! processes melee hit
 	proto native	MeleeCombatData			GetMeleeCombatData();

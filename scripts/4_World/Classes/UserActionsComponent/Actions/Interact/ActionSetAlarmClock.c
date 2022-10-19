@@ -56,9 +56,12 @@ class ActionSetAlarmClock: ActionContinuousBase
 	
 	override void OnUpdate(ActionData action_data)
 	{
-		float progress = action_data.m_Callback.GetActionComponentProgress();
-		AlarmClock_ColorBase alarm = AlarmClock_ColorBase.Cast(action_data.m_MainItem);
-		alarm.SetAnimationPhaseNow("ClockAlarm", progress);
+		if (action_data.m_Callback)
+		{
+			float progress = action_data.m_Callback.GetActionComponentProgress();
+			AlarmClock_ColorBase alarm = AlarmClock_ColorBase.Cast(action_data.m_MainItem);
+			alarm.SetAnimationPhaseNow("ClockAlarm", progress);
+		}
 	}
 	
 };

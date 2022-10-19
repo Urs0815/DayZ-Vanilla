@@ -90,35 +90,45 @@ class HumanInputController
 
 	//--------------------------------------------------------------
 	
-	//! returns true if Use/Attack button is pressed (== true for multiple ticks)
-	//! LButton now
+	/**
+	*	\brief Deprecated; returns true if Use/Attack button is pressed (== true for multiple ticks). Synced.
+	*	\note Returns state of both 'UADefaultAction' and 'UAFire' input actions. Those are now separated in the methods below.
+	*/
 	proto native bool			IsUseButton();
 
-	//! returns true if Use/Attack button has just been pressed (== true for 1 tick only)
-	//! LButton 
+	/**
+	*	\brief Deprecated; returns true if Use/Attack button has just been pressed (== true for 1 tick only). Synced.
+	*	\note Returns state of both 'UADefaultAction' and 'UAFire' input actions. Those are now separated in the methods below.
+	*/
 	proto native bool			IsUseButtonDown();
+	
+		//! returns true if 'UADefaultAction' button is pressed (== true for multiple ticks). Synced.
+		proto native bool			IsUseItemButton();
+		//! returns true if 'UADefaultAction' button has just been pressed (== true for 1 tick only). Synced.
+		proto native bool			IsUseItemButtonDown();
+		
+		//! returns true if 'UAFire' button is pressed (== true for multiple ticks). Synced.
+		proto native bool			IsAttackButton();
+		//! returns true if 'UAFire' button has just been pressed (== true for 1 tick only). Synced.
+		proto native bool			IsAttackButtonDown();
 
-	//! single use (== true for 1 tick only)
-	//! Lbutton + not raised !
+	//! single 'UADefaultAction' (== true for 1 tick only) + not raised
 	proto native bool			IsSingleUse();
 
-	//! Long click use (== true for multiple ticks)
-	//! long Lbutton + not raised !
+	//! Long click 'UADefaultAction' (== true for multiple ticks) + not raised
 	proto native bool			IsContinuousUse();
 
-	//! is start of cont use (== true for 1 tick only)
-	//! long Lbutton + not raised !
+	//! is start of cont. 'UADefaultAction' (== true for 1 tick only) + not raised
 	proto native bool			IsContinuousUseStart();
 
-	//! is end of cont use (== true for 1 tick only)
-	//! long Lbutton + not raised !
+	//! is end of cont. 'UADefaultAction' (== true for 1 tick only) + not raised
 	proto native bool			IsContinuousUseEnd();
 
 	//! is immediate action triggered - 1 tick only
 	//! Middle Button + not raised !
-	proto native bool			IsImmediateAction();
+	proto native bool			IsImmediateAction(); //TODO: revise, may be obsolete
 
-
+	//--------------------------------------------------------------
 	//! weapon handling 
 	
 	//! R - reloading / bolting  (== true for 1 tick only)
@@ -298,6 +308,12 @@ class HumanCommandActionCallback
 	//! calls internal command 
 	//! pInternalCommandId is one of CMD_ACTIONINT_ ... 
 	proto native 	void 	InternalCommand(int pInternalCommandId);	
+	
+	//! enables character aligning to desired position and direction in world space
+	proto native	void	SetAligning(vector pPositionWS, vector pDirectionWS);
+
+	//! disables character aligning
+	proto native	void	ResetAligning();
 
 	//! enables calling cancel condition
 	//! default is disabled
@@ -451,6 +467,25 @@ class HumanCommandMove
 	//!	pStanceIds is one of STANCEIDX_ERECT,STANCEIDX_CROUCH
 	//! this forces to stand up to required stance
 	proto native void 		ForceStanceUp(int pStanceIdx);
+
+
+	//! sets the multiplier for SHumanCommandMoveSettings::m_fRunSpringTimeout
+	proto native void		SetRunSprintFilterModifier(float value);
+
+	//! sets the multiplier for SHumanCommandMoveSettings::m_fDirFilterTimeout
+	proto native void		SetDirectionFilterModifier(float value);
+
+	//! sets the multiplier for SHumanCommandMoveSettings::m_fDirFilterSprintTimeout
+	proto native void		SetDirectionSprintFilterModifier(float value);
+
+	//! sets the multiplier for HumanItemBehaviorCfg::m_fMoveHeadingFilterSpan
+	proto native void		SetTurnSpanModifier(float value);
+
+	//! sets the multiplier for HumanItemBehaviorCfg::m_fMoveHeadingSprintFilterSpan
+	proto native void		SetTurnSpanSprintModifier(float value);
+	
+	//! sets water level (depth)
+	proto native void		SetCurrentWaterLevel(float value);
 }
 
 
@@ -491,6 +526,7 @@ class HumanCommandMelee2
 	static const int HIT_TYPE_LIGHT = 0;
 	static const int HIT_TYPE_HEAVY	= 1;
 	static const int HIT_TYPE_FINISHER = 2; //liver stab
+	static const int HIT_TYPE_FINISHER_NECK = 3;
 	
 	//! marks command to continue to combo 
 	proto native void 		ContinueCombo(bool pHeavyHit, float pComboValue, EntityAI target = null, vector hitPos = vector.Zero);
@@ -508,6 +544,10 @@ class HumanCommandMelee2
 	proto native bool		IsOnBack();
 	
 	proto native int		GetComboCount();
+	
+	proto native int		GetCurrentHitType();
+	
+	proto native bool		IsFinisher();
 }
 
 
@@ -563,7 +603,7 @@ class HumanCommandUnconscious
 	private void HumanCommandUnconscious() {}
 	private void ~HumanCommandUnconscious() {}
 	
-	proto native void 	WakeUp();
+	proto native void 	WakeUp(int targetStance = -1);
 	proto native bool	IsOnLand();
 	proto native bool	IsInWater();
 }
@@ -889,6 +929,7 @@ enum WeaponEvents
 	HAMMER_UNCOCKED,
 	HAMMER_COCKED
 	CHANGE_HIDE,
+	CHANGE_SHOW,
 	CYLINDER_ROTATE,
 };
 
@@ -955,6 +996,7 @@ class HumanCommandWeapons
 		RegisterEvent("Weapon_Hammer_Uncocked", WeaponEvents.HAMMER_UNCOCKED);
 		RegisterEvent("Weapon_Hammer_Cocked", WeaponEvents.HAMMER_COCKED);
 		RegisterEvent("Weapon_Change_Hide", WeaponEvents.CHANGE_HIDE);
+		RegisterEvent("Weapon_Change_Show", WeaponEvents.CHANGE_SHOW);
 		RegisterEvent("Weapon_CylinderRotate", WeaponEvents.CYLINDER_ROTATE);
 	}
 

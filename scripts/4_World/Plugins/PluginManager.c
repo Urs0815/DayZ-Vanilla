@@ -57,12 +57,14 @@ class PluginManager
 		RegisterPlugin( "PluginPresenceNotifier",						true,	false );
 		RegisterPlugin( "PluginAdminLog",								false, 	true );
 		
+		// Developer + Diag
+		RegisterPluginDiag( "PluginKeyBinding",							true, 	false );
+		RegisterPluginDiag( "PluginDeveloper",							true, 	true );
+		
 		// Only In Debug / Internal
 		RegisterPluginDebug( "PluginConfigViewer",						true, 	true );
 		RegisterPluginDebug( "PluginLocalEnscriptHistory",				true, 	true );
-		RegisterPluginDebug( "PluginLocalEnscriptHistoryServer",		true, 	true );
-		RegisterPluginDebug( "PluginKeyBinding",						true, 	false );
-		RegisterPluginDebug( "PluginDeveloper",							true, 	true );
+		RegisterPluginDebug( "PluginLocalEnscriptHistoryServer",		true, 	true );				
 		RegisterPluginDebug( "PluginDeveloperSync",						true, 	true );
 		
 		RegisterPluginDebug( "PluginSceneManager",						true, 	true );
@@ -98,8 +100,9 @@ class PluginManager
 	void PluginsInit()
 	{
 		int i = 0;
+		int regCount = m_PluginRegister.Count();
 		
-		for ( i = 0; i < m_PluginRegister.Count(); ++i)
+		for ( i = 0; i < regCount; ++i)
 		{
 			typename plugin_type = m_PluginRegister.Get(i);
 			
@@ -116,7 +119,7 @@ class PluginManager
 		for ( i = 0; i < m_PluginsPtrs.Count(); ++i)
 		{
 			PluginBase plugin = m_PluginsPtrs.GetElement(i);
-			if ( plugin != NULL )
+			if ( plugin != null )
 			{
 				plugin.OnInit();
 			}
@@ -156,7 +159,7 @@ class PluginManager
 			return m_PluginsPtrs.Get( plugin_type );
 		}
 		
-		return NULL;
+		return null;
 	}
 	
 	/**
@@ -227,6 +230,17 @@ class PluginManager
 	{
 		RegisterPlugin(plugin_class_name, reg_on_client, reg_on_server, false);
 	}
+	//=================================
+	// RegisterPlugin
+	//=================================
+	protected void RegisterPluginDiag( string plugin_class_name, bool reg_on_client, bool reg_on_server )
+	{
+		#ifdef DIAG_DEVELOPER
+		RegisterPlugin(plugin_class_name, reg_on_client, reg_on_server, true);
+		#else
+		return;
+		#endif		
+	}
 	
 	//---------------------------------
 	// UnregisterPlugin
@@ -289,7 +303,7 @@ void PluginManagerDelete()
 
 bool IsPluginManagerExists()
 {
-	if ( g_Plugins != NULL )
+	if ( g_Plugins != null )
 	{
 		return true;
 	}	
@@ -299,20 +313,20 @@ bool IsPluginManagerExists()
 
 PluginBase GetPlugin(typename plugin_type)
 {
-	PluginBase plugin = NULL;
+	PluginBase plugin = null;
 	
-	if ( IsPluginManagerExists () )
+	if ( IsPluginManagerExists() )
 	{
 		plugin = GetPluginManager().GetPluginByType(plugin_type);
 	
-		if ( plugin == NULL )
+		if ( plugin == null )
 		{
 			if ( GetGame().IsDebug() && IsPluginManagerExists() )
 			{
 				PrintString("Module " + plugin_type.ToString() + " is not Registred in PluginManager.c!");
 				DumpStack();
 			}
-			return NULL;
+			return null;
 		}
 	}
 	

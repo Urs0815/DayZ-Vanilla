@@ -26,6 +26,8 @@ enum EPlayerSoundEventID
 	STAMINA_LOW_FILTER_UPPER,
 	STAMINA_LOW_FILTER_MID,
 	STAMINA_LOW_FILTER_LOWER,
+	DROWNING_BREATH,
+	DROWNING_PAIN,
 	//--------------
 	// Count bellow, put enums above
 	//--------------
@@ -78,6 +80,8 @@ class PlayerSoundEventHandler extends SoundEventHandler
 		RegisterState(new StaminaLowFilterUpper());
 		RegisterState(new StaminaLowFilterMid());
 		RegisterState(new StaminaLowFilterLower());
+		RegisterState(new DrowningEvent1());
+		RegisterState(new DrowningEvent2());
 
 	}
 	

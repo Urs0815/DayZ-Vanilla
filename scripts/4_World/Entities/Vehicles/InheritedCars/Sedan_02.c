@@ -17,6 +17,9 @@ class Sedan_02 extends CarScript
 		m_CarDoorOpenSound		= "offroad_door_open_SoundSet";
 		m_CarDoorCloseSound		= "offroad_door_close_SoundSet";
 		
+		m_CarHornShortSoundName = "Sedan_02_Horn_Short_SoundSet";
+		m_CarHornLongSoundName	= "Sedan_02_Horn_SoundSet";
+		
 		SetEnginePos("0 0.7 -1.7");
 	}
 	
@@ -140,7 +143,11 @@ class Sedan_02 extends CarScript
 
 		return true;
 	}
-	
+
+	override protected bool CanManipulateSpareWheel(string slotSelectionName)
+	{
+		return GetCarDoorsState("Sedan_02_Hood") != CarDoorState.DOORS_CLOSED;
+	}
 
 	override bool CanDisplayAttachmentCategory(string category_name)
 	{
@@ -150,11 +157,17 @@ class Sedan_02 extends CarScript
 		}
 	
 		category_name.ToLower();
-		PlayerBase player = PlayerBase.Cast(GetGame().GetPlayer());
-		
 		if (category_name.Contains("engine"))
 		{
 			if (GetCarDoorsState("Sedan_02_Trunk") == CarDoorState.DOORS_CLOSED)
+			{
+				return false;
+			}
+		}
+		
+		if (category_name.Contains("trunk"))
+		{
+			if (GetCarDoorsState("Sedan_02_Hood") == CarDoorState.DOORS_CLOSED)
 			{
 				return false;
 			}
@@ -413,9 +426,12 @@ class Sedan_02 extends CarScript
 	override void OnDebugSpawn()
 	{
 		EntityAI entity;
+		EntityAI ent;
+		ItemBase container;
 		
 		if ( Class.CastTo(entity, this) )
 		{
+			entity.GetInventory().CreateInInventory( "Sedan_02_Wheel" );
 			entity.GetInventory().CreateInInventory( "Sedan_02_Wheel" );
 			entity.GetInventory().CreateInInventory( "Sedan_02_Wheel" );
 			entity.GetInventory().CreateInInventory( "Sedan_02_Wheel" );
@@ -425,7 +441,7 @@ class Sedan_02 extends CarScript
 			entity.GetInventory().CreateInInventory( "SparkPlug" );
 			entity.GetInventory().CreateInInventory( "CarRadiator" );
 
-			entity.GetInventory().CreateInInventory( "Sedan_02_Door_1_1" );
+			//entity.GetInventory().CreateInInventory( "Sedan_02_Door_1_1" );
 			entity.GetInventory().CreateInInventory( "Sedan_02_Door_1_2" );
 			entity.GetInventory().CreateInInventory( "Sedan_02_Door_2_1" );
 			entity.GetInventory().CreateInInventory( "Sedan_02_Door_2_2" );
@@ -434,6 +450,27 @@ class Sedan_02 extends CarScript
 
 			entity.GetInventory().CreateInInventory( "HeadlightH7" );
 			entity.GetInventory().CreateInInventory( "HeadlightH7" );
+
+			//-----IN CAR CARGO
+			entity.GetInventory().CreateInInventory( "CarBattery" );
+			entity.GetInventory().CreateInInventory( "SparkPlug" );
+			entity.GetInventory().CreateInInventory( "HeadlightH7" );
+			entity.GetInventory().CreateInInventory( "CarRadiator" );
+			//--
+			ent = entity.GetInventory().CreateInInventory( "Blowtorch" );
+			entity = ent.GetInventory().CreateInInventory( "LargeGasCanister" );
+			//--
+			entity.GetInventory().CreateInInventory( "CanisterGasoline" );
+			ent = entity.GetInventory().CreateInInventory( "CanisterGasoline" );
+			if ( Class.CastTo(container, ent) )
+			{
+				container.SetLiquidType(LIQUID_WATER, true);
+			}
+			ent = entity.GetInventory().CreateInInventory( "Blowtorch" );
+			if ( ent )
+			{
+				entity = ent.GetInventory().CreateInInventory( "LargeGasCanister" );
+			}
 		}
 
 		Fill( CarFluid.FUEL, 50 );
@@ -447,6 +484,8 @@ class Sedan_02_Red extends Sedan_02
 	override void OnDebugSpawn()
 	{
 		EntityAI entity;
+		EntityAI ent;
+		ItemBase container;
 		
 		if ( Class.CastTo(entity, this) )
 		{
@@ -459,7 +498,7 @@ class Sedan_02_Red extends Sedan_02
 			entity.GetInventory().CreateInInventory( "SparkPlug" );
 			entity.GetInventory().CreateInInventory( "CarRadiator" );
 
-			entity.GetInventory().CreateInInventory( "Sedan_02_Door_1_1_Red" );
+			//entity.GetInventory().CreateInInventory( "Sedan_02_Door_1_1_Red" );
 			entity.GetInventory().CreateInInventory( "Sedan_02_Door_1_2_Red" );
 			entity.GetInventory().CreateInInventory( "Sedan_02_Door_2_1_Red" );
 			entity.GetInventory().CreateInInventory( "Sedan_02_Door_2_2_Red" );
@@ -468,6 +507,28 @@ class Sedan_02_Red extends Sedan_02
 
 			entity.GetInventory().CreateInInventory( "HeadlightH7" );
 			entity.GetInventory().CreateInInventory( "HeadlightH7" );
+
+			//-----IN CAR CARGO
+			entity.GetInventory().CreateInInventory( "Sedan_02_Wheel" );
+			entity.GetInventory().CreateInInventory( "CarBattery" );
+			entity.GetInventory().CreateInInventory( "SparkPlug" );
+			entity.GetInventory().CreateInInventory( "HeadlightH7" );
+			entity.GetInventory().CreateInInventory( "CarRadiator" );
+			//--
+			ent = entity.GetInventory().CreateInInventory( "Blowtorch" );
+			entity = ent.GetInventory().CreateInInventory( "LargeGasCanister" );
+			//--
+			entity.GetInventory().CreateInInventory( "CanisterGasoline" );
+			ent = entity.GetInventory().CreateInInventory( "CanisterGasoline" );
+			if ( Class.CastTo(container, ent) )
+			{
+				container.SetLiquidType(LIQUID_WATER, true);
+			}
+			ent = entity.GetInventory().CreateInInventory( "Blowtorch" );
+			if ( ent )
+			{
+				entity = ent.GetInventory().CreateInInventory( "LargeGasCanister" );
+			}
 		}
 
 		Fill( CarFluid.FUEL, 50 );
@@ -482,6 +543,8 @@ class Sedan_02_Grey extends Sedan_02
 	override void OnDebugSpawn()
 	{
 		EntityAI entity;
+		EntityAI ent;
+		ItemBase container;
 		
 		if ( Class.CastTo(entity, this) )
 		{
@@ -494,7 +557,7 @@ class Sedan_02_Grey extends Sedan_02
 			entity.GetInventory().CreateInInventory( "SparkPlug" );
 			entity.GetInventory().CreateInInventory( "CarRadiator" );
 
-			entity.GetInventory().CreateInInventory( "Sedan_02_Door_1_1_Grey" );
+			//entity.GetInventory().CreateInInventory( "Sedan_02_Door_1_1_Grey" );
 			entity.GetInventory().CreateInInventory( "Sedan_02_Door_1_2_Grey" );
 			entity.GetInventory().CreateInInventory( "Sedan_02_Door_2_1_Grey" );
 			entity.GetInventory().CreateInInventory( "Sedan_02_Door_2_2_Grey" );
@@ -503,6 +566,28 @@ class Sedan_02_Grey extends Sedan_02
 
 			entity.GetInventory().CreateInInventory( "HeadlightH7" );
 			entity.GetInventory().CreateInInventory( "HeadlightH7" );
+
+			//-----IN CAR CARGO
+			entity.GetInventory().CreateInInventory( "Sedan_02_Wheel" );
+			entity.GetInventory().CreateInInventory( "CarBattery" );
+			entity.GetInventory().CreateInInventory( "SparkPlug" );
+			entity.GetInventory().CreateInInventory( "HeadlightH7" );
+			entity.GetInventory().CreateInInventory( "CarRadiator" );
+			//--
+			ent = entity.GetInventory().CreateInInventory( "Blowtorch" );
+			entity = ent.GetInventory().CreateInInventory( "LargeGasCanister" );
+			//--
+			entity.GetInventory().CreateInInventory( "CanisterGasoline" );
+			ent = entity.GetInventory().CreateInInventory( "CanisterGasoline" );
+			if ( Class.CastTo(container, ent) )
+			{
+				container.SetLiquidType(LIQUID_WATER, true);
+			}
+			ent = entity.GetInventory().CreateInInventory( "Blowtorch" );
+			if ( ent )
+			{
+				entity = ent.GetInventory().CreateInInventory( "LargeGasCanister" );
+			}
 		}
 
 		Fill( CarFluid.FUEL, 50 );

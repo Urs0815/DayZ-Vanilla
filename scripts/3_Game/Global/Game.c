@@ -191,7 +191,7 @@ class CGame
 	void	OnRPC(PlayerIdentity sender, Object target, int rpc_type, ParamsReadContext ctx)
 	{
 	}
-	
+
 	/**
   \brief Sets exit code and quits in the right moment
 	*/
@@ -330,6 +330,13 @@ class CGame
 	*/	
 	proto native Object 	GetObjectByNetworkId( int networkIdLowBits, int networkIdHighBits );
 
+	/**
+	\brief Static objects cannot be replicated by default (there are too many objects on the map). Use this method when you want to replicate some scripted variables. Cannot be called in object's constructor, because networking is not initialized yet
+		@param object static object to replicate
+		@return false, if registration wasn't successful or when object is already registered
+	*/
+	proto native bool		RegisterNetworkStaticObject(Object object);
+	
 	/**
   	\brief Creates spectator object (mostly cameras)
 		@param identity identity used in MP (use NULL in singleplayer)
@@ -1017,7 +1024,7 @@ class CGame
 		for (int i = 0; i < positions.Count(); i++)
 		{
 			vector pos = positions.Get(i);
-			pos[1] = SurfaceY( pos[0], pos[2]);
+			pos[1] = SurfaceRoadY( pos[0], pos[2]);
 			float y = pos[1];
 			
 			if ( y > high )

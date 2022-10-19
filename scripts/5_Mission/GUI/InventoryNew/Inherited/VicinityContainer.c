@@ -14,7 +14,7 @@ class VicinityContainer: CollapsibleContainer
 	{
 		m_VicinityIconsContainer = new VicinitySlotsContainer( this );
 		m_Body.Insert( m_VicinityIconsContainer );
-		
+		m_VicinityIconsContainer.GetRootWidget().SetColor(166 << 24 | 120 << 16 | 120 << 8 | 120);
 		m_MainWidget = m_RootWidget.FindAnyWidget( "body" );
 		WidgetEventHandler.GetInstance().RegisterOnChildAdd( m_MainWidget, this, "OnChildAdd" );
 		WidgetEventHandler.GetInstance().RegisterOnChildRemove( m_MainWidget, this, "OnChildRemove" );
@@ -217,7 +217,7 @@ class VicinityContainer: CollapsibleContainer
 		{
 			( ItemBase.Cast( receiver_item ) ).CombineItemsClient( ItemBase.Cast( item ) );
 		}
-		/*else if( GameInventory.CanSwapEntitiesEx( receiver_item, item ) )
+		else if( GameInventory.CanSwapEntitiesEx( receiver_item, item ) )
 		{
 			InventoryLocation il1 = new InventoryLocation;
 			InventoryLocation il2 = new InventoryLocation;
@@ -227,7 +227,7 @@ class VicinityContainer: CollapsibleContainer
 			if( !receiver_item.GetInventory().CanRemoveEntity() || ( il1.GetType() == InventoryLocationType.GROUND && il2.GetType() == InventoryLocationType.GROUND ) )
 				return;
 			player.PredictiveSwapEntities( item, receiver_item );
-		}*/
+		}
 		/*else if( player.CanDropEntity( item ) )
 		{
 			player.PredictiveDropEntity( item );
@@ -235,7 +235,7 @@ class VicinityContainer: CollapsibleContainer
 		
 		ItemManager.GetInstance().HideDropzones();
 		ItemManager.GetInstance().SetIsDragging( false );
-		ItemManager.GetInstance().PrepareTooltip( item );
+		PrepareOwnedTooltip(item);
 
 		InventoryMenu menu = InventoryMenu.Cast( GetGame().GetUIManager().FindMenu( MENU_INVENTORY ) );
 		if ( menu )
@@ -601,75 +601,17 @@ class VicinityContainer: CollapsibleContainer
 		
 		if (c)
 		{
-			if ( c.IsOpened() )
-			{
-				c.Close();
-			}
-			else
-			{
-				c.Open();
-			}
-			
-			if ( slots_icon )
-			{
-				Widget icon_open = slots_icon.GetRadialIcon();
-				Widget icon_closed = slots_icon.GetRadialIconClosed();
-				icon_open.Show( c.IsOpened() );
-				icon_closed.Show( !c.IsOpened() );
-			}
-			
+			ToggleContainer(c);
 		}
-		
 	}
 
 	//Call from ExpandCollapseContainer - not call
 	void ToggleContainer( Container conta )
 	{
-		Container cont = conta;
-		ClosableContainer c;
-		if ( cont )
-		{
-			if ( cont.IsInherited( ClosableContainer ) )
-			{
-				c = ClosableContainer.Cast( cont );
-				if ( c.IsOpened() )
-				{
-					c.Close();
-				}
-				else
-				{
-					c.Open();
-				}
-			}
-			else if ( cont.IsInherited( VicinitySlotsContainer ) )
-			{
-				VicinitySlotsContainer c2 = VicinitySlotsContainer.Cast( cont );
-				if ( m_VicinityIconsContainer == c2 )
-				{
-					EntityAI e = c2.GetFocusedItem();
-					c = ClosableContainer.Cast( m_ShowedItems.Get( e ) );
-					if ( c )
-					{
-						if ( c.IsOpened() )
-						{
-							c.Close();
-						}
-						else
-						{
-							c.Open();
-						}
-					}
-				}
-			}
-			else if ( cont.IsInherited( CollapsibleContainer ) )
-			{
-				CollapsibleContainer c3 = CollapsibleContainer.Cast( cont );
-				c3.CollapseButtonOnMouseButtonDown( null );
-			}
-		}
+		conta.Toggle();
 	}
 	
-	void ExpandCollapseContainer()
+	override void ExpandCollapseContainer()
 	{
 		EntityAI item = GetFocusedItem();
 		Container conta;
@@ -713,19 +655,7 @@ class VicinityContainer: CollapsibleContainer
 	//! Updates header dragability to be consistent with current 'icon' behaviour
 	void UpdateHeader(EntityAI entity, Container cont, PlayerBase player)
 	{
-		bool draggable = false;
-		ItemBase item = ItemBase.Cast(entity);
-		
-		if ( item )
-		{
-			draggable = !player.GetInventory().HasInventoryReservation( item, null ) && !player.IsItemsToDelete();
-			draggable = draggable && item.CanPutIntoHands( GetGame().GetPlayer() );
-			draggable = draggable && item.GetInventory().CanRemoveEntity();
-			/*
-			draggable |= item.CanPutIntoHands( GetGame().GetPlayer() );
-			draggable |= item.GetInventory().CanRemoveEntity();
-			*/
-		}
+		bool draggable = ItemManager.GetInstance().EvaluateContainerDragabilityDefault(entity);
 		
 		if (cont.GetHeader())
 		{

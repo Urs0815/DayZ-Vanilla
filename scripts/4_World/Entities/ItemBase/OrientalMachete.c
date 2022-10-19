@@ -11,7 +11,7 @@ class OrientalMachete extends ToolBase
 	
 	override array<int> GetValidFinishers()
 	{
-		return {EMeleeHitType.FINISHER_LIVERSTAB};
+		return {EMeleeHitType.FINISHER_LIVERSTAB,EMeleeHitType.FINISHER_NECKSTAB};
 	}
 	
 	override void SetActions()

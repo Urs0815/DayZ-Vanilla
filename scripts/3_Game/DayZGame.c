@@ -783,7 +783,10 @@ class DayZGame extends CGame
 	private const int MIN_ARTY_SOUND_RANGE = 300; // The distance under which sound is no longer heard
 	
 	static ref NoiseParams m_NoiseParams = new NoiseParams();
-
+	#ifdef DEVELOPER
+	static bool m_IsPreviewSpawn;//! we set this to 'true' when spawning item through Script Console only for item preview purposes
+	ref CameraToolsMenuServer m_CameraToolsMenuServer;
+	#endif
 	// CGame override functions
 	void DayZGame()
 	{
@@ -930,6 +933,7 @@ class DayZGame extends CGame
 		m_DayZProfileOptions.RegisterProfileOption(EDayZProfilesOptions.ADMIN_MESSAGES, ADMIN_CHAT_MSG, false);
 		m_DayZProfileOptions.RegisterProfileOption(EDayZProfilesOptions.PLAYER_MESSAGES, PLAYER_CHAT_MSG, false);
 		m_DayZProfileOptions.RegisterProfileOption(EDayZProfilesOptions.SERVERINFO_DISPLAY, SHOW_SERVERINFO, true);
+		m_DayZProfileOptions.RegisterProfileOption(EDayZProfilesOptions.BLEEDINGINDICATION, ENABLE_BLEEDINGINDICATION, true);
 	}
 	
 	void ResetProfileOptions()
@@ -1155,11 +1159,10 @@ class DayZGame extends CGame
 		{
 			case StartupEventTypeID:
 			{
-				if (!IsDedicatedServer())
-				{
-					// Just call it, to create the global instance if it doesn't exist yet
-					ParticleManager.GetInstance();
-				}
+				#ifndef SERVER
+				// Just call it, to create the global instance if it doesn't exist yet
+				ParticleManager.GetInstance();
+				#endif
 				break;
 			}
 			case MPSessionStartEventTypeID:
@@ -1175,7 +1178,7 @@ class DayZGame extends CGame
 				SetConnecting( false );
 				m_FirstConnect = true;
 				#ifdef PLATFORM_CONSOLE
-					if( GetUserManager().GetSelectedUser() )
+					if ( GetUserManager().GetSelectedUser() )
 					{
 						OnlineServices.LeaveGameplaySession();
 						OnlineServices.ClearCurrentServerInfo();
@@ -1240,17 +1243,17 @@ class DayZGame extends CGame
 				m_Notifications.ClearVoiceNotifications();
 				OnlineServices.SetMultiplayState( true );
 				#endif
-				if( m_FirstConnect )
+				if ( m_FirstConnect )
 				{
 					m_FirstConnect = false;
-					if( GetHostAddress( address, port ) )
+					if ( GetHostAddress( address, port ) )
 					{
 						AddVisitedServer( address, port );
 					}
 					
 					#ifdef PLATFORM_CONSOLE
 						#ifndef PLATFORM_WINDOWS // if app is not on Windows with -XBOX parameter
-							if( null != GetUserManager().GetSelectedUser() )
+							if ( null != GetUserManager().GetSelectedUser() )
 							{
 								OnlineServices.EnterGameplaySession();
 								OnlineServices.LoadVoicePrivilege();
@@ -1259,7 +1262,7 @@ class DayZGame extends CGame
 					#endif
 				}
 					
-				if( m_ShouldShowControllerDisconnect && !GetWorld().IsMouseAndKeyboardEnabledOnServer() )
+				if ( m_ShouldShowControllerDisconnect && !GetWorld().IsMouseAndKeyboardEnabledOnServer() )
 					CreateGamepadDisconnectMenu();
 				
 				break;
@@ -1798,9 +1801,14 @@ class DayZGame extends CGame
 	
 	void CreateGamepadDisconnectMenu()
 	{
-		DeleteGamepadDisconnectMenu();
+		if (m_GamepadDisconnectMenu)
+		{
+			//DeleteGamepadDisconnectMenu();
+			m_ShouldShowControllerDisconnect = false;
+			return;
+		}
 		
-		if( !GetInput().IsEnabledMouseAndKeyboard() || ( m_GameState == DayZGameState.IN_GAME && !GetWorld().IsMouseAndKeyboardEnabledOnServer() ) )
+		if ((m_GameState != DayZGameState.IN_GAME && !GetInput().IsEnabledMouseAndKeyboard()) || ( m_GameState == DayZGameState.IN_GAME && !GetWorld().IsMouseAndKeyboardEnabledOnServer() ))
 		{
 			PPERequesterBank.GetRequester(PPERequester_ControllerDisconnectBlur).Start();
 			m_GamepadDisconnectMenu = GetWorkspace().CreateWidgets("gui/layouts/xbox/day_z_gamepad_connect.layout");
@@ -1910,9 +1918,9 @@ class DayZGame extends CGame
 	void MissionLaunch()
 	{
 		BiosUserManager user_manager = GetUserManager();
-		if( user_manager )
+		if ( user_manager )
 		{
-			if( user_manager.GetTitleInitiator() )
+			if ( user_manager.GetTitleInitiator() )
 			{
 				user_manager.SelectUserEx( user_manager.GetTitleInitiator() );
 			}
@@ -1921,29 +1929,33 @@ class DayZGame extends CGame
 		SetGameState( DayZGameState.IN_GAME );
 		SetLoadState( DayZLoadState.MISSION_START );
 		
+
 		#ifndef PLATFORM_WINDOWS
-			#ifdef PLATFORM_CONSOLE
-				CreateTitleScreen();
-				GamepadCheck();
+			#ifdef PLATFORM_CONSOLE			
+				#ifndef DEVELOPER
+					CreateTitleScreen();
+					GamepadCheck();
+					return;
+				#endif
 			#endif
-		#else
-			string mission;
-			GetCLIParam("mission", mission);
-			PlayMission(mission);
 		#endif
+
+		string mission;
+		GetCLIParam("mission", mission);
+		PlayMission(mission);
 	}
 	
 	void SelectUser( int gamepad = -1 )
 	{
 		BiosUserManager user_manager = GetUserManager();
-		if( user_manager )
+		if ( user_manager )
 		{
 			BiosUser selected_user;
-			if( gamepad > -1 )
+			if ( gamepad > -1 )
 			{
 				GetInput().GetGamepadUser( gamepad, selected_user );
 				#ifdef PLATFORM_PS4
-				if( selected_user && selected_user.IsOnline() )
+				if ( selected_user && selected_user.IsOnline() )
 				#endif
 				{
 					GetGame().GetInput().IdentifyGamepad(GamepadButton.BUTTON_NONE);
@@ -1951,7 +1963,7 @@ class DayZGame extends CGame
 					user_manager.SelectUserEx( selected_user );
 				}
 				#ifdef PLATFORM_PS4
-				else if( selected_user )
+				else if ( selected_user )
 				{
 					user_manager.SelectUserEx( selected_user );
 					user_manager.LogOnUserAsync( selected_user ); 
@@ -1965,10 +1977,10 @@ class DayZGame extends CGame
 				#endif
 			}
 			
-			if( !selected_user )
+			if ( !selected_user )
 				selected_user = user_manager.GetSelectedUser();
 			
-			switch( GetLoadState() )
+			switch ( GetLoadState() )
 			{
 				case DayZLoadState.JOIN_START:
 				{
@@ -1988,7 +2000,7 @@ class DayZGame extends CGame
 				}
 				case DayZLoadState.MAIN_MENU_START:
 				{
-					if( !selected_user )
+					if ( !selected_user )
 					{
 						user_manager.PickUserAsync();
 						return;
@@ -2002,7 +2014,7 @@ class DayZGame extends CGame
 				}
 				case DayZLoadState.CONNECT_START:
 				{
-					if( !selected_user )
+					if ( !selected_user )
 					{
 						user_manager.PickUserAsync();
 						return;
@@ -2016,7 +2028,7 @@ class DayZGame extends CGame
 				}
 				case DayZLoadState.MISSION_START:
 				{
-					if( !selected_user )
+					if ( !selected_user )
 					{
 						user_manager.PickUserAsync();
 						return;
@@ -2527,9 +2539,11 @@ class DayZGame extends CGame
 	// ------------------------------------------------------------
 	override void OnRPC(PlayerIdentity sender, Object target, int rpc_type, ParamsReadContext ctx)
 	{
+		super.OnRPC(sender, target, rpc_type, ctx);
 		Event_OnRPC.Invoke( sender, target, rpc_type, ctx );
 		
-		//Print("["+ GetGame().GetTime().ToString() +"] => DayZGame::OnRPC = "+ rpc_type);
+		//Print("["+ GetGame().GetTime().ToString() +"] => DayZGame::OnRPC = "+ EnumTools.EnumToString(ERPCs,rpc_type) );
+		
 		if (target)
 		{
 			// call rpc on target
@@ -2541,6 +2555,16 @@ class DayZGame extends CGame
 			{
 				#ifndef SERVER
 				#ifndef NO_GUI
+				case ERPCs.RPC_CFG_GAMEPLAY_SYNC:
+				{
+					CfgGameplayHandler.OnRPC(null, ctx);
+					break;
+				}
+				case ERPCs.RPC_UNDERGROUND_SYNC:
+				{
+					UndergroundAreaLoader.OnRPC(ctx);
+					break;
+				}
 				case ERPCs.RPC_SEND_NOTIFICATION:
 				{
 					NotificationType type;
@@ -2686,7 +2710,7 @@ class DayZGame extends CGame
 				}
 				#endif
 				#endif
-				
+
 				case ERPCs.RPC_USER_SYNC_PERMISSIONS:
 				{
 					map<string, bool> mute_list;
@@ -2727,7 +2751,29 @@ class DayZGame extends CGame
 
 					break;
 				}
+				#ifdef SERVER
+				case ERPCs.DEV_CAMERA_TOOLS_CAM_DATA:
+				{
+					if (!m_CameraToolsMenuServer)
+					{
+						m_CameraToolsMenuServer = new CameraToolsMenuServer;
+					}
+					m_CameraToolsMenuServer.OnRPC(rpc_type, ctx);
+					break;
+				}
+				
+				case ERPCs.DEV_CAMERA_TOOLS_CAM_SUBSCRIBE:
+				{
+					if (!m_CameraToolsMenuServer)
+					{
+						m_CameraToolsMenuServer = new CameraToolsMenuServer;
+					}
+					m_CameraToolsMenuServer.OnRPC(rpc_type, ctx);
+					break;
+				}
 				#endif
+				#endif
+
 			}
 			// global rpc's handling
 		}

@@ -359,12 +359,11 @@ class Bottle_Base extends Edible_Base
 	
 	string GetEmptyingEndSoundsetWater() {};
 	
+	//! Returns base liquid empty rate (absolute)..preferrably use the 'GetLiquidThroughputCoef' instead
 	float GetLiquidEmptyRate()
 	{
 		return m_LiquidEmptyRate;
 	}
-	
-	
 		
 	override void SetActions()
 	{
@@ -380,8 +379,8 @@ class Bottle_Base extends Edible_Base
 		AddAction(ActionForceDrink);
 		AddAction(ActionDrainLiquid);
 		AddAction(ActionPourLiquid);
-		AddAction(ActionEmptyBottleBase);
 		AddAction(ActionWashHandsItem);
 		AddAction(ActionDrink);
+		AddAction(ActionEmptyBottleBase);
 	}
 }

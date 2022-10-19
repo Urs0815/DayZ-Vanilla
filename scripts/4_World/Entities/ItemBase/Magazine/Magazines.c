@@ -56,3 +56,4 @@ class Mag_Aug_30Rnd: MagazineStorage {};
 class Mag_PP19_64Rnd: MagazineStorage {};
 class Mag_CZ550_4rnd: MagazineStorage {};
 class Mag_CZ550_10rnd: MagazineStorage {};
+class Mag_SSG82_5rnd: MagazineStorage {};

@@ -32,6 +32,7 @@ class ImpactMaterials
 	static int WOOD 						= RegisterSurface("Hit_Wood");
 	static int METAL 						= RegisterSurface("Hit_Metal");
 	static int GLASS 						= RegisterSurface("Hit_Glass");
+	static int GLASS_THIN 					= RegisterSurface("Hit_Glass_Thin");
 	static int WATER 						= RegisterSurface("Hit_Water");
 	static int RUBBER 						= RegisterSurface("Hit_Rubber");
 	static int PLASTER 						= RegisterSurface("Hit_Plaster");

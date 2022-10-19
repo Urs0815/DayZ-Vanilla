@@ -101,6 +101,7 @@ class ActionTargetsCursor extends ScriptedWidgetEventHandler
 		m_Hud					= GetHud();
 		
 		GetGame().GetMission().GetOnInputPresetChanged().Insert(OnInputPresetChanged);
+		GetGame().GetMission().GetOnInputDeviceChanged().Insert(OnInputDeviceChanged);
 	}
 	
 	void ~ActionTargetsCursor() {}
@@ -166,6 +167,31 @@ class ActionTargetsCursor extends ScriptedWidgetEventHandler
 		SetControllerIcon("single", "UADefaultAction");
 		SetControllerIcon("continuous", "UADefaultAction");
 		#endif
+	}
+	
+	protected void OnInputDeviceChanged(EInputDeviceType pInputDeviceType)
+	{
+		switch (pInputDeviceType)
+		{
+		case EInputDeviceType.CONTROLLER:
+			ShowXboxHidePCIcons("interact", true);
+			ShowXboxHidePCIcons("continuous_interact", true);
+			ShowXboxHidePCIcons("continuous", true);
+			ShowXboxHidePCIcons("single", true);
+		break;
+
+		default:
+			bool isMouseEnabled = true;
+			#ifdef PLATFORM_CONSOLE
+			isMouseEnabled = GetGame().GetInput().IsEnabledMouseAndKeyboardEvenOnServer();
+			#endif
+
+			ShowXboxHidePCIcons("interact", !isMouseEnabled);
+			ShowXboxHidePCIcons("continuous_interact", !isMouseEnabled);
+			ShowXboxHidePCIcons("continuous", !isMouseEnabled);
+			ShowXboxHidePCIcons("single", !isMouseEnabled);
+		break;
+		}
 	}
 
 	protected void PrepareCursorContent()
@@ -410,6 +436,7 @@ class ActionTargetsCursor extends ScriptedWidgetEventHandler
 	protected void ShowXboxHidePCIcons( string widget, bool show_xbox_icon )
 	{
 		m_Root.FindAnyWidget( widget + "_btn_icon_xbox" ).Show( show_xbox_icon );
+		//m_Root.FindAnyWidget( widget + "_btn_icon" ).Show( !show_xbox_icon );
 		m_Root.FindAnyWidget( widget + "_btn_icon" ).Show( !show_xbox_icon );
 	}
 
@@ -436,7 +463,7 @@ class ActionTargetsCursor extends ScriptedWidgetEventHandler
 	{
 		const float 	DEFAULT_HANDLE_OFFSET 	= 0.2;
 		const string 	CE_CENTER_COMP_NAME 	= "ce_center";
-		const string 	MEM_LOD_NAME 			= "memory";
+		const string 	MEM_LOD_NAME 			= LOD.NAME_MEMORY; //! kept for backward compatibility
 		
 		int compIdx;
 		float pivotOffset = 0.0;
@@ -473,9 +500,9 @@ class ActionTargetsCursor extends ScriptedWidgetEventHandler
 			if (!isTargetForced)
 			{
 				compName = object.GetActionComponentName( compIdx );
-				object.GetActionComponentNameList( compIdx, components );
+				object.GetActionComponentNameList(compIdx, components);
 				
-				if (object.GetActionComponentNameList( compIdx, components ) == 0 && !object.IsInventoryItem())
+				if (object.GetActionComponentNameList(compIdx, components ) == 0 && !object.IsInventoryItem())
 				{
 					m_FixedOnPosition = true;
 					return;
@@ -492,7 +519,7 @@ class ActionTargetsCursor extends ScriptedWidgetEventHandler
 					lod.GetSelections(memSelections);
 					
 					// items with CE_Center mem point
-					if ( IsComponentInSelection( memSelections, CE_CENTER_COMP_NAME ) )
+					if ( MiscGameplayFunctions.IsComponentInSelection( memSelections, CE_CENTER_COMP_NAME ) )
 					{
 						for ( int i2 = 0; i2 < memSelections.Count(); ++i2 )
 						{
@@ -636,19 +663,10 @@ class ActionTargetsCursor extends ScriptedWidgetEventHandler
 		isTargetForced = false;
 	}
 
+	// kept for backward compatibility
 	protected bool IsComponentInSelection( array<Selection> selection, string compName )
 	{
-		if (selection.Count() == 0 || compName.Length() == 0) return false;
-
-		for ( int i = 0; i < selection.Count(); ++i )
-		{
-			compName.ToLower();
-			if ( selection[i] && selection[i].GetName() == compName )
-			{
-				return true;
-			}
-		}
-		return false;
+		return MiscGameplayFunctions.IsComponentInSelection(selection, compName);
 	}
 
 	// getters
@@ -694,6 +712,19 @@ class ActionTargetsCursor extends ScriptedWidgetEventHandler
 		m_ContinuousItemActionsNum = m_AM.GetPossibleActionCount(ContinuousDefaultActionInput);
 		
 		m_SelectedActionCategory = m_AM.GetSelectedActionCategory();
+		
+		if (m_Interact)
+		{
+			m_DisplayInteractTarget = m_Interact.GetDisplayInteractObject(m_Player,m_Target);
+		} 
+		else if (m_ContinuousInteract)
+		{
+			m_DisplayInteractTarget = m_ContinuousInteract.GetDisplayInteractObject(m_Player,m_Target);
+		}
+		else
+		{
+			m_DisplayInteractTarget = null;
+		}
 	}
 
 	protected void GetTarget()
@@ -764,33 +795,28 @@ class ActionTargetsCursor extends ScriptedWidgetEventHandler
 			if ( targetEntity && targetEntity.ShowZonesHealth() )
 			{
 				string zone = "";
-				string compName;
 				
 				array<string> selections = new array<string>();
 				
 				//NOTE: relevant fire geometry and view geometry selection names MUST match in order to get a valid damage zone
-				if ( targetEntity.IsInherited( TentBase ) && TentBase.Cast( targetEntity ).GetState() != TentBase.PACKED )
+				if (targetEntity.IsInherited(TentBase) && TentBase.Cast(targetEntity).GetState() != TentBase.PACKED)
 				{
 					//This is really specific to tents, as they use proxies. Hence object must be used
-					compName = tgObject.GetActionComponentName( m_Target.GetComponentIndex(), "fire" );
-					
-					if ( DamageSystem.GetDamageZoneFromComponentName( targetEntity, compName, zone ) )
+					if (DamageSystem.GetDamageZoneFromComponentName(targetEntity, tgObject.GetActionComponentName(m_Target.GetComponentIndex(), LOD.NAME_FIRE), zone))
 					{
-						desc = DamageSystem.GetDamageDisplayName( targetEntity, zone );
+						desc = DamageSystem.GetDamageDisplayName(targetEntity, zone);
 					}
 				}
 				else
 				{
-					targetEntity.GetActionComponentNameList( m_Target.GetComponentIndex(), selections, "view" );
+					targetEntity.GetActionComponentNameList(m_Target.GetComponentIndex(), selections, LOD.NAME_VIEW);
 					
 					//Important to get display name from component tied to multiple selections
-					for ( int s = 0; s < selections.Count(); s++ )
+					for (int s = 0; s < selections.Count(); s++)
 					{
-						compName = selections[s];
-	
-						if ( DamageSystem.GetDamageZoneFromComponentName( targetEntity, compName, zone ))
+						if ( DamageSystem.GetDamageZoneFromComponentName(targetEntity, selections[s], zone))
 						{
-							desc = DamageSystem.GetDamageDisplayName( targetEntity, zone );
+							desc = DamageSystem.GetDamageDisplayName(targetEntity, zone);
 						}
 					}
 				}
@@ -841,34 +867,29 @@ class ActionTargetsCursor extends ScriptedWidgetEventHandler
 				targetEntity = EntityAI.Cast( tgObject );
 			}
 			
-			if ( targetEntity )
+			if (targetEntity)
 			{
 				if ( !targetEntity.IsDamageDestroyed() )
 				{
 					string zone = "";
-					string compName;
 					array<string> selections = new array<string>();
 					
-					if ( targetEntity.IsInherited( TentBase ) && TentBase.Cast( targetEntity ).GetState() != TentBase.PACKED )
+					if (targetEntity.IsInherited(TentBase) && TentBase.Cast(targetEntity).GetState() != TentBase.PACKED)
 					{
 						//This is really specific to tents, as they use proxies. Hence object must be used
-						compName = tgObject.GetActionComponentName( m_Target.GetComponentIndex(), "fire" );
-						
-						if ( DamageSystem.GetDamageZoneFromComponentName( targetEntity , compName, zone ) )
+						if ( DamageSystem.GetDamageZoneFromComponentName(targetEntity, tgObject.GetActionComponentName(m_Target.GetComponentIndex(), LOD.NAME_FIRE), zone))
 						{
-							health = targetEntity.GetHealthLevel(zone);// .hea GetDamageDisplayName( targetEntity, zone );
+							health = targetEntity.GetHealthLevel(zone);
 						}
 					}
 					else
 					{
 						//NOTE: relevant view geometry and view geometry selection names MUST match in order to get a valid damage zone
-						targetEntity.GetActionComponentNameList( m_Target.GetComponentIndex(), selections, "view" );
+						targetEntity.GetActionComponentNameList(m_Target.GetComponentIndex(), selections, LOD.NAME_VIEW);
 						
-						for ( int s = 0; s < selections.Count(); s++ )
+						for (int s = 0; s < selections.Count(); s++)
 						{
-							compName = selections[s];
-		
-							if ( DamageSystem.GetDamageZoneFromComponentName( targetEntity , compName, zone))
+							if (DamageSystem.GetDamageZoneFromComponentName(targetEntity , selections[s], zone))
 							{
 								health = targetEntity.GetHealthLevel(zone);
 								break;
@@ -876,7 +897,7 @@ class ActionTargetsCursor extends ScriptedWidgetEventHandler
 						}
 					}
 	
-					if ( zone == "" )
+					if (zone == "")
 						health = targetEntity.GetHealthLevel();
 				}
 			}
@@ -1082,15 +1103,7 @@ class ActionTargetsCursor extends ScriptedWidgetEventHandler
 
 	protected void SetActionWidget(ActionBase action, string descText, string actionWidget, string descWidget)
 	{
-		Widget widget;
-		
-		widget = m_Root.FindAnyWidget(actionWidget);
-		
-		#ifdef PLATFORM_CONSOLE
-		ShowXboxHidePCIcons(actionWidget, !GetGame().GetInput().IsEnabledMouseAndKeyboardEvenOnServer());
-		#else
-		ShowXboxHidePCIcons(actionWidget, false);
-		#endif
+		Widget widget = m_Root.FindAnyWidget(actionWidget);
 		
 		if (action)
 		{

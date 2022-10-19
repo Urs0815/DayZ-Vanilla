@@ -60,9 +60,20 @@ class Class
 
 			>> 'EntityAI'
 		@endcode
-	*/
-	
+	*/	
 	proto external static typename StaticType();
+	
+	/**
+	\brief Returns typename of class even without a variable or instance
+		\returns \p typename class-type
+		@code
+			typename eAITypename = StaticGetType(EntityAI);
+		@endcode
+	*/
+	static typename StaticGetType(typename t)
+	{
+		return t;
+	}
 	
 	proto external string ToString();
 	
@@ -511,12 +522,11 @@ class array<Class T>
 	*/
 	void Debug()
 	{
-		PrintString( "Array count: " + this.Count().ToString() );
-		for ( int i = 0; i < Count(); i++ )
+		Print(string.Format("Array count: %1", Count()));
+		for (int i = 0; i < Count(); i++)
 		{
 			T item = Get(i);
-
-			PrintString( "["+i.ToString()+"] => " + string.ToString(item) );
+			Print(string.Format("[%1] => %2", i, item));
 		}
 	}
 
@@ -637,6 +647,37 @@ class array<Class T>
 		{
 			SwapItems(i,GetRandomIndex());
 		}
+	}
+	
+	/**
+	\brief Returns an index where 2 arrays start to differ from each other
+		\return \p int Index from where arrays differ
+		@code
+			array<int> arr1 = {0,1,2,3};
+			array<int> arr2 = {0,1,3,2};
+			int differsAt = arr1.DifferentAtPosition(arr2);
+			Print(differsAt);
+	
+			>> 2
+		@endcode
+	*/
+	int DifferentAtPosition(array<T> pOtherArray)
+	{
+		if (Count() != pOtherArray.Count())
+		{
+			ErrorEx("arrays are not the same size");
+			return -1;
+		}
+
+		for (int i = 0; i < pOtherArray.Count(); ++i)
+		{
+			if (Get(i) != pOtherArray.Get(i))
+			{
+				return i;
+			}
+		}
+		
+		return -1;
 	}
 };
 

@@ -22,15 +22,19 @@ class ZombieBase extends DayZInfected
 	
 	protected vector m_DefaultHitPosition;
 	
-	protected AbstractWave				m_LastSoundVoiceAW;
+	protected AbstractWave m_LastSoundVoiceAW;
 	protected ref InfectedSoundEventHandler	m_InfectedSoundEventHandler;
 
-	protected ref array<Object> 			m_AllTargetObjects;
-	protected ref array<typename>			m_TargetableObjects;
+	protected ref array<Object> m_AllTargetObjects;
+	protected ref array<typename>m_TargetableObjects;
 	
 	//static ref map<int,ref array<string>> 	m_FinisherSelectionMap; //! which selections in the FireGeometry trigger which finisher on hit (when applicable)
 	
-	protected bool 							m_IsCrawling; //'DayZInfectedCommandCrawl' is transition to crawl only, 'DayZInfectedCommandMove' used after that, hence this variable
+	protected bool m_IsCrawling; //'DayZInfectedCommandCrawl' is transition to crawl only, 'DayZInfectedCommandMove' used after that, hence this VARIABLE_WET
+	
+	protected bool m_FinisherInProgress = false; //is this object being backstabbed?
+
+
 
 	//-------------------------------------------------------------
 	void ZombieBase()
@@ -195,10 +199,16 @@ class ZombieBase extends DayZInfected
 		}
 
 		//! handle death
-		if ( HandleDeath(pCurrentCommandID) )
+		if ( pCurrentCommandID != DayZInfectedConstants.COMMANDID_DEATH )		
+		{
+			if ( HandleDeath(pCurrentCommandID) )
+				return;
+		}
+		else if (!pCurrentCommandFinished)
 		{
 			return;
 		}
+		
 
 		//! movement handler (just for sync now)
 		HandleMove(pCurrentCommandID);
@@ -357,14 +367,8 @@ class ZombieBase extends DayZInfected
 
 	bool HandleDeath(int pCurrentCommandID)
 	{
-		if ( pCurrentCommandID == DayZInfectedConstants.COMMANDID_DEATH )
+		if ( !IsAlive() || m_FinisherInProgress )
 		{
-			return true;
-		}
-
-		if ( !IsAlive() )
-		{
-			
 			StartCommand_Death(m_DeathType, m_DamageHitDirection);
 			m_MovementSpeed = -1;
 			m_MindState = -1;
@@ -374,6 +378,13 @@ class ZombieBase extends DayZInfected
 
 		return false;
 	}	
+	
+	bool EvaluateDeathAnimationEx(EntityAI pSource, ZombieHitData data, out int pAnimType, out float pAnimHitDir)
+	{
+		bool ret = EvaluateDeathAnimation(pSource,data.m_DamageZone,data.m_AmmoType,pAnimType,pAnimHitDir);
+				
+		return ret;
+	}
 	
 	bool EvaluateDeathAnimation(EntityAI pSource, string pComponent, string pAmmoType, out int pAnimType, out float pAnimHitDir)
 	{
@@ -399,22 +410,6 @@ class ZombieBase extends DayZInfected
 		return true;
 	}
 	
-	bool EvaluateDeathAnimationEx(EntityAI pSource, ZombieHitData data, out int pAnimType, out float pAnimHitDir)
-	{
-		bool ret = EvaluateDeathAnimation(pSource,data.m_DamageZone,data.m_AmmoType,pAnimType,pAnimHitDir);
-		
-		//TODO - finisher animation start must be evaluated on comman start
-		int finisher_type = GetGame().ConfigGetInt("cfgAmmo " + data.m_AmmoType + " finisherType");
-		if (  finisher_type > 0 )
-		{
-			//pAnimType = DetermineFinisherDeathAnimation(DetermineFinisherHitType(pSource,data.m_Component));
-			pAnimType = DetermineFinisherDeathAnimation(finisher_type);
-			ret = true;
-		}
-		
-		return ret;
-	}
-
 	//-------------------------------------------------------------
 	//!
 	//! HandleVault
@@ -994,6 +989,7 @@ class ZombieBase extends DayZInfected
 		if ( !IsAlive() )
 		{
 			dBodySetInteractionLayer(this, PhxInteractionLayers.RAGDOLL);
+			
 			ZombieHitData data = new ZombieHitData;
 			data.m_Component = component;
 			data.m_DamageZone = dmgZone;
@@ -1059,56 +1055,60 @@ class ZombieBase extends DayZInfected
 		return super.CanReceiveAttachment(attachment, slotId);
 	}
 	
-	/*override void SetCrawlTransition(string zone)
-	{
-		
-	}*/
-	
 	override vector GetCenter()
 	{
 		return GetBonePositionWS( GetBoneIndexByName( "spine3" ) );
 	}
 	
-	override void SetBeingBackstabbed()
+	//! returns true if backstab is in progress; used for suspending of AI targeting and other useful things besides
+	override bool IsBeingBackstabbed()
 	{
-		DayZInfectedInputController ic = GetInputController();
-		if( ic )
-		{
-			ic.OverrideMovementSpeed(true,0.0); //TODO - figure out better way to limit AI movement?
-		}
-		//Print("DbgZombies | SlowZombie on: " + GetGame().GetTime());
-		
-		super.SetBeingBackstabbed();
+		return m_FinisherInProgress;
 	}
 	
-	protected override void ResetBackstabbedState()
+	override void SetBeingBackstabbed(int backstabType)
 	{
-		DayZInfectedInputController ic = GetInputController();
-		if( ic )
-		{
-			ic.OverrideMovementSpeed(false,1.0);
-		}
-		//Print("DbgZombies | SlowZombie off: " + GetGame().GetTime());
+		// disable AI simulation
+		GetAIAgent().SetKeepInIdle(true);
 		
-		super.ResetBackstabbedState();
+		// select death animation
+		switch( backstabType )
+		{
+		case EMeleeHitType.FINISHER_LIVERSTAB:
+			m_DeathType = DayZInfectedDeathAnims.ANIM_DEATH_BACKSTAB;
+			break;
+			
+		case EMeleeHitType.FINISHER_NECKSTAB:
+			m_DeathType = DayZInfectedDeathAnims.ANIM_DEATH_NECKSTAB;	
+			break;
+			
+		default:
+			m_DeathType = DayZInfectedDeathAnims.ANIM_DEATH_DEFAULT;
+		}
+
+		// set flag - death command will be executed
+		m_FinisherInProgress = true;
+				
+		//Print("DbgZombies | DumbZombie on: " + GetGame().GetTime());
 	}
 	
+	//! returns true if crawling; 'DayZInfectedCommandCrawl' is only for the transition, after that it remains 'DayZInfectedCommandMove' (unreliable)
 	bool IsCrawling()
 	{
 		return m_IsCrawling;
 	}
 	
-	int DetermineFinisherDeathAnimation(int hit_type)
+	// called from command death when stealth attack wan't successful
+	void OnRecoverFromDeath()
 	{
-		switch ( hit_type )
-		{
-			case MeleeConstants.CFG_FINISHER_LIVER:
-				return DayZInfectedDeathAnims.ANIM_DEATH_BACKSTAB;
-		}
+		// enable AI simulation again
+		GetAIAgent().SetKeepInIdle(false);
+
+		// reset flag
+		m_FinisherInProgress = false;
 		
-		ErrorEx("Unknown finisher hit type, playing default death animation!",ErrorExSeverity.WARNING);
-		return DayZInfectedDeathAnims.ANIM_DEATH_DEFAULT;
-	}
+		//Print("DbgZombies | DumbZombie off: " + GetGame().GetTime());
+	}	
 }
 
 //! an extendable data container

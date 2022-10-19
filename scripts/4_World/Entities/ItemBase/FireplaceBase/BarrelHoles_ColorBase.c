@@ -39,6 +39,28 @@ class BarrelHoles_ColorBase extends FireplaceBase
 		return "disableContainerDamage";
 	}
 	
+	override void OnWasAttached( EntityAI parent, int slot_id)
+	{
+		super.OnWasAttached(parent, slot_id);
+		
+		Open();
+	}
+	
+	override void OnWasDetached(EntityAI parent, int slot_id)
+	{
+		super.OnWasDetached(parent, slot_id);
+		
+		Close();
+	}
+	
+	override bool CanDetachAttachment( EntityAI parent )
+	{
+		if ( GetNumberOfItems() == 0)
+			return true;
+		return false;
+	}
+	
+	
 	override void OnStoreSave( ParamsWriteContext ctx )
 	{   
 		super.OnStoreSave( ctx );
@@ -317,7 +339,12 @@ class BarrelHoles_ColorBase extends FireplaceBase
 			return false;
 		}
 
-		if (IsBurning() || !IsCargoEmpty() || DirectCookingSlotsInUse() || SmokingSlotsInUse() || IsOpen())
+		if (IsBurning() || !IsCargoEmpty() || DirectCookingSlotsInUse() || SmokingSlotsInUse())
+		{
+			return false;
+		}
+		
+		if ( !GetInventory().IsAttachment() && IsOpen() )
 		{
 			return false;
 		}
@@ -368,6 +395,7 @@ class BarrelHoles_ColorBase extends FireplaceBase
 		m_RoofAbove = false;
 		
 		SoundSynchRemote();
+		SetTakeable(false);
 		UpdateVisualState();
 	}
 	
@@ -377,6 +405,7 @@ class BarrelHoles_ColorBase extends FireplaceBase
 		m_RoofAbove = false;
 		
 		SetSynchDirty();
+		SetTakeable(false);
 		UpdateVisualState();
 	}
 	
@@ -386,6 +415,7 @@ class BarrelHoles_ColorBase extends FireplaceBase
 		m_RoofAbove = true;
 		
 		SoundSynchRemote();
+		SetTakeable(true);
 		UpdateVisualState();
 	}
 	
@@ -395,6 +425,7 @@ class BarrelHoles_ColorBase extends FireplaceBase
 		m_RoofAbove = true;
 		
 		SetSynchDirty();
+		SetTakeable(true);
 		UpdateVisualState();
 	}
 	

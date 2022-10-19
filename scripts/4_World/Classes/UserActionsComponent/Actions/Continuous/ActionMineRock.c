@@ -40,11 +40,6 @@ class ActionMineRock: ActionMineBase
 		return false;
 	}
 	
-	override void OnActionInfoUpdate( PlayerBase player, ActionTarget target, ItemBase item )
-	{
-		m_Text =  "#mine" + " " + GetYieldName(player, target, item);
-	}
-	
 	override void OnFinishProgressServer( ActionData action_data )
 	{	
 		action_data.m_Player.GetSoftSkillsManager().AddSpecialty( m_SpecialtyWeight );

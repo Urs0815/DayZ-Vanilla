@@ -16,11 +16,6 @@ class TabberUI extends ScriptedWidgetEventHandler
 	ref ScriptInvoker				m_OnAttemptTabSwitch = new ScriptInvoker();
 	ref Timer						m_InitTimer;
 	
-	void TabberUI()
-	{
-		GetGame().GetMission().GetOnInputPresetChanged().Insert(OnInputPresetChanged);
-	}
-	
 	protected void OnInputPresetChanged()
 	{
 		Init();
@@ -28,6 +23,24 @@ class TabberUI extends ScriptedWidgetEventHandler
 		#ifdef PLATFORM_CONSOLE
 		UpdateControlsElements();
 		#endif
+	}
+	
+	protected void OnInputDeviceChanged(EInputDeviceType pInputDeviceType)
+	{
+		switch (pInputDeviceType)
+		{
+		case EInputDeviceType.CONTROLLER:
+			UpdateControlsElements();
+			m_TabControlsRoot.FindAnyWidget("ConsoleControls").Show(true);
+		break;
+
+		default:
+			if (GetGame().GetInput().IsEnabledMouseAndKeyboardEvenOnServer())
+			{
+				m_TabControlsRoot.FindAnyWidget("ConsoleControls").Show(false);
+			}
+		break;
+		}
 	}
 	
 	void Init()
@@ -74,6 +87,11 @@ class TabberUI extends ScriptedWidgetEventHandler
 			
 			m_InitTimer.Run(0.01, this, "AlignTabbers");
 		}
+		
+		GetGame().GetMission().GetOnInputPresetChanged().Insert(OnInputPresetChanged);
+		GetGame().GetMission().GetOnInputDeviceChanged().Insert(OnInputDeviceChanged);
+		
+		OnInputDeviceChanged(GetGame().GetInput().GetCurrentInputDevice());
 	}
 
 	void OnWidgetScriptInit( Widget w )
@@ -140,10 +158,6 @@ class TabberUI extends ScriptedWidgetEventHandler
 		if (tab_controls_scroller)
 			tab_controls_scroller.Update();
 		m_TabControlsRoot.Update();
-		
-		#ifdef PLATFORM_CONSOLE
-			m_Root.FindAnyWidget( "ConsoleControls" ).Show( m_Tabs.Count() > 1 );
-		#endif
 	}
 	
 	int AddTab( string name )
@@ -445,16 +459,23 @@ class TabberUI extends ScriptedWidgetEventHandler
 	
 	protected void UpdateControlsElements()
 	{
-		Widget xb_controls = m_Root.FindAnyWidget("ConsoleControls");
-		if ( xb_controls )
+		Widget xbControls = m_Root.FindAnyWidget("ConsoleControls");
+		if (xbControls)
 		{
-			xb_controls.Show(m_TabsCount > 1);
-		}
+			xbControls.Show(m_TabsCount > 1);
 	
-		RichTextWidget toolbar_lb = RichTextWidget.Cast(xb_controls.FindAnyWidget("TabLeftControl"));
-		RichTextWidget toolbar_rb = RichTextWidget.Cast(xb_controls.FindAnyWidget("TabRightControl"));
-		toolbar_lb.SetText(InputUtils.GetRichtextButtonIconFromInputAction("UAUITabLeft", "", EUAINPUT_DEVICE_CONTROLLER, InputUtils.ICON_SCALE_TOOLBAR));
-		toolbar_rb.SetText(InputUtils.GetRichtextButtonIconFromInputAction("UAUITabRight", "", EUAINPUT_DEVICE_CONTROLLER, InputUtils.ICON_SCALE_TOOLBAR));
+			RichTextWidget toolbar_lb = RichTextWidget.Cast(xbControls.FindAnyWidget("TabLeftControl"));
+			RichTextWidget toolbar_rb = RichTextWidget.Cast(xbControls.FindAnyWidget("TabRightControl"));
+			if (toolbar_lb)
+			{
+				toolbar_lb.SetText(InputUtils.GetRichtextButtonIconFromInputAction("UAUITabLeft", "", EUAINPUT_DEVICE_CONTROLLER, InputUtils.ICON_SCALE_TOOLBAR));
+			}
+
+			if (toolbar_rb)
+			{
+				toolbar_rb.SetText(InputUtils.GetRichtextButtonIconFromInputAction("UAUITabRight", "", EUAINPUT_DEVICE_CONTROLLER, InputUtils.ICON_SCALE_TOOLBAR));
+			}
+		}
 	}
 	
 	//! useful if we want to disable actual tabs for whatever reason

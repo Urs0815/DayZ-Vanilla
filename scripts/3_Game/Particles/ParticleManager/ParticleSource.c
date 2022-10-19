@@ -737,8 +737,6 @@ class ParticleSource : Particle
 		// As it uses a cached local position, which is now no longer correct
 		if (!m_WiggleProcessing && IsWiggling())
 		{
-			ErrorEx(GetPosition().ToString(), ErrorExSeverity.INFO);
-			
 			float randomAngle = m_MaxOriWiggle;
 			float randomInterval = m_MaxOriInterval;
 			m_DefaultPos = m_DefaultWorldPos;
@@ -950,10 +948,7 @@ class ParticleSource : Particle
 			m_DefaultOri = GetLocalYawPitchRoll();
 			m_DefaultWorldPos = GetWorldPosition();
 			m_DefaultWorldOri = GetYawPitchRoll();	
-			m_ForceOrientationRelativeToWorld = IsHierarchyPositionOnly();	
-			
-			ErrorEx(m_DefaultPos.ToString(), ErrorExSeverity.INFO);
-			ErrorEx(m_DefaultWorldPos.ToString(), ErrorExSeverity.INFO);
+			m_ForceOrientationRelativeToWorld = IsHierarchyPositionOnly();
 		}
 		
 		super.SetWiggle(random_angle, random_interval);
@@ -975,8 +970,6 @@ class ParticleSource : Particle
 			
 			if (m_ForceOrientationRelativeToWorld)
 				flags = ParticlePropertiesFlags.FORCE_WORLD_ROT;
-			
-			ErrorEx(m_DefaultPos.ToString(), ErrorExSeverity.INFO);
 			
 			ParticleProperties prop = new ParticleProperties(m_DefaultPos, flags, GetParticleParent(), m_DefaultOri, GetOwner());
 			ApplyProperties(prop);

@@ -8,15 +8,17 @@ class RemotelyActivatedItemBehaviour
 	void RemotelyActivatedItemBehaviour(notnull EntityAI pParent)
 	{
 		m_Parent = pParent;
+		m_PairDeviceNetIdLow = -1;
+		m_PairDeviceNetIdHigh = -1;
 	}
 	
 	void OnVariableSynchronized()
 	{
-		if (GetPairDeviceNetIdLow() == -1 && GetPairDeviceNetIdHigh() == -1)
-		{
-			Unpair();
-		}
-
+		Pair();
+	}
+	
+	void Pair()
+	{
 		EntityAI device = EntityAI.Cast(GetGame().GetObjectByNetworkId(GetPairDeviceNetIdLow(), GetPairDeviceNetIdHigh()));
 		if (device)
 		{
@@ -27,7 +29,14 @@ class RemotelyActivatedItemBehaviour
 	void Pair(notnull EntityAI device)
 	{
 		m_PairDevice = device;
-		device.GetNetworkID(m_PairDeviceNetIdLow, m_PairDeviceNetIdHigh);
+		SetPairDeviceNetIds(device);
+		
+		if (!m_Parent.GetPairDevice() || m_Parent.GetPairDevice() != m_PairDevice)
+		{
+			m_PairDevice.PairRemote(m_Parent);
+		}
+
+		m_PairDevice.SetSynchDirty();
 		m_Parent.SetSynchDirty();
 	}
 	
@@ -53,6 +62,11 @@ class RemotelyActivatedItemBehaviour
 	bool IsPaired()
 	{
 		return m_PairDevice != null;
+	}
+	
+	void SetPairDeviceNetIds(notnull EntityAI device)
+	{
+		device.GetNetworkID(m_PairDeviceNetIdLow, m_PairDeviceNetIdHigh);
 	}
 	
 	int GetPairDeviceNetIdLow()

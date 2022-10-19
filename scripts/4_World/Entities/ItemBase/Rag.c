@@ -101,6 +101,7 @@ class Rag extends ItemBase
 		AddAction(ActionCraftImprovisedFaceCover);
 		AddAction(ActionCraftImprovisedTorsoCover);
 		AddAction(ActionCraftImprovisedLegsCover);
+		AddAction(ActionCraftImprovisedEyePatch);
 	}
 	
 	override float GetBandagingEffectivity()

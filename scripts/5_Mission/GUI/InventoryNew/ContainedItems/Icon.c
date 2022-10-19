@@ -92,7 +92,7 @@ class Icon: LayoutHolder
 		{
 			float x, y;
 			GetMainWidget().GetScreenPos( x, y );
-			ItemManager.GetInstance().PrepareTooltip( EntityAI.Cast( GetObject() ), x, y );
+			PrepareOwnedTooltip( EntityAI.Cast( GetObject() ), -1, y );
 		}
 		
 		m_SelectedPanel.Show( active );
@@ -124,7 +124,7 @@ class Icon: LayoutHolder
 	void RefreshQuickbar()
 	{
 		InventoryMenu menu = InventoryMenu.Cast( GetGame().GetUIManager().FindMenu( MENU_INVENTORY ) );
-		ItemManager.GetInstance().HideTooltip();
+		HideOwnedTooltip();
 		if( menu )
 		{
 			menu.RefreshQuickbar();
@@ -175,7 +175,7 @@ class Icon: LayoutHolder
 				{
 					player.PredictiveMoveItemFromHandsToInventory();
 				}
-				ItemManager.GetInstance().HideTooltip();
+				HideOwnedTooltip();
 				if( menu )
 				{
 					menu.RefreshQuickbar();
@@ -239,7 +239,7 @@ class Icon: LayoutHolder
 				}
 			}
 	
-			ItemManager.GetInstance().HideTooltip();
+			HideOwnedTooltip();
 			if( menu )
 			{
 				menu.RefreshQuickbar();
@@ -351,7 +351,7 @@ class Icon: LayoutHolder
 	{
 		if( !m_IsDragged )
 		{
-			ItemManager.GetInstance().PrepareTooltip( m_Obj );
+			PrepareOwnedTooltip( m_Obj, x, y );
 			m_SelectedPanel.Show( true );
 		}
 		
@@ -360,7 +360,7 @@ class Icon: LayoutHolder
 
 	bool MouseLeave( Widget w, Widget s, int x, int y	)
 	{
-		ItemManager.GetInstance().HideTooltip();
+		HideOwnedTooltip();
 		if( !m_IsDragged )
 		{
 			m_SelectedPanel.Show( false );
@@ -736,8 +736,6 @@ class Icon: LayoutHolder
 				cmenu.Show( m_am_Pos_x, m_am_Pos_y );
 			}*/
 		}
-		
-		
 	}
 
 	void OnPerformRecipe(int id)

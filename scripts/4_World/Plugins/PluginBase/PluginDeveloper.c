@@ -17,7 +17,7 @@ class PluginDeveloper extends PluginBase
 	//! Set Player position at his cursor position in the world
 	void TeleportAtCursor()
 	{
-		DeveloperTeleport.TeleportAtCursor();
+		DeveloperTeleport.TeleportAtCursorEx();
 	}
 	
 	//! Teleport player at position
@@ -58,12 +58,8 @@ class PluginDeveloper extends PluginBase
 	
 	void OnRPC(PlayerBase player, int rpc_type, ParamsReadContext ctx)
 	{
-		if ( !GetGame().IsDebug() )
-		{
-			return;
-		}
-		
-		switch(rpc_type)
+	#ifdef DIAG_DEVELOPER
+		switch (rpc_type)
 		{
 			case ERPCs.DEV_RPC_SPAWN_ITEM_ON_GROUND:
 			{
@@ -107,7 +103,8 @@ class PluginDeveloper extends PluginBase
 			}
 		}
 		
-		DeveloperTeleport.OnRPC(player, rpc_type, ctx);
+		DeveloperTeleport.OnRPC(player, rpc_type, ctx);		
+	#endif
 	}
 	
 	// Public API
@@ -126,12 +123,12 @@ class PluginDeveloper extends PluginBase
 	{
 		if ( GetGame() )
 		{
-			ref array<Man> players = new array<Man>;
+			array<Man> players = new array<Man>;
 			GetGame().GetPlayers( players );
 			
 			for ( int i = 0; i < players.Count(); ++i )
 			{
-				ref Param1<string> param = new Param1<string>( msg );
+				Param1<string> param = new Param1<string>( msg );
 				Man player = players.Get(i);
 				
 				if ( player  &&  player.HasNetworkID() )
@@ -492,7 +489,7 @@ class PluginDeveloper extends PluginBase
 			else
 			{		
 				// Client -> Server Spawning: Client Side
-				ref Param5<string, float, float, bool, string> params = new Param5<string, float, float, bool, string>(item_name, health, quantity, special, presetName );
+				Param5<string, float, float, bool, string> params = new Param5<string, float, float, bool, string>(item_name, health, quantity, special, presetName );
 				player.RPCSingleParam(ERPCs.DEV_RPC_SPAWN_ITEM_IN_INVENTORY, params, true);
 			}
 		}
@@ -545,7 +542,7 @@ class PluginDeveloper extends PluginBase
 		else
 		{		
 			// Client -> Server Spawning: Client Side
-			ref Param3<string, float, float> params = new Param3<string, float, float>(att_name, health, quantity);
+			Param3<string, float, float> params = new Param3<string, float, float>(att_name, health, quantity);
 			player.RPCSingleParam(ERPCs.DEV_RPC_SPAWN_ITEM_AS_ATTACHMENT, params, true);
 		}
 		return NULL;
@@ -571,7 +568,7 @@ class PluginDeveloper extends PluginBase
 				string		clipboard;
 				GetGame().CopyFromClipboard(clipboard);
 							
-				if(!clipboard.Contains(","))
+				if (!clipboard.Contains(","))
 				{
 					//single item
 					EntityAI object_spawned_from_clipboard = SpawnEntityOnCursorDir(player, clipboard, -1, 1);
@@ -749,7 +746,7 @@ class PluginDeveloper extends PluginBase
 	
 	void ResetGUI()
 	{
-		if( GetGame() && GetGame().GetMission() )
+		if ( GetGame() && GetGame().GetMission() )
 		{
 			GetGame().GetMission().ResetGUI();
 		}

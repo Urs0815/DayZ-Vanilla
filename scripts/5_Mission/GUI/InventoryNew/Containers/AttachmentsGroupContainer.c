@@ -10,6 +10,7 @@ class AttachmentsGroupContainer: Container
 	override void SetHeader(Header header)
 	{
 		m_Header = header;
+		m_Header.GetMainWidget().SetFlags( WidgetFlags.IGNOREPOINTER );
 	}
 	
 	override Header GetHeader()
@@ -79,7 +80,7 @@ class AttachmentsGroupContainer: Container
 	
 	override void SetNextActive()
 	{
-		ItemManager.GetInstance().HideTooltip();
+		HideOwnedTooltip();
 		int visible_focus = 0;
 
 		SlotsContainer active;
@@ -120,7 +121,7 @@ class AttachmentsGroupContainer: Container
 	
 	override void SetPreviousActive(bool force = false)
 	{
-		ItemManager.GetInstance().HideTooltip();
+		HideOwnedTooltip();
 		int visible_focus = 0;
 		
 		SlotsContainer active;

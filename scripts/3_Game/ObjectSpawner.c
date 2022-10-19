@@ -26,10 +26,12 @@ class ObjectSpawnerHandler
 	//---------------------------------------------------------------------------------------
 	static void SpawnObject(ITEM_SpawnerObject item)
 	{
-		Object object = GetGame().CreateObjectEx(item.name, vector.ArrayToVec(item.pos), ECE_SETUP | ECE_UPDATEPATHGRAPH | ECE_CREATEPHYSICS);
+		Object object = GetGame().CreateObjectEx(item.name, vector.ArrayToVec(item.pos), ECE_SETUP | ECE_UPDATEPATHGRAPH | ECE_CREATEPHYSICS | ECE_NOLIFETIME);
 		if ( object )
 		{
 			object.SetOrientation( vector.ArrayToVec(item.ypr));
+			if (item.scale != 0)
+				object.SetScale(item.scale);
 		}
 	}
 	//---------------------------------------------------------------------------------------
@@ -50,6 +52,7 @@ class ITEM_SpawnerObject
 	string name;
 	float pos[3];
 	float ypr[3];
+	float scale;
 };
 
 

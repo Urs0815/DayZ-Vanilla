@@ -91,6 +91,7 @@ class float
 {
 	const float MIN = FLT_MIN;
 	const float MAX = FLT_MAX;
+	const float LOWEST = -FLT_MAX;
 	
 	proto string ToString();
 };
@@ -511,6 +512,12 @@ class typename
 	*/
 	proto volatile Class Spawn();
 	
+	/**
+	\brief Get the name of the module the typename belongs to
+		\returns \p string Name of parent module (1_Core)
+	*/
+	proto owned string GetModule();
+	
 	//!Returns type name of variable as string
 	proto native owned string ToString();
 	
@@ -577,6 +584,9 @@ class typename
 
 class EnumTools
 {
+	private void EnumTools();
+	private void ~EnumTools();
+	
 	/**
 	\brief Return string name of enum value
 	@code

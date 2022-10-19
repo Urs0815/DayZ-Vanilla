@@ -89,7 +89,8 @@ class Inventory: LayoutHolder
 	protected Widget						m_TopConsoleToolbarVicinity;
 	protected Widget						m_TopConsoleToolbarHands;
 	protected Widget						m_TopConsoleToolbarEquipment;
-	protected RichTextWidget				m_BottomConsoleToolbar;
+	protected Widget						m_BottomConsoleToolbar;
+	protected RichTextWidget				m_BottomConsoleToolbarRichText;
 
 	protected ref ContextMenu				m_ContextMenu;
 	protected static ref map<string, int>	m_PlayerAttachmentsIndexes;
@@ -175,9 +176,44 @@ class Inventory: LayoutHolder
 		RichTextWidget.Cast(m_TopConsoleToolbarEquipment.FindAnyWidget("LBRB_Equipment_LBIcon")).SetText(InputUtils.GetRichtextButtonIconFromInputAction("UAUIInventoryTabLeft", "", EUAINPUT_DEVICE_CONTROLLER));
 		RichTextWidget.Cast(m_TopConsoleToolbarEquipment.FindAnyWidget("LBRB_Equipment_RBIcon")).SetText(InputUtils.GetRichtextButtonIconFromInputAction("UAUIInventoryTabRight", "", EUAINPUT_DEVICE_CONTROLLER));
 		
-		m_BottomConsoleToolbar	= RichTextWidget.Cast(GetRootWidget().FindAnyWidget("ContextToolbarText"));
+		m_BottomConsoleToolbar			= GetRootWidget().FindAnyWidget("BottomConsoleToolbar");
+		m_BottomConsoleToolbarRichText	= RichTextWidget.Cast(GetRootWidget().FindAnyWidget("ContextToolbarText"));
+		
+		GetGame().GetMission().GetOnInputPresetChanged().Insert(OnInputPresetChanged);
+		GetGame().GetMission().GetOnInputDeviceChanged().Insert(OnInputDeviceChanged);
+		
+		//OnInputDeviceChanged(GetGame().GetInput().GetCurrentInputDevice());
+		
 		UpdateConsoleToolbar();
 		#endif
+	}
+	
+	protected void OnInputPresetChanged()
+	{
+		#ifdef PLATFORM_CONSOLE
+		UpdateConsoleToolbar();
+		#endif
+	}
+	
+	protected void OnInputDeviceChanged(EInputDeviceType pInputDeviceType)
+	{
+		switch (pInputDeviceType)
+		{
+			case EInputDeviceType.CONTROLLER:
+				m_BottomConsoleToolbar.Show(true);
+				UpdateConsoleToolbar();
+			break;
+	
+			default:
+				if (GetGame().GetInput().IsEnabledMouseAndKeyboardEvenOnServer())
+				{
+					m_BottomConsoleToolbar.Show(false);
+					m_TopConsoleToolbarVicinity.Show(false);
+					m_TopConsoleToolbarHands.Show(false);
+					m_TopConsoleToolbarEquipment.Show(false);
+				}
+			break;
+		}
 	}
 	
 	static Inventory GetInstance()
@@ -723,7 +759,7 @@ class Inventory: LayoutHolder
 					m_LeftArea.SplitItem();
 				}
 				
-				ItemManager.GetInstance().HideTooltip();
+				HideOwnedTooltip();
 			}
 			
 			if ( GetGame().GetInput().LocalPress( "UAUIFastEquip", false ) )
@@ -747,7 +783,7 @@ class Inventory: LayoutHolder
 				}
 				
 				UpdateConsoleToolbar();
-				ItemManager.GetInstance().HideTooltip();
+				HideOwnedTooltip();
 			}
 			
 			if (ItemManager.GetInstance().IsMicromanagmentMode() && GetGame().GetInput().LocalRelease( "UAUIDragNDrop", false ))
@@ -838,7 +874,7 @@ class Inventory: LayoutHolder
 				}*/
 				
 				UpdateConsoleToolbar();
-				ItemManager.GetInstance().HideTooltip();
+				HideOwnedTooltip();
 			}
 		}
 		
@@ -912,7 +948,7 @@ class Inventory: LayoutHolder
 				}
 				
 				UpdateConsoleToolbar();
-				ItemManager.GetInstance().HideTooltip();
+				HideOwnedTooltip();
 			}
 		}
 		
@@ -1074,7 +1110,7 @@ class Inventory: LayoutHolder
 			}
 			
 			UpdateConsoleToolbar();
-			ItemManager.GetInstance().HideTooltip();
+			HideOwnedTooltip();
 		}
 	}
 	
@@ -1085,7 +1121,7 @@ class Inventory: LayoutHolder
 			ItemManager.GetInstance().SetItemMicromanagmentMode( false );
 			ItemManager.GetInstance().SetSelectedItem( null, null, null, null );
 			UpdateConsoleToolbar();
-			ItemManager.GetInstance().HideTooltip();
+			HideOwnedTooltip();
 		}
 	}
 
@@ -1183,14 +1219,14 @@ class Inventory: LayoutHolder
 	override void OnHide()
 	{
 		Serialize();
-		ItemManager.GetInstance().HideTooltip();
+		HideOwnedTooltip();
 		Mission mission = GetGame().GetMission();
 		if ( mission )
 		{
 			IngameHud hud = IngameHud.Cast( mission.GetHud() );
 			if ( hud )
 			{
-				hud.ShowQuickbarUI( g_Game.GetProfileOption(EDayZProfilesOptions.QUICKBAR) );
+				hud.ShowQuickbarUI( true );
 				hud.ShowHudInventory( false );
 			}
 		}
@@ -1220,8 +1256,13 @@ class Inventory: LayoutHolder
 	
 	void RefreshQuickbar()
 	{
-		m_QuickbarWidget.Show( GetGame().GetInput().IsEnabledMouseAndKeyboardEvenOnServer() );
-		#ifdef PLATFORM_WINDOWS
+		#ifndef PLATFORM_CONSOLE
+		m_QuickbarWidget.Show(true);
+		#else
+		m_QuickbarWidget.Show(GetGame().GetInput().IsEnabledMouseAndKeyboardEvenOnServer());
+		#endif
+		
+		#ifndef PLATFORM_CONSOLE
 		if ( m_Quickbar )
 		#else
 		if ( m_Quickbar && GetGame().GetInput().IsEnabledMouseAndKeyboardEvenOnServer() )
@@ -1355,6 +1396,11 @@ class Inventory: LayoutHolder
 	//Console toolbar
 	void UpdateConsoleToolbar()
 	{
+		if (!IsVisible())
+		{
+			return;
+		}
+		
 		#ifdef PLATFORM_CONSOLE
 		string combine = string.Format(" %1", InputUtils.GetRichtextButtonIconFromInputAction("UAUICombine", "#dayz_context_menu_combine", EUAINPUT_DEVICE_CONTROLLER, InputUtils.ICON_SCALE_TOOLBAR));
 		string context_text;
@@ -1367,7 +1413,18 @@ class Inventory: LayoutHolder
 				VicinitySlotsContainer vicinity_icons_container = vicinity_container.GetVicinityIconsContainer();
 				if( vicinity_icons_container.IsItemWithContainerActive() )
 				{
-					context_text = ConsoleToolbarTypeToString( ConsoleToolbarType.VICINITY_CONTAINER_LIST_ITEM_WITH_CONTAINER );
+					if( vicinity_icons_container.CanEquip() )
+					{
+						context_text = ConsoleToolbarTypeToString( ConsoleToolbarType.VICINITY_CONTAINER_LIST_ITEM_WITH_CONTAINER );
+					}
+					else if (!vicinity_icons_container.IsTakeable())
+					{
+						context_text = ConsoleToolbarTypeToString( ConsoleToolbarType.VICINITY_CONTAINER_LIST_HEADER );
+					}
+					else
+					{
+						context_text = ConsoleToolbarTypeToString( ConsoleToolbarType.VICINITY_CONTAINER_LIST_ITEM_WITH_CONTAINER_NO_EQUIP );
+					}
 				}
 				else if( vicinity_icons_container.IsItemWithQuantityActive() )
 				{
@@ -1759,8 +1816,8 @@ class Inventory: LayoutHolder
 			m_TopConsoleToolbarHands.Show( m_HandsArea.IsActive() );
 		if( m_TopConsoleToolbarEquipment )
 			m_TopConsoleToolbarEquipment.Show( m_RightArea.IsActive() );
-		if( m_BottomConsoleToolbar )
-			m_BottomConsoleToolbar.SetText( context_text + " " );
+		if( m_BottomConsoleToolbarRichText )
+			m_BottomConsoleToolbarRichText.SetText( context_text + " " );
 		
 		#endif
 	}
@@ -1794,61 +1851,26 @@ class Inventory: LayoutHolder
 	//! Shifts between containers vertically
 	void MoveFocusByContainer(int direction)
 	{
-		ItemManager.GetInstance().HideTooltip();
+		HideOwnedTooltip();
 		
-		if (direction == Direction.UP)
+		if (m_LeftArea.IsActive())
 		{
-			if ( !ItemManager.GetInstance().IsMicromanagmentMode() ) //TODO: do we leave the focus when moving like that?
-			{
-				m_RightArea.UnfocusGrid();
-				m_LeftArea.UnfocusGrid();
-				m_HandsArea.UnfocusGrid();
-			}
-			if ( m_LeftArea.IsActive() )
-			{
-				m_LeftArea.SetPreviousActive();
-			}
-			else if ( m_RightArea.IsActive() )
-			{
-				m_RightArea.SetPreviousActive();
-			}
-			else if ( m_HandsArea.IsActive() )
-			{
-				m_HandsArea.SetPreviousActive();
-			}
-			
-			UpdateConsoleToolbar();
+			m_LeftArea.MoveGridCursor(direction);
 		}
-		else if (direction == Direction.DOWN)
+		else if (m_RightArea.IsActive())
 		{
-			if ( !ItemManager.GetInstance().IsMicromanagmentMode() ) //TODO: do we leave the focus when moving like that?
-			{
-				m_RightArea.UnfocusGrid();
-				m_LeftArea.UnfocusGrid();
-				m_HandsArea.UnfocusGrid();
-			}
-			
-			if ( m_LeftArea.IsActive() )
-			{
-				m_LeftArea.SetNextActive();
-			}
-			else if ( m_RightArea.IsActive() )
-			{
-				m_RightArea.SetNextActive();
-			}
-			else if ( m_HandsArea.IsActive() )
-			{
-				m_HandsArea.SetNextActive();
-			}
-			
-			UpdateConsoleToolbar();
+			m_RightArea.MoveGridCursor(direction);
+		}
+		else if (m_HandsArea.IsActive())
+		{
+			m_HandsArea.MoveGridCursor(direction);
 		}
 	}
 	
 	//! Shifts between vicinity-hands-player
 	void MoveFocusByArea(int direction)
 	{
-		ItemManager.GetInstance().HideTooltip();
+		HideOwnedTooltip();
 		PlayerBase player = PlayerBase.Cast( GetGame().GetPlayer() );
 		
 		if (direction == Direction.LEFT)

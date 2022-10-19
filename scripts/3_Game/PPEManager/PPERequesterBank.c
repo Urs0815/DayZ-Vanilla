@@ -39,6 +39,8 @@ class PPERequesterBank extends Managed
 	static const int REQ_CONTAMINATEDAREA		= RegisterRequester(PPERequester_ContaminatedAreaTint);
 	static const int REQ_SPOOKYAREA				= RegisterRequester(PPERequester_SpookyAreaTint);
 	static const int REQ_PAINBLUR				= RegisterRequester(PPERequester_PainBlur);
+	static const int REQ_UNDERGROUND			= RegisterRequester(PPERUndergroundAcco);
+	static const int REQ_DROWNING				= RegisterRequester(PPERequester_Drowning);
 	
 	private static ref PPERequesterRegistrations 	m_Registrations; //more registrations to be placed here
 	

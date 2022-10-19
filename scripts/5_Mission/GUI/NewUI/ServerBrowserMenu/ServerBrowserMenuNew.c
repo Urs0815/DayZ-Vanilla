@@ -17,6 +17,7 @@ class ServerBrowserMenuNew extends UIScriptedMenu
 	protected TabberUI				m_Tabber;
 	protected ref ServerBrowserTab	m_OfficialTab;
 	protected ref ServerBrowserTab	m_CommunityTab;
+	protected ref ServerBrowserTab  m_FavoritesTab;
 	protected ref ServerBrowserTab	m_LANTab;
 	
 	protected TabType				m_IsRefreshing = TabType.NONE;
@@ -27,14 +28,15 @@ class ServerBrowserMenuNew extends UIScriptedMenu
 	{
 		#ifdef PLATFORM_CONSOLE
 		layoutRoot 		= GetGame().GetWorkspace().CreateWidgets("gui/layouts/new_ui/server_browser/xbox/server_browser.layout");
-		m_OfficialTab	= new ServerBrowserTabConsolePages(layoutRoot.FindAnyWidget("Tab_0"), this, TabType.OFFICIAL);
-		m_CommunityTab	= new ServerBrowserTabConsolePages(layoutRoot.FindAnyWidget("Tab_1"), this, TabType.COMMUNITY);
-		LoadFavoriteServers();
+		m_FavoritesTab  = new ServerBrowserFavoritesTabConsolePages(layoutRoot.FindAnyWidget("Tab_0"), this, TabType.FAVORITE);
+		m_OfficialTab	= new ServerBrowserTabConsolePages(layoutRoot.FindAnyWidget("Tab_1"), this, TabType.OFFICIAL);
+		m_CommunityTab	= new ServerBrowserTabConsolePages(layoutRoot.FindAnyWidget("Tab_2"), this, TabType.COMMUNITY);
 		#else
 		layoutRoot 		= GetGame().GetWorkspace().CreateWidgets("gui/layouts/new_ui/server_browser/pc/server_browser.layout");
-		m_OfficialTab	= new ServerBrowserTabPc(layoutRoot.FindAnyWidget("Tab_0"), this, TabType.OFFICIAL);
-		m_CommunityTab	= new ServerBrowserTabPc(layoutRoot.FindAnyWidget("Tab_1"), this, TabType.COMMUNITY);
-		m_LANTab		= new ServerBrowserTabPc(layoutRoot.FindAnyWidget("Tab_2"), this, TabType.LAN);
+		m_FavoritesTab  = new ServerBrowserFavoritesTabPc(layoutRoot.FindAnyWidget("Tab_0"), this, TabType.FAVORITE);
+		m_OfficialTab	= new ServerBrowserTabPc(layoutRoot.FindAnyWidget("Tab_1"), this, TabType.OFFICIAL);
+		m_CommunityTab	= new ServerBrowserTabPc(layoutRoot.FindAnyWidget("Tab_2"), this, TabType.COMMUNITY);
+		m_LANTab		= new ServerBrowserTabPc(layoutRoot.FindAnyWidget("Tab_3"), this, TabType.LAN);
 		#endif
 		
 		layoutRoot.FindAnyWidget("Tabber").GetScript(m_Tabber);
@@ -44,6 +46,7 @@ class ServerBrowserMenuNew extends UIScriptedMenu
 		m_CustomizeCharacter	= layoutRoot.FindAnyWidget("customize_character");
 		m_PlayerName			= TextWidget.Cast(layoutRoot.FindAnyWidget("character_name_text"));
 		m_Version				= TextWidget.Cast(layoutRoot.FindAnyWidget("version"));
+		m_Favorites 			= new TStringArray;
 		
 		#ifndef PLATFORM_CONSOLE
 		// TODO: Temporary Hide for 1.0
@@ -69,11 +72,14 @@ class ServerBrowserMenuNew extends UIScriptedMenu
 		#endif
 		m_Version.SetText(version);
 		
+		OnlineServices.Init();
 		OnlineServices.m_ServersAsyncInvoker.Insert(OnLoadServersAsync);
 		OnlineServices.m_ServerModLoadAsyncInvoker.Insert(OnLoadServerModsAsync);
+		LoadFavoriteServers();
+		
 		m_Tabber.m_OnTabSwitch.Insert(OnTabSwitch);
-				
-		m_OfficialTab.RefreshList();
+		
+		m_FavoritesTab.RefreshList();
 		//m_OfficialTab.LoadFakeData( 100 );
 
 		#ifdef PLATFORM_CONSOLE
@@ -86,6 +92,8 @@ class ServerBrowserMenuNew extends UIScriptedMenu
 		PPERequesterBank.GetRequester(PPERequester_ServerBrowserBlur).Start(new Param1<float>(0.5));
 		
 		GetGame().GetMission().GetOnInputPresetChanged().Insert(OnInputPresetChanged);
+		GetGame().GetMission().GetOnInputDeviceChanged().Insert(OnInputDeviceChanged);
+		OnInputDeviceChanged(GetGame().GetInput().GetCurrentInputDevice());
 
 		return layoutRoot;
 	}
@@ -102,11 +110,40 @@ class ServerBrowserMenuNew extends UIScriptedMenu
 		PPERequesterBank.GetRequester(PPERequester_ServerBrowserBlur).Stop();
 	}
 	
+	TStringArray GetFavoritedServerIds()
+	{
+		return m_Favorites;
+	}
+	
 	protected void OnInputPresetChanged()
 	{
 		#ifdef PLATFORM_CONSOLE
 		UpdateControlsElements();
 		#endif
+	}
+
+	protected void OnInputDeviceChanged(EInputDeviceType pInputDeviceType)
+	{
+		switch (pInputDeviceType)
+		{
+		case EInputDeviceType.CONTROLLER:
+			#ifdef PLATFORM_CONSOLE
+			UpdateControlsElements();
+			layoutRoot.FindAnyWidget("toolbar_bg").Show(true);
+			layoutRoot.FindAnyWidget("ConsoleControls").Show(true);
+			#endif
+		break;
+
+		default:
+			#ifdef PLATFORM_CONSOLE
+			if (GetGame().GetInput().IsEnabledMouseAndKeyboardEvenOnServer())
+			{
+				layoutRoot.FindAnyWidget("toolbar_bg").Show(false);
+				layoutRoot.FindAnyWidget("ConsoleControls").Show(false);
+			}
+			#endif
+		break;
+		}
 	}
 	
 	override bool OnClick( Widget w, int x, int y, int button )
@@ -184,35 +221,45 @@ class ServerBrowserMenuNew extends UIScriptedMenu
 	{
 		int index = -1;
 		if ( m_Favorites )
+		{
 			index = m_Favorites.Find( server_id );		
+		}
 		return ( index >= 0 );
 	}
 	
-	void SetFavoriteConsoles( string ipAddress, int port, bool favorite )
+	// Returns whether server was favorited or not
+	bool SetFavoriteConsoles( string ipAddress, int port, bool favorite )
 	{
-		string server_id = ipAddress + ":" + port;
-		if ( m_Favorites )
+		if (favorite && m_Favorites.Count() >= MAX_FAVORITES)
 		{
-			int res = m_Favorites.Find( server_id );
-			
-			if ( favorite && res < 0 )
-			{
-				if ( m_Favorites.Count() < MAX_FAVORITES )
-				{
-					m_Favorites.Insert( server_id );
-				}
-				else
-				{				
-					g_Game.GetUIManager().ShowDialog("#layout_notification_info_warning", "#STR_MaxFavouriteReached", 0, DBT_OK, DBB_YES, DMT_EXCLAMATION, this);
-				}
-			}
-			else if ( res >= 0 )
-			{
-				m_Favorites.RemoveItem( server_id );
-				m_OfficialTab.Unfavorite( server_id );
-			}
-			
-			SaveFavoriteServersConsoles();
+			g_Game.GetUIManager().ShowDialog("#layout_notification_info_warning", "#STR_MaxFavouriteReached", 0, DBT_OK, DBB_YES, DMT_EXCLAMATION, this);
+			return false;
+		}
+
+		AddFavorite(ipAddress, port, favorite);
+		SaveFavoriteServersConsoles();
+		
+		return favorite;
+	}
+	
+	void AddFavorite(string ipAddress, int port, bool favorite)
+	{
+		string serverId = ipAddress + ":" + port;
+		bool isFavorited = IsFavorited(serverId);
+		
+		if ( favorite && !isFavorited )
+		{
+			m_Favorites.Insert( serverId );
+		}
+		else if ( isFavorited )
+		{
+			m_Favorites.RemoveItem(serverId);
+			m_OfficialTab.Unfavorite(serverId);
+			m_CommunityTab.Unfavorite(serverId);
+			m_FavoritesTab.Unfavorite(serverId);
+#ifndef PLATFORM_CONSOLE
+			m_LANTab.Unfavorite(serverId);
+#endif
 		}
 	}
 	
@@ -221,13 +268,45 @@ class ServerBrowserMenuNew extends UIScriptedMenu
 		GetGame().GetUIManager().Back();
 	}
 	
+	void ShowYButton(bool show)
+	{
+		RichTextWidget yIcon = RichTextWidget.Cast(layoutRoot.FindAnyWidget("ResetIcon"));
+		TextWidget yText = TextWidget.Cast(layoutRoot.FindAnyWidget("ResetText"));
+		
+		if (yIcon)
+		{
+			yIcon.Show(show);
+		}
+		
+		if (yText)
+		{
+			yText.Show(show);
+		}
+	}
+	
+	void ShowAButton(bool show)
+	{
+		RichTextWidget aIcon = RichTextWidget.Cast(layoutRoot.FindAnyWidget("ConnectIcon"));
+		TextWidget aText = TextWidget.Cast( layoutRoot.FindAnyWidget( "ConnectText" ) );
+		
+		if (aIcon)
+		{
+			aIcon.Show(show);
+		}
+		
+		if (aText)
+		{
+			aText.Show(show);
+		}
+				
+	}
+	
 	void FilterFocus( bool focus )
 	{
 		#ifdef PLATFORM_CONSOLE
 		TextWidget con_text = TextWidget.Cast( layoutRoot.FindAnyWidget( "ConnectText" ) );
 		TextWidget ref_text = TextWidget.Cast( layoutRoot.FindAnyWidget( "RefreshText" ) );
 		TextWidget res_text = TextWidget.Cast( layoutRoot.FindAnyWidget( "ResetText" ) );
-		Widget reset_frame	= layoutRoot.FindAnyWidget( "Reset" );
 		
 		if ( focus )
 		{			
@@ -243,21 +322,25 @@ class ServerBrowserMenuNew extends UIScriptedMenu
 		#endif
 	}
 	
+	void BackButtonFocus()
+	{
+		SetFocus(m_Back);
+	}
+
 	void ServerListFocus( bool focus, bool favorite )
 	{
 		#ifdef PLATFORM_CONSOLE
 		TextWidget con_text = TextWidget.Cast( layoutRoot.FindAnyWidget( "ConnectText" ) );
 		TextWidget ref_text = TextWidget.Cast( layoutRoot.FindAnyWidget( "RefreshText" ) );
 		TextWidget res_text = TextWidget.Cast( layoutRoot.FindAnyWidget( "ResetText" ) );
-		Widget reset_frame	= layoutRoot.FindAnyWidget( "Reset" );
 		
-		if( focus )
+		if ( focus )
 		{			
 			con_text.SetText( "#server_browser_menu_connect" );
 			
 			float x, y;
 			res_text.GetSize( x, y );
-			if( favorite )
+			if ( favorite )
 			{
 				res_text.SetText( "#server_browser_menu_unfavorite" );
 			}
@@ -273,7 +356,7 @@ class ServerBrowserMenuNew extends UIScriptedMenu
 	
 	override bool OnFocus( Widget w, int x, int y )
 	{
-		if( IsFocusable( w ) )
+		if ( IsFocusable( w ) )
 		{
 			ColorHighlight( w );
 			return true;
@@ -283,7 +366,7 @@ class ServerBrowserMenuNew extends UIScriptedMenu
 	
 	override bool OnFocusLost( Widget w, int x, int y )
 	{
-		if( IsFocusable( w ) )
+		if ( IsFocusable( w ) )
 		{
 			ColorNormal( w );
 			return true;
@@ -296,10 +379,10 @@ class ServerBrowserMenuNew extends UIScriptedMenu
 		string name;
 		
 		#ifdef PLATFORM_CONSOLE
-			if( GetGame().GetUserManager() && GetGame().GetUserManager().GetSelectedUser() )
+			if ( GetGame().GetUserManager() && GetGame().GetUserManager().GetSelectedUser() )
 			{
 				name = GetGame().GetUserManager().GetSelectedUser().GetName();
-				if( name.LengthUtf8() > 18 )
+				if ( name.LengthUtf8() > 18 )
 				{
 					name = name.SubstringUtf8(0, 18);
 					name += "...";
@@ -309,7 +392,7 @@ class ServerBrowserMenuNew extends UIScriptedMenu
 			g_Game.GetPlayerNameShort( 14, name );
 		#endif
 		
-		if( m_PlayerName )
+		if ( m_PlayerName )
 			m_PlayerName.SetText( name );
 		
 		string version;
@@ -324,88 +407,88 @@ class ServerBrowserMenuNew extends UIScriptedMenu
 	
 	override void Update( float timeslice )
 	{
-		if( !GetGame().GetUIManager().IsDialogVisible() && !GetDayZGame().IsConnecting() )
+		if ( !GetGame().GetUIManager().IsDialogVisible() && !GetDayZGame().IsConnecting() )
 		{
-			if( GetGame().GetInput().LocalPress("UAUITabLeft",false) )
+			if ( GetGame().GetInput().LocalPress("UAUITabLeft",false) )
 			{
 				m_Tabber.PreviousTab();
 			}
 			
-			if( GetGame().GetInput().LocalPress("UAUITabRight",false) )
+			if ( GetGame().GetInput().LocalPress("UAUITabRight",false) )
 			{
 				m_Tabber.NextTab();
 			}
 			
-			if( GetGame().GetInput().LocalPress("UAUINextDown",false) )
+			if ( GetGame().GetInput().LocalPress("UAUINextDown",false) )
 			{
 				GetSelectedTab().PressSholderLeft();
 			}
 			
-			if( GetGame().GetInput().LocalPress("UAUINextUp",false) )
+			if ( GetGame().GetInput().LocalPress("UAUINextUp",false) )
 			{
 				GetSelectedTab().PressSholderRight();
 			}
 			
-			if( GetGame().GetInput().LocalPress("UAUISelect",false) )
+			if ( GetGame().GetInput().LocalPress("UAUISelect",false) )
 			{
 				GetSelectedTab().PressA();
 			}
 			
-			if( GetGame().GetInput().LocalPress("UAUICtrlX",false) )
+			if ( GetGame().GetInput().LocalPress("UAUICtrlX",false) )
 			{
 				GetSelectedTab().PressX();
 			}
 			
-			if( GetGame().GetInput().LocalPress("UAUICtrlY",false) )
+			if ( GetGame().GetInput().LocalPress("UAUICtrlY",false) )
 			{
 				GetSelectedTab().PressY();
 			}
 			
-			if( GetGame().GetInput().LocalPress("UAUILeft",false) )
+			if ( GetGame().GetInput().LocalPress("UAUILeft",false) )
 			{
 				GetSelectedTab().Left();
 			}
 			
 			// LEFT HOLD
-			if( GetGame().GetInput().LocalHold("UAUILeft",false) )
+			if ( GetGame().GetInput().LocalHold("UAUILeft",false) )
 			{
 				GetSelectedTab().LeftHold();
 			}
 			
 			// LEFT RELEASE
-			if( GetGame().GetInput().LocalRelease("UAUILeft",false) )
+			if ( GetGame().GetInput().LocalRelease("UAUILeft",false) )
 			{
 				GetSelectedTab().LeftRelease();
 			}
 			
-			if( GetGame().GetInput().LocalPress("UAUIRight",false) )
+			if ( GetGame().GetInput().LocalPress("UAUIRight",false) )
 			{
 				GetSelectedTab().Right();
 			}
 			
 			// RIGHT HOLD
-			if( GetGame().GetInput().LocalHold("UAUIRight",false) )
+			if ( GetGame().GetInput().LocalHold("UAUIRight",false) )
 			{
 				GetSelectedTab().RightHold();
 			}
 			
 			// RIGHT RELEASE
-			if( GetGame().GetInput().LocalRelease("UAUIRight",false) )
+			if ( GetGame().GetInput().LocalRelease("UAUIRight",false) )
 			{
 				GetSelectedTab().RightRelease();
 			}
 			
-			if( GetGame().GetInput().LocalPress("UAUIUp",false) )
+			if ( GetGame().GetInput().LocalPress("UAUIUp",false) )
 			{
 				GetSelectedTab().Up();
 			}
 			
-			if( GetGame().GetInput().LocalPress("UAUIDown",false) )
+			if ( GetGame().GetInput().LocalPress("UAUIDown",false) )
 			{
 				GetSelectedTab().Down();
 			}
 	
-			if( GetGame().GetInput().LocalPress("UAUIBack",false) )
+			if ( GetGame().GetInput().LocalPress("UAUIBack",false) )
 			{
 				Back();
 			}
@@ -424,18 +507,21 @@ class ServerBrowserMenuNew extends UIScriptedMenu
 	}
 	
 	void LoadFavoriteServers()
-	{
+	{		
 		m_Favorites = new TStringArray;
+		
+#ifdef PLATFORM_WINDOWS
+		OnlineServices.GetFavoriteServers(m_Favorites);
+#else
 		GetGame().GetProfileStringList( "SB_Favorites", m_Favorites );
+#endif
 	}
 	
 	void SaveFavoriteServersConsoles()
 	{
-		if ( m_Favorites )
-		{
-			GetGame().SetProfileStringList( "SB_Favorites", m_Favorites );
-			GetGame().SaveProfile();
-		}
+		GetGame().SetProfileStringList( "SB_Favorites", m_Favorites );
+		GetGame().SaveProfile();
+		
 	}
 	
 	void SelectServer( ServerBrowserEntry server )
@@ -447,6 +533,15 @@ class ServerBrowserMenuNew extends UIScriptedMenu
 		}
 				
 		m_SelectedServer = server;
+		
+#ifdef PLATFORM_CONSOLE
+		// disable CONNECT button if server is offline
+		RichTextWidget aButton = RichTextWidget.Cast(layoutRoot.FindAnyWidget("ConnectIcon"));
+		TextWidget connectText = TextWidget.Cast( layoutRoot.FindAnyWidget( "ConnectText" ) );
+		
+		aButton.Show(server.IsOnline());
+		connectText.Show(server.IsOnline());
+#endif
 	}
 	
 	void Connect( ServerBrowserEntry server )
@@ -470,19 +565,8 @@ class ServerBrowserMenuNew extends UIScriptedMenu
 				return;
 			}
 			
-		
 			string ip = m_SelectedServer.GetIP();
 			int port = m_SelectedServer.GetPort();
-			
-			#ifdef PLATFORM_WINDOWS			
-				// Hack - In new Serverborwser on PC has bad IP adress but ID is OK
-				array<string> ip_port = new array<string>();
-				m_SelectedServer.GetServerID().Split( ":", ip_port);
-				ip = ip_port[0];
-				port = ip_port[1].ToInt();
-			#endif
-			
-			//g_Game.ConnectFromServerBrowser( m_SelectedServer.GetIP(), m_SelectedServer.GetPort(), "" );
 			g_Game.ConnectFromServerBrowser( ip, port, "" );
 		}
 	}
@@ -509,13 +593,17 @@ class ServerBrowserMenuNew extends UIScriptedMenu
 		{
 			case 0:
 			{
-				return m_OfficialTab;
+				return m_FavoritesTab;
 			}
 			case 1:
 			{
-				return m_CommunityTab;
+				return m_OfficialTab;
 			}
 			case 2:
+			{
+				return m_CommunityTab;
+			}
+			case 3:
 			{
 				return m_LANTab;
 			}
@@ -525,9 +613,10 @@ class ServerBrowserMenuNew extends UIScriptedMenu
 	
 	void OnTabSwitch()
 	{
+		LoadFavoriteServers();
 		SetServersLoadingTab( TabType.NONE );
 		
-		if( GetSelectedTab().IsNotInitialized() )
+		if ( GetSelectedTab().IsNotInitialized() )
 		{
 			GetSelectedTab().RefreshList();
 		}
@@ -537,14 +626,14 @@ class ServerBrowserMenuNew extends UIScriptedMenu
 	
 	void OnLoadServerModsAsync( GetServerModListResult result_list )
 	{
-		if( GetSelectedTab() )
+		if ( GetSelectedTab() )
 		{
 			GetSelectedTab().OnLoadServerModsAsync( result_list.m_Id, result_list.m_Mods );
 		}
 	}
 	
 	void OnLoadServersAsync( GetServersResult result_list, EBiosError error, string response )
-	{
+	{		
 		#ifdef PLATFORM_WINDOWS
 			#ifdef PLATFORM_CONSOLE
 				GetSelectedTab().OnLoadServersAsyncConsole( result_list, error, response );
@@ -563,7 +652,7 @@ class ServerBrowserMenuNew extends UIScriptedMenu
 		SetFocus( w );
 		
 		ButtonWidget button = ButtonWidget.Cast( w );
-		if( button )
+		if ( button )
 		{
 			button.SetTextColor( ColorManager.COLOR_HIGHLIGHT_TEXT );
 		}
@@ -572,17 +661,17 @@ class ServerBrowserMenuNew extends UIScriptedMenu
 		TextWidget text2	= TextWidget.Cast(w.FindWidget( w.GetName() + "_text_1" ) );
 		ImageWidget image	= ImageWidget.Cast( w.FindWidget( w.GetName() + "_image" ) );
 		
-		if( text )
+		if ( text )
 		{
 			text.SetColor( ColorManager.COLOR_HIGHLIGHT_TEXT );
 		}
 		
-		if( text2 )
+		if ( text2 )
 		{
 			text2.SetColor( ColorManager.COLOR_HIGHLIGHT_TEXT );
 		}
 		
-		if( image )
+		if ( image )
 		{
 			image.SetColor( ColorManager.COLOR_HIGHLIGHT_TEXT );
 		}
@@ -595,7 +684,7 @@ class ServerBrowserMenuNew extends UIScriptedMenu
 		#endif
 		
 		ButtonWidget button = ButtonWidget.Cast( w );
-		if( button )
+		if ( button )
 		{
 			button.SetTextColor( ColorManager.COLOR_NORMAL_TEXT );
 		}
@@ -604,17 +693,17 @@ class ServerBrowserMenuNew extends UIScriptedMenu
 		TextWidget text2	= TextWidget.Cast(w.FindWidget( w.GetName() + "_text_1" ) );
 		ImageWidget image	= ImageWidget.Cast( w.FindWidget( w.GetName() + "_image" ) );
 		
-		if( text )
+		if ( text )
 		{
 			text.SetColor( ColorManager.COLOR_NORMAL_TEXT );
 		}
 		
-		if( text2 )
+		if ( text2 )
 		{
 			text2.SetColor( ColorManager.COLOR_NORMAL_TEXT );
 		}
 		
-		if( image )
+		if ( image )
 		{
 			image.SetColor( ColorManager.COLOR_NORMAL_TEXT );
 		}
@@ -624,7 +713,7 @@ class ServerBrowserMenuNew extends UIScriptedMenu
 	//Coloring functions (Until WidgetStyles are useful)
 	void ColorHighlight( Widget w )
 	{
-		if( !w )
+		if ( !w )
 			return;
 		
 		//SetFocus( w );
@@ -643,7 +732,7 @@ class ServerBrowserMenuNew extends UIScriptedMenu
 	
 	void ColorNormal( Widget w )
 	{
-		if( !w )
+		if ( !w )
 			return;
 		
 		int color_pnl = ARGB(0, 0, 0, 0);
@@ -655,12 +744,12 @@ class ServerBrowserMenuNew extends UIScriptedMenu
 	
 	void ButtonSetText( Widget w, string text )
 	{
-		if( !w )
+		if ( !w )
 			return;
 				
 		TextWidget label = TextWidget.Cast(w.FindWidget( w.GetName() + "_label" ) );
 		
-		if( label )
+		if ( label )
 		{
 			label.SetText( text );
 		}
@@ -669,12 +758,12 @@ class ServerBrowserMenuNew extends UIScriptedMenu
 	
 	void ButtonSetColor( Widget w, int color )
 	{
-		if( !w )
+		if ( !w )
 			return;
 		
 		Widget panel = w.FindWidget( w.GetName() + "_panel" );
 		
-		if( panel )
+		if ( panel )
 		{
 			panel.SetColor( color );
 		}
@@ -682,24 +771,24 @@ class ServerBrowserMenuNew extends UIScriptedMenu
 	
 	void ButtonSetTextColor( Widget w, int color )
 	{
-		if( !w )
+		if ( !w )
 			return;
 
 		TextWidget label	= TextWidget.Cast(w.FindAnyWidget( w.GetName() + "_label" ) );
 		TextWidget text		= TextWidget.Cast(w.FindAnyWidget( w.GetName() + "_text" ) );
 		TextWidget text2	= TextWidget.Cast(w.FindAnyWidget( w.GetName() + "_text_1" ) );
 				
-		if( label )
+		if ( label )
 		{
 			label.SetColor( color );
 		}
 		
-		if( text )
+		if ( text )
 		{
 			text.SetColor( color );
 		}
 		
-		if( text2 )
+		if ( text2 )
 		{
 			text2.SetColor( color );
 		}

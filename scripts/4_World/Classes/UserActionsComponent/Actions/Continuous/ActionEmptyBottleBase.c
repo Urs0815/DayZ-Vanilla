@@ -5,7 +5,7 @@ class ActionEmptyBottleBaseCB : ActionContinuousBaseCB
 		float EmptiedQuantity;// = QUANTITY_EMPTIED_PER_SEC;
 		Bottle_Base bottle = Bottle_Base.Cast(m_ActionData.m_MainItem);
 		if (bottle)
-			EmptiedQuantity = bottle.GetLiquidEmptyRate();
+			EmptiedQuantity = bottle.GetLiquidEmptyRate() * bottle.GetLiquidThroughputCoef();
 		m_ActionData.m_ActionComponent = new CAContinuousEmpty(EmptiedQuantity);
 	}
 };
@@ -44,7 +44,7 @@ class ActionEmptyBottleBase: ActionContinuousBase
 		if ( GetGame().IsServer() && GetGame().IsMultiplayer() )
 			return true;
 		
-		if ( item.IsLiquidPresent() && player.IsCurrentCameraAimedAtGround() )
+		if ( item.IsLiquidPresent() /*&& player.IsCurrentCameraAimedAtGround()*/ )
 		{
 			return true;
 		}

@@ -292,7 +292,6 @@ class BleedingSourcesManagerBase
 		return -1;
 	}
 	
-
 	protected bool RemoveBleedingSource(int bit)
 	{
 		if (m_BleedingSources.Contains(bit))
@@ -311,4 +310,13 @@ class BleedingSourcesManagerBase
 	{
 		return m_BleedingSources.Count();
 	}
+	
+	/*void ChangeBleedingIndicatorVisibility(bool visible)
+	{
+		int count = m_BleedingSources.Count();
+		for (int i = 0; i < count; i++)
+		{
+			m_BleedingSources.GetElement(i).ToggleSourceBleedingIndication(visible);
+		}
+	}*/
 }

@@ -31,7 +31,8 @@ class PPERequester_FlashbangEffects extends PPERequester_GameplayBase
 		
 		if ( GetGame() && GetGame().GetMission() && GetGame().GetMission().GetEffectWidgets() )
 		{
-			GetGame().GetMission().GetEffectWidgets().UpdateWidgets(EffectWidgetsTypes.COVER_FLASHBANG,0,new Param1<float>(1 - m_Intensity),EffectWidgetHandles.FLASHBANG);
+			Param1<float> par = new Param1<float>(1 - m_Intensity);
+			GetGame().GetMission().GetEffectWidgets().UpdateWidgets(EffectWidgetsTypes.COVER_FLASHBANG,0,par,EffectWidgetHandles.FLASHBANG);
 		}
 	}
 	

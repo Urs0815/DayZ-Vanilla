@@ -19,21 +19,19 @@ class RemoteDetonator : Inventory_Base
 	
 	void UpdateLED(ERemoteDetonatorLEDState pState, bool pForced = false)
 	{
-		if (pState != m_LastLEDState || pForced)
+		int selectionIdx = GetHiddenSelectionIndex(SELECTION_NAME_LED);
+
+		switch (pState)
 		{
-			int selectionIdx = GetHiddenSelectionIndex(SELECTION_NAME_LED);
-
-			switch (pState)
-			{
-			case ERemoteDetonatorLEDState.LIT:
-				SetObjectTexture(selectionIdx, COLOR_LED_LIT);
-			break;
-			default:
-				SetObjectTexture(selectionIdx, COLOR_LED_OFF);
-			}
-
-			m_LastLEDState = pState;
+		case ERemoteDetonatorLEDState.LIT:
+			SetObjectTexture(selectionIdx, COLOR_LED_LIT);
+		break;
+		default:
+			SetObjectTexture(selectionIdx, COLOR_LED_OFF);
 		}
+		
+		m_LastLEDState = pState;
+		SetSynchDirty();
 	}
 
 	override void SetActions()
@@ -48,17 +46,19 @@ class RemoteDetonator : Inventory_Base
 class RemoteDetonatorTrigger : RemoteDetonator
 {
 	protected const string ANIM_PHASE_TRIGGER = "trigger";
-
+	
+	protected bool m_LED;
 	protected ref RemotelyActivatedItemBehaviour m_RAIB;
 	
 	void RemoteDetonatorTrigger()
 	{
-		m_RAIB = new RemotelyActivatedItemBehaviour(this);
+		m_RAIB = new RemotelyActivatedItemBehaviour(this);		
 
 		RegisterNetSyncVariableInt("m_RAIB.m_PairDeviceNetIdLow");
 		RegisterNetSyncVariableInt("m_RAIB.m_PairDeviceNetIdHigh");
+		RegisterNetSyncVariableInt("m_LastLEDState", 0, EnumTools.GetEnumSize(ERemoteDetonatorLEDState));
 		
-		UpdateLED(ERemoteDetonatorLEDState.OFF, true);
+		UpdateLED(m_LastLEDState);
 	}
 	
 	override bool IsKit()
@@ -71,16 +71,61 @@ class RemoteDetonatorTrigger : RemoteDetonator
         super.OnVariablesSynchronized();
 
 		if (m_RAIB)
-		{		
+		{
 			m_RAIB.OnVariableSynchronized();
 		}
+		
+		UpdateLED(m_LastLEDState);
+	}
+	
+	override void EEItemLocationChanged(notnull InventoryLocation oldLoc, notnull InventoryLocation newLoc)
+	{
+		super.EEItemLocationChanged(oldLoc, newLoc);
+		 
+		if (m_RAIB)
+		{
+			m_RAIB.Pair();
+		}
+	}
+	
+	override RemotelyActivatedItemBehaviour GetRemotelyActivatedItemBehaviour()
+	{
+		return m_RAIB;
+	}
+	
+	override void OnCEUpdate()
+	{
+		super.OnCEUpdate();
+		
+		if (!IsRuined() && IsConnected() && GetControlledDevice())
+		{
+			if (vector.DistanceSq(GetPosition(), GetControlledDevice().GetPosition()) <= Math.SqrFloat(UAMaxDistances.EXPLOSIVE_REMOTE_ACTIVATION))
+			{
+				UpdateLED(ERemoteDetonatorLEDState.LIT);
+				
+				return;
+			}
+		}
+		
+		UpdateLED(ERemoteDetonatorLEDState.OFF);
+	}
+	
+	override void PairRemote(notnull EntityAI trigger)
+	{
+		m_RAIB.Pair(trigger);
+	}
+	
+	override void UnpairRemote()
+	{
+		UpdateLED(ERemoteDetonatorLEDState.OFF);
+		m_RAIB.Unpair();
 	}
 
 	override void OnActivatedByItem(notnull ItemBase item)
 	{
 		if (GetGame().IsServer())
 		{
-			if (m_RAIB.IsPaired())
+			if (m_RAIB.IsPaired() && !IsRuined())
 			{
 				ItemBase device = ItemBase.Cast(GetControlledDevice());
 				if (device && vector.DistanceSq(GetPosition(), device.GetPosition()) <= Math.SqrFloat(UAMaxDistances.EXPLOSIVE_REMOTE_ACTIVATION))
@@ -127,7 +172,7 @@ class RemoteDetonatorTrigger : RemoteDetonator
 			//! item replaced, use different IK
 			if (player.GetItemInHands())
 			{
-				player.GetItemAccessor().OnItemInHandsChanged();;
+				player.GetItemAccessor().OnItemInHandsChanged();
 			}
 		}
 		
@@ -140,7 +185,7 @@ class RemoteDetonatorTrigger : RemoteDetonator
 		{
 			if (phase > 0.01)
 			{
-				UpdateLED(ERemoteDetonatorLEDState.OFF, true);
+				UpdateLED(ERemoteDetonatorLEDState.OFF);
 			}
 		}
 	}
@@ -182,7 +227,7 @@ class RemoteDetonatorReceiver : RemoteDetonator
 	
 	override void OnWasDetached(EntityAI parent, int slot_id)
 	{
-		UpdateLED(ERemoteDetonatorLEDState.OFF, true);
+		UpdateLED(ERemoteDetonatorLEDState.OFF);
 	}
 	
 	override void EEKilled(Object killer)

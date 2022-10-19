@@ -7,17 +7,13 @@ enum EMeleeHitType
 	SPRINT,
 	KICK,
 	FINISHER_LIVERSTAB,
+	FINISHER_NECKSTAB,
 	FINISHER_GENERIC,
 
 	WPN_HIT,
 	WPN_HIT_BUTTSTOCK,
 	WPN_STAB,
 	WPN_STAB_FINISHER,
-}
-
-class MeleeConstants
-{
-	const int CFG_FINISHER_LIVER = 1;
 }
 
 class DayZPlayerImplementMeleeCombat
@@ -440,16 +436,25 @@ class DayZPlayerImplementMeleeCombat
 		
 		vector pos;
 		vector dir;
+		vector playerDir;
 		if (useCamera)
 		{ // What the player camera is looking at (crosshair)
 			vector cameraRotation;
 			player.GetCurrentCameraTransform(pos, dir, cameraRotation);
+			playerDir = dir;
 		}
 		else
 		{ // What the player himself is looking at
-			dir = MiscGameplayFunctions.GetHeadingVector(player);
+			playerDir = MiscGameplayFunctions.GetHeadingVector(player);
+			dir = GetGame().GetCurrentCameraDirection();
 			MiscGameplayFunctions.GetHeadBonePos(player, pos);
-		}		
+		}
+		
+		//! Prevents targeting of objects behind player
+		if (vector.Dot(dir, playerDir) < 0.5)
+		{
+			return false;
+		}
 
 		m_RayStart = pos;
 		m_RayEnd = m_RayStart + GetRange() * dir;
@@ -527,10 +532,10 @@ class DayZPlayerImplementMeleeCombat
 				if (m_TargetObject == null)
 				{
 					m_TargetObject = cursorTarget;
-			}
+				}
 			}
 
-			if ( cursorTarget == m_TargetObject )
+			if (cursorTarget == m_TargetObject)
 			{
 				m_HitZoneName = cursorTarget.GetDamageZoneNameByComponentIndex(m_HitZoneIdx);
 				//Print("hit object: " + m_TargetObject + " | component idx: " + m_HitZoneIdx + " | hitzone name: " + m_HitZoneName);
@@ -588,7 +593,7 @@ class DayZPlayerImplementMeleeCombat
 		if (!DiagMenu.GetBool(DiagMenuIDs.DM_MELEE_DEBUG_ENABLE))
 			return;
 
-		if ( DiagMenu.GetBool(DiagMenuIDs.DM_MELEE_CONTINUOUS) && ( !GetGame().IsMultiplayer() || !GetGame().IsServer() ) )
+		if (DiagMenu.GetBool(DiagMenuIDs.DM_MELEE_CONTINUOUS) && (!GetGame().IsMultiplayer() || !GetGame().IsServer()))
 			Update(weapon, hitType);
 
 		if (DiagMenu.GetBool(DiagMenuIDs.DM_MELEE_SHOW_TARGETS))
@@ -706,8 +711,7 @@ class DayZPlayerImplementMeleeCombat
 		float dist = 3;
 		vector start = m_DZPlayer.GetPosition();
 					
-		vector dir = MiscGameplayFunctions.GetHeadingVector(PlayerBase.Cast(m_DZPlayer));
-		vector normDir = dir;
+		vector dir = GetGame().GetCurrentCameraDirection();
 		dir[1] = 0;
 		dir.Normalize();
 		float playerAngle = -Math.Atan2(dir[0], dir[2]);

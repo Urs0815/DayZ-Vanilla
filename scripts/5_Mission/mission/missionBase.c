@@ -274,21 +274,11 @@ class MissionBase extends MissionBaseWorld
 	{
 		super.OnKeyPress(key);
 		
-#ifdef DEVELOPER
-		if ( GetGame().IsDebug() )
+#ifdef DIAG_DEVELOPER
+		if ( PluginKeyBinding.instance )
 		{
-			if ( PluginKeyBinding.instance != NULL )
-			{
-				PluginKeyBinding.instance.OnKeyPress(key);
-			}
+			PluginKeyBinding.instance.OnKeyPress(key);
 		}
-		/*
-		if ( key == KeyCode.KC_Q )
-		{
-			DumpCurrentUILayout();
-			
-		}
-		*/
 #endif
 	}
 	

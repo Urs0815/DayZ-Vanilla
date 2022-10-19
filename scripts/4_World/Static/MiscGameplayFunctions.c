@@ -215,7 +215,7 @@ class MiscGameplayFunctions
 	static float Truncate(float value, int decimals = 2)
 	{
 		int multiplier = Math.Pow(10,decimals);
-		return Math.Clamp(Math.Floor(value * multiplier),float.MIN, float.MAX) / multiplier;
+		return Math.Clamp(Math.Floor(value * multiplier),float.LOWEST, float.MAX) / multiplier;
 	}
 	//! truncate float to specified precision, output as string
 	static string TruncateToS(float value, int decimals = 2)
@@ -226,10 +226,15 @@ class MiscGameplayFunctions
 	static vector TruncateVec(vector value, int decimals = 2)
 	{
 		int multiplier = Math.Pow(10,decimals);
-		float v1 = Math.Clamp(Math.Floor(value[0] * multiplier),float.MIN, float.MAX) / multiplier;
-		float v2 = Math.Clamp(Math.Floor(value[1] * multiplier),float.MIN, float.MAX) / multiplier;
-		float v3 = Math.Clamp(Math.Floor(value[2] * multiplier),float.MIN, float.MAX) / multiplier;
+		float v1 = Math.Clamp(Math.Floor(value[0] * multiplier),float.LOWEST, float.MAX) / multiplier;
+		float v2 = Math.Clamp(Math.Floor(value[1] * multiplier),float.LOWEST, float.MAX) / multiplier;
+		float v3 = Math.Clamp(Math.Floor(value[2] * multiplier),float.LOWEST, float.MAX) / multiplier;
 		return Vector(v1,v2,v3);
+	}
+	
+	static string TruncateVecToS(vector value,int decimals = 2, string delimiter = " ")
+	{
+		return MiscGameplayFunctions.TruncateToS(value[0],decimals) + delimiter + MiscGameplayFunctions.TruncateToS(value[1],decimals) +delimiter + MiscGameplayFunctions.TruncateToS(value[2],decimals));
 	}
 	
 	static string GetColorString(float r, float g, float b, float a)
@@ -372,7 +377,7 @@ class MiscGameplayFunctions
 			{
 				magazine = weapon.GetMagazine(weapon.GetCurrentMuzzle());
 			
-				if(magazine)
+				if (magazine)
 				{
 					if (magazine.GetAmmoCount() <= 5)
 					{
@@ -384,7 +389,7 @@ class MiscGameplayFunctions
 			{
 				magazine = weapon.GetMagazine(weapon.GetCurrentMuzzle());
 			
-				if(magazine)
+				if (magazine)
 				{
 					if (magazine.GetAmmoCount() <= 5)
 					{
@@ -658,25 +663,25 @@ class MiscGameplayFunctions
 	{
 		bool type;
 		
-		if( tool )
+		if ( tool )
 		{
 			//is unrestrain and not struggle
 			type = tool.ConfigGetBool("RestrainUnlockType");
 		}
 		string new_item_name = current_item.ConfigGetString( "OnRestrainChange");
 		
-		if( new_item_name != "" )
+		if ( new_item_name != "" )
 		{
-			if( player_target )
+			if ( player_target )
 			{
 				if (player_target.IsAlive())
-					MiscGameplayFunctions.TurnItemIntoItemEx(player_target, new ReplaceAndDestroyLambda(current_item, new_item_name, player_target, type));
+					MiscGameplayFunctions.TurnItemIntoItemEx(player_target, new ReplaceAndDestroyLambdaEx(current_item, new_item_name, player_target, type));
 				else
 					MiscGameplayFunctions.TurnItemIntoItemEx(player_source, new DestroyItemInCorpsesHandsAndCreateNewOnGndLambda(current_item, new_item_name, player_target, type));
 			}
 			else
 			{
-				MiscGameplayFunctions.TurnItemIntoItemEx(player_target, new ReplaceAndDestroyLambda(current_item, new_item_name, player_target, type));
+				MiscGameplayFunctions.TurnItemIntoItemEx(player_target, new ReplaceAndDestroyLambdaEx(current_item, new_item_name, player_target, type));
 			}
 		}
 		else
@@ -693,7 +698,7 @@ class MiscGameplayFunctions
 	//! Check if player direction(based on cone of defined angle) is oriented to target position
 	static bool IsPlayerOrientedTowardPos(notnull DayZPlayerImplement player, vector target_pos, float cone_angle)
 	{
-		if(player)
+		if (player)
 		{
 			vector player_dir = player.GetDirection();
 			vector to_target_dir = target_pos - player.GetPosition();
@@ -1565,13 +1570,50 @@ class MiscGameplayFunctions
 	{
 		return GetGame().ConfigGetTextOut("CfgVehicles " + type + " displayName");
 	}
+
+	static bool IsComponentInSelection(array<Selection> pSelection, string pCompName)
+	{
+		if (pSelection.Count() == 0 || pCompName.Length() == 0)
+		{
+			return false;
+		}
+
+		for (int i = 0; i < pSelection.Count(); ++i)
+		{
+			pCompName.ToLower();
+			if (pSelection[i] && pSelection[i].GetName() == pCompName)
+			{
+				return true;
+			}
+		}
+
+		return false;
+	}
 	
+	static int GetComponentIndex(array<Selection> pSelection, string pCompName)
+	{
+		if (!MiscGameplayFunctions.IsComponentInSelection(pSelection, pCompName))
+		{
+			return INDEX_NOT_FOUND;
+		}
+
+		for (int i = 0; i < pSelection.Count(); ++i)
+		{
+			pCompName.ToLower();
+			if (pSelection[i] && pSelection[i].GetName() == pCompName)
+			{
+				return i;
+			}
+		}
+
+		return INDEX_NOT_FOUND;
+	}
 };
 
 class DestroyItemInCorpsesHandsAndCreateNewOnGndLambda : ReplaceAndDestroyLambda
 {
 	// @NOTE m_Player == target player - i.e. restrained one
-	void DestroyItemInCorpsesHandsAndCreateNewOnGndLambda (EntityAI old_item, string new_item_type, PlayerBase player, bool destroy = false)
+	void DestroyItemInCorpsesHandsAndCreateNewOnGndLambda(EntityAI old_item, string new_item_type, PlayerBase player, bool destroy = false)
 	{
 		InventoryLocation gnd = new InventoryLocation;
 		vector mtx[4];
@@ -1583,7 +1625,7 @@ class DestroyItemInCorpsesHandsAndCreateNewOnGndLambda : ReplaceAndDestroyLambda
 		OverrideNewLocation(gnd);
 	}
 	
-	protected override void RemoveOldItemFromLocation ()
+	protected override void RemoveOldItemFromLocation()
 	{
 		super.RemoveOldItemFromLocation();
 		m_Player.GetHumanInventory().OnEntityInHandsDestroyed(m_OldLocation);

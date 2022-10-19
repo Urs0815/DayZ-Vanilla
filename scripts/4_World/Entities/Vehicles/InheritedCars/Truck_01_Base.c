@@ -18,6 +18,9 @@ class Truck_01_Base extends CarScript
 		m_CarDoorOpenSound 		= "Truck_01_door_open_SoundSet";
 		m_CarDoorCloseSound 	= "Truck_01_door_close_SoundSet";
 		
+		m_CarHornShortSoundName = "Truck_01_Horn_Short_SoundSet";
+		m_CarHornLongSoundName	= "Truck_01_Horn_SoundSet";
+		
 		SetEnginePos("0 1.4 2.25");
 	}
 
@@ -128,10 +131,19 @@ class Truck_01_Base extends CarScript
 		return true;
 	}
 	
-	override void EEHealthLevelChanged(int oldLevel, int newLevel, string zone)
+	override protected bool CanManipulateSpareWheel(string slotSelectionName)
 	{
-		super.EEHealthLevelChanged(oldLevel,newLevel,zone);
-		//Print( zone );
+		if (slotSelectionName == "wheel_spare_1")
+		{
+			return GetAnimationPhase("wheelSidePlate1") == 1.0);
+		}
+		
+		if (slotSelectionName == "wheel_spare_2")
+		{
+			return GetAnimationPhase("wheelSidePlate2") == 1.0);
+		}
+		
+		return super.CanManipulateSpareWheel(slotSelectionName);
 	}
 
 	override bool CrewCanGetThrough( int posIdx )
@@ -375,11 +387,11 @@ class Truck_01_Base extends CarScript
 	override void OnDebugSpawn()
 	{
 		EntityAI entity;
+		EntityAI ent;
+		ItemBase container;
 		
 		if ( Class.CastTo(entity, this) )
 		{
-			entity.GetInventory().CreateInInventory( "Truck_01_Wheel" );
-			entity.GetInventory().CreateInInventory( "Truck_01_Wheel" );
 			entity.GetInventory().CreateInInventory( "Truck_01_Wheel" );
 			entity.GetInventory().CreateInInventory( "Truck_01_Wheel" );
 			
@@ -396,7 +408,28 @@ class Truck_01_Base extends CarScript
 
 			entity.GetInventory().CreateInInventory( "HeadlightH7" );
 			entity.GetInventory().CreateInInventory( "HeadlightH7" );
-		};
+			
+			//-----IN CAR CARGO
+			entity.GetInventory().CreateInInventory( "Truck_01_Wheel" );
+			entity.GetInventory().CreateInInventory( "Truck_01_Wheel" );
+			entity.GetInventory().CreateInInventory( "TruckBattery" );
+			entity.GetInventory().CreateInInventory( "HeadlightH7" );
+			//--
+			ent = entity.GetInventory().CreateInInventory( "Blowtorch" );
+			entity = ent.GetInventory().CreateInInventory( "LargeGasCanister" );
+			//--
+			entity.GetInventory().CreateInInventory( "CanisterGasoline" );
+			ent = entity.GetInventory().CreateInInventory( "CanisterGasoline" );
+			if ( Class.CastTo(container, ent) )
+			{
+				container.SetLiquidType(LIQUID_WATER, true);
+			}
+			ent = entity.GetInventory().CreateInInventory( "Blowtorch" );
+			if ( ent )
+			{
+				entity = ent.GetInventory().CreateInInventory( "LargeGasCanister" );
+			}
+		}
 
 		Fill( CarFluid.FUEL, 120 );
 		Fill( CarFluid.OIL, 4.0 );

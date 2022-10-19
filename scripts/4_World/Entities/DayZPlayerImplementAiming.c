@@ -63,6 +63,10 @@ class DayZPlayerImplementAiming
 	protected float m_CamShakeY;
 	protected vector m_SwayModifier = "1 1 1";//"max_speed_noise radius_noise overall_speed"
 	protected int m_SwayState = -1;
+	
+	protected float m_StealthAimY_Last;
+	protected float m_FilterVelocityStealthAimY[1] = {0};
+	
 	protected static float	m_AimXClampRanges[] = { -180, -20, 90, 	0, -50, 90,  180, -20, 90 };
 	
 	void DayZPlayerImplementAiming(DayZPlayerImplement player)
@@ -93,6 +97,12 @@ class DayZPlayerImplementAiming
 		{
 			m_SwayModifier = weapon.GetPropertyModifierObject().m_SwayModifiers;
 		}
+	}
+	
+	void OnFinisherBegin(float currentAimY)
+	{
+		m_StealthAimY_Last = currentAimY;
+		m_FilterVelocityStealthAimY[0] = 0;
 	}
 	
 	void OnSwayStateChange(int state)
@@ -129,6 +139,13 @@ class DayZPlayerImplementAiming
 		m_CamShakeY = y_axis;
 	}
 
+	bool ProcessStealthFilters(float pDt, SDayZPlayerAimingModel pModel)
+	{		
+		m_StealthAimY_Last = Math.SmoothCD(m_StealthAimY_Last, 0, m_FilterVelocityStealthAimY, 0.3, 1000, pDt);
+		pModel.m_fAimYMouseShift = -(pModel.m_fCurrentAimY - m_StealthAimY_Last);
+		return true;
+	}
+	
 	bool ProcessAimFilters(float pDt, SDayZPlayerAimingModel pModel, int stance_index)
 	{
 		float breathing_offset_x;

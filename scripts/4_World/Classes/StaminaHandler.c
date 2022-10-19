@@ -3,6 +3,7 @@ enum EStaminaMultiplierTypes
 	MASK = 1,
 	FATIGUE,
 	EPINEPHRINE,
+	DROWNING,
 }
 
 
@@ -311,6 +312,7 @@ class StaminaHandler
 		//----------------- recovery --------------------
 		m_RegisteredRecoveryModifiers.Insert(EStaminaMultiplierTypes.MASK, MaskMdfr.STAMINA_RECOVERY_MODIFIER);
 		m_RegisteredRecoveryModifiers.Insert(EStaminaMultiplierTypes.FATIGUE, FatigueMdfr.STAMINA_RECOVERY_MULTIPLIER);
+		m_RegisteredRecoveryModifiers.Insert(EStaminaMultiplierTypes.DROWNING, DrowningMdfr.STAMINA_RECOVERY_MULTIPLIER);
 		
 	}
 	
@@ -682,6 +684,7 @@ class StaminaHandler
 		m_StaminaConsumers.RegisterConsumer(EStaminaConsumers.MELEE_HEAVY, GameConstants.STAMINA_MELEE_HEAVY_THRESHOLD);
 		m_StaminaConsumers.RegisterConsumer(EStaminaConsumers.MELEE_EVADE, GameConstants.STAMINA_MELEE_EVADE_THRESHOLD);
 		m_StaminaConsumers.RegisterConsumer(EStaminaConsumers.ROLL, GameConstants.STAMINA_ROLL_THRESHOLD);
+		m_StaminaConsumers.RegisterConsumer(EStaminaConsumers.DROWN,0);
 	}
 
 	protected void RegisterStaminaModifiers()
@@ -689,6 +692,7 @@ class StaminaHandler
 		//! stamina modifiers registration
 		m_StaminaModifiers = new StaminaModifiers;
 		m_StaminaModifiers.RegisterExponential(EStaminaModifiers.HOLD_BREATH, GameConstants.STAMINA_DRAIN_HOLD_BREATH_START, GameConstants.STAMINA_DRAIN_HOLD_BREATH_EXPONENT,0,GameConstants.STAMINA_DRAIN_HOLD_BREATH_DURATION);
+		m_StaminaModifiers.RegisterFixed(EStaminaModifiers.DROWN, 10);
 		m_StaminaModifiers.RegisterFixed(EStaminaModifiers.JUMP, GameConstants.STAMINA_DRAIN_JUMP);
 		m_StaminaModifiers.RegisterFixed(EStaminaModifiers.VAULT, GameConstants.STAMINA_DRAIN_VAULT);
 		m_StaminaModifiers.RegisterFixed(EStaminaModifiers.CLIMB, GameConstants.STAMINA_DRAIN_CLIMB);
@@ -827,7 +831,7 @@ class StaminaHandler
 	}
 
 	float GetStaminaNormalized()
-	{	
+	{
 		return m_Stamina / GetStaminaMax();
 	}
 
@@ -851,6 +855,7 @@ class StaminaHandler
 		return CfgGameplayHandler.GetStaminaMax();
 	}
 	
+	//obsolete, use ActivateDepletionModifier/DeactivateDepletionModifier instead
 	void SetDepletionMultiplier(float val)
 	{
 		if (m_StaminaDepletionMultiplier < 0)
@@ -858,7 +863,7 @@ class StaminaHandler
 		m_StaminaDepletionMultiplier = val;
 		SyncAdditionalStaminaInfo(new Param2<float,float>(m_StaminaDepletionMultiplier,m_StaminaRecoveryMultiplier));
 	}
-	
+	//obsolete, use ActivateRecoveryModifier/DeactivateRecoveryModifier instead
 	void SetRecoveryMultiplier(float val)
 	{
 		if (m_StaminaRecoveryMultiplier < 0)
@@ -894,7 +899,11 @@ class StaminaHandler
 		switch (sm.GetType())
 		{
 			case m_StaminaModifiers.FIXED:
-				m_StaminaDepletion = m_StaminaDepletion + sm.GetMaxValue();
+				if (dT == -1)
+				{
+					dT = 1;
+				}
+				m_StaminaDepletion = m_StaminaDepletion + sm.GetMaxValue() * dT;
 			break;
 			
 			case m_StaminaModifiers.RANDOMIZED:

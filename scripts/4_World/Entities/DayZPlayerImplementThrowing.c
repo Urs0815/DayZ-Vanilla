@@ -68,7 +68,7 @@ class DayZPlayerImplementThrowing
 			//! handle throw force
 			if ( !m_bThrowingAnimationPlaying )
 			{
-				if ( pHic.IsUseButton() )
+				if ( pHic.IsAttackButton() )
 				{
 					if ( !m_bThrowingInProgress )
 						m_bThrowingInProgress = true;

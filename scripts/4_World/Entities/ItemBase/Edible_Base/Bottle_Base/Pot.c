@@ -111,8 +111,8 @@ class Pot extends Bottle_Base
 	{
 		super.SetActions();
 		
-		AddAction(ActionFillGeneratorTank);
-		AddAction(ActionExtinguishFireplaceByLiquid);
+		RemoveAction(ActionDrink);
+		RemoveAction(ActionEmptyBottleBase);
 		AddAction(ActionFillBottleBase);
 		AddAction(ActionWaterGardenSlot);
 		AddAction(ActionWaterPlant);

@@ -74,6 +74,11 @@ class BaseBuildingBase extends ItemBase
 	{
 		return true;
 	}
+	
+	override int GetHideIconMask()
+	{
+		return EInventoryIconVisibility.HIDE_VICINITY;
+	}
 
 	// --- SYNCHRONIZATION
 	void SynchronizeBaseState()
@@ -1177,12 +1182,15 @@ class BaseBuildingBase extends ItemBase
 		array<string> excludes = OnDebugSpawnBuildExcludes();
 		array<ConstructionPart> parts = GetConstruction().GetConstructionParts().GetValueArray();
 		
+		Man p;
+		
 		#ifdef SERVER
 		array<Man> players = new array<Man>;
 		GetGame().GetWorld().GetPlayerList(players);
-		Man p = players[0];
+		if (players.Count())
+			p = players[0];
 		#else
-		Man p = GetGame().GetPlayer();
+		p = GetGame().GetPlayer();
 		#endif
 		
 		foreach (ConstructionPart part : parts)

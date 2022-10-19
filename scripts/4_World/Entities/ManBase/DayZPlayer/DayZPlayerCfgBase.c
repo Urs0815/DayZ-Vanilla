@@ -47,17 +47,18 @@ class DayZPlayerTypeUtils
 		SHumanCommandMoveSettings hmcs = pType.CommandMoveSettingsW();
 	
 		//! run sprint (SHIFT HOLD) filter 
-		hmcs.m_fRunSpringTimeout	= 0.1;							//!< filter span value		[s]
-		hmcs.m_fRunSpringMaxChange	= 4.0;							//!< filter speed value		[val/s]
+		hmcs.m_fRunSpringTimeout			= CfgGameplayHandler.GetMovementTimeToSprint();			//!< filter span value		[s]
+		hmcs.m_fRunSpringMaxChange			= 8.0;													//!< filter speed value		[val/s]
 	
 		//! WSAD direction filter 
-		hmcs.m_fDirFilterTimeout	= 0.1;						//!< direction filter timeout [s]
-		hmcs.m_fDirFilterSpeed		= Math.DEG2RAD * 360; 		//!< direction filter max rot speed [rad/s]
-		hmcs.m_fMaxSprintAngle		= Math.DEG2RAD * 45.01;		//!< max sprint angle [rad]
+		hmcs.m_fDirFilterTimeout			= CfgGameplayHandler.GetMovementTimeToStrafeJog();		//!< direction filter timeout [s]
+		hmcs.m_fDirFilterSprintTimeout 		= CfgGameplayHandler.GetMovementTimeToStrafeSprint();	//!< sprint direction filter timeout [s]
+		hmcs.m_fDirFilterSpeed				= Math.DEG2RAD * 360; 									//!< direction filter max rot speed [rad/s]
+		hmcs.m_fMaxSprintAngle				= Math.DEG2RAD * 45.01;									//!< max sprint angle [rad]
 	
-		hmcs.m_fTurnAngle 			= 45;						//!< this is when char starts tu turn
-		hmcs.m_fTurnEndUpdateNTime	= 0.7;						//!< this is end norm time (turn amount is not updated after this time)
-		hmcs.m_fTurnNextNTime		= 0.9;						//!< this is norm time when new turn from old turn is evaluated again (turn->turn)
+		hmcs.m_fTurnAngle 					= 45;				//!< this is when char starts tu turn
+		hmcs.m_fTurnEndUpdateNTime			= 0.7;				//!< this is end norm time (turn amount is not updated after this time)
+		hmcs.m_fTurnNextNTime				= 0.9;				//!< this is norm time when new turn from old turn is evaluated again (turn->turn)
 	
 	
 		hmcs.m_fHeadingChangeLimiterIdle 	= 500000; 			//!<
@@ -66,7 +67,26 @@ class DayZPlayerTypeUtils
 		
 		hmcs.m_fLeaningSpeed				= 4.5;				//!<
 	
+		hmcs.m_fWaterLevelSpeedRectrictionLow	= 0.5;			//!< Water level (in meters) - m_iMaxSpeedNormal_WaterLevelLow and m_iMaxSpeedFast_WaterLevelLow are applied when character is deeper
+		hmcs.m_fWaterLevelSpeedRectrictionHigh	= 1.0;			//!< Water level (in meters) - m_iMaxSpeedNormal_WaterLevelHigh and m_iMaxSpeedFast_WaterLevelHigh are applied when character is deeper
+		
+		//hmcs.m_iMaxSpeedNormal_WaterLevelLow	= 2;			//!< Max movement speed for m_fWaterLevelSpeedRectrictionLow when character doesn't want to sprint (-1 means no change)
+		//hmcs.m_iMaxSpeedFast_WaterLevelLow		= 2;			//!< Max movement speed for m_fWaterLevelSpeedRectrictionLow when character wants to sprint (-1 means no change)
+		//hmcs.m_iMaxSpeedNormal_WaterLevelHigh	= 1;			//!< Max movement speed for m_fWaterLevelSpeedRectrictionHigh when character doesn't want to sprint (-1 means no change)
+		//hmcs.m_iMaxSpeedFast_WaterLevelHigh		= 1;			//!< Max movement speed for m_fWaterLevelSpeedRectrictionHigh when character wants to sprint (-1 means no change)
+
+		// proposal 1
+		//hmcs.m_iMaxSpeedNormal_WaterLevelLow	= 1;			//!< Max movement speed for m_fWaterLevelSpeedRectrictionLow when character doesn't want to sprint (-1 means no change)
+		//hmcs.m_iMaxSpeedFast_WaterLevelLow		= 2;			//!< Max movement speed for m_fWaterLevelSpeedRectrictionLow when character wants to sprint (-1 means no change)
+		//hmcs.m_iMaxSpeedNormal_WaterLevelHigh	= 1;			//!< Max movement speed for m_fWaterLevelSpeedRectrictionHigh when character doesn't want to sprint (-1 means no change)
+		//hmcs.m_iMaxSpeedFast_WaterLevelHigh		= 1;			//!< Max movement speed for m_fWaterLevelSpeedRectrictionHigh when character wants to sprint (-1 means no change)
 	
+		// proposal 2
+		hmcs.m_iMaxSpeedNormal_WaterLevelLow	= -1;			//!< Max movement speed for m_fWaterLevelSpeedRectrictionLow when character doesn't want to sprint (-1 means no change)
+		hmcs.m_iMaxSpeedFast_WaterLevelLow		= -1;			//!< Max movement speed for m_fWaterLevelSpeedRectrictionLow when character wants to sprint (-1 means no change)
+		hmcs.m_iMaxSpeedNormal_WaterLevelHigh	= 1;			//!< Max movement speed for m_fWaterLevelSpeedRectrictionHigh when character doesn't want to sprint (-1 means no change)
+		hmcs.m_iMaxSpeedFast_WaterLevelHigh		= 2;			//!< Max movement speed for m_fWaterLevelSpeedRectrictionHigh when character wants to sprint (-1 means no change)
+
 		// swim settings
 			
 	
@@ -115,28 +135,31 @@ class DayzPlayerItemBehaviorCfg extends HumanItemBehaviorCfg
 	{
 		m_iStanceMask = DayZPlayerConstants.STANCEMASK_ALL;
 
-		m_StanceMovements[DayZPlayerConstants.STANCEIDX_ERECT] = DayZPlayerConstants.MOVEMENT_IDLE | DayZPlayerConstants.MOVEMENT_WALK | DayZPlayerConstants.MOVEMENT_RUN | DayZPlayerConstants.MOVEMENT_SPRINT;
-		m_StanceMovements[DayZPlayerConstants.STANCEIDX_CROUCH] = DayZPlayerConstants.MOVEMENT_IDLE | DayZPlayerConstants.MOVEMENT_WALK | DayZPlayerConstants.MOVEMENT_SPRINT;
-		m_StanceMovements[DayZPlayerConstants.STANCEIDX_PRONE] = DayZPlayerConstants.MOVEMENT_IDLE | DayZPlayerConstants.MOVEMENT_WALK;
-		m_StanceMovements[DayZPlayerConstants.STANCEIDX_RAISEDERECT] = DayZPlayerConstants.MOVEMENT_IDLE | DayZPlayerConstants.MOVEMENT_WALK | DayZPlayerConstants.MOVEMENT_RUN | DayZPlayerConstants.MOVEMENT_SPRINT;
-		m_StanceMovements[DayZPlayerConstants.STANCEIDX_RAISEDCROUCH] = DayZPlayerConstants.MOVEMENT_IDLE | DayZPlayerConstants.MOVEMENT_WALK | DayZPlayerConstants.MOVEMENT_RUN;
-		m_StanceMovements[DayZPlayerConstants.STANCEIDX_RAISEDPRONE] = DayZPlayerConstants.MOVEMENT_IDLE;
+		m_StanceMovements[DayZPlayerConstants.STANCEIDX_ERECT] 			= DayZPlayerConstants.MOVEMENT_IDLE | DayZPlayerConstants.MOVEMENT_WALK | DayZPlayerConstants.MOVEMENT_RUN | DayZPlayerConstants.MOVEMENT_SPRINT;
+		m_StanceMovements[DayZPlayerConstants.STANCEIDX_CROUCH] 		= DayZPlayerConstants.MOVEMENT_IDLE | DayZPlayerConstants.MOVEMENT_WALK | DayZPlayerConstants.MOVEMENT_SPRINT;
+		m_StanceMovements[DayZPlayerConstants.STANCEIDX_PRONE] 			= DayZPlayerConstants.MOVEMENT_IDLE | DayZPlayerConstants.MOVEMENT_WALK;
+		m_StanceMovements[DayZPlayerConstants.STANCEIDX_RAISEDERECT] 	= DayZPlayerConstants.MOVEMENT_IDLE | DayZPlayerConstants.MOVEMENT_WALK | DayZPlayerConstants.MOVEMENT_RUN | DayZPlayerConstants.MOVEMENT_SPRINT;
+		m_StanceMovements[DayZPlayerConstants.STANCEIDX_RAISEDCROUCH] 	= DayZPlayerConstants.MOVEMENT_IDLE | DayZPlayerConstants.MOVEMENT_WALK | DayZPlayerConstants.MOVEMENT_RUN;
+		m_StanceMovements[DayZPlayerConstants.STANCEIDX_RAISEDPRONE] 	= DayZPlayerConstants.MOVEMENT_IDLE;
 
-		m_StanceRotation[DayZPlayerConstants.STANCEIDX_ERECT] = DayZPlayerConstants.ROTATION_ENABLE;
-		m_StanceRotation[DayZPlayerConstants.STANCEIDX_CROUCH] = DayZPlayerConstants.ROTATION_ENABLE;
-		m_StanceRotation[DayZPlayerConstants.STANCEIDX_PRONE] = DayZPlayerConstants.ROTATION_ENABLE;
-		m_StanceRotation[DayZPlayerConstants.STANCEIDX_RAISEDERECT] = DayZPlayerConstants.ROTATION_ENABLE;
-		m_StanceRotation[DayZPlayerConstants.STANCEIDX_RAISEDCROUCH] = DayZPlayerConstants.ROTATION_ENABLE;
-		m_StanceRotation[DayZPlayerConstants.STANCEIDX_RAISEDPRONE] = DayZPlayerConstants.ROTATION_ENABLE;
+		m_StanceRotation[DayZPlayerConstants.STANCEIDX_ERECT] 			= DayZPlayerConstants.ROTATION_ENABLE;
+		m_StanceRotation[DayZPlayerConstants.STANCEIDX_CROUCH] 			= DayZPlayerConstants.ROTATION_ENABLE;
+		m_StanceRotation[DayZPlayerConstants.STANCEIDX_PRONE] 			= DayZPlayerConstants.ROTATION_ENABLE;
+		m_StanceRotation[DayZPlayerConstants.STANCEIDX_RAISEDERECT] 	= DayZPlayerConstants.ROTATION_ENABLE;
+		m_StanceRotation[DayZPlayerConstants.STANCEIDX_RAISEDCROUCH] 	= DayZPlayerConstants.ROTATION_ENABLE;
+		m_StanceRotation[DayZPlayerConstants.STANCEIDX_RAISEDPRONE] 	= DayZPlayerConstants.ROTATION_ENABLE;
+
 		
-		m_iPerItemCameraUserData = DayZPlayerCameras.PERITEMUD_INVALID;		//! per item camera user data to be uninitialized
-
+		//! per item camera user data to be uninitialized
+		m_iPerItemCameraUserData 		= DayZPlayerCameras.PERITEMUD_INVALID;
 		//! rotational delay to camera direction in move only (filter)
-		m_fMoveHeadingFilterSpan 	= 0.15;	                // 
-		m_fMoveHeadingFilterSpeed	= Math.DEG2RAD * 300;	// 720 stup / sek
+		m_fMoveHeadingFilterSpan 		= CfgGameplayHandler.GetMovementRotationSpeedJog();
+		m_fMoveHeadingSprintFilterSpan 	= CfgGameplayHandler.GetMovementRotationSpeedSprint();
+		m_fMoveHeadingProneFilterSpan 	= 0.7;
+		m_fMoveHeadingFilterSpeed		= Math.DEG2RAD * 360;	// 720 deg / sec
 
-		m_fMeleeEvadeHeadingFilterSpan	= 0.07;	                // 
-		m_fMeleeEvadeHeadingFilterSpeed	= Math.DEG2RAD * 1440;	// 720 stup / sek
+		m_fMeleeEvadeHeadingFilterSpan	= 0.07;
+		m_fMeleeEvadeHeadingFilterSpeed	= Math.DEG2RAD * 1440;	// 720 deg / sec
 
 		m_bAttackLean = false;
 		m_bJumpAllowed = true;
@@ -409,38 +432,40 @@ void DayZPlayerTypeRegisterItems(DayZPlayerType pType)
 		
 		fireArmsItemBehaviour.SetFirearms();
 		
-		pType.AddItemInHandsProfileIK("AKS74U", "dz/anims/workspaces/player/player_main/weapons/player_main_ak74u.asi", fireArmsItemBehaviour, "dz/anims/anm/player/ik/weapons/AKS74U.anm", "dz/anims/anm/player/reloads/AK74U/w_AKS74U_states.anm");
-		pType.AddItemInHandsProfileIK("AK74_Base", "dz/anims/workspaces/player/player_main/weapons/player_main_ak101.asi", fireArmsItemBehaviour, "dz/anims/anm/player/ik/weapons/ak101.anm", "dz/anims/anm/player/reloads/AK101/w_AK101_states.anm");
-		pType.AddItemInHandsProfileIK("AK101_Base", "dz/anims/workspaces/player/player_main/weapons/player_main_ak101.asi", fireArmsItemBehaviour, "dz/anims/anm/player/ik/weapons/ak101.anm", "dz/anims/anm/player/reloads/AK101/w_AK101_states.anm");
-		pType.AddItemInHandsProfileIK("AKM_Base", "dz/anims/workspaces/player/player_main/weapons/player_main_akm.asi", fireArmsItemBehaviour, "dz/anims/anm/player/ik/weapons/akm.anm", "dz/anims/anm/player/reloads/AKM/w_akm_states.anm");
-		pType.AddItemInHandsProfileIK("Aug_Base", "dz/anims/workspaces/player/player_main/weapons/player_main_aug.asi", fireArmsItemBehaviour, "dz/anims/anm/player/ik/weapons/aug.anm", "dz/anims/anm/player/reloads/aug/w_aug_states.anm");
-		pType.AddItemInHandsProfileIK("B95_Base", "dz/anims/workspaces/player/player_main/weapons/player_main_b95.asi", fireArmsItemBehaviour, "dz/anims/anm/player/ik/weapons/b95.anm", "dz/anims/anm/player/reloads/B95/w_B95_states.anm"); 
-		pType.AddItemInHandsProfileIK("CZ61_Base", "dz/anims/workspaces/player/player_main/weapons/player_main_cz61.asi", fireArmsItemBehaviour, "dz/anims/anm/player/ik/weapons/CZ61.anm", "dz/anims/anm/player/reloads/cz61/w_cz61_states.anm");
-		pType.AddItemInHandsProfileIK("CZ527_Base", "dz/anims/workspaces/player/player_main/weapons/player_main_cz527.asi", fireArmsItemBehaviour, "dz/anims/anm/player/ik/weapons/cz527.anm", "dz/anims/anm/player/reloads/cz527/w_CZ527_states.anm");
-		pType.AddItemInHandsProfileIK("CZ550_Base", "dz/anims/workspaces/player/player_main/weapons/player_main_cz550.asi", fireArmsItemBehaviour, "dz/anims/anm/player/ik/weapons/cz550.anm", "dz/anims/anm/player/reloads/cz550/w_CZ550_states.anm");
-		pType.AddItemInHandsProfileIK("FAL_Base", "dz/anims/workspaces/player/player_main/weapons/player_main_fnfal.asi", fireArmsItemBehaviour, "dz/anims/anm/player/ik/weapons/fn_fal.anm",  "dz/anims/anm/player/reloads/FNFal/w_FNFal_states.anm");
-		pType.AddItemInHandsProfileIK("Izh18_Base", "dz/anims/workspaces/player/player_main/weapons/player_main_izh18.asi", fireArmsItemBehaviour, "dz/anims/anm/player/ik/weapons/izh18.anm", "dz/anims/anm/player/reloads/IZH18/w_izh18_states.anm");
-		pType.AddItemInHandsProfileIK("M4A1_Base", "dz/anims/workspaces/player/player_main/weapons/player_main_m4a1.asi", fireArmsItemBehaviour, "dz/anims/anm/player/ik/weapons/m4a1_ik.anm", "dz/anims/anm/player/reloads/M4A1/w_M4A1_states.anm");
-		pType.AddItemInHandsProfileIK("M249_Base", "dz/anims/workspaces/player/player_main/weapons/player_main_m249.asi",fireArmsItemBehaviour, "dz/anims/anm/player/ik/weapons/M249.anm");
-		pType.AddItemInHandsProfileIK("Mosin9130_Base", "dz/anims/workspaces/player/player_main/weapons/player_main_mosin1903.asi", fireArmsItemBehaviour, "dz/anims/anm/player/ik/weapons/mosin9130.anm","dz/anims/anm/player/reloads/Mosin_1903/w_mosin1903_states.anm");
-		pType.AddItemInHandsProfileIK("SawedoffMosin9130_Base", "dz/anims/workspaces/player/player_main/weapons/player_main_mosin1903.asi", fireArmsItemBehaviour, "dz/anims/anm/player/ik/weapons/mosin9130.anm","dz/anims/anm/player/reloads/Mosin_1903/w_mosin1903_states.anm");
-		pType.AddItemInHandsProfileIK("MP5K_Base", "dz/anims/workspaces/player/player_main/weapons/player_main_mp5.asi", fireArmsItemBehaviour, "dz/anims/anm/player/ik/weapons/mp5k.anm","dz/anims/anm/player/reloads/mp5/w_mp5k_states.anm");
-		pType.AddItemInHandsProfileIK("PM73Rak_Base", "dz/anims/workspaces/player/player_main/weapons/player_main_pm73.asi", fireArmsItemBehaviour, "dz/anims/anm/player/ik/weapons/pm63rak.anm");
-		pType.AddItemInHandsProfileIK("Repeater_Base", "dz/anims/workspaces/player/player_main/weapons/player_main_repeater.asi", fireArmsItemBehaviour, "dz/anims/anm/player/ik/weapons/repeater.anm", "dz/anims/anm/player/reloads/repeater/w_repeater_states.anm");
-		pType.AddItemInHandsProfileIK("Ruger1022_Base", "dz/anims/workspaces/player/player_main/weapons/player_main_ruger1022.asi", fireArmsItemBehaviour, "dz/anims/anm/player/ik/weapons/ruger1022.anm", "dz/anims/anm/player/reloads/ruger1022/w_Ruger1022_states.anm");
-		pType.AddItemInHandsProfileIK("SKS_Base", "dz/anims/workspaces/player/player_main/weapons/player_main_sks.asi", fireArmsItemBehaviour, "dz/anims/anm/player/ik/weapons/SKS.anm", "dz/anims/anm/player/reloads/SKS/w_SKS_states.anm");
-		pType.AddItemInHandsProfileIK("SVD_Base", "dz/anims/workspaces/player/player_main/weapons/player_main_svd.asi", fireArmsItemBehaviour, "dz/anims/anm/player/ik/weapons/svd.anm","dz/anims/anm/player/reloads/SVD/w_SVD_states.anm");
-		pType.AddItemInHandsProfileIK("Trumpet_Base", "dz/anims/workspaces/player/player_main/weapons/player_main_trumpet.asi", fireArmsItemBehaviour, "dz/anims/anm/player/ik/weapons/trumpet.anm");
-		pType.AddItemInHandsProfileIK("UMP45_Base", "dz/anims/workspaces/player/player_main/weapons/player_main_ump45.asi", fireArmsItemBehaviour, "dz/anims/anm/player/ik/weapons/ump.anm","dz/anims/anm/player/reloads/UMP45/w_UMP45_states.anm");
-		pType.AddItemInHandsProfileIK("VSS", "dz/anims/workspaces/player/player_main/weapons/player_main_vss.asi", fireArmsItemBehaviour, "dz/anims/anm/player/ik/weapons/VSS.anm","dz/anims/anm/player/reloads/VSS/w_VSS_states.anm");
-		pType.AddItemInHandsProfileIK("Winchester70_Base", "dz/anims/workspaces/player/player_main/weapons/player_main_winchester70.asi", fireArmsItemBehaviour, "dz/anims/anm/player/ik/weapons/winchester70.anm", "dz/anims/anm/player/reloads/Winchester70/w_winchester70_states.anm");
-		pType.AddItemInHandsProfileIK("ASVAL", "dz/anims/workspaces/player/player_main/weapons/player_main_as_val.asi", fireArmsItemBehaviour, "dz/anims/anm/player/ik/weapons/VAL.anm","dz/anims/anm/player/reloads/VAL/w_VAL_states.anm");
-		pType.AddItemInHandsProfileIK("Scout_Base", "dz/anims/workspaces/player/player_main/weapons/player_main_Scout.asi", fireArmsItemBehaviour, "dz/anims/anm/player/ik/weapons/Scout.anm", "dz/anims/anm/player/reloads/Scout/w_scout_states.anm");
-		pType.AddItemInHandsProfileIK("M16A2_Base", "dz/anims/workspaces/player/player_main/weapons/player_main_m16a2.asi", fireArmsItemBehaviour, "dz/anims/anm/player/ik/weapons/M16A2_ik.anm", "dz/anims/anm/player/reloads/m16a2/w_m16a2_states.anm");
-		pType.AddItemInHandsProfileIK("Famas_Base", "dz/anims/workspaces/player/player_main/weapons/player_main_famas.asi", fireArmsItemBehaviour, "dz/anims/anm/player/ik/weapons/famas.anm", "dz/anims/anm/player/reloads/famas/w_famas_states.anm");
-		pType.AddItemInHandsProfileIK("PP19_Base", "dz/anims/workspaces/player/player_main/weapons/player_main_PP19.asi", fireArmsItemBehaviour, "dz/anims/anm/player/ik/weapons/bizon.anm", "dz/anims/anm/player/reloads/Bizon/w_bizon_states.anm");
+		pType.AddItemInHandsProfileIK("AKS74U",				"dz/anims/workspaces/player/player_main/weapons/player_main_ak74u.asi", fireArmsItemBehaviour, "dz/anims/anm/player/ik/weapons/AKS74U.anm", "dz/anims/anm/player/reloads/AK74U/w_AKS74U_states.anm");
+		pType.AddItemInHandsProfileIK("AK74_Base",			"dz/anims/workspaces/player/player_main/weapons/player_main_ak101.asi", fireArmsItemBehaviour, "dz/anims/anm/player/ik/weapons/ak101.anm", "dz/anims/anm/player/reloads/AK101/w_AK101_states.anm");
+		pType.AddItemInHandsProfileIK("AK101_Base",			"dz/anims/workspaces/player/player_main/weapons/player_main_ak101.asi", fireArmsItemBehaviour, "dz/anims/anm/player/ik/weapons/ak101.anm", "dz/anims/anm/player/reloads/AK101/w_AK101_states.anm");
+		pType.AddItemInHandsProfileIK("AKM_Base",			"dz/anims/workspaces/player/player_main/weapons/player_main_akm.asi", fireArmsItemBehaviour, "dz/anims/anm/player/ik/weapons/akm.anm", "dz/anims/anm/player/reloads/AKM/w_akm_states.anm");
+		pType.AddItemInHandsProfileIK("Aug_Base",			"dz/anims/workspaces/player/player_main/weapons/player_main_aug.asi", fireArmsItemBehaviour, "dz/anims/anm/player/ik/weapons/aug.anm", "dz/anims/anm/player/reloads/aug/w_aug_states.anm");
+		pType.AddItemInHandsProfileIK("B95_Base",			"dz/anims/workspaces/player/player_main/weapons/player_main_b95.asi", fireArmsItemBehaviour, "dz/anims/anm/player/ik/weapons/b95.anm", "dz/anims/anm/player/reloads/B95/w_B95_states.anm"); 
+		pType.AddItemInHandsProfileIK("CZ61_Base",			"dz/anims/workspaces/player/player_main/weapons/player_main_cz61.asi", fireArmsItemBehaviour, "dz/anims/anm/player/ik/weapons/CZ61.anm", "dz/anims/anm/player/reloads/cz61/w_cz61_states.anm");
+		pType.AddItemInHandsProfileIK("CZ527_Base",			"dz/anims/workspaces/player/player_main/weapons/player_main_cz527.asi", fireArmsItemBehaviour, "dz/anims/anm/player/ik/weapons/cz527.anm", "dz/anims/anm/player/reloads/cz527/w_CZ527_states.anm");
+		pType.AddItemInHandsProfileIK("CZ550_Base",			"dz/anims/workspaces/player/player_main/weapons/player_main_cz550.asi", fireArmsItemBehaviour, "dz/anims/anm/player/ik/weapons/cz550.anm", "dz/anims/anm/player/reloads/cz550/w_CZ550_states.anm");
+		pType.AddItemInHandsProfileIK("FAL_Base",			"dz/anims/workspaces/player/player_main/weapons/player_main_fnfal.asi", fireArmsItemBehaviour, "dz/anims/anm/player/ik/weapons/fn_fal.anm",  "dz/anims/anm/player/reloads/FNFal/w_FNFal_states.anm");
+		pType.AddItemInHandsProfileIK("Izh18_Base",			"dz/anims/workspaces/player/player_main/weapons/player_main_izh18.asi", fireArmsItemBehaviour, "dz/anims/anm/player/ik/weapons/izh18.anm", "dz/anims/anm/player/reloads/IZH18/w_izh18_states.anm");
+		pType.AddItemInHandsProfileIK("M4A1_Base",			"dz/anims/workspaces/player/player_main/weapons/player_main_m4a1.asi", fireArmsItemBehaviour, "dz/anims/anm/player/ik/weapons/m4a1_ik.anm", "dz/anims/anm/player/reloads/M4A1/w_M4A1_states.anm");
+		pType.AddItemInHandsProfileIK("M249_Base",			"dz/anims/workspaces/player/player_main/weapons/player_main_m249.asi",fireArmsItemBehaviour, "dz/anims/anm/player/ik/weapons/M249.anm");
+		pType.AddItemInHandsProfileIK("Mosin9130_Base",		"dz/anims/workspaces/player/player_main/weapons/player_main_mosin1903.asi", fireArmsItemBehaviour, "dz/anims/anm/player/ik/weapons/mosin9130.anm","dz/anims/anm/player/reloads/Mosin_1903/w_mosin1903_states.anm");
+		pType.AddItemInHandsProfileIK("SawedoffMosin9130_Base",	"dz/anims/workspaces/player/player_main/weapons/player_main_mosin1903.asi", fireArmsItemBehaviour, "dz/anims/anm/player/ik/weapons/mosin9130.anm","dz/anims/anm/player/reloads/Mosin_1903/w_mosin1903_states.anm");
+		pType.AddItemInHandsProfileIK("MP5K_Base",			"dz/anims/workspaces/player/player_main/weapons/player_main_mp5.asi", fireArmsItemBehaviour, "dz/anims/anm/player/ik/weapons/mp5k.anm","dz/anims/anm/player/reloads/mp5/w_mp5k_states.anm");
+		pType.AddItemInHandsProfileIK("PM73Rak_Base",		"dz/anims/workspaces/player/player_main/weapons/player_main_pm73.asi", fireArmsItemBehaviour, "dz/anims/anm/player/ik/weapons/pm63rak.anm");
+		pType.AddItemInHandsProfileIK("Repeater_Base",		"dz/anims/workspaces/player/player_main/weapons/player_main_repeater.asi", fireArmsItemBehaviour, "dz/anims/anm/player/ik/weapons/repeater.anm", "dz/anims/anm/player/reloads/repeater/w_repeater_states.anm");
+		pType.AddItemInHandsProfileIK("Ruger1022_Base",		"dz/anims/workspaces/player/player_main/weapons/player_main_ruger1022.asi", fireArmsItemBehaviour, "dz/anims/anm/player/ik/weapons/ruger1022.anm", "dz/anims/anm/player/reloads/ruger1022/w_Ruger1022_states.anm");
+		pType.AddItemInHandsProfileIK("SKS_Base",			"dz/anims/workspaces/player/player_main/weapons/player_main_sks.asi", fireArmsItemBehaviour, "dz/anims/anm/player/ik/weapons/SKS.anm", "dz/anims/anm/player/reloads/SKS/w_SKS_states.anm");
+		pType.AddItemInHandsProfileIK("SVD_Base",			"dz/anims/workspaces/player/player_main/weapons/player_main_svd.asi", fireArmsItemBehaviour, "dz/anims/anm/player/ik/weapons/svd.anm","dz/anims/anm/player/reloads/SVD/w_SVD_states.anm");
+		pType.AddItemInHandsProfileIK("Trumpet_Base",		"dz/anims/workspaces/player/player_main/weapons/player_main_trumpet.asi", fireArmsItemBehaviour, "dz/anims/anm/player/ik/weapons/trumpet.anm");
+		pType.AddItemInHandsProfileIK("UMP45_Base",			"dz/anims/workspaces/player/player_main/weapons/player_main_ump45.asi", fireArmsItemBehaviour, "dz/anims/anm/player/ik/weapons/ump.anm","dz/anims/anm/player/reloads/UMP45/w_UMP45_states.anm");
+		pType.AddItemInHandsProfileIK("VSS",				"dz/anims/workspaces/player/player_main/weapons/player_main_vss.asi", fireArmsItemBehaviour, "dz/anims/anm/player/ik/weapons/VSS.anm","dz/anims/anm/player/reloads/VSS/w_VSS_states.anm");
+		pType.AddItemInHandsProfileIK("Winchester70_Base",	"dz/anims/workspaces/player/player_main/weapons/player_main_winchester70.asi", fireArmsItemBehaviour, "dz/anims/anm/player/ik/weapons/winchester70.anm", "dz/anims/anm/player/reloads/Winchester70/w_winchester70_states.anm");
+		pType.AddItemInHandsProfileIK("ASVAL",				"dz/anims/workspaces/player/player_main/weapons/player_main_as_val.asi", fireArmsItemBehaviour, "dz/anims/anm/player/ik/weapons/VAL.anm","dz/anims/anm/player/reloads/VAL/w_VAL_states.anm");
+		pType.AddItemInHandsProfileIK("Scout_Base",			"dz/anims/workspaces/player/player_main/weapons/player_main_Scout.asi", fireArmsItemBehaviour, "dz/anims/anm/player/ik/weapons/Scout.anm", "dz/anims/anm/player/reloads/Scout/w_scout_states.anm");
+		pType.AddItemInHandsProfileIK("M16A2_Base",			"dz/anims/workspaces/player/player_main/weapons/player_main_m16a2.asi", fireArmsItemBehaviour, "dz/anims/anm/player/ik/weapons/M16A2_ik.anm", "dz/anims/anm/player/reloads/m16a2/w_m16a2_states.anm");
+		pType.AddItemInHandsProfileIK("Famas_Base",			"dz/anims/workspaces/player/player_main/weapons/player_main_famas.asi", fireArmsItemBehaviour, "dz/anims/anm/player/ik/weapons/famas.anm", "dz/anims/anm/player/reloads/famas/w_famas_states.anm");
+		pType.AddItemInHandsProfileIK("PP19_Base",			"dz/anims/workspaces/player/player_main/weapons/player_main_PP19.asi", fireArmsItemBehaviour, "dz/anims/anm/player/ik/weapons/bizon.anm", "dz/anims/anm/player/reloads/Bizon/w_bizon_states.anm");
+		pType.AddItemInHandsProfileIK("SSG82_Base",			"dz/anims/workspaces/player/player_main/weapons/player_main_ssg82.asi", fireArmsItemBehaviour, "dz/anims/anm/player/ik/weapons/ssg82.anm", "dz/anims/anm/player/reloads/SSG82/w_SSG82_states.anm");
 
 		//! Shotguns
+		pType.AddItemInHandsProfileIK("Izh18Shotgun_Base",	"dz/anims/workspaces/player/player_main/weapons/player_main_izh18_Spartan.asi", fireArmsItemBehaviour, "dz/anims/anm/player/ik/weapons/izh18_Spartan.anm", "dz/anims/anm/player/reloads/IZH18Spartan/w_izh18Spartan_states.anm");
 		pType.AddItemInHandsProfileIK("Izh43Shotgun_Base", "dz/anims/workspaces/player/player_main/weapons/player_main_izh43.asi", fireArmsItemBehaviour, "dz/anims/anm/player/ik/weapons/izh43.anm", "dz/anims/anm/player/reloads/IZH43/w_IZH43_states.anm");
 		pType.AddItemInHandsProfileIK("Mp133Shotgun_Base", "dz/anims/workspaces/player/player_main/weapons/player_main_mp133.asi", fireArmsItemBehaviour, "dz/anims/anm/player/ik/weapons/mp133.anm","dz/anims/anm/player/reloads/MP133/w_mp133_states.anm");
 		pType.AddItemInHandsProfileIK("Mp133Shotgun_PistolGrip", "dz/anims/workspaces/player/player_main/weapons/player_main_mp133grip.asi", fireArmsItemBehaviour, "dz/anims/anm/player/ik/weapons/mp133_pistol_grip.anm");
@@ -612,6 +637,7 @@ void DayZPlayerTypeRegisterItems(DayZPlayerType pType)
 		pType.AddItemInHandsProfileIK("Mag_PP19_64Rnd", "dz/anims/workspaces/player/player_main/player_main_1h.asi", toolsOneHanded, 					"dz/anims/anm/player/ik/attachments/magazines/magazine_ruger1022_30rnd.anm");
 		pType.AddItemInHandsProfileIK("Mag_CZ550_4rnd", "dz/anims/workspaces/player/player_main/props/player_main_STANAG_mag.asi", toolsOneHanded, 		"dz/anims/anm/player/ik/attachments/magazines/magazine_cz550.anm");
 		pType.AddItemInHandsProfileIK("Mag_CZ550_10rnd", "dz/anims/workspaces/player/player_main/props/player_main_STANAG_mag.asi", toolsOneHanded, 	"dz/anims/anm/player/ik/attachments/magazines/magazine_cz550.anm");
+		pType.AddItemInHandsProfileIK("Mag_SSG82_5rnd", "dz/anims/workspaces/player/player_main/props/player_main_STANAG_mag.asi", toolsOneHanded, 		"dz/anims/anm/player/ik/attachments/magazines/magazine_ssg82.anm");
 
 		//! muzzle
 		pType.AddItemInHandsProfileIK("AK_Bayonet", "dz/anims/workspaces/player/player_main/weapons/player_main_1h_knife.asi", toolsOneHanded,					"dz/anims/anm/player/ik/gear/bayonet_ak.anm");
@@ -754,6 +780,8 @@ void DayZPlayerTypeRegisterItems(DayZPlayerType pType)
 		pType.AddItemInHandsProfileIK("KitchenTimer", "dz/anims/workspaces/player/player_main/player_main_1h.asi", toolsOneHanded,				        "dz/anims/anm/player/ik/gear/KitchenTimer.anm");
 		pType.AddItemInHandsProfileIK("RemoteDetonator", "dz/anims/workspaces/player/player_main/player_main_1h.asi", toolsOneHanded,				    "dz/anims/anm/player/ik/gear/Detonator.anm");
 		pType.AddItemInHandsProfileIK("RemoteDetonatorTrigger", "dz/anims/workspaces/player/player_main/props/player_main_1h_detonator.asi", toolsOneHanded,	"dz/anims/anm/player/ik/gear/DetonatorTrigger.anm");
+		pType.AddItemInHandsProfileIK("RemoteDetonatorReceiver", "dz/anims/workspaces/player/player_main/player_main_1h.asi", toolsOneHanded,		    "dz/anims/anm/player/ik/gear/DetonatorReceiver.anm");
+		pType.AddItemInHandsProfileIK("Blowtorch","dz/anims/workspaces/player/player_main/props/player_main_1h_blowtorch.asi", toolsOneHanded, 				"dz/anims/anm/player/ik/gear/BlowTorch.anm");
 		
 		//! Tools two handed
 		pType.AddItemInHandsProfileIK("PipeWrench", "dz/anims/workspaces/player/player_main/weapons/player_main_2h_pipewrench.asi", twoHanded,			"dz/anims/anm/player/ik/two_handed/pipewrench.anm");
@@ -820,6 +848,7 @@ void DayZPlayerTypeRegisterItems(DayZPlayerType pType)
 	{
 		//! Vehicles 1handed
 		pType.AddItemInHandsProfileIK("SparkPlug", "dz/anims/workspaces/player/player_main/player_main_1h.asi", toolsOneHanded, 						"dz/anims/anm/player/ik/vehicles/sparkplug.anm");
+		pType.AddItemInHandsProfileIK("GlowPlug", "dz/anims/workspaces/player/player_main/player_main_1h.asi", toolsOneHanded, 						"dz/anims/anm/player/ik/vehicles/sparkplug.anm");
 		pType.AddItemInHandsProfileIK("HeadlightH7_Box", "dz/anims/workspaces/player/player_main/player_main_1h.asi", toolsOneHanded, 						"dz/anims/anm/player/ik/vehicles/HeadlightH7_Box.anm");		
 		pType.AddItemInHandsProfileIK("HeadlightH7", "dz/anims/workspaces/player/player_main/player_main_1h.asi", toolsOneHanded, 						"dz/anims/anm/player/ik/vehicles/HeadlightH7.anm");		
 		
@@ -881,6 +910,16 @@ void DayZPlayerTypeRegisterItems(DayZPlayerType pType)
 		pType.AddItemInHandsProfileIK("Sedan_02_Door_2_2", "dz/anims/workspaces/player/player_main/player_main_heavy.asi", heavyItemBehaviour,		"dz/anims/anm/player/ik/vehicles/sedan_02/sedan_02_passengerR_door.anm");
 		pType.AddItemInHandsProfileIK("Sedan_02_Hood", "dz/anims/workspaces/player/player_main/player_main_heavy.asi", heavyItemBehaviour,					"dz/anims/anm/player/ik/vehicles/sedan_02/sedan_02_Hood.anm");
 		pType.AddItemInHandsProfileIK("Sedan_02_Trunk", "dz/anims/workspaces/player/player_main/player_main_heavy.asi", heavyItemBehaviour,					"dz/anims/anm/player/ik/vehicles/sedan_02/sedan_02_Trunk.anm");
+		
+	 //! offroad_02 
+		pType.AddItemInHandsProfileIK("Offroad_02_Wheel", "dz/anims/workspaces/player/player_main/player_main_heavy.asi", heavyItemBehaviour,					"dz/anims/anm/player/ik/vehicles/offroad_02/offroad_02_Wheel.anm");
+		pType.AddItemInHandsProfileIK("Offroad_02_Wheel_Ruined", "dz/anims/workspaces/player/player_main/player_main_heavy.asi", heavyItemBehaviour,			"dz/anims/anm/player/ik/vehicles/offroad_02/offroad_02_Wheel.anm");
+		pType.AddItemInHandsProfileIK("Offroad_02_Door_1_1", "dz/anims/workspaces/player/player_main/player_main_heavy.asi", heavyItemBehaviour,			"dz/anims/anm/player/ik/vehicles/offroad_02/offroad_02_DriverDoor.anm");
+		pType.AddItemInHandsProfileIK("Offroad_02_Door_2_1", "dz/anims/workspaces/player/player_main/player_main_heavy.asi", heavyItemBehaviour,			"dz/anims/anm/player/ik/vehicles/offroad_02/offroad_02_CoDriverDoor.anm");
+		pType.AddItemInHandsProfileIK("Offroad_02_Door_1_2", "dz/anims/workspaces/player/player_main/player_main_heavy.asi", heavyItemBehaviour,			"dz/anims/anm/player/ik/vehicles/offroad_02/offroad_02_PassengerLDoor.anm");
+		pType.AddItemInHandsProfileIK("Offroad_02_Door_2_2", "dz/anims/workspaces/player/player_main/player_main_heavy.asi", heavyItemBehaviour,		"dz/anims/anm/player/ik/vehicles/offroad_02/offroad_02_PassengerRDoor.anm");
+		pType.AddItemInHandsProfileIK("Offroad_02_Hood", "dz/anims/workspaces/player/player_main/player_main_heavy.asi", heavyItemBehaviour,					"dz/anims/anm/player/ik/vehicles/offroad_02/offroad_02_Hood.anm");
+		pType.AddItemInHandsProfileIK("Offroad_02_Trunk", "dz/anims/workspaces/player/player_main/player_main_heavy.asi", heavyItemBehaviour,					"dz/anims/anm/player/ik/vehicles/offroad_02/offroad_02_Trunk.anm");
 
 
 	}	
@@ -917,6 +956,7 @@ void DayZPlayerTypeRegisterItems(DayZPlayerType pType)
 		pType.AddItemInHandsProfileIK("PigPelt", "dz/anims/workspaces/player/player_main/player_main_1h.asi", toolsOneHanded,				 			"dz/anims/anm/player/ik/gear/Pelt_Pig.anm");
 		pType.AddItemInHandsProfileIK("EasterEgg", "dz/anims/workspaces/player/player_main/props/player_main_1h_fruit.asi", toolsOneHanded,				"dz/anims/anm/player/ik/gear/apple.anm");
 		pType.AddItemInHandsProfileIK("GiftWrapPaper", "dz/anims/workspaces/player/player_main/player_main_1h.asi", toolsOneHanded, 					"dz/anims/anm/player/ik/gear/Bark_birch.anm");
+		pType.AddItemInHandsProfileIK("PunchedCard", "dz/anims/workspaces/player/player_main/player_main_1h.asi", toolsOneHanded, 						"dz/anims/anm/player/ik/gear/PunchedCard.anm");
 			
 		//! Consumables two handed	
 		pType.AddItemInHandsProfileIK("Stone", "dz/anims/workspaces/player/player_main/player_main_2h.asi", twoHanded, 									"dz/anims/anm/player/ik/two_handed/stone.anm");
@@ -1184,6 +1224,7 @@ void DayZPlayerTypeRegisterItems(DayZPlayerType pType)
 		pType.AddItemInHandsProfileIK("ChernarusMap", "dz/anims/workspaces/player/player_main/player_main_1h.asi", toolsOneHanded,						"dz/anims/anm/player/ik/gear/Map_chernarus.anm");
 		pType.AddItemInHandsProfileIK("Compass", "dz/anims/workspaces/player/player_main/props/player_main_1h_compass.asi", toolsOneHanded, 			"dz/anims/anm/player/ik/gear/compass.anm");
 		pType.AddItemInHandsProfileIK("OrienteeringCompass", "dz/anims/workspaces/player/player_main/props/player_main_1h_compass.asi", toolsOneHanded,	"dz/anims/anm/player/ik/gear/compass_modern.anm");
+		pType.AddItemInHandsProfileIK("GPSReceiver", "dz/anims/workspaces/player/player_main/props/player_main_1h_GPSReciever.asi", toolsOneHanded, 		"dz/anims/anm/player/ik/gear/GPSReciever.anm");
 	}
 	
 	//! Optic
@@ -1287,8 +1328,9 @@ void DayZPlayerTypeRegisterItems(DayZPlayerType pType)
 		pType.AddItemInHandsProfileIK("HockeyHelmet_ColorBase", "dz/anims/workspaces/player/player_main/player_main_1h.asi", toolsOneHanded, 			"dz/anims/anm/player/ik/gear/book.anm"); //Temporary
 		pType.AddItemInHandsProfileIK("NBCHoodBase", "dz/anims/workspaces/player/player_main/player_main_1h.asi", toolsOneHanded, 						"dz/anims/anm/player/ik/gear/dirtbike_visor.anm");
 		pType.AddItemInHandsProfileIK("DarkMotoHelmet_YellowScarred", "dz/anims/workspaces/player/player_main/weapons/player_main_1h_pipe.asi", toolsOneHanded,		"dz/anims/anm/player/ik/gear/moto_helmet.anm");
-		pType.AddItemInHandsProfileIK("FaceCover_Improvised", "dz/anims/workspaces/player/player_main/player_main_1h.asi", toolsOneHanded, 						"dz/anims/anm/player/ik/gear/dirtbike_visor.anm");
+		pType.AddItemInHandsProfileIK("FaceCover_Improvised", "dz/anims/workspaces/player/player_main/player_main_1h.asi", toolsOneHanded, 				"dz/anims/anm/player/ik/gear/dirtbike_visor.anm");
 		pType.AddItemInHandsProfileIK("HeadCover_Improvised", "dz/anims/workspaces/player/player_main/player_main_1h.asi", toolsOneHanded,				"dz/anims/anm/player/ik/gear/beanie_hat.anm");
+		pType.AddItemInHandsProfileIK("EyePatch_Improvised", "dz/anims/workspaces/player/player_main/player_main_1h.asi", toolsOneHanded,				"dz/anims/anm/player/ik/clothing/Eyepatch.anm");
 	}
 
 	//! Belts
@@ -1410,6 +1452,9 @@ void DayZPlayerTypeRegisterItems(DayZPlayerType pType)
 		
 		array<string> izh18BoneRemap = { "release", "Weapon_Bone_02", "barrel", "Weapon_Bone_01", "trigger", "Weapon_Trigger","ejector","Weapon_Bone_03","bullet", "Weapon_Bullet", };
 		pType.AddItemBoneRemap("Izh18_Base", izh18BoneRemap);
+
+		array<string> Izh18ShotgunBoneRemap = { "release", "Weapon_Bone_02", "barrel", "Weapon_Bone_01", "trigger", "Weapon_Trigger","ejector","Weapon_Bone_03","bullet", "Weapon_Bullet", };
+		pType.AddItemBoneRemap("Izh18Shotgun_Base", Izh18ShotgunBoneRemap);
 		
 		array<string> M79BoneRemap = { "release", "Weapon_Bone_02", "barrel", "Weapon_Bone_01", "trigger", "Weapon_Trigger","extractor","Weapon_Bone_03","bullet", "Weapon_Bullet", "charging", "Weapon_Bone_04", };
 		pType.AddItemBoneRemap("M79_Base", M79BoneRemap);

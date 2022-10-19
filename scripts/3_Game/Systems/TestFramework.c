@@ -71,6 +71,11 @@ class TFCaller
 	{
 		return m_Test;
 	}
+	
+	string GetTestEx()
+	{
+		return string.Format("%1::%2", m_Instance.ClassName(), m_Test);
+	}
 }
 typedef array<ref TFCaller> TFCallerArr;
 
@@ -83,11 +88,16 @@ class TFModule
 	private ref TFCallerArr 	m_Tests;
 	private ref TFResultArr 	m_Results;
 	
+	private ref array<string>	m_SucceededTests;
+	private ref array<string>	m_FailedTests;
+	
 	void TFModule()
 	{
-		m_Count = 0;
-		m_Tests = new TFCallerArr();
-		m_Results = new TFResultArr();
+		m_Tests = {};
+		m_Results = {};
+		
+		m_SucceededTests = {};
+		m_FailedTests = {};
 	}
 	
 	int Count()
@@ -160,9 +170,11 @@ class TFModule
 		{
 			case TFR.FAIL:
 				++m_Failed;
+				m_FailedTests.Insert(caller.GetTestEx());
 				break;
 			case TFR.SUCCESS:
 				++m_Success;
+				m_SucceededTests.Insert(caller.GetTestEx());
 				break;
 		}
 		
@@ -172,6 +184,27 @@ class TFModule
 	string Result()
 	{
 		return string.Format("{ [TFModule] :: Tests: %1 | Success: %2 | Failed: %3 | Pending: %4 }", Count(), Success(), Failed(), Pending());
+	}
+	
+	void PrintResult(string prefix = "", TestFramework caller = null, string function = "")
+	{
+		Debug.TFLog(string.Format("%1%2", prefix, Result()), caller, function);
+		if (m_SucceededTests.Count())
+		{
+			Debug.TFLog("   |-[SUCCESS]", caller, function);
+			foreach (string success : m_SucceededTests)
+			{
+				Debug.TFLog(string.Format("        |- %1", success), caller, function);
+			}
+		}
+		if (m_FailedTests.Count())
+		{
+			Debug.TFLog("   |-[FAILED]", caller, function);
+			foreach (string fail : m_FailedTests)
+			{
+				Debug.TFLog(string.Format("        |- %1", fail), caller, function);
+			}
+		}
 	}
 }
 
@@ -192,7 +225,8 @@ class TestFramework : ScriptedEntity
 	
 	void ~TestFramework()
 	{
-		Debug.TFLog(string.Format("IM: %1 | FM: %2", m_OnInitModule.Result(), m_OnFrameModule.Result()), this, "~TestFrameWork");
+		m_OnInitModule.PrintResult("IM: ", this, "~TestFrameWork");
+		m_OnFrameModule.PrintResult("FM: ", this, "~TestFrameWork");
 	}
 	
 	//---------------------------------------------------------------------------

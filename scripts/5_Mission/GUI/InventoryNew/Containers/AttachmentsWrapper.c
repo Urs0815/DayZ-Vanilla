@@ -1,6 +1,15 @@
 class AttachmentsWrapper: AttachmentsGroupContainer
 {
 	Attachments m_Attachments;
+	protected Widget m_AttachmentsFalseHeader;
+	protected RichTextWidget m_AttachmentsFalseHeaderText;
+	
+	void AttachmentsWrapper(LayoutHolder parent) 
+	{
+		m_AttachmentsFalseHeader 		= m_RootWidget.FindAnyWidget( "attachmets_wrapper_header_spacer" );
+		m_AttachmentsFalseHeaderText 	= RichTextWidget.Cast(m_AttachmentsFalseHeader.FindAnyWidget("TextWidget0"));
+		m_AttachmentsFalseHeader.Show( false );
+	}
 	
 	void SetParent( Attachments atts )
 	{
@@ -86,5 +95,20 @@ class AttachmentsWrapper: AttachmentsGroupContainer
 	int GetFocusedSlot()
 	{
 		return m_Attachments.GetFocusedSlot();
+	}
+	
+	void ShowFalseAttachmentsHeader(bool show)
+	{
+		m_AttachmentsFalseHeader.Show(show);
+	}
+	
+	void SetFalseAttachmentsHeaderText(string text)
+	{
+		m_AttachmentsFalseHeaderText.SetText(text);
+	}
+	
+	TextWidget GetFalseHeaderTextWidget()
+	{
+		return m_AttachmentsFalseHeaderText;
 	}
 }

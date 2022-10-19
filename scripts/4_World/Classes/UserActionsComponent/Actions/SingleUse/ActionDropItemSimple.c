@@ -26,6 +26,7 @@ class ActionDropItemSimple: ActionDropItem
 		action_data.m_MainItem.m_ThrowItemOnDrop = action_data.m_MainItem.ConfigGetString("physLayer") == "item_large"; //hack, should be redundant anyway
 		if ( !GetGame().IsDedicatedServer() )
 		{
+			ClearInventoryReservationEx(action_data);
 			PhysicalDropItem(action_data);
 		}
 	}

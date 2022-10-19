@@ -39,6 +39,7 @@ class OptionsMenuVideo extends ScriptedWidgetEventHandler
 		protected ref OptionSelectorMultistate	m_ATOCSelector;
 		protected ref OptionSelectorMultistate	m_AOSelector;
 		protected ref OptionSelectorMultistate	m_PPQualitySelector;
+		protected ref OptionSelectorMultistate	m_SSRQualitySelector;
 	#endif
 	
 	#ifdef PLATFORM_CONSOLE
@@ -70,6 +71,7 @@ class OptionsMenuVideo extends ScriptedWidgetEventHandler
 		protected ref ListOptionsAccess			m_ATOCOption;
 		protected ref ListOptionsAccess			m_AOOption;
 		protected ref ListOptionsAccess			m_PPQualityOption;	
+		protected ref ListOptionsAccess			m_SSRQualityOption;	
 	#endif
 	
 	protected ref map<int, ref Param2<string, string>> m_TextMap;
@@ -111,6 +113,7 @@ class OptionsMenuVideo extends ScriptedWidgetEventHandler
 			m_Root.FindAnyWidget( "atoc_setting_option" ).SetUserID( OptionAccessType.AT_ATOC_DETAIL );
 			m_Root.FindAnyWidget( "ao_setting_option" ).SetUserID( OptionAccessType.AT_AMBIENT_OCCLUSION );
 			m_Root.FindAnyWidget( "pp_setting_option" ).SetUserID( OptionAccessType.AT_POSTPROCESS_EFFECTS );
+			m_Root.FindAnyWidget( "ssr_setting_option" ).SetUserID( OptionAccessType.AT_WATER_DETAIL );
 		#endif
 		
 		FillTextMap();
@@ -149,6 +152,7 @@ class OptionsMenuVideo extends ScriptedWidgetEventHandler
 			array<string> opt6			= { "#options_controls_disabled", "#options_video_low", "#options_video_medium", "#options_video_high", "#options_video_extreme" };
 			array<string> opt7			= { "#options_controls_disabled", "#options_video_low", "#options_video_medium", "#options_video_high" };
 			array<string> opt8			= new array<string>;
+			array<string> opt9			= { "#options_controls_disabled", "#options_video_low", "#options_video_high" };
 			
 			for ( int i = 0; i < m_ResolutionOption.GetItemsCount(); i++ )
 			{
@@ -182,6 +186,7 @@ class OptionsMenuVideo extends ScriptedWidgetEventHandler
 			m_ATOCSelector					= new OptionSelectorMultistate( m_Root.FindAnyWidget( "atoc_setting_option" ), m_ATOCOption.GetIndex(), this, false, opt1 );
 			m_AOSelector					= new OptionSelectorMultistate( m_Root.FindAnyWidget( "ao_setting_option" ), m_AOOption.GetIndex(), this, false, opt6 );
 			m_PPQualitySelector				= new OptionSelectorMultistate( m_Root.FindAnyWidget( "pp_setting_option" ), m_PPQualityOption.GetIndex(), this, false, opt3 );
+			m_SSRQualitySelector			= new OptionSelectorMultistate( m_Root.FindAnyWidget( "ssr_setting_option" ), m_SSRQualityOption.GetIndex(), this, false, opt9 );
 		#endif
 		
 		#ifdef PLATFORM_CONSOLE
@@ -213,6 +218,7 @@ class OptionsMenuVideo extends ScriptedWidgetEventHandler
 			m_ATOCSelector.m_OptionChanged.Insert( OnATOCChanged );
 			m_AOSelector.m_OptionChanged.Insert( OnAOChanged );
 			m_PPQualitySelector.m_OptionChanged.Insert( OnPPQualityChanged );
+			m_SSRQualitySelector.m_OptionChanged.Insert( OnSSRQualityChanged );
 		#endif
 	}
 	
@@ -322,7 +328,16 @@ class OptionsMenuVideo extends ScriptedWidgetEventHandler
 			m_ATOCOption					= ListOptionsAccess.Cast( m_Options.GetOptionByType( OptionAccessType.AT_ATOC_DETAIL ) );
 			m_AOOption						= ListOptionsAccess.Cast( m_Options.GetOptionByType( OptionAccessType.AT_AMBIENT_OCCLUSION ) );
 			m_PPQualityOption				= ListOptionsAccess.Cast( m_Options.GetOptionByType( OptionAccessType.AT_POSTPROCESS_EFFECTS ) );
+			m_SSRQualityOption				= ListOptionsAccess.Cast( m_Options.GetOptionByType( OptionAccessType.AT_WATER_DETAIL ) );
 		#endif
+	}
+	
+	void ToggleDependentOptions(int mode, bool state)
+	{
+	}
+	
+	void InitDependentOptionsVisibility()
+	{
 	}
 	
 	void RefreshCustom()
@@ -354,6 +369,7 @@ class OptionsMenuVideo extends ScriptedWidgetEventHandler
 			m_ATOCSelector.SetValue( m_ATOCOption.GetIndex(), false );
 			m_AOSelector.SetValue( m_AOOption.GetIndex(), false );
 			m_PPQualitySelector.SetValue( m_PPQualityOption.GetIndex(), false );		
+			m_SSRQualitySelector.SetValue( m_SSRQualityOption.GetIndex(), false );		
 		#endif
 	}
 	
@@ -529,6 +545,13 @@ class OptionsMenuVideo extends ScriptedWidgetEventHandler
 			OnOptionChanged();
 			m_Menu.OnChanged();
 		}			
+	
+		void OnSSRQualityChanged( int value )
+		{
+			m_SSRQualityOption.SetIndex( value );
+			OnOptionChanged();
+			m_Menu.OnChanged();
+		}			
 	#endif
 	
 	override bool OnFocus( Widget w, int x, int y )
@@ -588,7 +611,8 @@ class OptionsMenuVideo extends ScriptedWidgetEventHandler
 			m_TextMap.Insert( OptionAccessType.AT_FSAA_DETAIL, new Param2<string, string>( "#options_video_anti-aliasing_hardware", "#options_video_anti-aliasing_hardware_desc" ) );
 			m_TextMap.Insert( OptionAccessType.AT_ATOC_DETAIL, new Param2<string, string>( "#options_video_foliage_smoothing", "#options_video_foliage_smoothing_desc" ) );
 			m_TextMap.Insert( OptionAccessType.AT_AMBIENT_OCCLUSION, new Param2<string, string>( "#options_video_ambient_occlusion", "#options_video_ambient_occlusion_desc" ) );
-			m_TextMap.Insert( OptionAccessType.AT_POSTPROCESS_EFFECTS, new Param2<string, string>( "#options_video_post_process", "#options_video_post_process_desc" ) );		
+			m_TextMap.Insert( OptionAccessType.AT_POSTPROCESS_EFFECTS, new Param2<string, string>( "#options_video_post_process", "#options_video_post_process_desc" ) );
+			m_TextMap.Insert( OptionAccessType.AT_WATER_DETAIL, new Param2<string, string>( "#STR_option_video_ssr_quality_tip_header", "#STR_option_video_ssr_quality_tip" ) );
 		#endif
 	}
 }

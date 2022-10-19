@@ -577,15 +577,12 @@ class Fireplace extends FireplaceBase
 		return true;
 	}
 	
-	override bool CanBeIgnitedBy( EntityAI igniter = NULL )
+	override bool CanBeIgnitedBy(EntityAI igniter = NULL)
 	{
-		if ( HasAnyKindling() && !IsBurning() && !GetHierarchyParent() )
-			return true;
-			
-		return false;
+		return HasAnyKindling() && !IsBurning() && !GetHierarchyParent();
 	}
 	
-	override bool CanIgniteItem( EntityAI ignite_target = NULL )
+	override bool CanIgniteItem(EntityAI ignite_target = NULL)
 	{
 		return IsBurning();
 	}
@@ -748,15 +745,8 @@ class Fireplace extends FireplaceBase
 			return false;
 		}
 
-		// check if the fireplace isnt below a roof
 		if (!MiscGameplayFunctions.IsUnderRoof(entity))
-		{
-			// if not, check if there is strong rain or wind
-			if (FireplaceBase.IsRainingAboveEntity(entity))
-			{
-				return false;
-			}
-		}
+			return !FireplaceBase.IsRainingAboveEntity(entity);
 
 		return true;	
 	}

@@ -67,9 +67,15 @@ class ActionManagerClient: ActionManagerBase
 					break;
 			
 				case UA_AM_ACCEPTED:
+					int condition_mask = ActionBase.ComputeConditionMask( m_Player, m_CurrentActionData.m_Target, m_CurrentActionData.m_MainItem );
+				
+					m_CurrentActionData.m_Action.ClearInventoryReservationEx(m_CurrentActionData);
+					//bool can_be_action_done = ((condition_mask & m_CurrentActionData.m_Action.m_ConditionMask) == condition_mask );
+					bool can_be_action_done = m_CurrentActionData.m_Action.Can(m_Player,m_CurrentActionData.m_Target,m_CurrentActionData.m_MainItem);
 					// check pCurrentCommandID before start or reject 
-					if ( m_ActionPossible && pCurrentCommandID != DayZPlayerConstants.COMMANDID_SWIM && pCurrentCommandID != DayZPlayerConstants.COMMANDID_LADDER && ( !m_Player.IsRestrained() || m_CurrentActionData.m_Action.CanBeUsedInRestrain() ) )
+					if ( m_ActionPossible && can_be_action_done && pCurrentCommandID != DayZPlayerConstants.COMMANDID_SWIM )
 					{
+						m_CurrentActionData.m_Action.InventoryReservation(m_CurrentActionData);
 						m_CurrentActionData.m_State = UA_START;
 						m_CurrentActionData.m_Action.Start(m_CurrentActionData);
 						
@@ -97,7 +103,7 @@ class ActionManagerClient: ActionManagerBase
 						{
 							if ( !m_ActionWantEndRequest_Send && ScriptInputUserData.CanStoreInputUserData() )
 							{
-								if( LogManager.IsActionLogEnable() )
+								if ( LogManager.IsActionLogEnable() )
 								{	
 									Debug.ActionLog("Time stamp: " + m_Player.GetSimulationTimeStamp(), m_CurrentActionData.m_Action.ToString() , "n/a", "EndRequest", m_CurrentActionData.m_Player.ToString() );
 								}
@@ -124,7 +130,7 @@ class ActionManagerClient: ActionManagerBase
 						{
 							if ( !m_ActionInputWantEnd_Send && ScriptInputUserData.CanStoreInputUserData() )
 							{
-								if( LogManager.IsActionLogEnable() )
+								if ( LogManager.IsActionLogEnable() )
 								{
 									Debug.ActionLog("Time stamp: " + m_Player.GetSimulationTimeStamp(), m_CurrentActionData.m_Action.ToString() , "n/a", "EndInput", m_CurrentActionData.m_Player.ToString() );
 								}
@@ -550,7 +556,7 @@ class ActionManagerClient: ActionManagerBase
 		bool success = false;
 		if ( action_data.m_Action.IsInstant() )
 		{
-			if( LogManager.IsActionLogEnable() )
+			if ( LogManager.IsActionLogEnable() )
 			{
 				Debug.ActionLog("(-) Inventory lock - Not Used", action_data.m_Action.ToString() , "n/a", "LockInventory", action_data.m_Player.ToString() );
 			}
@@ -558,7 +564,7 @@ class ActionManagerClient: ActionManagerBase
 		}
 		else
 		{
-			if( LogManager.IsActionLogEnable() )
+			if ( LogManager.IsActionLogEnable() )
 			{
 				Debug.ActionLog("(X) Inventory lock", action_data.m_Action.ToString() , "n/a", "LockInventory", action_data.m_Player.ToString() );
 			}
@@ -571,7 +577,7 @@ class ActionManagerClient: ActionManagerBase
 	}
 	void UnlockInventory(ActionData action_data)
 	{
-		if( LogManager.IsActionLogEnable() )
+		if ( LogManager.IsActionLogEnable() )
 		{
 			Debug.ActionLog("(O) Inventory unlock", action_data.m_Action.ToString() , "n/a", "UnlockInventory", action_data.m_Player.ToString() );
 		}
@@ -593,7 +599,7 @@ class ActionManagerClient: ActionManagerBase
 			
 			HandleInputsOnActionStart(action);
 
-			if( LogManager.IsActionLogEnable() )
+			if ( LogManager.IsActionLogEnable() )
 			{
 				Debug.ActionLog("Item = " + item + ", " + target.DumpToString(), action.ToString() , "n/a", "ActionStart", m_Player.ToString() );
 			}
@@ -604,7 +610,7 @@ class ActionManagerClient: ActionManagerBase
 				{
 					DPrint("ScriptInputUserData already posted - ActionManagerClient");
 					
-					if( LogManager.IsActionLogEnable() )
+					if ( LogManager.IsActionLogEnable() )
 					{
 						Debug.ActionLog("Cannot start because ScriptInputUserData is already used", action.ToString() , "n/a", "ActionStart", m_Player.ToString() );
 					}
@@ -612,14 +618,14 @@ class ActionManagerClient: ActionManagerBase
 				}
 			}
 			
-			if( !action.SetupAction(m_Player, target, item, m_CurrentActionData, extra_data ))
+			if ( !action.SetupAction(m_Player, target, item, m_CurrentActionData, extra_data ))
 			{
 				DPrint("Can not inicialize action" + action + " - ActionManagerClient");
 				m_CurrentActionData = NULL;
 				return;
 			}
 			
-			if( LogManager.IsActionLogEnable() )
+			if ( LogManager.IsActionLogEnable() )
 			{
 				Debug.ActionLog("Action data created wait to start", action.ToString() , "n/a", "ActionStart", m_Player.ToString() );
 			}
@@ -1113,7 +1119,12 @@ class ActionManagerClient: ActionManagerBase
 	{
 		ItemBase itemInHand = m_Player.GetItemInHands();
 		ActionTarget target;
-		target = new ActionTarget(targetItem, null, -1, vector.Zero, -1);
+		EntityAI parent = null;
+		if (targetItem)
+		{
+			parent = targetItem.GetHierarchyParent();
+		}
+		target = new ActionTarget(targetItem, parent, -1, vector.Zero, -1);
 		bool hasTarget = targetItem != NULL;
 		
 		if( mainItem )

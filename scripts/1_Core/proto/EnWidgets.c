@@ -460,6 +460,7 @@ class WrapSpacerWidget extends SpacerWidget
 class ScrollWidget extends SpacerBaseWidget
 {
 	proto native float GetScrollbarWidth();
+	proto native bool IsScrollbarVisible(); //reflects native C++ side scrollbar state
 
 	proto native float GetContentWidth();
 	proto native float GetContentHeight();

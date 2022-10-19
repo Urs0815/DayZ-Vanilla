@@ -53,6 +53,7 @@ class SlotsContainer: Container
 	
 	void SetVisibleFocus( int index )
 	{
+		Unfocus();
 		int visible_icons_count = 0;
 		
 		m_FocusedColumn = 0;
@@ -146,11 +147,11 @@ class SlotsContainer: Container
 		EntityAI focused_item = GetFocusedItem();
 		if ( focused_item )
 		{
-			ItemManager.GetInstance().PrepareTooltip( focused_item, x, y );
+			PrepareOwnedTooltip( focused_item, -1, y ); //custom positioning for the controller
 		}
 		else
 		{
-			ItemManager.GetInstance().PrepareSlotsTooltip( icon.GetSlotDisplayName(), icon.GetSlotDesc(), x, y );
+			PrepareOwnedSlotsTooltip( icon.GetCursorWidget(), icon.GetSlotDisplayName(), icon.GetSlotDesc(), x, y );
 		}
 	}
 	
@@ -259,5 +260,26 @@ class SlotsContainer: Container
 			}
 		#endif
 			
+	}
+	
+	//! Returns 'true' if radial icon is VISIBLE and also OPEN (individual icon or any icon, use parameter..)
+	bool VerifySlotsIconVisibility(int idx = -1)
+	{
+		if (idx != -1)
+		{
+			return m_Icons[idx].IsVisible() && m_Icons[idx].GetRadialIconPanel().IsVisible() && m_Icons[idx].GetRadialIcon().IsVisible();
+		}
+		else
+		{
+			int count = m_Icons.Count();
+			for (int i = 0; i < count; i++)
+			{
+				if (m_Icons[i].IsVisible() && m_Icons[i].GetRadialIconPanel().IsVisible() && m_Icons[i].GetRadialIcon().IsVisible())
+				{
+					return true;
+				}
+			}
+		}
+		return false;
 	}
 }

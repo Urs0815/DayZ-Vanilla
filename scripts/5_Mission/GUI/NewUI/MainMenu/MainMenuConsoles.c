@@ -57,6 +57,9 @@ class MainMenuConsole extends UIScriptedMenu
 		Refresh();
 		
 		GetGame().GetMission().GetOnInputPresetChanged().Insert(OnInputPresetChanged);
+		GetGame().GetMission().GetOnInputDeviceChanged().Insert(OnInputDeviceChanged);
+		
+		OnInputDeviceChanged(GetGame().GetInput().GetCurrentInputDevice());
 
 		return layoutRoot;
 	}
@@ -92,6 +95,24 @@ class MainMenuConsole extends UIScriptedMenu
 		#ifdef PLATFORM_CONSOLE
 		UpdateControlsElements();
 		#endif
+	}
+
+	protected void OnInputDeviceChanged(EInputDeviceType pInputDeviceType)
+	{
+		switch (pInputDeviceType)
+		{
+		case EInputDeviceType.CONTROLLER:
+			UpdateControlsElements();
+			layoutRoot.FindAnyWidget("toolbar_bg").Show(true);
+		break;
+
+		default:
+			if (GetGame().GetInput().IsEnabledMouseAndKeyboardEvenOnServer())
+			{
+				layoutRoot.FindAnyWidget("toolbar_bg").Show(false);
+			}
+		break;
+		}
 	}
 	
 	override bool OnClick( Widget w, int x, int y, int button )
@@ -223,7 +244,6 @@ class MainMenuConsole extends UIScriptedMenu
 			#ifndef PLATFORM_PS4
 			layoutRoot.FindAnyWidget( "choose_account" ).Show( GetGame().GetInput().IsEnabledMouseAndKeyboard() );
 			#endif
-		layoutRoot.FindAnyWidget( "toolbar_bg" ).Show( !GetGame().GetInput().IsEnabledMouseAndKeyboard() );
 		layoutRoot.FindAnyWidget( "ButtonHolderCredits" ).Show( GetGame().GetInput().IsEnabledMouseAndKeyboard() );
 		UpdateControlsElements();
 		#endif

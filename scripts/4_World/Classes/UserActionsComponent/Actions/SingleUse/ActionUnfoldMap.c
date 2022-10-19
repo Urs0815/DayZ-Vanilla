@@ -10,18 +10,18 @@ class ActionUnfoldMapCB : ActionBaseCB
 	{
 		RegisterAnimationEvent("ActionExec", UA_ANIM_EVENT);
 		EnableStateChangeCallback();
-		EnableCancelCondition( true );
+		EnableCancelCondition(true);
 	}
 	
 	void ~ActionUnfoldMapCB()
 	{
 		if (!CfgGameplayHandler.GetUse3DMap())
 		{
-			GetGame().GetMission().RemoveActiveInputExcludes({"menu"},false);
+			GetGame().GetMission().RemoveActiveInputExcludes({"map"}, false);
 		}
 		else
 		{
-			GetGame().GetMission().RemoveActiveInputExcludes({"loopedactions"},false);
+			GetGame().GetMission().RemoveActiveInputExcludes({"loopedactions"}, false);
 		}
 		GetGame().GetMission().RemoveActiveInputRestriction(EInputRestrictors.MAP);
 		
@@ -123,7 +123,7 @@ class ActionUnfoldMapCB : ActionBaseCB
 		ItemMap chernomap = ItemMap.Cast(m_ActionData.m_Player.GetItemInHands());
 		if (chernomap && !m_ActionData.m_Player.IsMapOpen() && !m_MapFolding)
 		{
-			chernomap.SetMapStateOpen(true,m_ActionData.m_Player);
+			chernomap.SetMapStateOpen(true, m_ActionData.m_Player);
 	
 			if (!GetGame().IsMultiplayer() || GetGame().IsServer())
 			{
@@ -140,32 +140,26 @@ class ActionUnfoldMapCB : ActionBaseCB
 					map_menu = m_UIManager.EnterScriptedMenu(MENU_MAP, NULL);
 					map_menu.InitMapItem(chernomap);
 					map_menu.LoadMapMarkers();
-					GetGame().GetMission().AddActiveInputExcludes({"menu"});
+					GetGame().GetMission().AddActiveInputExcludes({"map"});
 				}
 				else
 				{
 					GetGame().GetMission().AddActiveInputExcludes({"loopedactions"});
 				}
 				GetGame().GetMission().AddActiveInputRestriction(EInputRestrictors.MAP);
-			}
+			}			
 		}
 		else if (chernomap && m_ActionData.m_Player.IsMapOpen())
 		{
-			chernomap.SetMapStateOpen(false,m_ActionData.m_Player);
+			chernomap.SetMapStateOpen(false, m_ActionData.m_Player);
 			m_MapFolding = true;
+			m_ActionData.m_Player.SetMapOpen(false);
 		}
 	}
 	
 	bool StateCheck()
 	{
-		if ( m_InitMovementState == m_FinalMovementState )
-		{
-			return true;
-		}
-		else
-		{
-			return false;
-		}
+		return m_InitMovementState == m_FinalMovementState;
 	}
 }
 
@@ -183,8 +177,8 @@ class ActionUnfoldMap: ActionBase
 	
 	override void CreateConditionComponents()
 	{
-		m_ConditionItem = new CCINonRuined;
-		m_ConditionTarget = new CCTNone;
+		m_ConditionItem 	= new CCINonRuined();
+		m_ConditionTarget 	= new CCTNone();
 	}
 
 	override bool HasTarget()
@@ -192,7 +186,7 @@ class ActionUnfoldMap: ActionBase
 		return false;
 	}
 
-	override bool ActionCondition( PlayerBase player, ActionTarget target, ItemBase item )
+	override bool ActionCondition(PlayerBase player, ActionTarget target, ItemBase item)
 	{
 		if (player.m_hac || player.IsMapOpen())
 		{
@@ -206,16 +200,16 @@ class ActionUnfoldMap: ActionBase
 		return AC_SINGLE_USE;
 	}
 	
-	override void OnStartClient( ActionData action_data )
+	override void OnStartClient(ActionData action_data)
 	{
-		OpenMap( action_data );
+		OpenMap(action_data);
 	}
 	
 	override void OnStartServer( ActionData action_data )
 	{
-		OpenMap( action_data );
+		OpenMap(action_data);
 		ItemMap chernomap = ItemMap.Cast(action_data.m_MainItem);
-		chernomap.SyncMapMarkers(); //TODO solve some other way!
+		chernomap.SyncMapMarkers();
 	}
 	
 	override void OnEndRequest(ActionData action_data)
@@ -228,6 +222,7 @@ class ActionUnfoldMap: ActionBase
 	{
 		if ( action_data.m_Player.m_hac )
 		{
+			action_data.m_Player.m_hac.m_MapFolding = true;
 			action_data.m_Player.m_hac.PerformMapChange();
 		}
 		

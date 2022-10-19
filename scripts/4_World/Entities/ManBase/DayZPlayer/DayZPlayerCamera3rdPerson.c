@@ -196,6 +196,7 @@ class DayZPlayerCamera3rdPersonJump extends DayZPlayerCamera3rdPersonErc
 
 		float yPos = m_pPlayer.GetOrigin()[1];
 		float yDiff = yPos - m_fJumpStartY;
+		yDiff = Math.Clamp(yDiff, 0.0, 2.0);
 		
 		if( m_fDelayTimer < m_fDelay )
 		{

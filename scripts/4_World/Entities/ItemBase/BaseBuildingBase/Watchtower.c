@@ -600,32 +600,6 @@ class Watchtower extends BaseBuildingBase
 	{
 		super.OnDebugSpawn();
 		
-		/*bool bWood = false;
-		for (int i = 1; i <= MAX_WATCHTOWER_FLOORS; ++i)
-		{
-			OnPartBuiltServer(string.Format("level_%1_base", i), AT_BUILD_PART);
-			
-			for (int j = 1; j <= MAX_WATCHTOWER_WALLS; ++j)
-			{
-				OnPartBuiltServer(string.Format("level_%1_wall_%2_base_down", i, j), AT_BUILD_PART);
-				OnPartBuiltServer(string.Format("level_%1_wall_%2_base_up", i, j), AT_BUILD_PART);
-				if (bWood)
-				{
-					OnPartBuiltServer(string.Format("level_%1_wall_%2_wood_down", i, j), AT_BUILD_PART);
-					OnPartBuiltServer(string.Format("level_%1_wall_%2_wood_up", i, j), AT_BUILD_PART);
-				}
-				else
-				{
-					OnPartBuiltServer(string.Format("level_%1_wall_%2_metal_down", i, j), AT_BUILD_PART);
-					OnPartBuiltServer(string.Format("level_%1_wall_%2_metal_up", i, j), AT_BUILD_PART);
-				}
-			}
-			
-			if (i != MAX_WATCHTOWER_FLOORS)
-				OnPartBuiltServer(string.Format("level_%1_stairs", i), AT_BUILD_PART);
-			OnPartBuiltServer(string.Format("level_%1_roof", i), AT_BUILD_PART);
-		}*/
-		
 		int i;
 				
 		for (i = 0; i < MAX_WATCHTOWER_FLOORS * MAX_WATCHTOWER_WALLS; ++i)
